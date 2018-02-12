@@ -1,0 +1,26 @@
+{
+  "name": "dynamodb-model",
+  "version": "1.0.0",
+  "description": "DynamoDB models to use on internal projects.",
+  "main": "dist/index.js",
+  "repository": "https://github.com/guzmonne/dynamodb-model",
+  "author": "Guzman Monne <guzmonne@hotmail.com>",
+  "license": "MIT",
+  "private": false,
+  "devDependencies": {
+    "@types/jest": "^22.1.2",
+    "@types/node": "^9.4.5",
+    "jest": "^22.2.2",
+    "typescript": "^2.7.1"
+  },
+  "scripts": {
+    "test": "jest --watch"
+  },
+  "jest": {
+    "moduleFileExtensions": ["ts", "tsx", "js"],
+    "transform": {
+      "^.+\\.(ts|tsx)$": "<rootDir>/preprocessor.js"
+    },
+    "testMatch": ["**/__tests__/*.(ts|tsx|js)"]
+  }
+}
