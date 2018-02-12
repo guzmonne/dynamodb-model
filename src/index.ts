@@ -25,22 +25,24 @@ export interface IDynamoDBModel {
 }
 
 export class DynamoDBModel implements IDynamoDBModel {
-  static table: string;
-  static tenant: string = '';
-  static documentClient: ICustomDocumentClient = new DynamoDB.DocumentClient();
+  static global: IDynamoDBModelConfig = {
+    table: '',
+    tenant: '',
+    documentClient: new DynamoDB.DocumentClient()
+  };
+  private table: string;
+  private tenant: string;
+  private documentClient: ICustomDocumentClient;
 
-  constructor(config: IDynamoDBModelConfig) {
-    if (config.documentClient !== undefined)
-      DynamoDBModel.documentClient = new DynamoDB.DocumentClient();
-    if (config.tenant !== undefined) DynamoDBModel.tenant = config.tenant;
-    if (config.table !== undefined) DynamoDBModel.table = config.table;
+  constructor(config?: IDynamoDBModelConfig) {
+    config = Object.assign({}, DynamoDBModel.global, config);
+    this.documentClient = new DynamoDB.DocumentClient();
+    this.tenant = config.tenant || '';
+    this.table = config.table || '';
   }
 
   static config(config: IDynamoDBModelConfig): void {
-    if (config.documentClient !== undefined)
-      this.documentClient = config.documentClient;
-    if (config.tenant !== undefined) this.tenant = config.tenant;
-    if (config.table !== undefined) this.table = config.table;
+    this.global = Object.assign({}, this.global, config);
   }
 
   get(id?: string) {

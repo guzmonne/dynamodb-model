@@ -13,10 +13,12 @@ describe('DynamoDB Model', () => {
     });
 
     test('should configure the static `DynamoDBModel` options', () => {
-      expect(DynamoDBModel.table).toBe(undefined);
-      expect(DynamoDBModel.tenant).toBe('');
+      expect(DynamoDBModel.global.table).toBe('');
+      expect(DynamoDBModel.global.tenant).toBe('');
       expect(
-        DynamoDBModel.documentClient instanceof DynamoDB.DocumentClient === true
+        DynamoDBModel.global.documentClient instanceof
+          DynamoDB.DocumentClient ===
+          true
       ).toBe(true);
       var tenant = 'SomeTenant';
       var table = 'SomeTable';
@@ -25,13 +27,13 @@ describe('DynamoDB Model', () => {
         tenant: 'SomeTenant',
         documentClient: customDocumentClient
       });
-      expect(DynamoDBModel.table).toBe(table);
-      expect(DynamoDBModel.tenant).toBe(tenant);
-      expect(DynamoDBModel.documentClient).toBe(customDocumentClient);
+      expect(DynamoDBModel.global.table).toBe(table);
+      expect(DynamoDBModel.global.tenant).toBe(tenant);
+      expect(DynamoDBModel.global.documentClient).toBe(customDocumentClient);
     });
   });
 
-  //var TestModel = new DynamoDBModel();
+  var TestModel = new DynamoDBModel();
 
-  //describe('#get()', () => {});
+  describe('#get()', () => {});
 });

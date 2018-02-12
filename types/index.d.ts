@@ -22,10 +22,11 @@ export interface IDynamoDBModel {
     get: (id?: string) => IDynamoDBModel;
 }
 export declare class DynamoDBModel implements IDynamoDBModel {
-    static table: string;
-    static tenant: string;
-    static documentClient: ICustomDocumentClient;
-    constructor(config: IDynamoDBModelConfig);
+    static global: IDynamoDBModelConfig;
+    private table;
+    private tenant;
+    private documentClient;
+    constructor(config?: IDynamoDBModelConfig);
     static config(config: IDynamoDBModelConfig): void;
     get(id?: string): this;
 }
