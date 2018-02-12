@@ -34,28 +34,34 @@ var DefaultModel = DynamoDBModel({
 	table: 'ProfilesTable',
 	track: true // Tracks `CreatedAt` and `UpdatedAt` attributes
 });
+
 // Empty model
 var defaultModel = DefaultModel();
+
 // Create new item
 defaultModel.create({name: 'John Doe'})
 	.promise()
 	.then(() => /* ... */ );
+
 // Get item by id and update its values
 var itemById = DefaultModel()
 	.get(1)
 	.set({age: 23})
 	.promise()
 	.then(() => /* ... */);
+
 // Get a collection of items by ids
 var itemCollectionByIds = DefaultModel.collection()
 	.get([1, 2, 3])
 	.promise()
 	.then(() => /* ... */);
+
 // Get a collection of items using options
 var itemCollectionByOptions = DefaultModel.collection()
 	.get({ offset: 2, limit: 1 })
 	.promise()
 	.then(() => /* ... */)
+
 // Update an entire collection.
 var updateCollection = DefaultModel.collection()
 	.get([1, 2, 3])
