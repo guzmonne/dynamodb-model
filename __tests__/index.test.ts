@@ -1,6 +1,10 @@
 import * as sinon from 'sinon';
-import { DynamoDB } from 'aws-sdk';
+import { DynamoDB, config } from 'aws-sdk';
 import { DynamoDBModel } from '../src/index';
+
+config.update({
+  region: 'us-east-1'
+});
 
 var db = new DynamoDB.DocumentClient({
   region: 'us-east-1'
@@ -34,14 +38,22 @@ describe('DynamoDB Model', () => {
   });
 
   var TestModel = new DynamoDBModel({
-    hash: 'id'
+    hash: 'id',
+    table: 'TestTable',
+    tenant: 'test-tenant',
+    documentClient: db
   });
 
   describe('#get()', () => {
+    var id: string = 'abcd';
+    var data = {id: '1', name: 'John Doe'};
     var getStub: sinon.SinonStub;
 
     beforeEach(() => {
       getStub = sinon.stub(db, 'get');
+      getStub.returns({
+        send: callback => callback(null, data);
+      });
     });
 
     afterEach(() => {
@@ -53,7 +65,26 @@ describe('DynamoDB Model', () => {
     });
 
     test('should return an instance of DynamoDBModel', () => {
-      expect(TestModel.get({ id: '1' }) instanceof DynamoDBModel).toBe(true);
+      expect(TestModel.get({ id }) instanceof DynamoDBModel).toBe(true);
+    });
+
+    test('should call the callback immediately if provided', done => {
+      TestModel.get({ id }, err => {
+        if (err) console.log(err);
+        expect(err).toBe(null);
+        expect(getStub.calledOnce).toBe(true);
+        done();
+      });
+    });
+
+    test('should set the data on the model on success', done => {
+      TestModel.get({ id }, err => {
+        if (err) console.log(err);
+        expect(err).toBe(null);
+        expect(getStub.calledOnce).toBe(true);
+        expect(TestModel.data).toEqual(data);
+        done();
+      });
     });
   });
 });
