@@ -13,8 +13,7 @@
     "alwaysStrict": true,
     "strict": true,
     "sourceMap": true,
-    "declaration": true,
-    "declarationDir": "./types",
+
     "outDir": "./dist",
     "target": "es2016"
   },

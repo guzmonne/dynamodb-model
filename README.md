@@ -27,12 +27,14 @@ Now we can define default instances of the models, or extend the `Base` class to
 
 ```javascript
 var DefaultModel = DynamoDBModel({
+  hash: 'id',
+  range: 'createdAt',
 	schema: {
 		name: { type: 'string' },
-		age: {type: 'number'},
+		age: { type: 'number' },
 	},
 	table: 'ProfilesTable',
-	track: true // Tracks `CreatedAt` and `UpdatedAt` attributes
+	track: true // Tracks `createdAt` and `updatedAt` attributes
 });
 
 // Empty model

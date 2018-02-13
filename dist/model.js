@@ -5,10 +5,11 @@ Object.defineProperty(exports, "__esModule", { value: true });
  */
 const lodash_1 = require("lodash");
 const aws_sdk_1 = require("aws-sdk");
-class DynamoDBModel {
+const index_1 = require("./index");
+class Model {
     constructor(config) {
         this.calls = [];
-        config = Object.assign({}, DynamoDBModel.global, config);
+        config = Object.assign({}, index_1.DynamoDBModel.global, config);
         this.documentClient =
             config.documentClient || new aws_sdk_1.DynamoDB.DocumentClient();
         this.tenant = config.tenant || '';
@@ -16,9 +17,6 @@ class DynamoDBModel {
         this.hash = config.hash;
         if (config.range !== undefined)
             this.range = config.range;
-    }
-    static config(config) {
-        this.global = Object.assign({}, this.global, config);
     }
     getKey(key) {
         key = lodash_1.pick(key, this.hash, this.range || '');
@@ -43,6 +41,5 @@ class DynamoDBModel {
         return this;
     }
 }
-DynamoDBModel.global = {};
-exports.DynamoDBModel = DynamoDBModel;
-//# sourceMappingURL=index.js.map
+exports.Model = Model;
+//# sourceMappingURL=model.js.map

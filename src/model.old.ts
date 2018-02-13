@@ -10,13 +10,11 @@ import {
   IItem,
   IDynamoDBModel,
   IDynamoDBModelConfig,
-  IDynamoDBModelGlobalConfig,
   IDynamoDBKey
 } from './index.d';
+import { DynamoDBModel } from './index';
 
-export class DynamoDBModel implements IDynamoDBModel {
-  static global: IDynamoDBModelGlobalConfig = {};
-
+export class Model implements IDynamoDBModel {
   private table: string;
   private tenant: string;
   private documentClient: DynamoDB.DocumentClient;
@@ -36,10 +34,6 @@ export class DynamoDBModel implements IDynamoDBModel {
     this.table = config.table || '';
     this.hash = config.hash;
     if (config.range !== undefined) this.range = config.range;
-  }
-
-  static config(config: IDynamoDBModelGlobalConfig): void {
-    this.global = Object.assign({}, this.global, config);
   }
 
   private getKey(key: IDynamoDBKey) {
