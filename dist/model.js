@@ -70,8 +70,10 @@ class Model {
             throw new Error(`The attribute \`${key}\` is required.`);
     }
     validate(body) {
+        if (body[this.hash] === undefined)
+            throw new Error(`The hash key \`${this.hash}\` can't be undefined.`);
         if (this.range !== undefined && body[this.range] === undefined)
-            throw new Error(`The range key \`${this.range}\` can' be undefined.`);
+            throw new Error(`The range key \`${this.range}\` can't be undefined.`);
         for (let key in this.schema) {
             var rules = this.schema[key];
             var value = body[key];
@@ -99,17 +101,17 @@ class Model {
         catch (err) {
             return this.handleValidationError(err, callback);
         }
-        body = Object.assign({}, lodash_1.pick(body, Object.keys(this.schema)), this.trackChanges(body), this.getKey(body));
-        var call = this.documentClient.put({
+        body = Object.assign({}, lodash_1.pick(body, Object.keys(this.schema), this.hash, this.range), this.trackChanges(body));
+        var params = {
             TableName: this.table,
-            Item: body
-        });
+            Item: Object.assign({}, body, this.getKey(body))
+        };
+        var call = this.documentClient.put(params);
         if (typeof callback === 'function')
             return call.send(err => {
                 if (err !== null)
                     return callback(err);
                 this.data.push(body);
-                this.removeTenantData();
                 callback(null);
             });
         this.calls.push(() => call
@@ -122,6 +124,27 @@ class Model {
             throw err;
         }));
         return this;
+    }
+    delete(key, callback) {
+        var call = this.documentClient.delete({
+            TableName: this.table,
+            Key: this.getKey(key)
+        });
+        if (typeof callback === 'function')
+            return call.send(err => {
+                if (err !== null)
+                    return callback(err);
+                callback(null);
+            });
+        this.calls.push(() => call
+            .promise()
+            .then(() => ({
+            items: [],
+            count: 0
+        }))
+            .catch(err => {
+            throw err;
+        }));
     }
     get(key, callback) {
         var call = this.documentClient.get({
@@ -146,25 +169,12 @@ class Model {
         }));
         return this;
     }
-    removeTenantData() {
-        if (this.tenant === undefined || this.tenant === '')
-            return;
-        this.data = this.data.map(d => {
-            if (d[this.hash] !== undefined) {
-                var tenant = this.tenant || '';
-                var length = tenant.length + 1 || 0;
-                d[this.hash] = d[this.hash].substring(length);
-            }
-            return d;
-        });
-    }
     promise() {
         return __awaiter(this, void 0, void 0, function* () {
             for (let call of this.calls) {
                 var result = yield call();
                 this.data = result.items;
             }
-            this.removeTenantData();
         });
     }
 }

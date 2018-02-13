@@ -121,8 +121,10 @@ export class Model implements IDynamoDBModel {
   }
 
   private validate(body: IItem): boolean {
+    if (body[this.hash] === undefined)
+      throw new Error(`The hash key \`${this.hash}\` can't be undefined.`);
     if (this.range !== undefined && body[this.range] === undefined)
-      throw new Error(`The range key \`${this.range}\` can' be undefined.`);
+      throw new Error(`The range key \`${this.range}\` can't be undefined.`);
     for (let key in this.schema) {
       var rules = this.schema[key];
       var value = body[key];
@@ -162,21 +164,24 @@ export class Model implements IDynamoDBModel {
     }
 
     body = {
-      ...pick(body, Object.keys(this.schema)),
-      ...this.trackChanges(body),
-      ...this.getKey(body as IDynamoDBKey)
+      ...pick(body, Object.keys(this.schema), this.hash, this.range),
+      ...this.trackChanges(body)
     };
 
-    var call = this.documentClient.put({
+    var params = {
       TableName: this.table,
-      Item: body
-    });
+      Item: {
+        ...body,
+        ...this.getKey(body)
+      }
+    };
+
+    var call = this.documentClient.put(params);
 
     if (typeof callback === 'function')
       return call.send(err => {
         if (err !== null) return callback(err);
         this.data.push(body);
-        this.removeTenantData();
         callback(null);
       });
 
@@ -193,6 +198,36 @@ export class Model implements IDynamoDBModel {
     );
 
     return this as IDynamoDBModel;
+  }
+
+  delete(key: IDynamoDBKey): IDynamoDBModel;
+  delete(key: IDynamoDBKey, callback: (error: Error | null) => void): void;
+  delete(
+    key: IDynamoDBKey,
+    callback?: (error: Error | null) => void
+  ): void | IDynamoDBModel {
+    var call = this.documentClient.delete({
+      TableName: this.table,
+      Key: this.getKey(key)
+    });
+
+    if (typeof callback === 'function')
+      return call.send(err => {
+        if (err !== null) return callback(err);
+        callback(null);
+      });
+
+    this.calls.push(() =>
+      call
+        .promise()
+        .then((): ICallResult => ({
+          items: [],
+          count: 0
+        }))
+        .catch(err => {
+          throw err;
+        })
+    );
   }
 
   get(key: IDynamoDBKey): IDynamoDBModel;
@@ -228,23 +263,10 @@ export class Model implements IDynamoDBModel {
     return this as IDynamoDBModel;
   }
 
-  private removeTenantData(): void {
-    if (this.tenant === undefined || this.tenant === '') return;
-    this.data = this.data.map(d => {
-      if (d[this.hash] !== undefined) {
-        var tenant = this.tenant || '';
-        var length: number = tenant.length + 1 || 0;
-        d[this.hash] = d[this.hash].substring(length);
-      }
-      return d;
-    });
-  }
-
   async promise(): Promise<void> {
     for (let call of this.calls) {
       var result: ICallResult = await call();
       this.data = result.items;
     }
-    this.removeTenantData();
   }
 }

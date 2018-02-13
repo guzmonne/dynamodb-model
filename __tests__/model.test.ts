@@ -12,10 +12,11 @@ var db = new DynamoDB.DocumentClient({
 });
 
 var tenant = '1234';
+var table = 'TableTest';
 var TestModel = DynamoDBModel.create({
   documentClient: db,
   hash: 'id',
-  table: 'TableTest',
+  table,
   tenant,
   schema: {
     name: {
@@ -34,7 +35,7 @@ describe('Model', () => {
 
   var id = 'abcd';
   var name = 'Test';
-  var data = { id: tenant + '|' + id, name };
+  var data = { id, name };
   describe('#promise()', () => {
     var getStub: sinon.SinonStub;
     var putStub: sinon.SinonStub;
@@ -43,7 +44,7 @@ describe('Model', () => {
       getStub = sinon.stub(db, 'get');
       putStub = sinon.stub(db, 'put');
       getStub.returns({
-        promise: () => Promise.resolve({ Item: { ...data } })
+        promise: () => Promise.resolve({ Item: { id, name } })
       });
       putStub.returns({
         promise: () => Promise.resolve({})
@@ -73,7 +74,6 @@ describe('Model', () => {
           });
         });
     });
-
     test('should set the `data` items on a create success', () => {
       var model = TestModel();
       return model
@@ -81,7 +81,7 @@ describe('Model', () => {
         .promise()
         .then(() => {
           expect(putStub.calledOnce).toBe(true);
-          expect(model.data[0]).toEqual(data);
+          expect(model.data[0]).toEqual({ id, name });
         });
     });
 
@@ -94,6 +94,47 @@ describe('Model', () => {
           expect(putStub.calledOnce).toBe(false);
           expect(err.message).toEqual('The attribute `name` is required.');
         });
+    });
+  });
+
+  describe('#delete()', () => {
+    var deleteStub: sinon.SinonStub;
+
+    beforeEach(() => {
+      deleteStub = sinon.stub(db, 'delete');
+      deleteStub.returns({
+        send: callback => callback(null)
+      });
+    });
+
+    afterEach(() => {
+      deleteStub.restore();
+    });
+
+    test('should be a function', () => {
+      expect(typeof TestModel().delete).toEqual('function');
+    });
+
+    test('should return immediately if a callback is provided', done => {
+      TestModel().delete({ id }, err => {
+        expect(err).toBe(null);
+        expect(deleteStub.calledOnce).toBe(true);
+        done();
+      });
+    });
+
+    test('should call the DocumentClient.delete method with appropiate arguments', done => {
+      TestModel().delete({ id }, err => {
+        expect(err).toBe(null);
+        expect(deleteStub.calledOnce).toBe(true);
+        expect(deleteStub.args[0][0]).toEqual({
+          TableName: table,
+          Key: {
+            id: tenant + '|' + id
+          }
+        });
+        done();
+      });
     });
   });
 
@@ -122,6 +163,21 @@ describe('Model', () => {
         expect(err).toBe(null);
         expect(putStub.calledOnce).toBe(true);
 
+        done();
+      });
+    });
+
+    test('should call the DocumentClient.put method with appropiate arguments', done => {
+      TestModel().create({ id, name }, err => {
+        expect(err).toBe(null);
+        expect(putStub.calledOnce).toBe(true);
+        expect(putStub.args[0][0]).toEqual({
+          TableName: table,
+          Item: {
+            id: tenant + '|' + id,
+            name
+          }
+        });
         done();
       });
     });
@@ -245,7 +301,9 @@ describe('Model', () => {
         expect(err).not.toBe(null);
         expect(putStub.calledOnce).toBe(false);
         expect(model.data.length).toBe(0);
-        expect(err.message).toBe("The range key `username` can' be undefined.");
+        expect(err.message).toBe(
+          "The range key `username` can't be undefined."
+        );
         done();
       });
     });
