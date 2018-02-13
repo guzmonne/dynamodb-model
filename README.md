@@ -30,7 +30,7 @@ var DefaultModel = DynamoDBModel({
   hash: 'id',
   range: 'createdAt',
 	schema: {
-		name: { type: 'string' },
+		name: { type: 'string', required: true },
 		age: { type: 'number' },
 	},
 	table: 'ProfilesTable',
