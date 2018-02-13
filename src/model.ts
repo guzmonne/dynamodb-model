@@ -176,6 +176,7 @@ export class Model implements IDynamoDBModel {
       return call.send(err => {
         if (err !== null) return callback(err);
         this.data.push(body);
+        this.removeTenantData();
         callback(null);
       });
 
@@ -227,11 +228,23 @@ export class Model implements IDynamoDBModel {
     return this as IDynamoDBModel;
   }
 
+  private removeTenantData(): void {
+    if (this.tenant === undefined || this.tenant === '') return;
+    this.data = this.data.map(d => {
+      if (d[this.hash] !== undefined) {
+        var tenant = this.tenant || '';
+        var length: number = tenant.length + 1 || 0;
+        d[this.hash] = d[this.hash].substring(length);
+      }
+      return d;
+    });
+  }
+
   async promise(): Promise<void> {
     for (let call of this.calls) {
       var result: ICallResult = await call();
       this.data = result.items;
-      return;
     }
+    this.removeTenantData();
   }
 }

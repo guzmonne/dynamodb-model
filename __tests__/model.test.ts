@@ -11,10 +11,12 @@ var db = new DynamoDB.DocumentClient({
   region: 'us-east-1'
 });
 
+var tenant = '1234';
 var TestModel = DynamoDBModel.create({
   documentClient: db,
   hash: 'id',
   table: 'TableTest',
+  tenant,
   schema: {
     name: {
       type: 'string',
@@ -31,7 +33,8 @@ describe('Model', () => {
   });
 
   var id = 'abcd';
-  var data = { id, name: 'Test' };
+  var name = 'Test';
+  var data = { id: tenant + '|' + id, name };
   describe('#promise()', () => {
     var getStub: sinon.SinonStub;
     var putStub: sinon.SinonStub;
@@ -40,7 +43,7 @@ describe('Model', () => {
       getStub = sinon.stub(db, 'get');
       putStub = sinon.stub(db, 'put');
       getStub.returns({
-        promise: () => Promise.resolve({ Item: data })
+        promise: () => Promise.resolve({ Item: { ...data } })
       });
       putStub.returns({
         promise: () => Promise.resolve({})
@@ -64,14 +67,17 @@ describe('Model', () => {
         .promise()
         .then(() => {
           expect(getStub.calledOnce).toBe(true);
-          expect(model.data[0]).toEqual(data);
+          expect(model.data[0]).toEqual({
+            id,
+            name
+          });
         });
     });
 
     test('should set the `data` items on a create success', () => {
       var model = TestModel();
       return model
-        .create(data)
+        .create({ ...data })
         .promise()
         .then(() => {
           expect(putStub.calledOnce).toBe(true);
@@ -148,6 +154,7 @@ describe('Model', () => {
         documentClient: db,
         hash: 'id',
         table: 'TableTest',
+        tenant: '1234',
         track: true,
         schema: {
           name: {
@@ -222,6 +229,7 @@ describe('Model', () => {
         hash: 'id',
         range: 'username',
         table: 'TableTest',
+        tenant: '1234',
         schema: {
           name: {
             type: 'string',
@@ -249,7 +257,7 @@ describe('Model', () => {
     beforeEach(() => {
       getStub = sinon.stub(db, 'get');
       getStub.returns({
-        send: callback => callback(null, data)
+        send: callback => callback(null, { ...data })
       });
     });
 
