@@ -31,7 +31,9 @@ var DefaultModel = DynamoDBModel({
   range: 'createdAt',
 	schema: {
 		name: { type: 'string', required: true },
-		age: { type: 'number' },
+    age: { type: 'number' },
+    adult: {type: 'boolean'},
+    username: {type: 'string'}
 	},
 	table: 'ProfilesTable',
 	track: true // Tracks `createdAt` and `updatedAt` attributes
@@ -48,7 +50,7 @@ defaultModel.create({name: 'John Doe'})
 // Get item by id and update its values
 var itemById = DefaultModel()
 itemById
-	.get(1)
+	.get({id: '1'})
 	.set({age: 23})
 	.promise()
 	.then(() => /* ... */);
@@ -56,7 +58,7 @@ itemById
 // Get a collection of items by ids
 var itemCollectionByIds = DefaultModel.collection()
 itemCollectionByIds  
-  .get([1, 2, 3])
+  .get([{id: '1'}, {id: '2'}, {id: '3'}])
 	.promise()
 	.then(() => /* ... */);
 
@@ -70,9 +72,29 @@ itemCollectionByOptions
 // Update an entire collection.
 var updateCollection = DefaultModel.collection()
 updateCollection  
-  .get([1, 2, 3])
+  .get([{id: '1'}, {id: '2'}, {id: '3'}])
 	.filter(item => item.age > 18);
 	.set({ adult: true })
 	.promise()
-   	.then(() => /* ... */)
+  .then(() => /* ... */)
+
+// Batch update models.
+var updateCollection = DefaultModel.collection()
+updateCollection  
+  .get([{id: '1'}, {id: '2'}, {id: '3'}])
+	.set({ username: 'one' }, { username: 'two' }, { username: 'three' })
+	.promise()
+  .then(() => /* ... */)
+
+// Delete a model.
+DefaultModel()
+	.delete({id: '1'})
+	.promise()
+  .then(() => /* ... */);
+
+// Delete a collection of items by ids
+DefaultModel.collection()
+  .delete([{id: '1'}, {id: '2'}, {id: '3'}])
+	.promise()
+	.then(() => /* ... */);
 ```
