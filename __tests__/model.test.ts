@@ -23,10 +23,41 @@ describe('Model', () => {
     expect(typeof TestModel).toEqual('function');
   });
 
+  var id = 'abcd';
+  var data = { id, name: 'Test' };
+  describe('#promise()', () => {
+    var promiseStub: sinon.SinonStub;
+
+    beforeEach(() => {
+      promiseStub = sinon.stub(db, 'get');
+      promiseStub.returns({
+        promise: () => Promise.resolve({ Item: data })
+      });
+    });
+
+    afterEach(() => {
+      promiseStub.restore();
+    });
+
+    test('should be a function', () => {
+      var model = TestModel();
+      expect(typeof model.promise).toBe('function');
+    });
+
+    test('should set the `data` items on success', () => {
+      var model = TestModel();
+      return model
+        .get({ id })
+        .promise()
+        .then(() => {
+          expect(promiseStub.calledOnce).toBe(true);
+          expect(model.data[0]).toEqual(data);
+        });
+    });
+  });
+
   describe('#get()', () => {
     var getStub: sinon.SinonStub;
-    var id = 'abcd';
-    var data = { id, name: 'Test' };
 
     beforeEach(() => {
       getStub = sinon.stub(db, 'get');
@@ -44,7 +75,17 @@ describe('Model', () => {
       model.get({ id }, err => {
         expect(err).toBe(null);
         expect(getStub.calledOnce).toBe(true);
-        expect(model.data).toEqual(data);
+        expect(model.data[0]).toEqual(data);
+        done();
+      });
+    });
+
+    test('should set the data on the model', done => {
+      var model = TestModel();
+      model.get({ id }, err => {
+        expect(err).toBe(null);
+        expect(getStub.calledOnce).toBe(true);
+        expect(model.data[0]).toEqual(data);
         done();
       });
     });
