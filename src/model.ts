@@ -117,12 +117,14 @@ export class Model implements IDynamoDBModel {
   private handleValidationError(
     err: Error,
     callback?: (error: Error | null) => void
-  ): void {
+  ): IDynamoDBModel | void {
     if (typeof callback === 'function') return callback(err);
 
     this.calls.push(() => {
       throw err;
     });
+
+    return this;
   }
 
   create(body: IItem): IDynamoDBModel;
@@ -136,8 +138,7 @@ export class Model implements IDynamoDBModel {
     try {
       this.validate(body);
     } catch (err) {
-      this.handleValidationError(err, callback);
-      return this;
+      return this.handleValidationError(err, callback);
     }
 
     body = {
