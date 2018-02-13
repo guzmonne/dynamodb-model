@@ -34,7 +34,7 @@ export interface IDynamoDBModel {
   range?: string;
   schema: IDynamoDBModelSchema;
   table: string;
-  //track?: boolean;
+  track: boolean;
   get(key: IDynamoDBKey): IDynamoDBModel;
   get(key: IDynamoDBKey, callback: (error: Error | null) => void): void;
   create(body: IItem): IDynamoDBModel;
@@ -48,6 +48,11 @@ interface ICallResult {
   lastEvaluatedKey?: IDynamoDBKey;
 }
 
+interface IDynamoDBModelTrack {
+  updatedAt?: string;
+  createdAt?: string;
+}
+
 export class Model implements IDynamoDBModel {
   data: IItem[] = [];
   documentClient: DocumentClient;
@@ -56,6 +61,7 @@ export class Model implements IDynamoDBModel {
   schema: IDynamoDBModelSchema;
   table: string;
   tenant?: string;
+  track: boolean = false;
 
   private calls: (() => Promise<ICallResult>)[] = [];
 
@@ -64,8 +70,20 @@ export class Model implements IDynamoDBModel {
     this.table = config.table;
     this.documentClient = config.documentClient;
     this.schema = config.schema;
+    if (config.track !== undefined) this.track = config.track;
     if (config.range !== undefined) this.range = config.range;
     if (config.tenant !== undefined) this.tenant = config.tenant;
+  }
+
+  private trackChanges(body: IItem): IDynamoDBModelTrack {
+    if (this.track === false) return {} as IDynamoDBModelTrack;
+    var isoDate = new Date().toISOString();
+    var isNew = body[this.hash] !== undefined;
+    var result: IDynamoDBModelTrack = {
+      updatedAt: isoDate
+    };
+    if (isNew === true) result.createdAt = isoDate;
+    return result;
   }
 
   private getKey(key: IDynamoDBKey) {
@@ -103,6 +121,8 @@ export class Model implements IDynamoDBModel {
   }
 
   private validate(body: IItem): boolean {
+    if (this.range !== undefined && body[this.range] === undefined)
+      throw new Error(`The range key \`${this.range}\` can' be undefined.`);
     for (let key in this.schema) {
       var rules = this.schema[key];
       var value = body[key];
@@ -143,6 +163,7 @@ export class Model implements IDynamoDBModel {
 
     body = {
       ...pick(body, Object.keys(this.schema)),
+      ...this.trackChanges(body),
       ...this.getKey(body as IDynamoDBKey)
     };
 

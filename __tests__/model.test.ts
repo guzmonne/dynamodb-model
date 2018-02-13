@@ -143,6 +143,31 @@ describe('Model', () => {
       });
     });
 
+    test('should add a createdAt and updatedAt values', done => {
+      var TestModel = DynamoDBModel.create({
+        documentClient: db,
+        hash: 'id',
+        table: 'TableTest',
+        track: true,
+        schema: {
+          name: {
+            type: 'string',
+            required: true
+          },
+          age: { type: 'number' }
+        }
+      });
+      var model = TestModel();
+      model.create({ name }, err => {
+        expect(err).toBe(null);
+        expect(putStub.calledOnce).toBe(true);
+        expect(model.data[0].createdAt).not.toBe(undefined);
+        expect(model.data[0].updatedAt).not.toBe(undefined);
+
+        done();
+      });
+    });
+
     test('should use the provided hash if it is defined', done => {
       var model = TestModel();
       var id = 'SomeID';
@@ -187,6 +212,32 @@ describe('Model', () => {
         expect(putStub.calledOnce).toBe(false);
         expect(model.data.length).toBe(0);
         expect(err.message).toBe('The attribute `name` is required.');
+        done();
+      });
+    });
+
+    test('should throw an error is the range key is undefined', done => {
+      var TestModel = DynamoDBModel.create({
+        documentClient: db,
+        hash: 'id',
+        range: 'username',
+        table: 'TableTest',
+        schema: {
+          name: {
+            type: 'string',
+            required: true
+          },
+          age: { type: 'number' }
+        }
+      });
+
+      var model = TestModel();
+      var age = 20;
+      model.create({ name, age }, err => {
+        expect(err).not.toBe(null);
+        expect(putStub.calledOnce).toBe(false);
+        expect(model.data.length).toBe(0);
+        expect(err.message).toBe("The range key `username` can' be undefined.");
         done();
       });
     });
