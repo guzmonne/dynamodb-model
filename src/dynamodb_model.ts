@@ -21,14 +21,14 @@ export namespace DynamoDBModel {
   export function create(config: IDynamoDBModelConfig): () => Model {
     config = { ...global, ...config };
 
-    class NewModel extends Model {
+    class DynamoDBModel extends Model {
       constructor() {
         super(config);
       }
     }
 
     return function(): Model {
-      return new NewModel();
+      return new DynamoDBModel();
     };
   }
 }

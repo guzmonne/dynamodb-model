@@ -120,7 +120,9 @@ export class Model implements IDynamoDBModel {
   ): void {
     if (typeof callback === 'function') return callback(err);
 
-    this.calls.push(() => Promise.reject(err));
+    this.calls.push(() => {
+      throw err;
+    });
   }
 
   create(body: IItem): IDynamoDBModel;
@@ -134,7 +136,8 @@ export class Model implements IDynamoDBModel {
     try {
       this.validate(body);
     } catch (err) {
-      return this.handleValidationError(err, callback);
+      this.handleValidationError(err, callback);
+      return this;
     }
 
     body = {
@@ -155,10 +158,15 @@ export class Model implements IDynamoDBModel {
       });
 
     this.calls.push(() =>
-      call.promise().then((): ICallResult => ({
-        items: [body],
-        count: 1
-      }))
+      call
+        .promise()
+        .then((): ICallResult => ({
+          items: [body],
+          count: 1
+        }))
+        .catch(err => {
+          throw err;
+        })
     );
 
     return this as IDynamoDBModel;
@@ -189,6 +197,9 @@ export class Model implements IDynamoDBModel {
           items: data.Item === undefined ? [] : [data.Item],
           count: data.Item === undefined ? 0 : 1
         }))
+        .catch(err => {
+          throw err;
+        })
     );
 
     return this as IDynamoDBModel;

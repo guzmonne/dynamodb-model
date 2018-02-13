@@ -1,4 +1,4 @@
-import { Model, IDynamoDBSchema } from '../src/model';
+import { Model } from '../src/model';
 import { DynamoDBModel } from '../src/dynamodb_model';
 import * as sinon from 'sinon';
 import { DynamoDB, config } from 'aws-sdk';
@@ -33,17 +33,23 @@ describe('Model', () => {
   var id = 'abcd';
   var data = { id, name: 'Test' };
   describe('#promise()', () => {
-    var promiseStub: sinon.SinonStub;
+    var getStub: sinon.SinonStub;
+    var putStub: sinon.SinonStub;
 
     beforeEach(() => {
-      promiseStub = sinon.stub(db, 'get');
-      promiseStub.returns({
+      getStub = sinon.stub(db, 'get');
+      putStub = sinon.stub(db, 'put');
+      getStub.returns({
         promise: () => Promise.resolve({ Item: data })
+      });
+      putStub.returns({
+        promise: () => Promise.resolve({})
       });
     });
 
     afterEach(() => {
-      promiseStub.restore();
+      getStub.restore();
+      putStub.restore();
     });
 
     test('should be a function', () => {
@@ -51,14 +57,36 @@ describe('Model', () => {
       expect(typeof model.promise).toBe('function');
     });
 
-    test('should set the `data` items on success', () => {
+    test('should set the `data` items on a get success', () => {
       var model = TestModel();
       return model
         .get({ id })
         .promise()
         .then(() => {
-          expect(promiseStub.calledOnce).toBe(true);
+          expect(getStub.calledOnce).toBe(true);
           expect(model.data[0]).toEqual(data);
+        });
+    });
+
+    test('should set the `data` items on a create success', () => {
+      var model = TestModel();
+      return model
+        .create(data)
+        .promise()
+        .then(() => {
+          expect(putStub.calledOnce).toBe(true);
+          expect(model.data[0]).toEqual(data);
+        });
+    });
+
+    test('should fail if the `data` to create is invalid', () => {
+      var model = TestModel();
+      return model
+        .create({ data })
+        .promise()
+        .catch(err => {
+          expect(putStub.calledOnce).toBe(false);
+          expect(err.message).toEqual('The attribute `name` is required.');
         });
     });
   });
