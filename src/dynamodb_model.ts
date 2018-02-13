@@ -1,28 +1,10 @@
 import { DocumentClient } from 'aws-sdk/lib/dynamodb/document_client';
-import { Model } from './model';
-
-interface IDynamoDBModelSchema {
-  [key: string]: {
-    type: string;
-  };
-}
+import { Model, IDynamoDBModelConfig } from './model';
 
 export interface IDynamoDBModelGlobalConfig {
   tenant?: string;
   table?: string;
   documentClient?: DocumentClient;
-}
-
-interface IDynamoDBModelConfig {
-  hash: string;
-  range?: string;
-  schema: IDynamoDBModelSchema;
-  table?: string;
-  track?: boolean;
-}
-
-interface IDynamoDBModelFactory {
-  config(options: IDynamoDBModelGlobalConfig): void;
 }
 
 var global: IDynamoDBModelGlobalConfig = {};
@@ -36,10 +18,12 @@ export namespace DynamoDBModel {
     global = Object.assign({}, global, options);
   }
 
-  export function create() {
+  export function create(config: IDynamoDBModelConfig): () => Model {
+    config = { ...global, ...config };
+
     class NewModel extends Model {
       constructor() {
-        super();
+        super(config);
       }
     }
 

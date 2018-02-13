@@ -47,6 +47,7 @@ defaultModel.create({name: 'John Doe'})
 
 // Get item by id and update its values
 var itemById = DefaultModel()
+itemById
 	.get(1)
 	.set({age: 23})
 	.promise()
@@ -54,19 +55,22 @@ var itemById = DefaultModel()
 
 // Get a collection of items by ids
 var itemCollectionByIds = DefaultModel.collection()
-	.get([1, 2, 3])
+itemCollectionByIds  
+  .get([1, 2, 3])
 	.promise()
 	.then(() => /* ... */);
 
 // Get a collection of items using options
 var itemCollectionByOptions = DefaultModel.collection()
-	.get({ offset: 2, limit: 1 })
+itemCollectionByOptions  
+  .get({ offset: 2, limit: 1 })
 	.promise()
 	.then(() => /* ... */)
 
 // Update an entire collection.
 var updateCollection = DefaultModel.collection()
-	.get([1, 2, 3])
+updateCollection  
+  .get([1, 2, 3])
 	.filter(item => item.age > 18);
 	.set({ adult: true })
 	.promise()

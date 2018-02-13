@@ -46,13 +46,13 @@ describe('DynamoDB Model', () => {
 
   describe('#get()', () => {
     var id: string = 'abcd';
-    var data = {id: '1', name: 'John Doe'};
+    var data = { id: '1', name: 'John Doe' };
     var getStub: sinon.SinonStub;
 
     beforeEach(() => {
       getStub = sinon.stub(db, 'get');
       getStub.returns({
-        send: callback => callback(null, data);
+        send: callback => callback(null, data)
       });
     });
 
