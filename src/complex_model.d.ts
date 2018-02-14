@@ -40,8 +40,8 @@ export interface IDynamoDBModel {
   promise(): Promise<void>;
   range?: string;
   schema: IDynamoDBModelSchema;
-  set(body: IItem): IDynamoDBModel;
-  set(body: IItem, callback: (error: Error | null) => void): void;
+  //  set(body: IItem): IDynamoDBModel;
+  //  set(body: IItem, callback: (error: Error | null) => void): void;
   table: string;
   track: boolean;
 }

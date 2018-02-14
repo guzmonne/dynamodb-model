@@ -1,28 +1,28 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-const model_1 = require("./model");
+const complex_model_1 = require("./complex_model");
 var global = {};
 var DynamoDBModel;
-(function (DynamoDBModel_1) {
+(function (DynamoDBModel) {
     function getConfig() {
         return Object.assign({}, global);
     }
-    DynamoDBModel_1.getConfig = getConfig;
+    DynamoDBModel.getConfig = getConfig;
     function config(options) {
         global = Object.assign({}, global, options);
     }
-    DynamoDBModel_1.config = config;
-    function create(config) {
+    DynamoDBModel.config = config;
+    function createComplexModel(config) {
         config = Object.assign({}, global, config);
-        class DynamoDBModel extends model_1.Model {
+        class DynamoDBComplexModel extends complex_model_1.ComplexModel {
             constructor() {
                 super(config);
             }
         }
         return function () {
-            return new DynamoDBModel();
+            return new DynamoDBComplexModel();
         };
     }
-    DynamoDBModel_1.create = create;
+    DynamoDBModel.createComplexModel = createComplexModel;
 })(DynamoDBModel = exports.DynamoDBModel || (exports.DynamoDBModel = {}));
 //# sourceMappingURL=index.js.map

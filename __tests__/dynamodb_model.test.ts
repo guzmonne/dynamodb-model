@@ -1,6 +1,6 @@
 import { DynamoDBModel } from '../src/';
-import { Model } from '../src/model';
-import { IDynamoDBModelConfig } from '../src/model.d';
+import { ComplexModel } from '../src/complex_model';
+import { IDynamoDBModelConfig } from '../src/complex_model.d';
 import { DynamoDB, config } from 'aws-sdk';
 
 config.update({
@@ -40,7 +40,7 @@ describe('DynamoDBModel', () => {
 
   describe('.create()', () => {
     test('should be a function', () => {
-      expect(typeof DynamoDBModel.create).toEqual('function');
+      expect(typeof DynamoDBModel.createComplexModel).toEqual('function');
     });
 
     var params: IDynamoDBModelConfig = {
@@ -53,11 +53,15 @@ describe('DynamoDBModel', () => {
     };
 
     test('should return a function', () => {
-      expect(typeof DynamoDBModel.create(params)).toEqual('function');
+      expect(typeof DynamoDBModel.createComplexModel(params)).toEqual(
+        'function'
+      );
     });
 
     test('should return an instance of `Model`', () => {
-      expect(DynamoDBModel.create(params)() instanceof Model).toBe(true);
+      expect(
+        DynamoDBModel.createComplexModel(params)() instanceof ComplexModel
+      ).toBe(true);
     });
   });
 });

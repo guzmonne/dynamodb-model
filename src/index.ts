@@ -1,6 +1,6 @@
-import { Model } from './model';
+import { ComplexModel } from './complex_model';
 import { IDynamoDBModelGlobalConfig } from './index.d';
-import { IDynamoDBModelConfig } from './model.d';
+import { IDynamoDBModelConfig } from './complex_model.d';
 
 var global: IDynamoDBModelGlobalConfig = {};
 
@@ -13,17 +13,19 @@ export namespace DynamoDBModel {
     global = Object.assign({}, global, options);
   }
 
-  export function create(config: IDynamoDBModelConfig): () => Model {
+  export function createComplexModel(
+    config: IDynamoDBModelConfig
+  ): () => ComplexModel {
     config = { ...global, ...config };
 
-    class DynamoDBModel extends Model {
+    class DynamoDBComplexModel extends ComplexModel {
       constructor() {
         super(config);
       }
     }
 
-    return function(): Model {
-      return new DynamoDBModel();
+    return function(): ComplexModel {
+      return new DynamoDBComplexModel();
     };
   }
 }

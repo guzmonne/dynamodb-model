@@ -9,9 +9,9 @@ import {
   IDynamoDBModelConfig,
   IDynamoDBModelTrack,
   IDynamoDBKey
-} from './model.d';
+} from './complex_model.d';
 
-export class Model implements IDynamoDBModel {
+export class ComplexModel implements IDynamoDBModel {
   data: IItem[] = [];
   documentClient: DocumentClient;
   hash: string;

@@ -1,4 +1,4 @@
-import { Model } from '../src/model';
+import { ComplexModel } from '../src/complex_model';
 import { DynamoDBModel } from '../src/';
 import * as sinon from 'sinon';
 import { DynamoDB, config } from 'aws-sdk';
@@ -13,7 +13,7 @@ var db = new DynamoDB.DocumentClient({
 
 var tenant = '1234';
 var table = 'TableTest';
-var TestModel = DynamoDBModel.create({
+var TestModel = DynamoDBModel.createComplexModel({
   documentClient: db,
   hash: 'id',
   table,
@@ -29,7 +29,7 @@ var TestModel = DynamoDBModel.create({
 
 describe('Model', () => {
   test('should be a function', () => {
-    expect(typeof Model).toEqual('function');
+    expect(typeof ComplexModel).toEqual('function');
     expect(typeof TestModel).toEqual('function');
   });
 
@@ -207,7 +207,7 @@ describe('Model', () => {
     });
 
     test('should add a createdAt and updatedAt values', done => {
-      var TestModel = DynamoDBModel.create({
+      var TestModel = DynamoDBModel.createComplexModel({
         documentClient: db,
         hash: 'id',
         table: 'TableTest',
@@ -281,7 +281,7 @@ describe('Model', () => {
     });
 
     test('should throw an error is the range key is undefined', done => {
-      var TestModel = DynamoDBModel.create({
+      var TestModel = DynamoDBModel.createComplexModel({
         documentClient: db,
         hash: 'id',
         range: 'username',
