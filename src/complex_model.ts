@@ -7,7 +7,6 @@ import {
   IItem,
   ICallResult,
   IDynamoDBModelConfig,
-  IDynamoDBModelTrack,
   IDynamoDBKey
 } from './index.d';
 
