@@ -1,10 +1,11 @@
 import * as sinon from 'sinon';
 import * as cuid from 'cuid';
-import { DynamoDB, config } from 'aws-sdk';
+import { DynamoDB, config as AWSConfig } from 'aws-sdk';
 import { SimpleModel } from '../src/simple_model';
 import { DynamoDBModel } from '../src/';
+import { IDynamoDBModelConfig } from '../src/index.d';
 
-config.update({
+AWSConfig.update({
   region: 'us-east-1'
 });
 
@@ -14,7 +15,7 @@ var db = new DynamoDB.DocumentClient({
 
 var tenant = '1234';
 var table = 'TableTest';
-var TestModel = DynamoDBModel.createSimpleModel({
+var config: IDynamoDBModelConfig = {
   documentClient: db,
   hash: 'id',
   table,
@@ -26,7 +27,8 @@ var TestModel = DynamoDBModel.createSimpleModel({
     },
     age: { type: 'number' }
   }
-});
+};
+var TestModel = DynamoDBModel.createSimpleModel(config);
 
 var id = cuid();
 var name = cuid();
@@ -63,13 +65,114 @@ describe('SimpleModel', () => {
     });
   });
 
+  describe('#create()', () => {
+    var putStub: sinon.SinonStub;
+    var name = 'SomeName';
+
+    beforeEach(() => {
+      putStub = sinon.stub(db, 'put');
+      putStub.returns({
+        promise: () => Promise.resolve({})
+      });
+    });
+
+    afterEach(() => {
+      putStub.restore();
+    });
+
+    test('should be a function', () => {
+      expect(typeof TestModel().create).toBe('function');
+    });
+
+    test('should configure a call to the `documentClient.put` function', () => {
+      return TestModel()
+        .create({ id, name })
+        .promise()
+        .then(() => {
+          expect(putStub.calledOnce).toBe(true);
+        });
+    });
+
+    test('should call the `documentClient.put` function with appropiate params', () => {
+      return TestModel()
+        .create({ id, name })
+        .promise()
+        .then(() => {
+          expect(putStub.args[0][0]).toEqual({
+            TableName: table,
+            Item: {
+              id: tenant + '|' + id,
+              name
+            }
+          });
+        });
+    });
+
+    test('should return the created item', () => {
+      return TestModel()
+        .create({ id, name })
+        .promise()
+        .then(data => {
+          expect(data).toEqual({ id, name });
+        });
+    });
+
+    test('should add a random `hash` id value if undefined', () => {
+      return TestModel()
+        .create({ name })
+        .promise()
+        .then(data => {
+          expect(data && !!data.id).toEqual(true);
+        });
+    });
+
+    test('should add a `createdAt` and `updatedAt` values if `track` is true', () => {
+      var TestModel = DynamoDBModel.createSimpleModel({
+        ...config,
+        track: true
+      });
+      return TestModel()
+        .create({ name })
+        .promise()
+        .then(data => {
+          data || (data = {});
+          expect(!!data.createdAt).toEqual(true);
+          expect(!!data.updatedAt).toEqual(true);
+          expect(data.createdAt === data.updatedAt).toEqual(true);
+        });
+    });
+
+    test('should only allow values defined on the schema', () => {
+      return TestModel()
+        .create({ id, name, gender: 'm' })
+        .promise()
+        .then(data => {
+          expect(putStub.callCount).toBe(1);
+          expect(data).toEqual({ id, name });
+        });
+    });
+
+    test('should throw an error if a required value is missing', done => {
+      var age = 12;
+      TestModel()
+        .create({ age })
+        .callback((err, data) => {
+          expect(data && data.age).not.toBe(age);
+          expect(putStub.callCount).toBe(0);
+          expect(err).not.toBe(null);
+          expect(err.message).toEqual('The attribute `name` is required.');
+          done();
+        });
+    });
+  });
+
   describe('#get()', () => {
     var getStub: sinon.SinonStub;
 
     beforeEach(() => {
       getStub = sinon.stub(db, 'get');
       getStub.returns({
-        promise: () => Promise.resolve({ id, name })
+        promise: () => Promise.resolve({ Item: { id, name } })
       });
     });
 
@@ -87,6 +190,29 @@ describe('SimpleModel', () => {
         .promise()
         .then(() => {
           expect(getStub.calledOnce).toBe(true);
+        });
+    });
+
+    test('should call the `documentClient.get` function with appropiate params', () => {
+      return TestModel()
+        .get({ id })
+        .promise()
+        .then(() => {
+          expect(getStub.args[0][0]).toEqual({
+            TableName: table,
+            Key: {
+              id: tenant + '|' + id
+            }
+          });
+        });
+    });
+
+    test('should return the item', () => {
+      return TestModel()
+        .get({ id })
+        .promise()
+        .then(data => {
+          expect(data).toEqual({ id, name });
         });
     });
   });

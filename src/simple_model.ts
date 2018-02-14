@@ -1,3 +1,5 @@
+import * as cuid from 'cuid';
+import { pick } from 'lodash';
 import { IItem, IDynamoDBKey, IDynamoDBModelConfig } from './index.d';
 import { IModel, Model } from './model';
 
@@ -14,6 +16,11 @@ export class SimpleModel extends Model implements ISimpleModel {
     super(config);
   }
 
+  private handleError(error: Error): ISimpleModel {
+    this.call = () => Promise.reject(error);
+    return this;
+  }
+
   promise(): Promise<IItem | void> {
     return this.call();
   }
@@ -24,13 +31,40 @@ export class SimpleModel extends Model implements ISimpleModel {
       .catch(err => callback(err));
   }
 
-  get(key: IDynamoDBKey): ISimpleModel {
-    var call = this.documentClient.get({
-      TableName: this.table,
-      Key: this.addTenant(key)
-    });
+  create(body: IItem): ISimpleModel {
+    if (body[this.hash] === undefined) body[this.hash] = cuid();
 
-    this.call = () => call.promise().then(data => data.Item);
+    body = pick(body, Object.keys(this.schema), this.hash, this.range || '');
+
+    if (this.track === true) body = { ...body, ...this.trackChanges(body) };
+
+    try {
+      this.validate(body);
+    } catch (error) {
+      return this.handleError(error);
+    }
+
+    this.call = () =>
+      this.documentClient
+        .put({
+          TableName: this.table,
+          Item: { ...body, ...this.addTenant(body as IDynamoDBKey) }
+        })
+        .promise()
+        .then(() => body);
+
+    return this;
+  }
+
+  get(key: IDynamoDBKey): ISimpleModel {
+    this.call = () =>
+      this.documentClient
+        .get({
+          TableName: this.table,
+          Key: this.addTenant(key)
+        })
+        .promise()
+        .then(data => data.Item);
 
     return this;
   }
