@@ -1,7 +1,8 @@
 import { DynamoDBModel } from '../src/';
 import { ComplexModel } from '../src/complex_model';
-import { IDynamoDBModelConfig } from '../src/complex_model.d';
+import { IDynamoDBModelConfig } from '../src/index.d';
 import { DynamoDB, config } from 'aws-sdk';
+import { SimpleModel } from '../src/simple_model';
 
 config.update({
   region: 'us-east-1'
@@ -38,7 +39,34 @@ describe('DynamoDBModel', () => {
     });
   });
 
-  describe('.create()', () => {
+  describe('.createSimpleModel()', () => {
+    test('should be a function', () => {
+      expect(typeof DynamoDBModel.createSimpleModel).toEqual('function');
+    });
+
+    var params: IDynamoDBModelConfig = {
+      documentClient: db,
+      hash: 'id',
+      schema: {
+        name: { type: 'string' }
+      },
+      table: 'TableTest'
+    };
+
+    test('should return a function', () => {
+      expect(typeof DynamoDBModel.createSimpleModel(params)).toEqual(
+        'function'
+      );
+    });
+
+    test('should return an instance of `SimpleModel`', () => {
+      expect(
+        DynamoDBModel.createSimpleModel(params)() instanceof SimpleModel
+      ).toBe(true);
+    });
+  });
+
+  describe('.createComplexModel()', () => {
     test('should be a function', () => {
       expect(typeof DynamoDBModel.createComplexModel).toEqual('function');
     });
@@ -58,7 +86,7 @@ describe('DynamoDBModel', () => {
       );
     });
 
-    test('should return an instance of `Model`', () => {
+    test('should return an instance of `ComplexModel`', () => {
       expect(
         DynamoDBModel.createComplexModel(params)() instanceof ComplexModel
       ).toBe(true);
