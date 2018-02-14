@@ -1,22 +1,17 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-class SimpleModel {
+const model_1 = require("./model");
+class SimpleModel extends model_1.Model {
     constructor(config) {
-        this.data = [];
-        this.track = false;
-        this.calls = [];
-        this.hash = config.hash;
-        this.table = config.table;
-        this.documentClient = config.documentClient;
-        this.schema = config.schema;
-        if (config.track !== undefined)
-            this.track = config.track;
-        if (config.range !== undefined)
-            this.range = config.range;
-        if (config.tenant !== undefined) {
-            this.tenant = config.tenant;
-            this.hasTenantRegExp = new RegExp(`^${this.tenant}|`);
-        }
+        super(config);
+        this.call = () => Promise.resolve();
+    }
+    get(key) {
+        this.documentClient.get({
+            TableName: this.table,
+            Key: key
+        });
+        return this;
     }
 }
 exports.SimpleModel = SimpleModel;

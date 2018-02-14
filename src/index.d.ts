@@ -42,8 +42,8 @@ export interface IDynamoDBModel {
   delete(key: IDynamoDBKey, callback: (error: Error | null) => void): void;
   get(key: IDynamoDBKey): IDynamoDBModel;
   get(key: IDynamoDBKey, callback: (error: Error | null) => void): void;
-  hash: string;
   promise(): Promise<void>;
+  hash: string;
   range?: string;
   schema: IDynamoDBModelSchema;
   //  set(body: IItem): IDynamoDBModel;
