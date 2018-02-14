@@ -310,25 +310,6 @@ describe('Model', () => {
     });
   });
 
-  describe('#set()', () => {
-    var updateStub: sinon.SinonStub;
-
-    beforeEach(() => {
-      updateStub = sinon.stub(db, 'update');
-      updateStub.returns({
-        send: callback => callback(null, {})
-      });
-    });
-
-    afterEach(() => {
-      updateStub.restore();
-    });
-
-    test('should be a function', () => {
-      expect(typeof TestModel().set).toBe('function');
-    });
-  });
-
   describe('#get()', () => {
     var getStub: sinon.SinonStub;
 

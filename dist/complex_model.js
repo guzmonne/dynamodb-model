@@ -186,26 +186,31 @@ class ComplexModel {
         }));
         return this;
     }
-    set(body, callback) {
-        var call = this.documentClient.update({
-            TableName: this.table,
-            Key: this.addTenant(body),
-            UpdateExpression: '#name = :name',
-            ExpressionAttributeNames: {
-                '#name': 'name'
-            },
-            ExpressionAttributeValues: {
-                ':name': 'John Doe'
-            }
+    /*
+    set(body: IItem): IDynamoDBModel;
+    set(body: IItem, callback: (error: Error | null) => void): void;
+    set(body: IItem, callback?: (error: Error | null) => void): void {
+      var call = this.documentClient.update({
+        TableName: this.table,
+        Key: this.addTenant(body as IDynamoDBKey),
+        UpdateExpression: '#name = :name',
+        ExpressionAttributeNames: {
+          '#name': 'name'
+        },
+        ExpressionAttributeValues: {
+          ':name': 'John Doe'
+        }
+      });
+  
+      if (typeof callback === 'function')
+        return call.send(err => {
+          if (err !== null) return callback(err);
+          callback(null);
         });
-        if (typeof callback === 'function')
-            return call.send(err => {
-                if (err !== null)
-                    return callback(err);
-                callback(null);
-            });
-        return this;
+  
+      return this as IDynamoDBModel;
     }
+  */
     promise() {
         return __awaiter(this, void 0, void 0, function* () {
             for (let call of this.calls) {

@@ -256,7 +256,7 @@ export class ComplexModel implements IDynamoDBModel {
 
     return this as IDynamoDBModel;
   }
-
+  /*
   set(body: IItem): IDynamoDBModel;
   set(body: IItem, callback: (error: Error | null) => void): void;
   set(body: IItem, callback?: (error: Error | null) => void): void {
@@ -280,6 +280,7 @@ export class ComplexModel implements IDynamoDBModel {
 
     return this as IDynamoDBModel;
   }
+*/
 
   async promise(): Promise<void> {
     for (let call of this.calls) {
