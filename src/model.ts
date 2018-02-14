@@ -15,6 +15,7 @@ export class Model implements IDynamoDBModel {
   data: IItem[] = [];
   documentClient: DocumentClient;
   hash: string;
+  hasTenantRegExp?: RegExp;
   range?: string;
   schema: IDynamoDBModelSchema;
   table: string;
@@ -30,7 +31,10 @@ export class Model implements IDynamoDBModel {
     this.schema = config.schema;
     if (config.track !== undefined) this.track = config.track;
     if (config.range !== undefined) this.range = config.range;
-    if (config.tenant !== undefined) this.tenant = config.tenant;
+    if (config.tenant !== undefined) {
+      this.tenant = config.tenant;
+      this.hasTenantRegExp = new RegExp(`^${this.tenant}|`);
+    }
   }
 
   private trackChanges(body: IItem): IDynamoDBModelTrack {
@@ -44,12 +48,44 @@ export class Model implements IDynamoDBModel {
     return result;
   }
 
-  private getKey(key: IDynamoDBKey): IDynamoDBKey {
+  private addTenant(key: IDynamoDBKey): IDynamoDBKey {
     key = pick(key, this.hash, this.range || '');
     key[this.hash] = [this.tenant, key[this.hash]]
       .filter(x => x !== undefined)
       .join('|');
     return key;
+  }
+
+  private substringBy(
+    length: number,
+    predicate: (value: string) => boolean
+  ): (value: string) => string {
+    return (value: string) =>
+      predicate(value) === true ? value.substring(length) : value;
+  }
+
+  private removeTenant(items: IItem): IItem;
+  private removeTenant(items: IItem[]): IItem[];
+  private removeTenant(items: IItem | IItem[]): IItem | IItem[] {
+    if (this.tenant === undefined) return items;
+
+    var regexp = this.hasTenantRegExp || new RegExp(`^${this.tenant}|`);
+    var length = this.tenant.length + 1 || 0;
+
+    var substringIfTenantPrefix = this.substringBy(
+      length,
+      (value: string) => value !== undefined && regexp.test(value) === true
+    );
+
+    if (Array.isArray(items))
+      return items.map((item: IItem) => {
+        item[this.hash] = substringIfTenantPrefix(item[this.hash]);
+        return item;
+      });
+
+    items[this.hash] = substringIfTenantPrefix(items[this.hash]);
+
+    return items;
   }
 
   private validateType(value: any, key: string, type: string): void {
@@ -130,7 +166,7 @@ export class Model implements IDynamoDBModel {
       TableName: this.table,
       Item: {
         ...body,
-        ...this.getKey(body)
+        ...this.addTenant(body)
       }
     };
 
@@ -147,8 +183,7 @@ export class Model implements IDynamoDBModel {
       call
         .promise()
         .then((): ICallResult => ({
-          items: [body],
-          count: 1
+          items: [body]
         }))
         .catch(err => {
           throw err;
@@ -166,7 +201,7 @@ export class Model implements IDynamoDBModel {
   ): void | IDynamoDBModel {
     var call = this.documentClient.delete({
       TableName: this.table,
-      Key: this.getKey(key)
+      Key: this.addTenant(key)
     });
 
     if (typeof callback === 'function')
@@ -179,8 +214,7 @@ export class Model implements IDynamoDBModel {
       call
         .promise()
         .then((): ICallResult => ({
-          items: [],
-          count: 0
+          items: []
         }))
         .catch(err => {
           throw err;
@@ -196,23 +230,28 @@ export class Model implements IDynamoDBModel {
   ): void | IDynamoDBModel {
     var call = this.documentClient.get({
       TableName: this.table,
-      Key: this.getKey(key)
+      Key: this.addTenant(key)
     });
 
     if (typeof callback === 'function')
       return call.send((err, data) => {
         if (err !== null) return callback(err);
-        this.data.push(data);
+        this.data.push(this.removeTenant(data));
         callback(null);
       });
 
     this.calls.push(() =>
       call
         .promise()
-        .then((data: DocumentClient.GetItemOutput): ICallResult => ({
-          items: data.Item === undefined ? [] : [data.Item],
-          count: data.Item === undefined ? 0 : 1
-        }))
+        .then((data: DocumentClient.GetItemOutput): ICallResult => {
+          var items = this.removeTenant(
+            data.Item === undefined ? [] : [data.Item]
+          );
+
+          return {
+            items
+          };
+        })
         .catch(err => {
           throw err;
         })

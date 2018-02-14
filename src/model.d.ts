@@ -44,7 +44,6 @@ export interface IDynamoDBModel {
 
 export interface ICallResult {
   items: IItem[];
-  count: number;
   lastEvaluatedKey?: IDynamoDBKey;
 }
 

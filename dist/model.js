@@ -23,8 +23,10 @@ class Model {
             this.track = config.track;
         if (config.range !== undefined)
             this.range = config.range;
-        if (config.tenant !== undefined)
+        if (config.tenant !== undefined) {
             this.tenant = config.tenant;
+            this.hasTenantRegExp = new RegExp(`^${this.tenant}|`);
+        }
     }
     trackChanges(body) {
         if (this.track === false)
@@ -38,12 +40,29 @@ class Model {
             result.createdAt = isoDate;
         return result;
     }
-    getKey(key) {
+    addTenant(key) {
         key = lodash_1.pick(key, this.hash, this.range || '');
         key[this.hash] = [this.tenant, key[this.hash]]
             .filter(x => x !== undefined)
             .join('|');
         return key;
+    }
+    substringBy(length, predicate) {
+        return (value) => predicate(value) === true ? value.substring(length) : value;
+    }
+    removeTenant(items) {
+        if (this.tenant === undefined)
+            return items;
+        var regexp = this.hasTenantRegExp || new RegExp(`^${this.tenant}|`);
+        var length = this.tenant.length + 1 || 0;
+        var substringIfTenantPrefix = this.substringBy(length, (value) => value !== undefined && regexp.test(value) === true);
+        if (Array.isArray(items))
+            return items.map((item) => {
+                item[this.hash] = substringIfTenantPrefix(item[this.hash]);
+                return item;
+            });
+        items[this.hash] = substringIfTenantPrefix(items[this.hash]);
+        return items;
     }
     validateType(value, key, type) {
         var error;
@@ -104,7 +123,7 @@ class Model {
         body = Object.assign({}, lodash_1.pick(body, Object.keys(this.schema), this.hash, this.range || ''), this.trackChanges(body));
         var params = {
             TableName: this.table,
-            Item: Object.assign({}, body, this.getKey(body))
+            Item: Object.assign({}, body, this.addTenant(body))
         };
         var call = this.documentClient.put(params);
         if (typeof callback === 'function')
@@ -117,8 +136,7 @@ class Model {
         this.calls.push(() => call
             .promise()
             .then(() => ({
-            items: [body],
-            count: 1
+            items: [body]
         }))
             .catch(err => {
             throw err;
@@ -128,7 +146,7 @@ class Model {
     delete(key, callback) {
         var call = this.documentClient.delete({
             TableName: this.table,
-            Key: this.getKey(key)
+            Key: this.addTenant(key)
         });
         if (typeof callback === 'function')
             return call.send(err => {
@@ -139,8 +157,7 @@ class Model {
         this.calls.push(() => call
             .promise()
             .then(() => ({
-            items: [],
-            count: 0
+            items: []
         }))
             .catch(err => {
             throw err;
@@ -149,21 +166,23 @@ class Model {
     get(key, callback) {
         var call = this.documentClient.get({
             TableName: this.table,
-            Key: this.getKey(key)
+            Key: this.addTenant(key)
         });
         if (typeof callback === 'function')
             return call.send((err, data) => {
                 if (err !== null)
                     return callback(err);
-                this.data.push(data);
+                this.data.push(this.removeTenant(data));
                 callback(null);
             });
         this.calls.push(() => call
             .promise()
-            .then((data) => ({
-            items: data.Item === undefined ? [] : [data.Item],
-            count: data.Item === undefined ? 0 : 1
-        }))
+            .then((data) => {
+            var items = this.removeTenant(data.Item === undefined ? [] : [data.Item]);
+            return {
+                items
+            };
+        })
             .catch(err => {
             throw err;
         }));

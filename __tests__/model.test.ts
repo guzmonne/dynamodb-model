@@ -44,7 +44,8 @@ describe('Model', () => {
       getStub = sinon.stub(db, 'get');
       putStub = sinon.stub(db, 'put');
       getStub.returns({
-        promise: () => Promise.resolve({ Item: { id, name } })
+        promise: () =>
+          Promise.resolve({ Item: { id: tenant + '|' + id, name } })
       });
       putStub.returns({
         promise: () => Promise.resolve({})
@@ -315,7 +316,7 @@ describe('Model', () => {
     beforeEach(() => {
       getStub = sinon.stub(db, 'get');
       getStub.returns({
-        send: callback => callback(null, { ...data })
+        send: callback => callback(null, { ...data, id: tenant + '|' + id })
       });
     });
 
