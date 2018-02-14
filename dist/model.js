@@ -101,7 +101,7 @@ class Model {
         catch (err) {
             return this.handleValidationError(err, callback);
         }
-        body = Object.assign({}, lodash_1.pick(body, Object.keys(this.schema), this.hash, this.range), this.trackChanges(body));
+        body = Object.assign({}, lodash_1.pick(body, Object.keys(this.schema), this.hash, this.range || ''), this.trackChanges(body));
         var params = {
             TableName: this.table,
             Item: Object.assign({}, body, this.getKey(body))

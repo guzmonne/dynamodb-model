@@ -1,5 +1,5 @@
 import { Model } from '../src/model';
-import { DynamoDBModel } from '../src/dynamodb_model';
+import { DynamoDBModel } from '../src/';
 import * as sinon from 'sinon';
 import { DynamoDB, config } from 'aws-sdk';
 

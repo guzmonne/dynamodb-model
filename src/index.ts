@@ -1,70 +1,29 @@
-/**
- * DynamoDB Model
- */
-import { pick } from 'lodash';
-import { DynamoDB } from 'aws-sdk';
-import { AWSError } from 'aws-sdk/lib/error';
-import { PromiseResult } from 'aws-sdk/lib/request';
-import { DocumentClient } from 'aws-sdk/lib/dynamodb/document_client';
-import {
-  IItem,
-  IDynamoDBModel,
-  IDynamoDBModelConfig,
-  IDynamoDBModelGlobalConfig,
-  IDynamoDBKey
-} from './index.d';
+import { Model } from './model';
+import { IDynamoDBModelGlobalConfig } from './index.d';
+import { IDynamoDBModelConfig } from './model.d';
 
-export class DynamoDBModel implements IDynamoDBModel {
-  static global: IDynamoDBModelGlobalConfig = {};
+var global: IDynamoDBModelGlobalConfig = {};
 
-  private table: string;
-  private tenant: string;
-  private documentClient: DynamoDB.DocumentClient;
-  private calls: (() => Promise<
-    PromiseResult<DocumentClient.GetItemOutput, AWSError>
-  >)[] = [];
-
-  public data: IItem | IItem[] | undefined;
-  private hash: string;
-  private range?: string;
-
-  constructor(config: IDynamoDBModelConfig) {
-    config = Object.assign({}, DynamoDBModel.global, config);
-    this.documentClient =
-      config.documentClient || new DynamoDB.DocumentClient();
-    this.tenant = config.tenant || '';
-    this.table = config.table || '';
-    this.hash = config.hash;
-    if (config.range !== undefined) this.range = config.range;
+export namespace DynamoDBModel {
+  export function getConfig() {
+    return Object.assign({}, global);
   }
 
-  static config(config: IDynamoDBModelGlobalConfig): void {
-    this.global = Object.assign({}, this.global, config);
+  export function config(options: IDynamoDBModelGlobalConfig): void {
+    global = Object.assign({}, global, options);
   }
 
-  private getKey(key: IDynamoDBKey) {
-    key = pick(key, this.hash, this.range || '');
-    key[this.hash] = [this.tenant, key[this.hash]]
-      .filter(x => x !== undefined)
-      .join('|');
-    return key;
-  }
+  export function create(config: IDynamoDBModelConfig): () => Model {
+    config = { ...global, ...config };
 
-  get(key: IDynamoDBKey, callback?: (error: Error | null) => void) {
-    var call = this.documentClient.get({
-      TableName: this.table,
-      Key: this.getKey(key)
-    });
+    class DynamoDBModel extends Model {
+      constructor() {
+        super(config);
+      }
+    }
 
-    if (typeof callback === 'function')
-      return call.send((err, data) => {
-        if (err !== null) return callback(err);
-        this.data = data;
-        callback(null);
-      });
-
-    this.calls.push(() => call.promise());
-
-    return this;
+    return function(): Model {
+      return new DynamoDBModel();
+    };
   }
 }

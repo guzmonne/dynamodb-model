@@ -1,57 +1,15 @@
 import { pick, isObject } from 'lodash';
 import * as cuid from 'cuid';
 import { DocumentClient } from 'aws-sdk/lib/dynamodb/document_client';
-
-export interface IItem {
-  [key: string]: any;
-}
-
-export interface IDynamoDBKey {
-  [key: string]: string;
-}
-
-export interface IDynamoDBModelSchemaOptions {
-  type: 'string' | 'number' | 'array' | 'object' | 'boolean';
-  required?: boolean;
-}
-
-export interface IDynamoDBModelSchema {
-  [key: string]: IDynamoDBModelSchemaOptions;
-}
-
-export interface IDynamoDBModelConfig {
-  hash: string;
-  range?: string;
-  schema: IDynamoDBModelSchema;
-  table: string;
-  track?: boolean;
-  tenant?: string;
-  documentClient: DocumentClient;
-}
-
-export interface IDynamoDBModel {
-  hash: string;
-  range?: string;
-  schema: IDynamoDBModelSchema;
-  table: string;
-  track: boolean;
-  get(key: IDynamoDBKey): IDynamoDBModel;
-  get(key: IDynamoDBKey, callback: (error: Error | null) => void): void;
-  create(body: IItem): IDynamoDBModel;
-  create(body: IItem, callback: (error: Error | null) => void): void;
-  promise(): Promise<void>;
-}
-
-interface ICallResult {
-  items: IItem[];
-  count: number;
-  lastEvaluatedKey?: IDynamoDBKey;
-}
-
-interface IDynamoDBModelTrack {
-  updatedAt?: string;
-  createdAt?: string;
-}
+import {
+  IDynamoDBModel,
+  IItem,
+  IDynamoDBModelSchema,
+  ICallResult,
+  IDynamoDBModelConfig,
+  IDynamoDBModelTrack,
+  IDynamoDBKey
+} from './model.d';
 
 export class Model implements IDynamoDBModel {
   data: IItem[] = [];
@@ -86,7 +44,7 @@ export class Model implements IDynamoDBModel {
     return result;
   }
 
-  private getKey(key: IDynamoDBKey) {
+  private getKey(key: IDynamoDBKey): IDynamoDBKey {
     key = pick(key, this.hash, this.range || '');
     key[this.hash] = [this.tenant, key[this.hash]]
       .filter(x => x !== undefined)
@@ -164,7 +122,7 @@ export class Model implements IDynamoDBModel {
     }
 
     body = {
-      ...pick(body, Object.keys(this.schema), this.hash, this.range),
+      ...pick(body, Object.keys(this.schema), this.hash, this.range || ''),
       ...this.trackChanges(body)
     };
 

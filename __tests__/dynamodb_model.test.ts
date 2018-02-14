@@ -1,5 +1,6 @@
-import { DynamoDBModel } from '../src/dynamodb_model';
+import { DynamoDBModel } from '../src/';
 import { Model } from '../src/model';
+import { IDynamoDBModelConfig } from '../src/model.d';
 import { DynamoDB, config } from 'aws-sdk';
 
 config.update({
@@ -42,12 +43,21 @@ describe('DynamoDBModel', () => {
       expect(typeof DynamoDBModel.create).toEqual('function');
     });
 
+    var params: IDynamoDBModelConfig = {
+      documentClient: db,
+      hash: 'id',
+      schema: {
+        name: { type: 'string' }
+      },
+      table: 'TableTest'
+    };
+
     test('should return a function', () => {
-      expect(typeof DynamoDBModel.create()).toEqual('function');
+      expect(typeof DynamoDBModel.create(params)).toEqual('function');
     });
 
     test('should return an instance of `Model`', () => {
-      expect(DynamoDBModel.create()() instanceof Model).toBe(true);
+      expect(DynamoDBModel.create(params)() instanceof Model).toBe(true);
     });
   });
 });
