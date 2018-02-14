@@ -30,16 +30,20 @@ export interface IDynamoDBModelConfig {
 }
 
 export interface IDynamoDBModel {
-  hash: string;
-  range?: string;
-  schema: IDynamoDBModelSchema;
-  table: string;
-  track: boolean;
-  get(key: IDynamoDBKey): IDynamoDBModel;
-  get(key: IDynamoDBKey, callback: (error: Error | null) => void): void;
   create(body: IItem): IDynamoDBModel;
   create(body: IItem, callback: (error: Error | null) => void): void;
+  delete(key: IDynamoDBKey): IDynamoDBModel;
+  delete(key: IDynamoDBKey, callback: (error: Error | null) => void): void;
+  get(key: IDynamoDBKey): IDynamoDBModel;
+  get(key: IDynamoDBKey, callback: (error: Error | null) => void): void;
+  hash: string;
   promise(): Promise<void>;
+  range?: string;
+  schema: IDynamoDBModelSchema;
+  set(body: IItem): IDynamoDBModel;
+  set(body: IItem, callback: (error: Error | null) => void): void;
+  table: string;
+  track: boolean;
 }
 
 export interface ICallResult {

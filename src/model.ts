@@ -143,56 +143,6 @@ export class Model implements IDynamoDBModel {
     return this;
   }
 
-  create(body: IItem): IDynamoDBModel;
-  create(body: IItem, callback: (error: Error | null) => void): void;
-  create(
-    body: IItem,
-    callback?: (error: Error | null) => void
-  ): void | IDynamoDBModel {
-    if (body[this.hash] === undefined) body[this.hash] = cuid();
-
-    try {
-      this.validate(body);
-    } catch (err) {
-      return this.handleValidationError(err, callback);
-    }
-
-    body = {
-      ...pick(body, Object.keys(this.schema), this.hash, this.range || ''),
-      ...this.trackChanges(body)
-    };
-
-    var params = {
-      TableName: this.table,
-      Item: {
-        ...body,
-        ...this.addTenant(body)
-      }
-    };
-
-    var call = this.documentClient.put(params);
-
-    if (typeof callback === 'function')
-      return call.send(err => {
-        if (err !== null) return callback(err);
-        this.data.push(body);
-        callback(null);
-      });
-
-    this.calls.push(() =>
-      call
-        .promise()
-        .then((): ICallResult => ({
-          items: [body]
-        }))
-        .catch(err => {
-          throw err;
-        })
-    );
-
-    return this as IDynamoDBModel;
-  }
-
   delete(key: IDynamoDBKey): IDynamoDBModel;
   delete(key: IDynamoDBKey, callback: (error: Error | null) => void): void;
   delete(
@@ -244,18 +194,89 @@ export class Model implements IDynamoDBModel {
       call
         .promise()
         .then((data: DocumentClient.GetItemOutput): ICallResult => {
-          var items = this.removeTenant(
-            data.Item === undefined ? [] : [data.Item]
-          );
+          var items =
+            data.Item === undefined ? [] : [this.removeTenant(data.Item)];
 
-          return {
-            items
-          };
+          return { items };
         })
         .catch(err => {
           throw err;
         })
     );
+
+    return this as IDynamoDBModel;
+  }
+
+  create(body: IItem): IDynamoDBModel;
+  create(body: IItem, callback: (error: Error | null) => void): void;
+  create(
+    body: IItem,
+    callback?: (error: Error | null) => void
+  ): void | IDynamoDBModel {
+    if (body[this.hash] === undefined) body[this.hash] = cuid();
+
+    try {
+      this.validate(body);
+    } catch (err) {
+      return this.handleValidationError(err, callback);
+    }
+
+    body = {
+      ...pick(body, Object.keys(this.schema), this.hash, this.range || ''),
+      ...this.trackChanges(body)
+    };
+
+    var params = {
+      TableName: this.table,
+      Item: {
+        ...body,
+        ...this.addTenant(body)
+      }
+    };
+
+    var call = this.documentClient.put(params);
+
+    if (typeof callback === 'function')
+      return call.send(err => {
+        if (err !== null) return callback(err);
+        this.data.push(body);
+        callback(null);
+      });
+
+    this.calls.push(() =>
+      call
+        .promise()
+        .then((): ICallResult => ({
+          items: [body]
+        }))
+        .catch(err => {
+          throw err;
+        })
+    );
+
+    return this as IDynamoDBModel;
+  }
+
+  set(body: IItem): IDynamoDBModel;
+  set(body: IItem, callback: (error: Error | null) => void): void;
+  set(body: IItem, callback?: (error: Error | null) => void): void {
+    var call = this.documentClient.update({
+      TableName: this.table,
+      Key: this.addTenant(body as IDynamoDBKey),
+      UpdateExpression: '#name = :name',
+      ExpressionAttributeNames: {
+        '#name': 'name'
+      },
+      ExpressionAttributeValues: {
+        ':name': 'John Doe'
+      }
+    });
+
+    if (typeof callback === 'function')
+      return call.send(err => {
+        if (err !== null) return callback(err);
+        callback(null);
+      });
 
     return this as IDynamoDBModel;
   }

@@ -111,38 +111,6 @@ class Model {
         });
         return this;
     }
-    create(body, callback) {
-        if (body[this.hash] === undefined)
-            body[this.hash] = cuid();
-        try {
-            this.validate(body);
-        }
-        catch (err) {
-            return this.handleValidationError(err, callback);
-        }
-        body = Object.assign({}, lodash_1.pick(body, Object.keys(this.schema), this.hash, this.range || ''), this.trackChanges(body));
-        var params = {
-            TableName: this.table,
-            Item: Object.assign({}, body, this.addTenant(body))
-        };
-        var call = this.documentClient.put(params);
-        if (typeof callback === 'function')
-            return call.send(err => {
-                if (err !== null)
-                    return callback(err);
-                this.data.push(body);
-                callback(null);
-            });
-        this.calls.push(() => call
-            .promise()
-            .then(() => ({
-            items: [body]
-        }))
-            .catch(err => {
-            throw err;
-        }));
-        return this;
-    }
     delete(key, callback) {
         var call = this.documentClient.delete({
             TableName: this.table,
@@ -178,14 +146,64 @@ class Model {
         this.calls.push(() => call
             .promise()
             .then((data) => {
-            var items = this.removeTenant(data.Item === undefined ? [] : [data.Item]);
-            return {
-                items
-            };
+            var items = data.Item === undefined ? [] : [this.removeTenant(data.Item)];
+            return { items };
         })
             .catch(err => {
             throw err;
         }));
+        return this;
+    }
+    create(body, callback) {
+        if (body[this.hash] === undefined)
+            body[this.hash] = cuid();
+        try {
+            this.validate(body);
+        }
+        catch (err) {
+            return this.handleValidationError(err, callback);
+        }
+        body = Object.assign({}, lodash_1.pick(body, Object.keys(this.schema), this.hash, this.range || ''), this.trackChanges(body));
+        var params = {
+            TableName: this.table,
+            Item: Object.assign({}, body, this.addTenant(body))
+        };
+        var call = this.documentClient.put(params);
+        if (typeof callback === 'function')
+            return call.send(err => {
+                if (err !== null)
+                    return callback(err);
+                this.data.push(body);
+                callback(null);
+            });
+        this.calls.push(() => call
+            .promise()
+            .then(() => ({
+            items: [body]
+        }))
+            .catch(err => {
+            throw err;
+        }));
+        return this;
+    }
+    set(body, callback) {
+        var call = this.documentClient.update({
+            TableName: this.table,
+            Key: this.addTenant(body),
+            UpdateExpression: '#name = :name',
+            ExpressionAttributeNames: {
+                '#name': 'name'
+            },
+            ExpressionAttributeValues: {
+                ':name': 'John Doe'
+            }
+        });
+        if (typeof callback === 'function')
+            return call.send(err => {
+                if (err !== null)
+                    return callback(err);
+                callback(null);
+            });
         return this;
     }
     promise() {
