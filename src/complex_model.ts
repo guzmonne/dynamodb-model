@@ -9,7 +9,7 @@ import {
   IDynamoDBModelConfig,
   IDynamoDBModelTrack,
   IDynamoDBKey
-} from './complex_model.d';
+} from './index.d';
 
 export class ComplexModel implements IDynamoDBModel {
   data: IItem[] = [];
