@@ -7,19 +7,9 @@ import {
   IItem,
   ICallResult,
   IDynamoDBModelConfig,
-  IDynamoDBKey,
-  IModel
+  IDynamoDBKey
 } from './index.d';
-
-interface IComplexModel extends IModel {
-  create(body: IItem): IDynamoDBModel;
-  create(body: IItem, callback: (error: Error | null) => void): void;
-  delete(key: IDynamoDBKey): IDynamoDBModel;
-  delete(key: IDynamoDBKey, callback: (error: Error | null) => void): void;
-  get(key: IDynamoDBKey): IDynamoDBModel;
-  get(key: IDynamoDBKey, callback: (error: Error | null) => void): void;
-  promise(): Promise<void>;
-}
+import { IComplexModel } from './complex_model.d';
 
 export class ComplexModel extends Model implements IComplexModel {
   private calls: (() => Promise<ICallResult>)[] = [];

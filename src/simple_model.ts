@@ -1,13 +1,8 @@
 import * as cuid from 'cuid';
 import { pick } from 'lodash';
-import { IItem, IDynamoDBKey, IDynamoDBModelConfig, IModel } from './index.d';
+import { IItem, IDynamoDBKey, IDynamoDBModelConfig } from './index.d';
 import { Model } from './model';
-
-interface ISimpleModel extends IModel {
-  callback(callback: (error: Error | null, data?: IItem | void) => void): void;
-  promise(): Promise<IItem | void>;
-  get(key: IDynamoDBKey): ISimpleModel;
-}
+import { ISimpleModel } from './simple_model.d';
 
 export class SimpleModel extends Model implements ISimpleModel {
   private call: () => Promise<IItem | void> = () => Promise.resolve();

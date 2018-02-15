@@ -5,9 +5,9 @@ import {
   IItem,
   IDynamoDBModelConfig,
   IDynamoDBModelTrack,
-  IDynamoDBKey,
-  IModel
+  IDynamoDBKey
 } from './index.d';
+import { IModel } from './model.d';
 
 export abstract class Model implements IModel {
   data: IItem[] = [];

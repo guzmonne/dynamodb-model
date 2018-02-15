@@ -1,6 +1,7 @@
 import { DynamoDB } from 'aws-sdk';
 import { AWSError } from 'aws-sdk/lib/error';
 import { DocumentClient } from 'aws-sdk/lib/dynamodb/document_client';
+import { IDynamoDBModelStruct } from './model.d';
 
 export interface IDynamoDBModelGlobalConfig {
   tenant?: string;
@@ -23,10 +24,6 @@ export interface IDynamoDBModelSchemaOptions {
 
 export interface IDynamoDBModelSchema {
   [key: string]: IDynamoDBModelSchemaOptions;
-}
-
-export interface IDynamoDBModelStruct {
-  [key: string]: string;
 }
 
 export interface IDynamoDBModelConfig {
@@ -66,16 +63,4 @@ export interface ICallResult {
 export interface IDynamoDBModelTrack {
   updatedAt?: string;
   createdAt?: string;
-}
-
-export interface IModel {
-  data: IItem[];
-  documentClient: DocumentClient;
-  hash: string;
-  hasTenantRegExp?: RegExp;
-  range?: string;
-  struct: IDynamoDBModelStruct;
-  table: string;
-  tenant?: string;
-  track: boolean;
 }
