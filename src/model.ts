@@ -3,23 +3,11 @@ import { pick, isObject } from 'lodash';
 import { DocumentClient } from 'aws-sdk/lib/dynamodb/document_client';
 import {
   IItem,
-  IDynamoDBModelSchema,
   IDynamoDBModelConfig,
   IDynamoDBModelTrack,
-  IDynamoDBKey
+  IDynamoDBKey,
+  IModel
 } from './index.d';
-
-export interface IModel {
-  data: IItem[];
-  documentClient: DocumentClient;
-  hash: string;
-  hasTenantRegExp?: RegExp;
-  range?: string;
-  schema: IDynamoDBModelSchema;
-  table: string;
-  tenant?: string;
-  track: boolean;
-}
 
 export abstract class Model implements IModel {
   data: IItem[] = [];
@@ -29,7 +17,6 @@ export abstract class Model implements IModel {
   hasTenantRegExp?: RegExp;
   range?: string;
   rangeType: string = 'string';
-  schema: IDynamoDBModelSchema;
   table: string;
   tenant?: string;
   track: boolean = false;
@@ -38,7 +25,6 @@ export abstract class Model implements IModel {
   constructor(config: IDynamoDBModelConfig) {
     this.table = config.table;
     this.documentClient = config.documentClient;
-    this.schema = config.schema;
 
     this.hash = config.hash;
     if (config.hashType !== undefined) this.hashType = config.hashType;
@@ -119,50 +105,7 @@ export abstract class Model implements IModel {
     return items;
   }
 
-  validateType(value: any, key: string, type: string): void {
-    var error: boolean;
-    switch (type) {
-      case 'string':
-      case 'number':
-      case 'boolean':
-        error = typeof value !== type;
-        break;
-      case 'array':
-        error = Array.isArray(value) === false;
-        break;
-      case 'object':
-        error = isObject(value) === false;
-        break;
-      default:
-        throw new Error(`Type ${type} is not a valid schema type`);
-    }
-    if (error === true)
-      throw new Error(`The value of \`${key}\` should be a ${type}`);
-  }
-
-  validateRequired(value: any, key: string, required: boolean): void {
-    if (value === undefined && required === true)
-      throw new Error(`The attribute \`${key}\` is required.`);
-  }
-
-  validateOld(body: IItem): boolean {
-    if (body[this.hash] === undefined)
-      throw new Error(`The hash key \`${this.hash}\` can't be undefined.`);
-    if (this.range !== undefined && body[this.range] === undefined)
-      throw new Error(`The range key \`${this.range}\` can't be undefined.`);
-    for (let key in this.schema) {
-      var rules = this.schema[key];
-      var value = body[key];
-      if (value !== undefined) {
-        this.validateType(value, key, rules.type);
-      }
-      this.validateRequired(value, key, !!rules.required);
-    }
-    return true;
-  }
-
   validate(body: IItem): boolean {
-    //return this.validateOld(body);
     return this.struct(body);
   }
 }

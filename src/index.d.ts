@@ -25,13 +25,16 @@ export interface IDynamoDBModelSchema {
   [key: string]: IDynamoDBModelSchemaOptions;
 }
 
+export interface IDynamoDBModelStruct {
+  [key: string]: string;
+}
+
 export interface IDynamoDBModelConfig {
   hash: string;
   hashType?: 'string' | 'number';
   range?: string;
   rangeType?: 'string' | 'number';
-  struct?: any;
-  schema: IDynamoDBModelSchema;
+  struct: IDynamoDBModelStruct;
   table: string;
   track?: boolean;
   tenant?: string;
@@ -48,7 +51,7 @@ export interface IDynamoDBModel {
   promise(): Promise<void>;
   hash: string;
   range?: string;
-  schema: IDynamoDBModelSchema;
+  struct: IDynamoDBModelStruct;
   //  set(body: IItem): IDynamoDBModel;
   //  set(body: IItem, callback: (error: Error | null) => void): void;
   table: string;
@@ -63,4 +66,16 @@ export interface ICallResult {
 export interface IDynamoDBModelTrack {
   updatedAt?: string;
   createdAt?: string;
+}
+
+export interface IModel {
+  data: IItem[];
+  documentClient: DocumentClient;
+  hash: string;
+  hasTenantRegExp?: RegExp;
+  range?: string;
+  struct: IDynamoDBModelStruct;
+  table: string;
+  tenant?: string;
+  track: boolean;
 }

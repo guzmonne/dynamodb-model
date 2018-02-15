@@ -23,13 +23,6 @@ var config: IDynamoDBModelConfig = {
   struct: {
     name: 'string',
     age: 'number?'
-  },
-  schema: {
-    name: {
-      type: 'string',
-      required: true
-    },
-    age: { type: 'number' }
   }
 };
 var TestModel = DynamoDBModel.createSimpleModel(config);

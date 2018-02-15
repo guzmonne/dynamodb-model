@@ -21,13 +21,6 @@ var TestModel = DynamoDBModel.createComplexModel({
   struct: {
     name: 'string',
     age: 'number?'
-  },
-  schema: {
-    name: {
-      type: 'string',
-      required: true
-    },
-    age: { type: 'number' }
   }
 });
 
@@ -82,7 +75,7 @@ describe('Model', () => {
     test('should set the `data` items on a create success', () => {
       var model = TestModel();
       return model
-        .create({ ...data })
+        .create({ name, id })
         .promise()
         .then(() => {
           expect(putStub.calledOnce).toBe(true);
@@ -223,13 +216,6 @@ describe('Model', () => {
         struct: {
           name: 'string',
           age: 'number?'
-        },
-        schema: {
-          name: {
-            type: 'string',
-            required: true
-          },
-          age: { type: 'number' }
         }
       });
       var model = TestModel();
@@ -305,13 +291,6 @@ describe('Model', () => {
         struct: {
           name: 'string',
           age: 'number?'
-        },
-        schema: {
-          name: {
-            type: 'string',
-            required: true
-          },
-          age: { type: 'number' }
         }
       });
 

@@ -1,7 +1,7 @@
 import * as cuid from 'cuid';
 import { pick } from 'lodash';
-import { IItem, IDynamoDBKey, IDynamoDBModelConfig } from './index.d';
-import { IModel, Model } from './model';
+import { IItem, IDynamoDBKey, IDynamoDBModelConfig, IModel } from './index.d';
+import { Model } from './model';
 
 interface ISimpleModel extends IModel {
   callback(callback: (error: Error | null, data?: IItem | void) => void): void;
@@ -34,7 +34,7 @@ export class SimpleModel extends Model implements ISimpleModel {
   create(body: IItem): ISimpleModel {
     if (body[this.hash] === undefined) body[this.hash] = cuid();
 
-    body = pick(body, Object.keys(this.schema), this.hash, this.range || '');
+    body = pick(body, Object.keys(this.struct.schema));
 
     if (this.track === true) body = { ...body, ...this.trackChanges(body) };
 

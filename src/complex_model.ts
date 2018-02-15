@@ -1,13 +1,14 @@
 import * as cuid from 'cuid';
 import { pick } from 'lodash';
 import { DocumentClient } from 'aws-sdk/lib/dynamodb/document_client';
-import { IModel, Model } from './model';
+import { Model } from './model';
 import {
   IDynamoDBModel,
   IItem,
   ICallResult,
   IDynamoDBModelConfig,
-  IDynamoDBKey
+  IDynamoDBKey,
+  IModel
 } from './index.d';
 
 interface IComplexModel extends IModel {
@@ -113,7 +114,7 @@ export class ComplexModel extends Model implements IComplexModel {
     if (body[this.hash] === undefined) body[this.hash] = cuid();
 
     body = {
-      ...pick(body, Object.keys(this.schema), this.hash, this.range || ''),
+      ...pick(body, Object.keys(this.struct.schema)),
       ...this.trackChanges(body)
     };
 

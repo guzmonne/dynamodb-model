@@ -23,7 +23,7 @@ class SimpleModel extends model_1.Model {
     create(body) {
         if (body[this.hash] === undefined)
             body[this.hash] = cuid();
-        body = lodash_1.pick(body, Object.keys(this.schema), this.hash, this.range || '');
+        body = lodash_1.pick(body, Object.keys(this.struct.schema));
         if (this.track === true)
             body = Object.assign({}, body, this.trackChanges(body));
         try {

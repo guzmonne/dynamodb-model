@@ -10,7 +10,6 @@ class Model {
         this.track = false;
         this.table = config.table;
         this.documentClient = config.documentClient;
-        this.schema = config.schema;
         this.hash = config.hash;
         if (config.hashType !== undefined)
             this.hashType = config.hashType;
@@ -68,47 +67,7 @@ class Model {
         items[this.hash] = substringIfTenantPrefix(items[this.hash]);
         return items;
     }
-    validateType(value, key, type) {
-        var error;
-        switch (type) {
-            case 'string':
-            case 'number':
-            case 'boolean':
-                error = typeof value !== type;
-                break;
-            case 'array':
-                error = Array.isArray(value) === false;
-                break;
-            case 'object':
-                error = lodash_1.isObject(value) === false;
-                break;
-            default:
-                throw new Error(`Type ${type} is not a valid schema type`);
-        }
-        if (error === true)
-            throw new Error(`The value of \`${key}\` should be a ${type}`);
-    }
-    validateRequired(value, key, required) {
-        if (value === undefined && required === true)
-            throw new Error(`The attribute \`${key}\` is required.`);
-    }
-    validateOld(body) {
-        if (body[this.hash] === undefined)
-            throw new Error(`The hash key \`${this.hash}\` can't be undefined.`);
-        if (this.range !== undefined && body[this.range] === undefined)
-            throw new Error(`The range key \`${this.range}\` can't be undefined.`);
-        for (let key in this.schema) {
-            var rules = this.schema[key];
-            var value = body[key];
-            if (value !== undefined) {
-                this.validateType(value, key, rules.type);
-            }
-            this.validateRequired(value, key, !!rules.required);
-        }
-        return true;
-    }
     validate(body) {
-        //return this.validateOld(body);
         return this.struct(body);
     }
 }
