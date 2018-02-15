@@ -1,15 +1,28 @@
 import * as cuid from 'cuid';
 import { pick } from 'lodash';
 import { DocumentClient } from 'aws-sdk/lib/dynamodb/document_client';
-import { Model } from './model';
 import {
-  IDynamoDBModel,
+  IModel,
+  Model,
   IItem,
-  ICallResult,
-  IDynamoDBModelConfig,
-  IDynamoDBKey
-} from './index.d';
-import { IComplexModel } from './complex_model.d';
+  IDynamoDBKey,
+  IDynamoDBModelConfig
+} from './model';
+
+export interface ICallResult {
+  items: IItem[];
+  lastEvaluatedKey?: IDynamoDBKey;
+}
+
+export interface IComplexModel extends IModel {
+  create(body: IItem): IComplexModel;
+  create(body: IItem, callback: (error: Error | null) => void): void;
+  delete(key: IDynamoDBKey): IComplexModel;
+  delete(key: IDynamoDBKey, callback: (error: Error | null) => void): void;
+  get(key: IDynamoDBKey): IComplexModel;
+  get(key: IDynamoDBKey, callback: (error: Error | null) => void): void;
+  promise(): Promise<void>;
+}
 
 export class ComplexModel extends Model implements IComplexModel {
   private calls: (() => Promise<ICallResult>)[] = [];
@@ -21,7 +34,7 @@ export class ComplexModel extends Model implements IComplexModel {
   private handleValidationError(
     err: Error,
     callback?: (error: Error | null) => void
-  ): IDynamoDBModel | void {
+  ): IComplexModel | void {
     if (typeof callback === 'function') return callback(err);
 
     this.calls.push(() => {
@@ -31,12 +44,12 @@ export class ComplexModel extends Model implements IComplexModel {
     return this;
   }
 
-  delete(key: IDynamoDBKey): IDynamoDBModel;
+  delete(key: IDynamoDBKey): IComplexModel;
   delete(key: IDynamoDBKey, callback: (error: Error | null) => void): void;
   delete(
     key: IDynamoDBKey,
     callback?: (error: Error | null) => void
-  ): void | IDynamoDBModel {
+  ): void | IComplexModel {
     var call = this.documentClient.delete({
       TableName: this.table,
       Key: this.addTenant(key)
@@ -60,12 +73,12 @@ export class ComplexModel extends Model implements IComplexModel {
     );
   }
 
-  get(key: IDynamoDBKey): IDynamoDBModel;
+  get(key: IDynamoDBKey): IComplexModel;
   get(key: IDynamoDBKey, callback: (error: Error | null) => void): void;
   get(
     key: IDynamoDBKey,
     callback?: (error: Error | null) => void
-  ): void | IDynamoDBModel {
+  ): void | IComplexModel {
     var call = this.documentClient.get({
       TableName: this.table,
       Key: this.addTenant(key)
@@ -92,15 +105,15 @@ export class ComplexModel extends Model implements IComplexModel {
         })
     );
 
-    return this as IDynamoDBModel;
+    return this as IComplexModel;
   }
 
-  create(body: IItem): IDynamoDBModel;
+  create(body: IItem): IComplexModel;
   create(body: IItem, callback: (error: Error | null) => void): void;
   create(
     body: IItem,
     callback?: (error: Error | null) => void
-  ): void | IDynamoDBModel {
+  ): void | IComplexModel {
     if (body[this.hash] === undefined) body[this.hash] = cuid();
 
     body = {
@@ -142,7 +155,7 @@ export class ComplexModel extends Model implements IComplexModel {
         })
     );
 
-    return this as IDynamoDBModel;
+    return this as IComplexModel;
   }
   /*
   set(body: IItem): IDynamoDBModel;

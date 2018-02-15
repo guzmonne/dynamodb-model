@@ -1,6 +1,13 @@
-import { ComplexModel } from './complex_model';
+import { DocumentClient } from 'aws-sdk/lib/dynamodb/document_client';
+import { ComplexModel, IComplexModel } from './complex_model';
 import { SimpleModel } from './simple_model';
-import { IDynamoDBModelGlobalConfig, IDynamoDBModelConfig } from './index.d';
+import { IDynamoDBModelConfig } from './model';
+
+export interface IDynamoDBModelGlobalConfig {
+  tenant?: string;
+  table?: string;
+  documentClient?: DocumentClient;
+}
 
 var global: IDynamoDBModelGlobalConfig = {};
 
@@ -31,7 +38,7 @@ export namespace DynamoDBModel {
 
   export function createComplexModel(
     config: IDynamoDBModelConfig
-  ): () => ComplexModel {
+  ): () => IComplexModel {
     config = { ...global, ...config };
 
     class DynamoDBComplexModel extends ComplexModel {
