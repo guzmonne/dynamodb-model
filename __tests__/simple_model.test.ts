@@ -165,6 +165,12 @@ describe('SimpleModel', () => {
     });
   });
 
+  describe('#update()', () => {
+    test('should be a function', () => {
+      expect(typeof TestModel().update).toBe('function');
+    });
+  });
+
   describe('#get()', () => {
     var getStub: sinon.SinonStub;
 
