@@ -70,13 +70,13 @@ class ComplexModel extends model_1.Model {
     create(body, callback) {
         if (body[this.hash] === undefined)
             body[this.hash] = cuid();
+        body = Object.assign({}, lodash_1.pick(body, Object.keys(this.schema), this.hash, this.range || ''), this.trackChanges(body));
         try {
             this.validate(body);
         }
         catch (err) {
             return this.handleValidationError(err, callback);
         }
-        body = Object.assign({}, lodash_1.pick(body, Object.keys(this.schema), this.hash, this.range || ''), this.trackChanges(body));
         var params = {
             TableName: this.table,
             Item: Object.assign({}, body, this.addTenant(body))

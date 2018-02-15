@@ -1,18 +1,32 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
+const superstruct_1 = require("superstruct");
 const lodash_1 = require("lodash");
 class Model {
     constructor(config) {
         this.data = [];
+        this.hashType = 'string';
+        this.rangeType = 'string';
         this.track = false;
-        this.hash = config.hash;
         this.table = config.table;
         this.documentClient = config.documentClient;
         this.schema = config.schema;
-        if (config.track !== undefined)
-            this.track = config.track;
-        if (config.range !== undefined)
+        this.hash = config.hash;
+        if (config.hashType !== undefined)
+            this.hashType = config.hashType;
+        var configStruct = Object.assign({}, config.struct, { [this.hash]: this.hashType });
+        if (config.range !== undefined) {
             this.range = config.range;
+            if (config.rangeType !== undefined)
+                this.rangeType = config.rangeType;
+            configStruct[this.range] = this.rangeType;
+        }
+        if (config.track !== undefined) {
+            this.track = config.track;
+            configStruct.createdAt = 'string';
+            configStruct.updatedAt = 'string';
+        }
+        this.struct = superstruct_1.struct(configStruct);
         if (config.tenant !== undefined) {
             this.tenant = config.tenant;
             this.hasTenantRegExp = new RegExp(`^${this.tenant}|`);
@@ -78,7 +92,7 @@ class Model {
         if (value === undefined && required === true)
             throw new Error(`The attribute \`${key}\` is required.`);
     }
-    validate(body) {
+    validateOld(body) {
         if (body[this.hash] === undefined)
             throw new Error(`The hash key \`${this.hash}\` can't be undefined.`);
         if (this.range !== undefined && body[this.range] === undefined)
@@ -92,6 +106,10 @@ class Model {
             this.validateRequired(value, key, !!rules.required);
         }
         return true;
+    }
+    validate(body) {
+        //return this.validateOld(body);
+        return this.struct(body);
     }
 }
 exports.Model = Model;

@@ -20,6 +20,10 @@ var config: IDynamoDBModelConfig = {
   hash: 'id',
   table,
   tenant,
+  struct: {
+    name: 'string',
+    age: 'number?'
+  },
   schema: {
     name: {
       type: 'string',
@@ -160,7 +164,9 @@ describe('SimpleModel', () => {
           expect(data && data.age).not.toBe(age);
           expect(putStub.callCount).toBe(0);
           expect(err).not.toBe(null);
-          expect(err.message).toEqual('The attribute `name` is required.');
+          expect(err.message).toEqual(
+            'Expected a value of type `string` for `name` but received `undefined`.'
+          );
           done();
         });
     });

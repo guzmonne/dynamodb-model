@@ -18,6 +18,10 @@ var TestModel = DynamoDBModel.createComplexModel({
   hash: 'id',
   table,
   tenant,
+  struct: {
+    name: 'string',
+    age: 'number?'
+  },
   schema: {
     name: {
       type: 'string',
@@ -89,11 +93,14 @@ describe('Model', () => {
     test('should fail if the `data` to create is invalid', () => {
       var model = TestModel();
       return model
-        .create({ data })
+        .create({ name, something: 'awesome' })
         .promise()
         .catch(err => {
+          expect(err).not.toBe(null);
           expect(putStub.calledOnce).toBe(false);
-          expect(err.message).toEqual('The attribute `name` is required.');
+          expect(err.message).toEqual(
+            'Expected a value of type `undefined` for `something` but received `"awesome"`.'
+          );
         });
     });
   });
@@ -213,6 +220,10 @@ describe('Model', () => {
         table: 'TableTest',
         tenant: '1234',
         track: true,
+        struct: {
+          name: 'string',
+          age: 'number?'
+        },
         schema: {
           name: {
             type: 'string',
@@ -247,10 +258,10 @@ describe('Model', () => {
     test('should only allow the keys configured on the `schema`', done => {
       var model = TestModel();
       var gender = 'm';
-      model.create({ name, gender }, err => {
+      model.create({ id, name, gender }, err => {
         expect(err).toBe(null);
         expect(putStub.calledOnce).toBe(true);
-        expect(model.data[0].gender).toBe(undefined);
+        expect(model.data[0]).toEqual({ id, name });
 
         done();
       });
@@ -263,7 +274,9 @@ describe('Model', () => {
         expect(err).not.toBe(null);
         expect(putStub.calledOnce).toBe(false);
         expect(model.data.length).toBe(0);
-        expect(err.message).toBe('The value of `age` should be a number');
+        expect(err.message).toBe(
+          'Expected a value of type `number | undefined` for `age` but received `"29"`.'
+        );
         done();
       });
     });
@@ -275,7 +288,9 @@ describe('Model', () => {
         expect(err).not.toBe(null);
         expect(putStub.calledOnce).toBe(false);
         expect(model.data.length).toBe(0);
-        expect(err.message).toBe('The attribute `name` is required.');
+        expect(err.message).toBe(
+          'Expected a value of type `string` for `name` but received `undefined`.'
+        );
         done();
       });
     });
@@ -287,6 +302,10 @@ describe('Model', () => {
         range: 'username',
         table: 'TableTest',
         tenant: '1234',
+        struct: {
+          name: 'string',
+          age: 'number?'
+        },
         schema: {
           name: {
             type: 'string',
@@ -303,7 +322,7 @@ describe('Model', () => {
         expect(putStub.calledOnce).toBe(false);
         expect(model.data.length).toBe(0);
         expect(err.message).toBe(
-          "The range key `username` can't be undefined."
+          'Expected a value of type `string` for `username` but received `undefined`.'
         );
         done();
       });

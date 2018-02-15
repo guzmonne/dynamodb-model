@@ -1,3 +1,4 @@
+import { struct } from 'superstruct';
 import { pick, isObject } from 'lodash';
 import { DocumentClient } from 'aws-sdk/lib/dynamodb/document_client';
 import {
@@ -24,20 +25,43 @@ export abstract class Model implements IModel {
   data: IItem[] = [];
   documentClient: DocumentClient;
   hash: string;
+  hashType: string = 'string';
   hasTenantRegExp?: RegExp;
   range?: string;
+  rangeType: string = 'string';
   schema: IDynamoDBModelSchema;
   table: string;
   tenant?: string;
   track: boolean = false;
+  struct: any;
 
   constructor(config: IDynamoDBModelConfig) {
-    this.hash = config.hash;
     this.table = config.table;
     this.documentClient = config.documentClient;
     this.schema = config.schema;
-    if (config.track !== undefined) this.track = config.track;
-    if (config.range !== undefined) this.range = config.range;
+
+    this.hash = config.hash;
+    if (config.hashType !== undefined) this.hashType = config.hashType;
+
+    var configStruct = {
+      ...config.struct,
+      [this.hash]: this.hashType
+    };
+
+    if (config.range !== undefined) {
+      this.range = config.range;
+      if (config.rangeType !== undefined) this.rangeType = config.rangeType;
+      configStruct[this.range] = this.rangeType;
+    }
+
+    if (config.track !== undefined) {
+      this.track = config.track;
+      configStruct.createdAt = 'string';
+      configStruct.updatedAt = 'string';
+    }
+
+    this.struct = struct(configStruct);
+
     if (config.tenant !== undefined) {
       this.tenant = config.tenant;
       this.hasTenantRegExp = new RegExp(`^${this.tenant}|`);
@@ -121,7 +145,7 @@ export abstract class Model implements IModel {
       throw new Error(`The attribute \`${key}\` is required.`);
   }
 
-  validate(body: IItem): boolean {
+  validateOld(body: IItem): boolean {
     if (body[this.hash] === undefined)
       throw new Error(`The hash key \`${this.hash}\` can't be undefined.`);
     if (this.range !== undefined && body[this.range] === undefined)
@@ -135,5 +159,10 @@ export abstract class Model implements IModel {
       this.validateRequired(value, key, !!rules.required);
     }
     return true;
+  }
+
+  validate(body: IItem): boolean {
+    //return this.validateOld(body);
+    return this.struct(body);
   }
 }

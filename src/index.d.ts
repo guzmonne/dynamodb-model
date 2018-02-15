@@ -27,7 +27,10 @@ export interface IDynamoDBModelSchema {
 
 export interface IDynamoDBModelConfig {
   hash: string;
+  hashType?: 'string' | 'number';
   range?: string;
+  rangeType?: 'string' | 'number';
+  struct?: any;
   schema: IDynamoDBModelSchema;
   table: string;
   track?: boolean;

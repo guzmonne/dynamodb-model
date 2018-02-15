@@ -112,16 +112,16 @@ export class ComplexModel extends Model implements IComplexModel {
   ): void | IDynamoDBModel {
     if (body[this.hash] === undefined) body[this.hash] = cuid();
 
+    body = {
+      ...pick(body, Object.keys(this.schema), this.hash, this.range || ''),
+      ...this.trackChanges(body)
+    };
+
     try {
       this.validate(body);
     } catch (err) {
       return this.handleValidationError(err, callback);
     }
-
-    body = {
-      ...pick(body, Object.keys(this.schema), this.hash, this.range || ''),
-      ...this.trackChanges(body)
-    };
 
     var params = {
       TableName: this.table,

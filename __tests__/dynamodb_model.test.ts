@@ -47,6 +47,9 @@ describe('DynamoDBModel', () => {
     var params: IDynamoDBModelConfig = {
       documentClient: db,
       hash: 'id',
+      struct: {
+        name: 'string'
+      },
       schema: {
         name: { type: 'string' }
       },
@@ -74,6 +77,9 @@ describe('DynamoDBModel', () => {
     var params: IDynamoDBModelConfig = {
       documentClient: db,
       hash: 'id',
+      struct: {
+        name: 'string'
+      },
       schema: {
         name: { type: 'string' }
       },
