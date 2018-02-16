@@ -14,7 +14,7 @@ export interface IDynamoDBModelConfig {
     hash: string;
     hashType?: 'string' | 'number';
     indexName?: string;
-    maxGSIK: number;
+    maxGSIK?: number;
     range?: string;
     rangeType?: 'string' | 'number';
     struct: IDynamoDBModelStruct;

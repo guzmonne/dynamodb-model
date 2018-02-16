@@ -1,8 +1,7 @@
 import { DynamoDBModel } from '../src/';
-import { ComplexModel } from '../src/complex_model';
-import { IDynamoDBModelConfig } from '../src/index.d';
 import { DynamoDB, config } from 'aws-sdk';
 import { SimpleModel } from '../src/simple_model';
+import { IDynamoDBModelConfig } from '../src/model';
 
 config.update({
   region: 'us-east-1'
@@ -39,9 +38,9 @@ describe('DynamoDBModel', () => {
     });
   });
 
-  describe('.createSimpleModel()', () => {
+  describe('.create()', () => {
     test('should be a function', () => {
-      expect(typeof DynamoDBModel.createSimpleModel).toEqual('function');
+      expect(typeof DynamoDBModel.create).toEqual('function');
     });
 
     var params: IDynamoDBModelConfig = {
@@ -50,52 +49,15 @@ describe('DynamoDBModel', () => {
       struct: {
         name: 'string'
       },
-      schema: {
-        name: { type: 'string' }
-      },
       table: 'TableTest'
     };
 
     test('should return a function', () => {
-      expect(typeof DynamoDBModel.createSimpleModel(params)).toEqual(
-        'function'
-      );
+      expect(typeof DynamoDBModel.create(params)).toEqual('function');
     });
 
     test('should return an instance of `SimpleModel`', () => {
-      expect(
-        DynamoDBModel.createSimpleModel(params)() instanceof SimpleModel
-      ).toBe(true);
-    });
-  });
-
-  describe('.createComplexModel()', () => {
-    test('should be a function', () => {
-      expect(typeof DynamoDBModel.createComplexModel).toEqual('function');
-    });
-
-    var params: IDynamoDBModelConfig = {
-      documentClient: db,
-      hash: 'id',
-      struct: {
-        name: 'string'
-      },
-      schema: {
-        name: { type: 'string' }
-      },
-      table: 'TableTest'
-    };
-
-    test('should return a function', () => {
-      expect(typeof DynamoDBModel.createComplexModel(params)).toEqual(
-        'function'
-      );
-    });
-
-    test('should return an instance of `ComplexModel`', () => {
-      expect(
-        DynamoDBModel.createComplexModel(params)() instanceof ComplexModel
-      ).toBe(true);
+      expect(DynamoDBModel.create(params)() instanceof SimpleModel).toBe(true);
     });
   });
 });

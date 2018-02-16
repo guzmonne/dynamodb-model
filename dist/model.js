@@ -31,7 +31,7 @@ class Model {
         if (config.tenant !== undefined) {
             this.tenant = config.tenant;
             this.hasTenantRegExp = new RegExp(`^${this.tenant}|`);
-            if (config.maxGSIK >= 0)
+            if (config.maxGSIK !== undefined)
                 this.maxGSIK = config.maxGSIK;
         }
         if (config.indexName !== undefined) {

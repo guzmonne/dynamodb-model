@@ -20,7 +20,7 @@ export interface IDynamoDBModelConfig {
   hash: string;
   hashType?: 'string' | 'number';
   indexName?: string;
-  maxGSIK: number;
+  maxGSIK?: number;
   range?: string;
   rangeType?: 'string' | 'number';
   struct: IDynamoDBModelStruct;
@@ -93,7 +93,7 @@ export abstract class Model implements IModel {
     if (config.tenant !== undefined) {
       this.tenant = config.tenant;
       this.hasTenantRegExp = new RegExp(`^${this.tenant}|`);
-      if (config.maxGSIK >= 0) this.maxGSIK = config.maxGSIK;
+      if (config.maxGSIK !== undefined) this.maxGSIK = config.maxGSIK;
     }
 
     if (config.indexName !== undefined) {

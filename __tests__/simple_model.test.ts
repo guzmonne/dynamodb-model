@@ -27,7 +27,7 @@ var config: IDynamoDBModelConfig = {
   },
   maxGSIK: 1
 };
-var TestModel = DynamoDBModel.createSimpleModel(config);
+var TestModel = DynamoDBModel.create(config);
 
 var id = cuid();
 var name = cuid();
@@ -127,7 +127,7 @@ describe('SimpleModel', () => {
     });
 
     test('should add a `createdAt` and `updatedAt` values if `track` is true', () => {
-      var TestModel = DynamoDBModel.createSimpleModel({
+      var TestModel = DynamoDBModel.create({
         ...config,
         track: true
       });
@@ -313,7 +313,7 @@ describe('SimpleModel', () => {
 
     test('should add an `updatedAt` value if `track` is `true`', done => {
       var _config = { ...config, track: true };
-      var TestModel = DynamoDBModel.createSimpleModel(_config);
+      var TestModel = DynamoDBModel.create(_config);
 
       TestModel()
         .update({ id, name })
@@ -337,7 +337,7 @@ describe('SimpleModel', () => {
     });
 
     test('should fail if the range key is missing', done => {
-      var TestModel = DynamoDBModel.createSimpleModel({
+      var TestModel = DynamoDBModel.create({
         ...config,
         range: 'username'
       });
@@ -401,7 +401,7 @@ describe('SimpleModel', () => {
     var scanStub: sinon.SinonStub;
     var queryStub: sinon.SinonStub;
 
-    var NoTenantModel = DynamoDBModel.createSimpleModel({
+    var NoTenantModel = DynamoDBModel.create({
       ...config,
       tenant: undefined
     });
@@ -491,7 +491,7 @@ describe('SimpleModel', () => {
 
     test('should call the `documentClient.query` method if the model has a `tenant` configured', done => {
       var maxGSIK = Math.floor(Math.random() * 100);
-      var TestModel = DynamoDBModel.createSimpleModel({
+      var TestModel = DynamoDBModel.create({
         ...config,
         maxGSIK
       });
@@ -532,7 +532,7 @@ describe('SimpleModel', () => {
     test('should allow to configure the `Limit` value when `tenant` is not undefined', done => {
       var limit = 200;
       var maxGSIK = Math.floor(Math.random() * 100);
-      var TestModel = DynamoDBModel.createSimpleModel({
+      var TestModel = DynamoDBModel.create({
         ...config,
         maxGSIK
       });
@@ -604,7 +604,7 @@ describe('SimpleModel', () => {
 
     test('should use the configured index name when tenant is not undefined', done => {
       var indexName = 'SomeIndexName';
-      var TestModel = DynamoDBModel.createSimpleModel({
+      var TestModel = DynamoDBModel.create({
         ...config,
         indexName
       });

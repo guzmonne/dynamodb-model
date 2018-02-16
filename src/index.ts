@@ -1,5 +1,4 @@
 import { DocumentClient } from 'aws-sdk/lib/dynamodb/document_client';
-import { ComplexModel, IComplexModel } from './complex_model';
 import { SimpleModel } from './simple_model';
 import { IDynamoDBModelConfig } from './model';
 
@@ -20,9 +19,7 @@ export namespace DynamoDBModel {
     global = Object.assign({}, global, options);
   }
 
-  export function createSimpleModel(
-    config: IDynamoDBModelConfig
-  ): () => SimpleModel {
+  export function create(config: IDynamoDBModelConfig): () => SimpleModel {
     config = { ...global, ...config };
 
     class DynamoDBComplexModel extends SimpleModel {
@@ -32,22 +29,6 @@ export namespace DynamoDBModel {
     }
 
     return function(): SimpleModel {
-      return new DynamoDBComplexModel();
-    };
-  }
-
-  export function createComplexModel(
-    config: IDynamoDBModelConfig
-  ): () => IComplexModel {
-    config = { ...global, ...config };
-
-    class DynamoDBComplexModel extends ComplexModel {
-      constructor() {
-        super(config);
-      }
-    }
-
-    return function(): ComplexModel {
       return new DynamoDBComplexModel();
     };
   }
