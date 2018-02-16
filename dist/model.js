@@ -35,7 +35,7 @@ class Model {
         if (this.track === false)
             return {};
         var isoDate = new Date().toISOString();
-        var isNew = body[this.hash] !== undefined;
+        var isNew = body[this.hash] === undefined;
         var result = {
             updatedAt: isoDate
         };

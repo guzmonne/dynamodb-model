@@ -3,7 +3,7 @@ import * as cuid from 'cuid';
 import { DynamoDB, config as AWSConfig } from 'aws-sdk';
 import { SimpleModel } from '../src/simple_model';
 import { DynamoDBModel } from '../src/';
-import { IDynamoDBModelConfig } from '../src/index.d';
+import { IDynamoDBModelConfig } from '../src/model';
 
 AWSConfig.update({
   region: 'us-east-1'
@@ -166,8 +166,57 @@ describe('SimpleModel', () => {
   });
 
   describe('#update()', () => {
+    var updateStub: sinon.SinonStub;
+
+    beforeEach(() => {
+      updateStub = sinon.stub(db, 'update');
+      updateStub.returns({
+        promise: () => Promise.resolve({})
+      });
+    });
+
+    afterEach(() => {
+      updateStub.restore();
+    });
+
     test('should be a function', () => {
       expect(typeof TestModel().update).toBe('function');
+    });
+
+    test('should call the `documentClient.update` function', () => {
+      return TestModel()
+        .update({ id, age: 12 })
+        .promise()
+        .then(() => {
+          expect(updateStub.calledOnce).toBe(true);
+        });
+    });
+
+    test('should throw an error if the body is invalid', done => {
+      TestModel()
+        .update({ id, age: '12' })
+        .callback((error, data) => {
+          expect(error).not.toBe(null);
+          expect(data).toBe(undefined);
+          expect(error.message).toBe(
+            'Expected a value of type `number | undefined` for `age` but received `"12"`.'
+          );
+          done();
+        });
+    });
+
+    test('should add an `updatedAt` value if `track` is `true`', done => {
+      var _config = { ...config, track: true };
+      var TestModel = DynamoDBModel.createSimpleModel(_config);
+
+      TestModel()
+        .update({ id, name })
+        .callback((error, data) => {
+          expect(error).toBe(null);
+          expect(data).not.toBe(undefined);
+          expect(data && typeof data.updatedAt).toBe('string');
+          done();
+        });
     });
   });
 

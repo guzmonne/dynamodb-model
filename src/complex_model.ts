@@ -114,12 +114,12 @@ export class ComplexModel extends Model implements IComplexModel {
     body: IItem,
     callback?: (error: Error | null) => void
   ): void | IComplexModel {
-    if (body[this.hash] === undefined) body[this.hash] = cuid();
-
     body = {
       ...pick(body, Object.keys(this.struct.schema)),
       ...this.trackChanges(body)
     };
+
+    if (body[this.hash] === undefined) body[this.hash] = cuid();
 
     try {
       this.validate(body);

@@ -12,6 +12,13 @@ class SimpleModel extends model_1.Model {
         this.call = () => Promise.reject(error);
         return this;
     }
+    createUpdateExpression(body) {
+        return {
+            UpdateExpression: JSON.stringify(body),
+            ExpressionAttributeNames: {},
+            ExpressionAttributeValues: {}
+        };
+    }
     promise() {
         return this.call();
     }
@@ -21,11 +28,11 @@ class SimpleModel extends model_1.Model {
             .catch(err => callback(err));
     }
     create(body) {
-        if (body[this.hash] === undefined)
-            body[this.hash] = cuid();
         body = lodash_1.pick(body, Object.keys(this.struct.schema));
         if (this.track === true)
             body = Object.assign({}, body, this.trackChanges(body));
+        if (body[this.hash] === undefined)
+            body[this.hash] = cuid();
         try {
             this.validate(body);
         }
@@ -37,6 +44,23 @@ class SimpleModel extends model_1.Model {
             TableName: this.table,
             Item: Object.assign({}, body, this.addTenant(body))
         })
+            .promise()
+            .then(() => body);
+        return this;
+    }
+    update(body) {
+        body = lodash_1.pick(body, Object.keys(this.struct.schema));
+        if (this.track === true)
+            body = Object.assign({}, body, this.trackChanges(body));
+        try {
+            this.validate(body);
+        }
+        catch (error) {
+            if (error.value !== undefined)
+                return this.handleError(error);
+        }
+        this.call = () => this.documentClient
+            .update(Object.assign({ TableName: this.table, Key: this.addTenant(body) }, this.createUpdateExpression(body)))
             .promise()
             .then(() => body);
         return this;

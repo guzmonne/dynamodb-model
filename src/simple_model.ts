@@ -8,6 +8,16 @@ import {
   IDynamoDBModelConfig
 } from './model';
 
+interface IUpdateExpressionAttributes {
+  UpdateExpression: string;
+  ExpressionAttributeNames: {
+    [key: string]: string;
+  };
+  ExpressionAttributeValues: {
+    [key: string]: any;
+  };
+}
+
 export interface ISimpleModel extends IModel {
   callback(callback: (error: Error | null, data?: IItem | void) => void): void;
   promise(): Promise<IItem | void>;
@@ -26,6 +36,14 @@ export class SimpleModel extends Model implements ISimpleModel {
     return this;
   }
 
+  private createUpdateExpression(body: IItem): IUpdateExpressionAttributes {
+    return {
+      UpdateExpression: JSON.stringify(body),
+      ExpressionAttributeNames: {},
+      ExpressionAttributeValues: {}
+    };
+  }
+
   promise(): Promise<IItem | void> {
     return this.call();
   }
@@ -37,11 +55,11 @@ export class SimpleModel extends Model implements ISimpleModel {
   }
 
   create(body: IItem): ISimpleModel {
-    if (body[this.hash] === undefined) body[this.hash] = cuid();
-
     body = pick(body, Object.keys(this.struct.schema));
 
     if (this.track === true) body = { ...body, ...this.trackChanges(body) };
+
+    if (body[this.hash] === undefined) body[this.hash] = cuid();
 
     try {
       this.validate(body);
@@ -54,6 +72,30 @@ export class SimpleModel extends Model implements ISimpleModel {
         .put({
           TableName: this.table,
           Item: { ...body, ...this.addTenant(body as IDynamoDBKey) }
+        })
+        .promise()
+        .then(() => body);
+
+    return this;
+  }
+
+  update(body: IItem): ISimpleModel {
+    body = pick(body, Object.keys(this.struct.schema));
+
+    if (this.track === true) body = { ...body, ...this.trackChanges(body) };
+
+    try {
+      this.validate(body);
+    } catch (error) {
+      if (error.value !== undefined) return this.handleError(error);
+    }
+
+    this.call = () =>
+      this.documentClient
+        .update({
+          TableName: this.table,
+          Key: this.addTenant(body),
+          ...this.createUpdateExpression(body)
         })
         .promise()
         .then(() => body);

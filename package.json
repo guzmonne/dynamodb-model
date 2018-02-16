@@ -14,23 +14,18 @@
     "@types/sinon": "^4.1.3",
     "jest": "^22.2.2",
     "sinon": "^4.3.0",
+    "ts-jest": "^22.0.4",
     "typescript": "^2.7.1"
   },
   "scripts": {
     "test": "jest --watch"
   },
   "jest": {
-    "moduleFileExtensions": [
-      "ts",
-      "tsx",
-      "js"
-    ],
     "transform": {
-      "^.+\\.(ts|tsx)$": "<rootDir>/preprocessor.js"
+      "^.+\\.tsx?$": "ts-jest"
     },
-    "testMatch": [
-      "**/__tests__/*.(ts|tsx|js)"
-    ]
+    "testRegex": "(/__tests__/.*|(\\.|/)(test|spec))\\.(jsx?|tsx?)$",
+    "moduleFileExtensions": ["ts", "tsx", "js", "jsx", "json", "node"]
   },
   "dependencies": {
     "aws-sdk": "^2.192.0",

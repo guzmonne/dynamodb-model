@@ -68,9 +68,9 @@ class ComplexModel extends model_1.Model {
         return this;
     }
     create(body, callback) {
+        body = Object.assign({}, lodash_1.pick(body, Object.keys(this.struct.schema)), this.trackChanges(body));
         if (body[this.hash] === undefined)
             body[this.hash] = cuid();
-        body = Object.assign({}, lodash_1.pick(body, Object.keys(this.struct.schema)), this.trackChanges(body));
         try {
             this.validate(body);
         }
