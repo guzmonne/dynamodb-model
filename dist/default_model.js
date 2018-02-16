@@ -11,7 +11,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 const cuid = require("cuid");
 const lodash_1 = require("lodash");
 const model_1 = require("./model");
-class SimpleModel extends model_1.Model {
+class DefaultModel extends model_1.Model {
     constructor(config) {
         super(config);
         this.call = () => Promise.resolve();
@@ -165,5 +165,5 @@ class SimpleModel extends model_1.Model {
         return this.query(options);
     }
 }
-exports.SimpleModel = SimpleModel;
-//# sourceMappingURL=simple_model.js.map
+exports.DefaultModel = DefaultModel;
+//# sourceMappingURL=default_model.js.map

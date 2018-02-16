@@ -1,6 +1,10 @@
 "use strict";
+function __export(m) {
+    for (var p in m) if (!exports.hasOwnProperty(p)) exports[p] = m[p];
+}
 Object.defineProperty(exports, "__esModule", { value: true });
-const simple_model_1 = require("./simple_model");
+const default_model_1 = require("./default_model");
+__export(require("./default_model"));
 var global = {};
 var DynamoDBModel;
 (function (DynamoDBModel) {
@@ -13,16 +17,29 @@ var DynamoDBModel;
     }
     DynamoDBModel.config = config;
     function create(config) {
+        var Model = createModel(config);
+        return function () {
+            return new Model();
+        };
+    }
+    DynamoDBModel.create = create;
+    function createModel(config) {
         config = Object.assign({}, global, config);
-        class DynamoDBComplexModel extends simple_model_1.SimpleModel {
+        class Model extends default_model_1.DefaultModel {
             constructor() {
                 super(config);
             }
         }
+        return Model;
+    }
+    DynamoDBModel.createModel = createModel;
+    function extend(config, extendFn) {
+        var Model = createModel(config);
+        var ExtendedModel = extendFn(Model);
         return function () {
-            return new DynamoDBComplexModel();
+            return new ExtendedModel();
         };
     }
-    DynamoDBModel.create = create;
+    DynamoDBModel.extend = extend;
 })(DynamoDBModel = exports.DynamoDBModel || (exports.DynamoDBModel = {}));
 //# sourceMappingURL=index.js.map

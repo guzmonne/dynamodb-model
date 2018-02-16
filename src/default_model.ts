@@ -35,24 +35,24 @@ interface IUpdateExpressionAttributes {
   ExpressionAttributeValues: IExpressionAttributeValues;
 }
 
-export interface ISimpleModel extends IModel {
+export interface IDefaultModel extends IModel {
   callback(callback: (error: Error | null, data?: IItem | void) => void): void;
   promise(): Promise<IItem | void>;
-  get(key: IDynamoDBKey): ISimpleModel;
-  delete(key: IDynamoDBKey): ISimpleModel;
-  create(body: IItem): ISimpleModel;
-  update(body: IItem): ISimpleModel;
-  index(options?: IDynamoDBModelScanOptions): ISimpleModel;
+  get(key: IDynamoDBKey): IDefaultModel;
+  delete(key: IDynamoDBKey): IDefaultModel;
+  create(body: IItem): IDefaultModel;
+  update(body: IItem): IDefaultModel;
+  index(options?: IDynamoDBModelScanOptions): IDefaultModel;
 }
 
-export class SimpleModel extends Model implements ISimpleModel {
+export class DefaultModel extends Model implements IDefaultModel {
   private call: () => Promise<IItem | void> = () => Promise.resolve();
 
   constructor(config: IDynamoDBModelConfig) {
     super(config);
   }
 
-  private handleError(error: Error): ISimpleModel {
+  private handleError(error: Error): IDefaultModel {
     this.call = () => Promise.reject(error);
     return this;
   }
@@ -99,7 +99,7 @@ export class SimpleModel extends Model implements ISimpleModel {
       .catch(err => callback(err));
   }
 
-  create(body: IItem): ISimpleModel {
+  create(body: IItem): IDefaultModel {
     body = pick(body, Object.keys(this.struct.schema));
 
     if (this.track === true) body = { ...body, ...this.trackChanges(body) };
@@ -128,7 +128,7 @@ export class SimpleModel extends Model implements ISimpleModel {
     return this;
   }
 
-  update(body: IItem): ISimpleModel {
+  update(body: IItem): IDefaultModel {
     if (body[this.hash] === undefined)
       return this.handleError(
         new Error(`The value of '${this.hash}' can't be undefined`)
@@ -162,7 +162,7 @@ export class SimpleModel extends Model implements ISimpleModel {
     return this;
   }
 
-  get(key: IDynamoDBKey): ISimpleModel {
+  get(key: IDynamoDBKey): IDefaultModel {
     this.call = () =>
       this.documentClient
         .get({
@@ -175,7 +175,7 @@ export class SimpleModel extends Model implements ISimpleModel {
     return this;
   }
 
-  delete(key: IDynamoDBKey): ISimpleModel {
+  delete(key: IDynamoDBKey): IDefaultModel {
     this.call = () =>
       this.documentClient
         .delete({
@@ -186,7 +186,7 @@ export class SimpleModel extends Model implements ISimpleModel {
     return this;
   }
 
-  private scan(options: IDynamoDBModelScanOptions): ISimpleModel {
+  private scan(options: IDynamoDBModelScanOptions): IDefaultModel {
     this.call = () =>
       this.documentClient
         .scan({
@@ -208,7 +208,7 @@ export class SimpleModel extends Model implements ISimpleModel {
     return this;
   }
 
-  private query(options: IDynamoDBModelScanOptions): ISimpleModel {
+  private query(options: IDynamoDBModelScanOptions): IDefaultModel {
     this.call = () =>
       Promise.all(
         range(0, this.maxGSIK).map(i =>
@@ -276,7 +276,7 @@ export class SimpleModel extends Model implements ISimpleModel {
     return this;
   }
 
-  index(options?: IDynamoDBModelScanOptions): ISimpleModel {
+  index(options?: IDynamoDBModelScanOptions): IDefaultModel {
     options = { limit: 100, ...options };
 
     if (this.tenant === undefined) return this.scan(options);

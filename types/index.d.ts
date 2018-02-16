@@ -1,6 +1,7 @@
 import { DocumentClient } from 'aws-sdk/lib/dynamodb/document_client';
-import { SimpleModel } from './simple_model';
+import { IDefaultModel } from './default_model';
 import { IDynamoDBModelConfig } from './model';
+export * from './default_model';
 export interface IDynamoDBModelGlobalConfig {
     tenant?: string;
     table?: string;
@@ -9,5 +10,9 @@ export interface IDynamoDBModelGlobalConfig {
 export declare namespace DynamoDBModel {
     function getConfig(): IDynamoDBModelGlobalConfig;
     function config(options: IDynamoDBModelGlobalConfig): void;
-    function create(config: IDynamoDBModelConfig): () => SimpleModel;
+    function create(config: IDynamoDBModelConfig): () => IDefaultModel;
+    function createModel(config: IDynamoDBModelConfig): any;
+    function extend(config: IDynamoDBModelConfig, extendFn: (model: any) => {
+        new (): IDefaultModel;
+    }): () => any;
 }

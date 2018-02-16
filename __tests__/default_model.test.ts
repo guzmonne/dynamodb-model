@@ -2,7 +2,7 @@ import * as sinon from 'sinon';
 import * as cuid from 'cuid';
 import { btoa } from '../src/utils';
 import { DynamoDB, config as AWSConfig } from 'aws-sdk';
-import { SimpleModel } from '../src/simple_model';
+import { DefaultModel } from '../src/default_model';
 import { DynamoDBModel } from '../src/';
 import { IDynamoDBModelConfig } from '../src/model';
 
@@ -32,13 +32,13 @@ var TestModel = DynamoDBModel.create(config);
 var id = cuid();
 var name = cuid();
 
-describe('SimpleModel', () => {
+describe('DefaultModel', () => {
   test('should be a function', () => {
-    expect(typeof SimpleModel).toBe('function');
+    expect(typeof DefaultModel).toBe('function');
   });
 
-  test('should be an instance of SimpleModel', () => {
-    expect(TestModel() instanceof SimpleModel).toBe(true);
+  test('should be an instance of DefaultModel', () => {
+    expect(TestModel() instanceof DefaultModel).toBe(true);
   });
 
   describe('#promise()', () => {

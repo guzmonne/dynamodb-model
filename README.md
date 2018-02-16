@@ -12,7 +12,8 @@ The AWS JavaScript SDK provides access to DynamoDB without restrains. You can ac
 Before we can start defining our models, we should configure the library:
 
 ```javascript
-var DynamoDBModel = require('dynamodb-model');
+var { DynamoDBModel } = require('dynamodb-model');
+
 DynamoDBModel.config({
   tenant: process.env.TENANT,
   documentClient: new AWS.DynamoDB.DocumentClient(),
@@ -23,45 +24,46 @@ DynamoDBModel.config({
 If the `config()` method is not run, the `tenant` value is going to be empty. Also, if the `documentClient` option is undefined, the library tries to create an `AWS.DynamoDB.DocumentClient` instance. The `table` option is useful if you are planning to store all the items on a single table, or if you want to use it as default. If you do not provide a `table` value as default, you must configure it as a static
 Now we can define default instances of the models, or extend the `Base` class to include our logic.
 
-**Simple Model**
+### Create a default Model
 
 ```javascript
-var SimpleModel = DynamoDBModel.createSimpleModel({
+import { btoa } from 'dynamodb-models/dist/utils';
+
+var UserModel = DynamoDBModel.create({
   hash: 'id',
-  schema: {
-    name: { type: 'string', required: true },
-    age: { type: 'number' },
-    adult: { type: 'boolean' },
-    username: { type: 'string' }
+  struct: {
+    name: 'string',
+    age: 'number?',
+    adult: 'boolean?'
+    username: 'string?'
   },
-  indexes: {
-    byName: {
-      hash: 'name',
-      range: 'createdAt'
-    }
-  }
-  table: 'ProfilesTable',
+  maxGSIK: 1, // Configures the maximum GSIK value. It is 10 by default.
+  indexName: 'ByTenant'
+  table: 'UserTable',
   track: true // Tracks `createdAt` and `updatedAt` attributes
 });
 
 // Get
-SimpleModel().get({ id: 'abc' });
+UserModel().get({ id: 'abc' });
 
 // Create
-SimpleModel().create({ id: 'abcd', name: 'John Doe' });
+UserModel().create({ id: 'abcd', name: 'John Doe' });
 
 // Update
-SimpleModel().update({
+UserModel().update({
   id: 'abcd',
   name: 'Jane Doe',
   adult: true
 });
 
 // Delete
-SimpleModel().delete({id: 'abc'});
+UserModel().delete({id: 'abc'});
 
 // Index
-SimpleModel().index({offset: {id: 'abc'}, limit: 10});
+UserModel().index({offset: btoa(JSON.stringify({0: {id: 'abc'}})), limit: 10});
+
+// All the methods describe before are lazily evaluated.
+// You have to call the `promise()` or `callback` methods on it for them to run.
 
 // Promise
 model.promise()
@@ -73,117 +75,83 @@ model.promise()
   });;
 
 // Callback
-model.send((err, data) => {
+model.callback((err, data) => {
   /* ... */
 })
 ```
 
-**Complex Model [TODO]**
+### Extend the default model
+
+If you extend a model, you can create the default model class, add your own methods and then
 
 ```javascript
-var ComplexModel = DynamoDBModel.createComplexModel({
+var { DynamoDBModel, IDefaultModel, DefaultModel } = require('dynamodb-model');
+var
+
+var config = {
   hash: 'id',
-	schema: {
-		name: { type: 'string', required: true },
-    age: { type: 'number' },
-    adult: {type: 'boolean'},
-    username: {type: 'string'}
-	},
-	table: 'ProfilesTable',
-	track: true // Tracks `createdAt` and `updatedAt` attributes
+  struct: {
+    name: 'string',
+    age: 'number?',
+    adult: 'boolean?'
+    username: 'string?'
+  },
+  maxGSIK: 1, // Configures the maximum GSIK value. It is 10 by default.
+  indexName: 'ByTenant'
+  table: 'UserTable',
+  track: true // Tracks `createdAt` and `updatedAt` attributes
+};
+
+interface IUserModel extends IDefaultModel {
+  echo(value: string): string;
+}
+
+var CustomModel = DynamoDBModel.extend(params, model => {
+  class CustomModel extends model {
+    constructor() {
+      super();
+    }
+
+    echo(value: string): string {
+      return value;
+    }
+  }
+
+  return CustomModel;
 });
 
-// Empty model
-var defaultModel = ComplexModel();
-
-// Create new item
-defaultModel.create({name: 'John Doe'})
-	.promise()
-	.then(() => /* ... */ );
-
-// Update an item
-var updateModel = ComplexModel();
-updateModel
-  .set({id: '1', age: 24})
-  .promise()
-  .then(() => /* ... */);
-
-// Multiple sets can be chained.
-var chainedUpdateModel = ComplexModel();
-chainedUpdateModel
-  .set({id: '1', age: 24})
-  .set({name: 'John Doe'})
-  .set({adult: true})
-  .promise()
-  .then(() => /* ... */);
-
-// Sets can be configured with functions
-var setWithFunction = ComplexModel();
-setWithFunction
-  .set({id: '1', age: () => 12 * 2})
-  .promise()
-  .then(() => /* ... */);
-
-// The data on the model can be accessed inside the set functions
-var updateAfterGet = ComplexModel()
-updateAfterGet
-	.get({id: '1'})
-	.set({age: (item) => item.age * 2})
-	.promise()
-  .then(() => /* ... */);
-
-// Get a collection of items by ids
-var itemCollectionByIds = ComplexModel.collection()
-itemCollectionByIds  
-  .get([{id: '1'}, {id: '2'}, {id: '3'}])
-	.promise()
-	.then(() => /* ... */);
-
-// Get a collection of items using options
-var itemCollectionByOptions = ComplexModel.collection()
-itemCollectionByOptions  
-  .get({ offset: 2, limit: 1 })
-	.promise()
-	.then(() => /* ... */)
-
-// Update an entire collection.
-var updateCollection = ComplexModel.collection()
-updateCollection  
-  .get([{id: '1'}, {id: '2'}, {id: '3'}])
-	.filter(item => item.age > 18);
-	.set({ adult: true })
-	.promise()
-  .then(() => /* ... */)
-
-// Batch update models.
-var updateCollection = ComplexModel.collection()
-updateCollection  
-  .get([{id: '1'}, {id: '2'}, {id: '3'}])
-	.set({ username: 'one' }, { username: 'two' }, { username: 'three' })
-	.promise()
-  .then(() => /* ... */)
-
-// Set functions are provided with the item, data, and index values
-var updateCollection = ComplexModel.collection()
-updateCollection  
-  .get([{id: '1'}, {id: '2'}, {id: '3'}])
-	.set({
-    friends: (item, items, index) => (
-      items.map(i => id).filter(i => i !== item.id)
-    )
-  })
-	.promise()
-  .then(() => /* ... */)
-
-// Delete a model.
-ComplexModel()
-	.delete({id: '1'})
-	.promise()
-  .then(() => /* ... */);
-
-// Delete a collection of items by ids
-ComplexModel.collection()
-  .delete([{id: '1'}, {id: '2'}, {id: '3'}])
-	.promise()
-	.then(() => /* ... */);
+CustomModel().echo('Something');
+// >>> 'Something'
 ```
+
+If you are using Typescript then you must create the interface that the new class will implement, which should inherit `IDefaultModel`. You are going to have to help the Typescript compiler to know the type of the model by casting them to the new interface.
+
+```typescript
+interface ICustomModel extends IDefaultModel {
+  echo(value: string): string;
+}
+
+var CustomModel = DynamoDBModel.extend(params, model => {
+  var Model = model as { new (): IDefaultModel };
+
+  class CustomModel extends Model implements ICustomModel {
+    constructor() {
+      super();
+    }
+
+    echo(value: string): string {
+      return value;
+    }
+  }
+
+  return CustomModel;
+});
+
+var model: ICustomModel = CustomModel();
+model.echo('something');
+// >>> something
+```
+
+## LICENCE
+
+MIT
