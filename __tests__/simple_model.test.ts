@@ -261,6 +261,28 @@ describe('SimpleModel', () => {
         });
     });
 
+    test('should call the `documentClient.update` with valid params', () => {
+      var age = 12;
+      return TestModel()
+        .update({ id, age })
+        .promise()
+        .then(() => {
+          expect(updateStub.args[0][0]).toEqual({
+            TableName: table,
+            Key: {
+              id: tenant + '|' + id
+            },
+            UpdateExpression: '#age = :age',
+            ExpressionAttributeNames: {
+              '#age': 'age'
+            },
+            ExpressionAttributeValues: {
+              ':age': age
+            }
+          });
+        });
+    });
+
     test('should throw an error if the body is invalid', done => {
       TestModel()
         .update({ id, age: '12' })
@@ -316,22 +338,48 @@ describe('SimpleModel', () => {
           done();
         });
     });
-    /*
-    test('should construct the update expression correctly', done => {
+
+    test('should construct the `UpdateExpression` param correctly', done => {
       var age = 12;
-      TestModel()
-        .update({ id, age })
-        .callback((err, data) => {
-          expect(data && data.age).not.toBe(age);
-          expect(putStub.callCount).toBe(0);
-          expect(err).not.toBe(null);
-          expect(err.message).toEqual(
-            'Expected a value of type `string` for `name` but received `undefined`.'
-          );
+      return TestModel()
+        .update({ id, age, name })
+        .promise()
+        .then(() => {
+          var params = updateStub.args[0][0];
+          expect(params.UpdateExpression).toEqual('#name = :name,#age = :age');
           done();
         });
     });
-    */
+
+    test('should construct the `ExpressionAttributeValues` correctly', done => {
+      var age = 12;
+      return TestModel()
+        .update({ id, age, name })
+        .promise()
+        .then(() => {
+          var params = updateStub.args[0][0];
+          expect(params.ExpressionAttributeNames).toEqual({
+            '#name': 'name',
+            '#age': 'age'
+          });
+          done();
+        });
+    });
+
+    test('should construct the `ExpressionAttributeNames` correctly', done => {
+      var age = 12;
+      return TestModel()
+        .update({ id, age, name })
+        .promise()
+        .then(() => {
+          var params = updateStub.args[0][0];
+          expect(params.ExpressionAttributeValues).toEqual({
+            ':name': name,
+            ':age': age
+          });
+          done();
+        });
+    });
   });
 
   describe('#get()', () => {

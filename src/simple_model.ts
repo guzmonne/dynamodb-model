@@ -1,5 +1,5 @@
 import * as cuid from 'cuid';
-import { pick } from 'lodash';
+import { pick, omit } from 'lodash';
 import {
   Model,
   IModel,
@@ -8,14 +8,18 @@ import {
   IDynamoDBModelConfig
 } from './model';
 
+interface IExpressionAttributeValues {
+  [key: string]: any;
+}
+
+interface IExpressionAttributeNames {
+  [key: string]: string;
+}
+
 interface IUpdateExpressionAttributes {
   UpdateExpression: string;
-  ExpressionAttributeNames: {
-    [key: string]: string;
-  };
-  ExpressionAttributeValues: {
-    [key: string]: any;
-  };
+  ExpressionAttributeNames: IExpressionAttributeNames;
+  ExpressionAttributeValues: IExpressionAttributeValues;
 }
 
 export interface ISimpleModel extends IModel {
@@ -36,11 +40,31 @@ export class SimpleModel extends Model implements ISimpleModel {
     return this;
   }
 
-  private createUpdateExpression(body: IItem): IUpdateExpressionAttributes {
+  private createUpdateExpressionParams(
+    body: IItem
+  ): IUpdateExpressionAttributes {
+    body = omit(
+      body,
+      this.range !== undefined ? [this.hash, this.range] : this.hash
+    );
+
+    var expressions: string[] = [],
+      attributeNames: IExpressionAttributeNames = {},
+      attributeValues: IExpressionAttributeValues = {};
+
+    for (var key in body) {
+      expressions.push(`#${key} = :${key}`);
+      attributeNames[`#${key}`] = key;
+      attributeValues[`:${key}`] = body[key];
+    }
+
+    if (expressions.length === 0)
+      throw new Error(`Can't construct UpdateExpression from the body`);
+
     return {
-      UpdateExpression: JSON.stringify(body),
-      ExpressionAttributeNames: {},
-      ExpressionAttributeValues: {}
+      UpdateExpression: expressions.join(','),
+      ExpressionAttributeNames: attributeNames,
+      ExpressionAttributeValues: attributeValues
     };
   }
 
@@ -109,7 +133,7 @@ export class SimpleModel extends Model implements ISimpleModel {
         .update({
           TableName: this.table,
           Key: this.addTenant(body),
-          ...this.createUpdateExpression(body)
+          ...this.createUpdateExpressionParams(body)
         })
         .promise()
         .then(() => body);

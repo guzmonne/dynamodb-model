@@ -20,11 +20,20 @@ class SimpleModel extends model_1.Model {
         this.call = () => Promise.reject(error);
         return this;
     }
-    createUpdateExpression(body) {
+    createUpdateExpressionParams(body) {
+        body = lodash_1.omit(body, this.range !== undefined ? [this.hash, this.range] : this.hash);
+        var expressions = [], attributeNames = {}, attributeValues = {};
+        for (var key in body) {
+            expressions.push(`#${key} = :${key}`);
+            attributeNames[`#${key}`] = key;
+            attributeValues[`:${key}`] = body[key];
+        }
+        if (expressions.length === 0)
+            throw new Error(`Can't construct UpdateExpression from the body`);
         return {
-            UpdateExpression: JSON.stringify(body),
-            ExpressionAttributeNames: {},
-            ExpressionAttributeValues: {}
+            UpdateExpression: expressions.join(','),
+            ExpressionAttributeNames: attributeNames,
+            ExpressionAttributeValues: attributeValues
         };
     }
     promise() {
@@ -79,7 +88,7 @@ class SimpleModel extends model_1.Model {
                 return this.handleError(error);
         }
         this.call = () => this.documentClient
-            .update(Object.assign({ TableName: this.table, Key: this.addTenant(body) }, this.createUpdateExpression(body)))
+            .update(Object.assign({ TableName: this.table, Key: this.addTenant(body) }, this.createUpdateExpressionParams(body)))
             .promise()
             .then(() => body);
         return this;
