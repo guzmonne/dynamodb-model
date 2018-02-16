@@ -7,12 +7,24 @@ The AWS JavaScript SDK provides access to DynamoDB without restrains. You can ac
 * The ability to extend the base model to include your methods.
 * The ability to handle a `tenant` attribute that would allow to segment the information of multiple clients on the same table.
 
+## Install
+
+You can get the code through `npm` or `yarn`.
+
+```
+yarn add dynamodb-simple-model
+
+npm install dynamodb-simple-model
+```
+
+[Here is the link to the NPM site.](https://www.npmjs.com/package/dynamodb-simple-model)
+
 ## Getting Started
 
 Before we can start defining our models, we should configure the library:
 
 ```javascript
-var { DynamoDBModel } = require('dynamodb-model');
+var { DynamoDBModel } = require('dynamodb-simple-model');
 
 DynamoDBModel.config({
   tenant: process.env.TENANT,
@@ -27,7 +39,7 @@ Now we can define default instances of the models, or extend the `Base` class to
 ### Create a default Model
 
 ```javascript
-import { btoa } from 'dynamodb-models/dist/utils';
+import { btoa } from 'dynamodb-simple-models/dist/utils';
 
 var UserModel = DynamoDBModel.create({
   hash: 'id',
@@ -94,7 +106,7 @@ model.callback((err, data) => {
 If you extend a model, you can create the default model class, add your own methods and then
 
 ```javascript
-var { DynamoDBModel, IDefaultModel, DefaultModel } = require('dynamodb-model');
+var { DynamoDBModel, IDefaultModel, DefaultModel } = require('dynamodb-simple-model');
 
 var config = {
   hash: 'id',

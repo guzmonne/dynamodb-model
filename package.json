@@ -1,5 +1,5 @@
 {
-  "name": "dynamodb-model",
+  "name": "dynamodb-simple-model",
   "version": "1.0.0",
   "description":
     "Dynamodb model wrapper for developers without DynamoDB knowledge",
