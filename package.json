@@ -1,9 +1,12 @@
 {
   "name": "dynamodb-model",
   "version": "1.0.0",
-  "description": "DynamoDB models to use on internal projects.",
+  "description":
+    "Dynamodb model wrapper for developers without DynamoDB knowledge",
   "main": "dist/index.js",
-  "repository": "https://github.com/guzmonne/dynamodb-model",
+  "repository": {
+    "github": "git@github.com:guzmonne/dynamodb-model.git"
+  },
   "author": "Guzman Monne <guzmonne@hotmail.com>",
   "license": "MIT",
   "private": false,
