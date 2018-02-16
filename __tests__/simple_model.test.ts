@@ -165,6 +165,75 @@ describe('SimpleModel', () => {
     });
   });
 
+  describe('#delete()', () => {
+    var deleteStub: sinon.SinonStub;
+
+    beforeEach(() => {
+      deleteStub = sinon.stub(db, 'delete');
+      deleteStub.returns({
+        promise: () => Promise.resolve({})
+      });
+    });
+
+    afterEach(() => {
+      deleteStub.restore();
+    });
+
+    test('should be a function', () => {
+      expect(typeof TestModel().delete).toBe('function');
+    });
+
+    test('should call the `documentClient.delete` method with appropiate params', () => {
+      return TestModel()
+        .delete({ id })
+        .promise()
+        .then(() => {
+          expect(deleteStub.args[0][0]).toEqual({
+            TableName: table,
+            Key: {
+              id: tenant + '|' + id
+            }
+          });
+        });
+    });
+
+    test('should handle an error with the `documentClient.delete` method', () => {
+      deleteStub.restore();
+      deleteStub = sinon.stub(db, 'delete');
+      deleteStub.callsFake(() => {
+        throw new Error('Error with `documentClient.delete` method');
+      });
+
+      return TestModel()
+        .delete({ id })
+        .promise()
+        .catch(error => {
+          expect(error).not.toBe(null);
+          expect(error.message).toBe(
+            'Error with `documentClient.delete` method'
+          );
+        });
+    });
+
+    test('should handle an error with the `documentClient.delete` method', done => {
+      deleteStub.restore();
+      deleteStub = sinon.stub(db, 'delete');
+      deleteStub.callsFake(() => {
+        throw new Error('Error with `documentClient.delete` method');
+      });
+
+      return TestModel()
+        .delete({ id })
+        .callback(error => {
+          expect(error).not.toBe(null);
+          expect(error.message).toBe(
+            'Error with `documentClient.delete` method'
+          );
+          done();
+        });
+    });
+  });
+
   describe('#update()', () => {
     var updateStub: sinon.SinonStub;
 
@@ -218,6 +287,51 @@ describe('SimpleModel', () => {
           done();
         });
     });
+
+    test('should fail if the hash key is missing', done => {
+      TestModel()
+        .update({ name })
+        .callback((error, data) => {
+          expect(data).toBe(undefined);
+          expect(error).not.toBe(null);
+          expect(error.message).toBe("The value of 'id' can't be undefined");
+          done();
+        });
+    });
+
+    test('should fail if the range key is missing', done => {
+      var TestModel = DynamoDBModel.createSimpleModel({
+        ...config,
+        range: 'username'
+      });
+
+      TestModel()
+        .update({ id, name })
+        .callback((error, data) => {
+          expect(data).toBe(undefined);
+          expect(error).not.toBe(null);
+          expect(error.message).toBe(
+            "The value of 'username' can't be undefined"
+          );
+          done();
+        });
+    });
+    /*
+    test('should construct the update expression correctly', done => {
+      var age = 12;
+      TestModel()
+        .update({ id, age })
+        .callback((err, data) => {
+          expect(data && data.age).not.toBe(age);
+          expect(putStub.callCount).toBe(0);
+          expect(err).not.toBe(null);
+          expect(err.message).toEqual(
+            'Expected a value of type `string` for `name` but received `undefined`.'
+          );
+          done();
+        });
+    });
+    */
   });
 
   describe('#get()', () => {

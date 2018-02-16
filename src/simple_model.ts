@@ -44,12 +44,16 @@ export class SimpleModel extends Model implements ISimpleModel {
     };
   }
 
-  promise(): Promise<IItem | void> {
-    return this.call();
+  async promise(): Promise<IItem | void> {
+    try {
+      return await this.call();
+    } catch (error) {
+      return Promise.reject(error);
+    }
   }
 
   callback(callback: (error: Error | null, data?: IItem | void) => void): void {
-    this.call()
+    this.promise()
       .then(data => callback(null, data))
       .catch(err => callback(err));
   }
@@ -80,6 +84,16 @@ export class SimpleModel extends Model implements ISimpleModel {
   }
 
   update(body: IItem): ISimpleModel {
+    if (body[this.hash] === undefined)
+      return this.handleError(
+        new Error(`The value of '${this.hash}' can't be undefined`)
+      );
+
+    if (this.range !== undefined && body[this.range] === undefined)
+      return this.handleError(
+        new Error(`The value of '${this.range}' can't be undefined`)
+      );
+
     body = pick(body, Object.keys(this.struct.schema));
 
     if (this.track === true) body = { ...body, ...this.trackChanges(body) };
@@ -113,6 +127,17 @@ export class SimpleModel extends Model implements ISimpleModel {
         .promise()
         .then(data => data.Item);
 
+    return this;
+  }
+
+  delete(key: IDynamoDBKey): ISimpleModel {
+    this.call = () =>
+      this.documentClient
+        .delete({
+          TableName: this.table,
+          Key: this.addTenant(key)
+        })
+        .promise();
     return this;
   }
 }

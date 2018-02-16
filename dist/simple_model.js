@@ -1,4 +1,12 @@
 "use strict";
+var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, generator) {
+    return new (P || (P = Promise))(function (resolve, reject) {
+        function fulfilled(value) { try { step(generator.next(value)); } catch (e) { reject(e); } }
+        function rejected(value) { try { step(generator["throw"](value)); } catch (e) { reject(e); } }
+        function step(result) { result.done ? resolve(result.value) : new P(function (resolve) { resolve(result.value); }).then(fulfilled, rejected); }
+        step((generator = generator.apply(thisArg, _arguments || [])).next());
+    });
+};
 Object.defineProperty(exports, "__esModule", { value: true });
 const cuid = require("cuid");
 const lodash_1 = require("lodash");
@@ -20,10 +28,17 @@ class SimpleModel extends model_1.Model {
         };
     }
     promise() {
-        return this.call();
+        return __awaiter(this, void 0, void 0, function* () {
+            try {
+                return yield this.call();
+            }
+            catch (error) {
+                return Promise.reject(error);
+            }
+        });
     }
     callback(callback) {
-        this.call()
+        this.promise()
             .then(data => callback(null, data))
             .catch(err => callback(err));
     }
@@ -49,6 +64,10 @@ class SimpleModel extends model_1.Model {
         return this;
     }
     update(body) {
+        if (body[this.hash] === undefined)
+            return this.handleError(new Error(`The value of '${this.hash}' can't be undefined`));
+        if (this.range !== undefined && body[this.range] === undefined)
+            return this.handleError(new Error(`The value of '${this.range}' can't be undefined`));
         body = lodash_1.pick(body, Object.keys(this.struct.schema));
         if (this.track === true)
             body = Object.assign({}, body, this.trackChanges(body));
@@ -73,6 +92,15 @@ class SimpleModel extends model_1.Model {
         })
             .promise()
             .then(data => data.Item);
+        return this;
+    }
+    delete(key) {
+        this.call = () => this.documentClient
+            .delete({
+            TableName: this.table,
+            Key: this.addTenant(key)
+        })
+            .promise();
         return this;
     }
 }

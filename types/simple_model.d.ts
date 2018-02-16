@@ -14,4 +14,5 @@ export declare class SimpleModel extends Model implements ISimpleModel {
     create(body: IItem): ISimpleModel;
     update(body: IItem): ISimpleModel;
     get(key: IDynamoDBKey): ISimpleModel;
+    delete(key: IDynamoDBKey): ISimpleModel;
 }
