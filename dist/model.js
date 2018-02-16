@@ -6,6 +6,8 @@ class Model {
     constructor(config) {
         this.data = [];
         this.hashType = 'string';
+        this.indexName = 'byGSIK';
+        this.maxGSIK = 10;
         this.rangeType = 'string';
         this.track = false;
         this.table = config.table;
@@ -29,6 +31,11 @@ class Model {
         if (config.tenant !== undefined) {
             this.tenant = config.tenant;
             this.hasTenantRegExp = new RegExp(`^${this.tenant}|`);
+            if (config.maxGSIK >= 0)
+                this.maxGSIK = config.maxGSIK;
+        }
+        if (config.indexName !== undefined) {
+            this.indexName = config.indexName;
         }
     }
     trackChanges(body) {
@@ -43,15 +50,29 @@ class Model {
             result.createdAt = isoDate;
         return result;
     }
-    addTenant(key) {
+    getKey(key) {
         key = lodash_1.pick(key, this.hash, this.range || '');
-        key[this.hash] = [this.tenant, key[this.hash]]
-            .filter(x => x !== undefined)
-            .join('|');
+        key[this.hash] =
+            this.tenant !== undefined
+                ? this.tenant + '|' + key[this.hash]
+                : key[this.hash];
         return key;
     }
     substringBy(length, predicate) {
         return (value) => predicate(value) === true ? value.substring(length) : value;
+    }
+    addTenant() {
+        return this.tenant !== undefined && this.tenant !== ''
+            ? {
+                gsik: this.tenant + '|' + Math.floor(Math.random() * this.maxGSIK)
+            }
+            : {};
+    }
+    removeTenantFromItem(item, substring) {
+        item[this.hash] = substring(item[this.hash]);
+        if (item.gsik !== undefined)
+            delete item.gsik;
+        return item;
     }
     removeTenant(items) {
         if (this.tenant === undefined)
@@ -60,12 +81,8 @@ class Model {
         var length = this.tenant.length + 1 || 0;
         var substringIfTenantPrefix = this.substringBy(length, (value) => value !== undefined && regexp.test(value) === true);
         if (Array.isArray(items))
-            return items.map((item) => {
-                item[this.hash] = substringIfTenantPrefix(item[this.hash]);
-                return item;
-            });
-        items[this.hash] = substringIfTenantPrefix(items[this.hash]);
-        return items;
+            return items.map((item) => this.removeTenantFromItem(item, substringIfTenantPrefix));
+        return this.removeTenantFromItem(items, substringIfTenantPrefix);
     }
     validate(body) {
         return this.struct(body);

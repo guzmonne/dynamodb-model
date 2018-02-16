@@ -10,15 +10,17 @@ export interface IDynamoDBModelTrack {
     createdAt?: string;
 }
 export interface IDynamoDBModelConfig {
+    documentClient: DocumentClient;
     hash: string;
     hashType?: 'string' | 'number';
+    indexName?: string;
+    maxGSIK: number;
     range?: string;
     rangeType?: 'string' | 'number';
     struct: IDynamoDBModelStruct;
     table: string;
-    track?: boolean;
     tenant?: string;
-    documentClient: DocumentClient;
+    track?: boolean;
 }
 export interface IDynamoDBModelStruct {
     [key: string]: string;
@@ -27,12 +29,16 @@ export interface IModel {
     data: IItem[];
     documentClient: DocumentClient;
     hash: string;
+    hashType: string;
     hasTenantRegExp?: RegExp;
+    indexName: string;
+    maxGSIK: number;
     range?: string;
-    struct: IDynamoDBModelStruct;
+    rangeType: string;
     table: string;
     tenant?: string;
     track: boolean;
+    struct: any;
 }
 export declare abstract class Model implements IModel {
     data: IItem[];
@@ -40,6 +46,8 @@ export declare abstract class Model implements IModel {
     hash: string;
     hashType: string;
     hasTenantRegExp?: RegExp;
+    indexName: string;
+    maxGSIK: number;
     range?: string;
     rangeType: string;
     table: string;
@@ -48,8 +56,10 @@ export declare abstract class Model implements IModel {
     struct: any;
     constructor(config: IDynamoDBModelConfig);
     trackChanges(body: IItem): IDynamoDBModelTrack;
-    addTenant(key: IDynamoDBKey): IDynamoDBKey;
+    getKey(key: IDynamoDBKey): IDynamoDBKey;
     substringBy(length: number, predicate: (value: string) => boolean): (value: string) => string;
+    addTenant(): IItem;
+    private removeTenantFromItem(item, substring);
     removeTenant(items: IItem): IItem;
     removeTenant(items: IItem[]): IItem[];
     validate(body: IItem): boolean;

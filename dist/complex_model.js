@@ -27,7 +27,7 @@ class ComplexModel extends model_1.Model {
     delete(key, callback) {
         var call = this.documentClient.delete({
             TableName: this.table,
-            Key: this.addTenant(key)
+            Key: this.getKey(key)
         });
         if (typeof callback === 'function')
             return call.send(err => {
@@ -47,7 +47,7 @@ class ComplexModel extends model_1.Model {
     get(key, callback) {
         var call = this.documentClient.get({
             TableName: this.table,
-            Key: this.addTenant(key)
+            Key: this.getKey(key)
         });
         if (typeof callback === 'function')
             return call.send((err, data) => {
@@ -79,7 +79,7 @@ class ComplexModel extends model_1.Model {
         }
         var params = {
             TableName: this.table,
-            Item: Object.assign({}, body, this.addTenant(body))
+            Item: Object.assign({}, body, this.getKey(body))
         };
         var call = this.documentClient.put(params);
         if (typeof callback === 'function')
@@ -105,7 +105,7 @@ class ComplexModel extends model_1.Model {
     set(body: IItem, callback?: (error: Error | null) => void): void {
       var call = this.documentClient.update({
         TableName: this.table,
-        Key: this.addTenant(body as IDynamoDBKey),
+        Key: this.getKey(body as IDynamoDBKey),
         UpdateExpression: '#name = :name',
         ExpressionAttributeNames: {
           '#name': 'name'

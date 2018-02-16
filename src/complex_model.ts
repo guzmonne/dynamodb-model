@@ -52,7 +52,7 @@ export class ComplexModel extends Model implements IComplexModel {
   ): void | IComplexModel {
     var call = this.documentClient.delete({
       TableName: this.table,
-      Key: this.addTenant(key)
+      Key: this.getKey(key)
     });
 
     if (typeof callback === 'function')
@@ -81,7 +81,7 @@ export class ComplexModel extends Model implements IComplexModel {
   ): void | IComplexModel {
     var call = this.documentClient.get({
       TableName: this.table,
-      Key: this.addTenant(key)
+      Key: this.getKey(key)
     });
 
     if (typeof callback === 'function')
@@ -131,7 +131,7 @@ export class ComplexModel extends Model implements IComplexModel {
       TableName: this.table,
       Item: {
         ...body,
-        ...this.addTenant(body)
+        ...this.getKey(body)
       }
     };
 
@@ -163,7 +163,7 @@ export class ComplexModel extends Model implements IComplexModel {
   set(body: IItem, callback?: (error: Error | null) => void): void {
     var call = this.documentClient.update({
       TableName: this.table,
-      Key: this.addTenant(body as IDynamoDBKey),
+      Key: this.getKey(body as IDynamoDBKey),
       UpdateExpression: '#name = :name',
       ExpressionAttributeNames: {
         '#name': 'name'

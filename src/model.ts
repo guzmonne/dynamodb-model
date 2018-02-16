@@ -16,15 +16,17 @@ export interface IDynamoDBModelTrack {
 }
 
 export interface IDynamoDBModelConfig {
+  documentClient: DocumentClient;
   hash: string;
   hashType?: 'string' | 'number';
+  indexName?: string;
+  maxGSIK: number;
   range?: string;
   rangeType?: 'string' | 'number';
   struct: IDynamoDBModelStruct;
   table: string;
-  track?: boolean;
   tenant?: string;
-  documentClient: DocumentClient;
+  track?: boolean;
 }
 
 export interface IDynamoDBModelStruct {
@@ -35,12 +37,16 @@ export interface IModel {
   data: IItem[];
   documentClient: DocumentClient;
   hash: string;
+  hashType: string;
   hasTenantRegExp?: RegExp;
+  indexName: string;
+  maxGSIK: number;
   range?: string;
-  struct: IDynamoDBModelStruct;
+  rangeType: string;
   table: string;
   tenant?: string;
   track: boolean;
+  struct: any;
 }
 
 export abstract class Model implements IModel {
@@ -49,6 +55,8 @@ export abstract class Model implements IModel {
   hash: string;
   hashType: string = 'string';
   hasTenantRegExp?: RegExp;
+  indexName: string = 'byGSIK';
+  maxGSIK: number = 10;
   range?: string;
   rangeType: string = 'string';
   table: string;
@@ -85,6 +93,11 @@ export abstract class Model implements IModel {
     if (config.tenant !== undefined) {
       this.tenant = config.tenant;
       this.hasTenantRegExp = new RegExp(`^${this.tenant}|`);
+      if (config.maxGSIK >= 0) this.maxGSIK = config.maxGSIK;
+    }
+
+    if (config.indexName !== undefined) {
+      this.indexName = config.indexName;
     }
   }
 
@@ -99,11 +112,12 @@ export abstract class Model implements IModel {
     return result;
   }
 
-  addTenant(key: IDynamoDBKey): IDynamoDBKey {
+  getKey(key: IDynamoDBKey): IDynamoDBKey {
     key = pick(key, this.hash, this.range || '');
-    key[this.hash] = [this.tenant, key[this.hash]]
-      .filter(x => x !== undefined)
-      .join('|');
+    key[this.hash] =
+      this.tenant !== undefined
+        ? this.tenant + '|' + key[this.hash]
+        : key[this.hash];
     return key;
   }
 
@@ -113,6 +127,23 @@ export abstract class Model implements IModel {
   ): (value: string) => string {
     return (value: string) =>
       predicate(value) === true ? value.substring(length) : value;
+  }
+
+  addTenant(): IItem {
+    return this.tenant !== undefined && this.tenant !== ''
+      ? {
+          gsik: this.tenant + '|' + Math.floor(Math.random() * this.maxGSIK)
+        }
+      : {};
+  }
+
+  private removeTenantFromItem(
+    item: IItem,
+    substring: (value: string) => string
+  ) {
+    item[this.hash] = substring(item[this.hash]);
+    if (item.gsik !== undefined) delete item.gsik;
+    return item;
   }
 
   removeTenant(items: IItem): IItem;
@@ -129,14 +160,11 @@ export abstract class Model implements IModel {
     );
 
     if (Array.isArray(items))
-      return items.map((item: IItem) => {
-        item[this.hash] = substringIfTenantPrefix(item[this.hash]);
-        return item;
-      });
+      return items.map((item: IItem) =>
+        this.removeTenantFromItem(item, substringIfTenantPrefix)
+      );
 
-    items[this.hash] = substringIfTenantPrefix(items[this.hash]);
-
-    return items;
+    return this.removeTenantFromItem(items, substringIfTenantPrefix);
   }
 
   validate(body: IItem): boolean {

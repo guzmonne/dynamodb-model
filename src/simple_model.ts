@@ -1,5 +1,5 @@
 import * as cuid from 'cuid';
-import { pick, omit } from 'lodash';
+import { pick, omit, range } from 'lodash';
 import {
   Model,
   IModel,
@@ -7,6 +7,19 @@ import {
   IDynamoDBKey,
   IDynamoDBModelConfig
 } from './model';
+
+interface IDynamoDBModelScanData {
+  items: IItem[];
+  count: number;
+  offset?: string;
+}
+
+export interface IDynamoDBModelScanOptions {
+  limit?: number;
+  offset?: string;
+  filter?: string;
+  attributes?: string;
+}
 
 interface IExpressionAttributeValues {
   [key: string]: any;
@@ -26,6 +39,10 @@ export interface ISimpleModel extends IModel {
   callback(callback: (error: Error | null, data?: IItem | void) => void): void;
   promise(): Promise<IItem | void>;
   get(key: IDynamoDBKey): ISimpleModel;
+  delete(key: IDynamoDBKey): ISimpleModel;
+  create(body: IItem): ISimpleModel;
+  update(body: IItem): ISimpleModel;
+  index(options?: IDynamoDBModelScanOptions): ISimpleModel;
 }
 
 export class SimpleModel extends Model implements ISimpleModel {
@@ -99,7 +116,11 @@ export class SimpleModel extends Model implements ISimpleModel {
       this.documentClient
         .put({
           TableName: this.table,
-          Item: { ...body, ...this.addTenant(body as IDynamoDBKey) }
+          Item: {
+            ...body,
+            ...this.getKey(body as IDynamoDBKey),
+            ...this.addTenant()
+          }
         })
         .promise()
         .then(() => body);
@@ -132,7 +153,7 @@ export class SimpleModel extends Model implements ISimpleModel {
       this.documentClient
         .update({
           TableName: this.table,
-          Key: this.addTenant(body),
+          Key: this.getKey(body),
           ...this.createUpdateExpressionParams(body)
         })
         .promise()
@@ -146,7 +167,7 @@ export class SimpleModel extends Model implements ISimpleModel {
       this.documentClient
         .get({
           TableName: this.table,
-          Key: this.addTenant(key)
+          Key: this.getKey(key)
         })
         .promise()
         .then(data => data.Item);
@@ -159,9 +180,105 @@ export class SimpleModel extends Model implements ISimpleModel {
       this.documentClient
         .delete({
           TableName: this.table,
-          Key: this.addTenant(key)
+          Key: this.getKey(key)
         })
         .promise();
     return this;
+  }
+
+  private scan(options: IDynamoDBModelScanOptions): ISimpleModel {
+    this.call = () =>
+      this.documentClient
+        .scan({
+          TableName: this.table,
+          ...(options.limit !== undefined ? { Limit: options.limit } : {}),
+          ...(options.offset !== undefined
+            ? { ExclusiveStartKey: JSON.parse(atob(options.offset)) }
+            : {})
+        })
+        .promise()
+        .then(data => {
+          return {
+            items: this.removeTenant(data.Items as IItem[]),
+            count: data.Count,
+            offset: btoa(JSON.stringify(data.LastEvaluatedKey))
+          };
+        });
+
+    return this;
+  }
+
+  private query(options: IDynamoDBModelScanOptions): ISimpleModel {
+    this.call = () =>
+      Promise.all(
+        range(0, this.maxGSIK).map(i =>
+          this.documentClient
+            .query({
+              TableName: this.table,
+              IndexName: this.indexName,
+              KeyConditionExpression: `#gsik = :gsik`,
+              ExpressionAttributeNames: {
+                '#gsik': 'gsik'
+              },
+              ExpressionAttributeValues: {
+                ':gsik': `${this.tenant}|${i}`
+              },
+              ...(options.limit !== undefined ? { Limit: options.limit } : {}),
+              ...(options.offset !== undefined
+                ? {
+                    ExclusiveStartKey: this.getKey(
+                      JSON.parse(atob(options.offset))
+                    )
+                  }
+                : {})
+            })
+            .promise()
+            .then((data): IDynamoDBModelScanData => ({
+              items: data.Items || [],
+              count: data.Count || 0,
+              ...(data.LastEvaluatedKey !== undefined
+                ? {
+                    offset: JSON.stringify(
+                      this.removeTenant(data.LastEvaluatedKey)
+                    )
+                  }
+                : {})
+            }))
+        )
+      ).then((results: IDynamoDBModelScanData[]): IDynamoDBModelScanData =>
+        results.reduce(
+          (
+            acc: IDynamoDBModelScanData,
+            result: IDynamoDBModelScanData
+          ): IDynamoDBModelScanData => ({
+            ...acc,
+            items: acc.items.concat(this.removeTenant(result.items) || []),
+            count: acc.count + result.count,
+            ...(result.offset !== undefined
+              ? {
+                  offset:
+                    acc.offset !== undefined
+                      ? acc.offset + '|' + result.offset
+                      : result.offset
+                }
+              : {})
+          }),
+          {
+            items: [],
+            count: 0,
+            offset: undefined
+          }
+        )
+      );
+
+    return this;
+  }
+
+  index(options?: IDynamoDBModelScanOptions): ISimpleModel {
+    options = { limit: 100, ...options };
+
+    if (this.tenant === undefined) return this.scan(options);
+
+    return this.query(options);
   }
 }

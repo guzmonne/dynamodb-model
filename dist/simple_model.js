@@ -66,7 +66,7 @@ class SimpleModel extends model_1.Model {
         this.call = () => this.documentClient
             .put({
             TableName: this.table,
-            Item: Object.assign({}, body, this.addTenant(body))
+            Item: Object.assign({}, body, this.getKey(body), this.addTenant())
         })
             .promise()
             .then(() => body);
@@ -88,7 +88,7 @@ class SimpleModel extends model_1.Model {
                 return this.handleError(error);
         }
         this.call = () => this.documentClient
-            .update(Object.assign({ TableName: this.table, Key: this.addTenant(body) }, this.createUpdateExpressionParams(body)))
+            .update(Object.assign({ TableName: this.table, Key: this.getKey(body) }, this.createUpdateExpressionParams(body)))
             .promise()
             .then(() => body);
         return this;
@@ -97,7 +97,7 @@ class SimpleModel extends model_1.Model {
         this.call = () => this.documentClient
             .get({
             TableName: this.table,
-            Key: this.addTenant(key)
+            Key: this.getKey(key)
         })
             .promise()
             .then(data => data.Item);
@@ -107,10 +107,60 @@ class SimpleModel extends model_1.Model {
         this.call = () => this.documentClient
             .delete({
             TableName: this.table,
-            Key: this.addTenant(key)
+            Key: this.getKey(key)
         })
             .promise();
         return this;
+    }
+    scan(options) {
+        this.call = () => this.documentClient
+            .scan(Object.assign({ TableName: this.table }, (options.limit !== undefined ? { Limit: options.limit } : {}), (options.offset !== undefined
+            ? { ExclusiveStartKey: JSON.parse(atob(options.offset)) }
+            : {})))
+            .promise()
+            .then(data => {
+            return {
+                items: this.removeTenant(data.Items),
+                count: data.Count,
+                offset: btoa(JSON.stringify(data.LastEvaluatedKey))
+            };
+        });
+        return this;
+    }
+    query(options) {
+        this.call = () => Promise.all(lodash_1.range(0, this.maxGSIK).map(i => this.documentClient
+            .query(Object.assign({ TableName: this.table, IndexName: this.indexName, KeyConditionExpression: `#gsik = :gsik`, ExpressionAttributeNames: {
+                '#gsik': 'gsik'
+            }, ExpressionAttributeValues: {
+                ':gsik': `${this.tenant}|${i}`
+            } }, (options.limit !== undefined ? { Limit: options.limit } : {}), (options.offset !== undefined
+            ? {
+                ExclusiveStartKey: this.getKey(JSON.parse(atob(options.offset)))
+            }
+            : {})))
+            .promise()
+            .then((data) => (Object.assign({ items: data.Items || [], count: data.Count || 0 }, (data.LastEvaluatedKey !== undefined
+            ? {
+                offset: JSON.stringify(this.removeTenant(data.LastEvaluatedKey))
+            }
+            : {})))))).then((results) => results.reduce((acc, result) => (Object.assign({}, acc, { items: acc.items.concat(this.removeTenant(result.items) || []), count: acc.count + result.count }, (result.offset !== undefined
+            ? {
+                offset: acc.offset !== undefined
+                    ? acc.offset + '|' + result.offset
+                    : result.offset
+            }
+            : {}))), {
+            items: [],
+            count: 0,
+            offset: undefined
+        }));
+        return this;
+    }
+    index(options) {
+        options = Object.assign({ limit: 100 }, options);
+        if (this.tenant === undefined)
+            return this.scan(options);
+        return this.query(options);
     }
 }
 exports.SimpleModel = SimpleModel;

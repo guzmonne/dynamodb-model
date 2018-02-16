@@ -1,5 +1,6 @@
 import * as sinon from 'sinon';
 import * as cuid from 'cuid';
+import { btoa } from '../src/utils';
 import { DynamoDB, config as AWSConfig } from 'aws-sdk';
 import { SimpleModel } from '../src/simple_model';
 import { DynamoDBModel } from '../src/';
@@ -23,7 +24,8 @@ var config: IDynamoDBModelConfig = {
   struct: {
     name: 'string',
     age: 'number?'
-  }
+  },
+  maxGSIK: 1
 };
 var TestModel = DynamoDBModel.createSimpleModel(config);
 
@@ -99,7 +101,8 @@ describe('SimpleModel', () => {
             TableName: table,
             Item: {
               id: tenant + '|' + id,
-              name
+              name,
+              gsik: tenant + '|0'
             }
           });
         });
@@ -160,6 +163,18 @@ describe('SimpleModel', () => {
           expect(err.message).toEqual(
             'Expected a value of type `string` for `name` but received `undefined`.'
           );
+          done();
+        });
+    });
+
+    test('should add the `gsik` value to the item', done => {
+      TestModel()
+        .create({ name })
+        .callback((err, data) => {
+          expect(err).not.toBe(null);
+          expect(putStub.callCount).toBe(1);
+          expect(data && data.tenant).toBe(undefined);
+          expect(putStub.args[0][0].Item.gsik).toBe(tenant + '|0');
           done();
         });
     });
@@ -376,6 +391,215 @@ describe('SimpleModel', () => {
           expect(params.ExpressionAttributeValues).toEqual({
             ':name': name,
             ':age': age
+          });
+          done();
+        });
+    });
+  });
+
+  describe('#index()', () => {
+    var scanStub: sinon.SinonStub;
+    var queryStub: sinon.SinonStub;
+
+    var NoTenantModel = DynamoDBModel.createSimpleModel({
+      ...config,
+      tenant: undefined
+    });
+
+    beforeEach(() => {
+      var i = -1;
+      scanStub = sinon.stub(db, 'scan');
+      queryStub = sinon.stub(db, 'query');
+
+      scanStub.returns({
+        promise: () =>
+          Promise.resolve({
+            Items: [
+              {
+                id,
+                name
+              }
+            ],
+            LastEvaluatedKey: {
+              id
+            },
+            Count: 1
+          })
+      });
+
+      queryStub.callsFake(() => {
+        i++;
+        return {
+          promise: () =>
+            Promise.resolve({
+              Items: [
+                {
+                  id: tenant + '|' + id,
+                  name: name + '|' + i,
+                  gsik: tenant + '|0'
+                }
+              ],
+              LastEvaluatedKey: {
+                id: tenant + '|' + id,
+                name: name + '|' + i,
+                gsik: tenant + '|0'
+              },
+              Count: 1
+            })
+        };
+      });
+    });
+
+    afterEach(() => {
+      scanStub.restore();
+      queryStub.restore();
+    });
+
+    test('should be a function', () => {
+      expect(typeof TestModel().index).toBe('function');
+    });
+
+    test("should call the `documentClient.scan` method if the model doesn't has a `tenant` configured", done => {
+      NoTenantModel()
+        .index({})
+        .callback(err => {
+          expect(queryStub.callCount).toBe(0);
+          expect(scanStub.calledOnce).toBe(true);
+          expect(err).toBe(null);
+          done();
+        });
+    });
+
+    test('should return the items without the `tenant` information', done => {
+      TestModel()
+        .index({})
+        .callback((err, data) => {
+          expect(err).toBe(null);
+          expect(data).toEqual({
+            count: 1,
+            items: [
+              {
+                id,
+                name: name + '|0'
+              }
+            ],
+            offset: JSON.stringify({ id, name: name + '|0' })
+          });
+          done();
+        });
+    });
+
+    test('should call the `documentClient.query` method if the model has a `tenant` configured', done => {
+      var maxGSIK = Math.floor(Math.random() * 100);
+      var TestModel = DynamoDBModel.createSimpleModel({
+        ...config,
+        maxGSIK
+      });
+      TestModel()
+        .index({})
+        .callback(err => {
+          expect(scanStub.callCount).toBe(0);
+          expect(queryStub.callCount).toBe(maxGSIK);
+          expect(err).toBe(null);
+          done();
+        });
+    });
+
+    test('should call the `documentClient.scan` method with appropiate params', done => {
+      NoTenantModel()
+        .index()
+        .callback(() => {
+          expect(scanStub.args[0][0]).toEqual({
+            TableName: table,
+            Limit: 100
+          });
+          done();
+        });
+    });
+
+    test('should allow to configure the `Limit` value', done => {
+      NoTenantModel()
+        .index({ limit: 200 })
+        .callback(() => {
+          expect(scanStub.args[0][0]).toEqual({
+            TableName: table,
+            Limit: 200
+          });
+          done();
+        });
+    });
+
+    test('should convert the offset from base64 to a DynamoDBKey when tenant is undefined', done => {
+      NoTenantModel()
+        .index({ limit: 200, offset: btoa(JSON.stringify({ id })) })
+        .callback(() => {
+          expect(scanStub.args[0][0]).toEqual({
+            TableName: table,
+            Limit: 200,
+            ExclusiveStartKey: {
+              id
+            }
+          });
+          done();
+        });
+    });
+
+    test('should return the `offset` value as a base64 string when tenant is undefined', () => {
+      return NoTenantModel()
+        .index({ limit: 200, offset: btoa(JSON.stringify({ id })) })
+        .promise()
+        .then(data => {
+          expect(data && data.offset).toBe(btoa(JSON.stringify({ id })));
+        });
+    });
+
+    test('should convert the offset from base64 to a DynamoDBKey when tenant is not undefined', done => {
+      TestModel()
+        .index({ limit: 200, offset: btoa(JSON.stringify({ id })) })
+        .callback(() => {
+          expect(queryStub.args[0][0]).toEqual({
+            TableName: table,
+            IndexName: 'byGSIK',
+            KeyConditionExpression: `#gsik = :gsik`,
+            ExpressionAttributeNames: {
+              '#gsik': 'gsik'
+            },
+            ExpressionAttributeValues: {
+              ':gsik': tenant + '|0'
+            },
+            Limit: 200,
+            ExclusiveStartKey: {
+              id: tenant + '|' + id
+            }
+          });
+          done();
+        });
+    });
+
+    test('should use the configured index name when tenant is not undefined', done => {
+      var indexName = 'SomeIndexName';
+      var TestModel = DynamoDBModel.createSimpleModel({
+        ...config,
+        indexName
+      });
+
+      TestModel()
+        .index({ limit: 200, offset: btoa(JSON.stringify({ id })) })
+        .callback(() => {
+          expect(queryStub.args[0][0]).toEqual({
+            TableName: table,
+            IndexName: indexName,
+            KeyConditionExpression: `#gsik = :gsik`,
+            ExpressionAttributeNames: {
+              '#gsik': 'gsik'
+            },
+            ExpressionAttributeValues: {
+              ':gsik': tenant + '|0'
+            },
+            Limit: 200,
+            ExclusiveStartKey: {
+              id: tenant + '|' + id
+            }
           });
           done();
         });
