@@ -60,7 +60,16 @@ UserModel().update({
 UserModel().delete({id: 'abc'});
 
 // Index
-UserModel().index({offset: btoa(JSON.stringify({0: {id: 'abc'}})), limit: 10});
+/**
+ * Offset values are handled as base64 encoded DynamoDB.DocumentClient keys.
+ * This is to simplify the handling of the offset values. There are some helper
+ * functions that can be taken from this library that can encode and decode
+ * base64 strings on NodeJS.
+ */
+UserModel().index({
+  offset: btoa(JSON.stringify({0: {id: 'abc'}})),
+  limit: 10
+});
 
 // All the methods describe before are lazily evaluated.
 // You have to call the `promise()` or `callback` methods on it for them to run.
@@ -86,7 +95,6 @@ If you extend a model, you can create the default model class, add your own meth
 
 ```javascript
 var { DynamoDBModel, IDefaultModel, DefaultModel } = require('dynamodb-model');
-var
 
 var config = {
   hash: 'id',
