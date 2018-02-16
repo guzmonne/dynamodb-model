@@ -517,13 +517,39 @@ describe('SimpleModel', () => {
         });
     });
 
-    test('should allow to configure the `Limit` value', done => {
+    test('should allow to configure the `Limit` value when `tenant` is undefined', done => {
       NoTenantModel()
         .index({ limit: 200 })
         .callback(() => {
           expect(scanStub.args[0][0]).toEqual({
             TableName: table,
             Limit: 200
+          });
+          done();
+        });
+    });
+
+    test('should allow to configure the `Limit` value when `tenant` is not undefined', done => {
+      var limit = 200;
+      var maxGSIK = Math.floor(Math.random() * 100);
+      var TestModel = DynamoDBModel.createSimpleModel({
+        ...config,
+        maxGSIK
+      });
+      TestModel()
+        .index({ limit })
+        .callback(() => {
+          expect(queryStub.args[0][0]).toEqual({
+            TableName: table,
+            IndexName: 'byGSIK',
+            KeyConditionExpression: `#gsik = :gsik`,
+            ExpressionAttributeNames: {
+              '#gsik': 'gsik'
+            },
+            ExpressionAttributeValues: {
+              ':gsik': tenant + '|0'
+            },
+            Limit: Math.floor(limit / maxGSIK)
           });
           done();
         });

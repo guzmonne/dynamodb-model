@@ -133,7 +133,9 @@ class SimpleModel extends model_1.Model {
                 '#gsik': 'gsik'
             }, ExpressionAttributeValues: {
                 ':gsik': `${this.tenant}|${i}`
-            } }, (options.limit !== undefined ? { Limit: options.limit } : {}), (options.offset !== undefined
+            } }, (options.limit !== undefined
+            ? { Limit: Math.floor(options.limit / this.maxGSIK) }
+            : {}), (options.offset !== undefined
             ? {
                 ExclusiveStartKey: this.getKey(JSON.parse(atob(options.offset)))
             }

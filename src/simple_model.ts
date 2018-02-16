@@ -223,7 +223,9 @@ export class SimpleModel extends Model implements ISimpleModel {
               ExpressionAttributeValues: {
                 ':gsik': `${this.tenant}|${i}`
               },
-              ...(options.limit !== undefined ? { Limit: options.limit } : {}),
+              ...(options.limit !== undefined
+                ? { Limit: Math.floor(options.limit / this.maxGSIK) }
+                : {}),
               ...(options.offset !== undefined
                 ? {
                     ExclusiveStartKey: this.getKey(
