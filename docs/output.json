@@ -483,7 +483,7 @@
 					"sources": [
 						{
 							"fileName": "model.ts",
-							"line": 179,
+							"line": 222,
 							"character": 6
 						}
 					],
@@ -518,7 +518,7 @@
 					"sources": [
 						{
 							"fileName": "model.ts",
-							"line": 180,
+							"line": 223,
 							"character": 16
 						}
 					],
@@ -549,7 +549,7 @@
 					"sources": [
 						{
 							"fileName": "model.ts",
-							"line": 183,
+							"line": 226,
 							"character": 17
 						}
 					],
@@ -579,7 +579,7 @@
 					"sources": [
 						{
 							"fileName": "model.ts",
-							"line": 181,
+							"line": 224,
 							"character": 6
 						}
 					],
@@ -609,7 +609,7 @@
 					"sources": [
 						{
 							"fileName": "model.ts",
-							"line": 182,
+							"line": 225,
 							"character": 10
 						}
 					],
@@ -640,7 +640,7 @@
 					"sources": [
 						{
 							"fileName": "model.ts",
-							"line": 184,
+							"line": 227,
 							"character": 11
 						}
 					],
@@ -671,7 +671,7 @@
 					"sources": [
 						{
 							"fileName": "model.ts",
-							"line": 185,
+							"line": 228,
 							"character": 9
 						}
 					],
@@ -703,7 +703,7 @@
 					"sources": [
 						{
 							"fileName": "model.ts",
-							"line": 186,
+							"line": 229,
 							"character": 7
 						}
 					],
@@ -733,7 +733,7 @@
 					"sources": [
 						{
 							"fileName": "model.ts",
-							"line": 187,
+							"line": 230,
 							"character": 11
 						}
 					],
@@ -764,7 +764,7 @@
 					"sources": [
 						{
 							"fileName": "model.ts",
-							"line": 191,
+							"line": 234,
 							"character": 8
 						}
 					],
@@ -794,7 +794,7 @@
 					"sources": [
 						{
 							"fileName": "model.ts",
-							"line": 188,
+							"line": 231,
 							"character": 7
 						}
 					],
@@ -825,7 +825,7 @@
 					"sources": [
 						{
 							"fileName": "model.ts",
-							"line": 189,
+							"line": 232,
 							"character": 8
 						}
 					],
@@ -855,7 +855,7 @@
 					"sources": [
 						{
 							"fileName": "model.ts",
-							"line": 190,
+							"line": 233,
 							"character": 7
 						}
 					],
@@ -890,15 +890,6 @@
 							"kind": 4096,
 							"kindString": "Call signature",
 							"flags": {},
-							"comment": {
-								"shortText": "Adds the `gsik` value to the item, created by joining the `tenant` value\nwith a random value between `0` and `maxGSIK`.",
-								"tags": [
-									{
-										"tag": "memberof",
-										"text": "Model\n"
-									}
-								]
-							},
 							"type": {
 								"type": "reference",
 								"name": "IItem",
@@ -919,7 +910,7 @@
 					"sources": [
 						{
 							"fileName": "model.ts",
-							"line": 286,
+							"line": 308,
 							"character": 11
 						}
 					],
@@ -1229,15 +1220,6 @@
 							"kind": 4096,
 							"kindString": "Call signature",
 							"flags": {},
-							"comment": {
-								"shortText": "Gets the `hash` and `range` key from the model.\nIf `tenant` is defined, it also adds it to the `hash` key.",
-								"tags": [
-									{
-										"tag": "memberof",
-										"text": "Model\n"
-									}
-								]
-							},
 							"parameters": [
 								{
 									"id": 207,
@@ -1245,7 +1227,6 @@
 									"kind": 32768,
 									"kindString": "Parameter",
 									"flags": {},
-									"comment": {},
 									"type": {
 										"type": "reference",
 										"name": "IDynamoDBKey",
@@ -1273,7 +1254,7 @@
 					"sources": [
 						{
 							"fileName": "model.ts",
-							"line": 254,
+							"line": 282,
 							"character": 8
 						}
 					],
@@ -1407,6 +1388,15 @@
 					"flags": {
 						"isExported": true
 					},
+					"comment": {
+						"shortText": "Removes all `tenant` related data from an item, or a list of items.",
+						"tags": [
+							{
+								"tag": "memberof",
+								"text": "Model\n"
+							}
+						]
+					},
 					"signatures": [
 						{
 							"id": 211,
@@ -1424,6 +1414,7 @@
 									"kind": 32768,
 									"kindString": "Parameter",
 									"flags": {},
+									"comment": {},
 									"type": {
 										"type": "reference",
 										"name": "IItem",
@@ -1453,6 +1444,9 @@
 							"kind": 4096,
 							"kindString": "Call signature",
 							"flags": {},
+							"comment": {
+								"shortText": "Removes all `tenant` related data from an item, or a list of items."
+							},
 							"parameters": [
 								{
 									"id": 214,
@@ -1460,6 +1454,7 @@
 									"kind": 32768,
 									"kindString": "Parameter",
 									"flags": {},
+									"comment": {},
 									"type": {
 										"type": "array",
 										"elementType": {
@@ -1493,17 +1488,17 @@
 					"sources": [
 						{
 							"fileName": "model.ts",
-							"line": 313,
+							"line": 323,
 							"character": 14
 						},
 						{
 							"fileName": "model.ts",
-							"line": 314,
+							"line": 324,
 							"character": 14
 						},
 						{
 							"fileName": "model.ts",
-							"line": 315,
+							"line": 332,
 							"character": 14
 						}
 					],
@@ -1533,15 +1528,6 @@
 							"kind": 4096,
 							"kindString": "Call signature",
 							"flags": {},
-							"comment": {
-								"shortText": "Adds the appropiate track values if the `track` option is on.",
-								"tags": [
-									{
-										"tag": "memberof",
-										"text": "Model\n"
-									}
-								]
-							},
 							"parameters": [
 								{
 									"id": 204,
@@ -1549,7 +1535,6 @@
 									"kind": 32768,
 									"kindString": "Parameter",
 									"flags": {},
-									"comment": {},
 									"type": {
 										"type": "reference",
 										"name": "IItem",
@@ -1577,7 +1562,7 @@
 					"sources": [
 						{
 							"fileName": "model.ts",
-							"line": 236,
+							"line": 272,
 							"character": 14
 						}
 					],
@@ -1661,15 +1646,6 @@
 							"kind": 4096,
 							"kindString": "Call signature",
 							"flags": {},
-							"comment": {
-								"shortText": "Validates the body of the request using [`superstruct`](https://github.com/ianstormtaylor/superstruct).",
-								"tags": [
-									{
-										"tag": "memberof",
-										"text": "Model\n"
-									}
-								]
-							},
 							"parameters": [
 								{
 									"id": 217,
@@ -1677,7 +1653,6 @@
 									"kind": 32768,
 									"kindString": "Parameter",
 									"flags": {},
-									"comment": {},
 									"type": {
 										"type": "reference",
 										"name": "IItem",
@@ -1704,7 +1679,7 @@
 					"sources": [
 						{
 							"fileName": "model.ts",
-							"line": 340,
+							"line": 351,
 							"character": 10
 						}
 					],
@@ -1863,7 +1838,7 @@
 					"sources": [
 						{
 							"fileName": "model.ts",
-							"line": 191,
+							"line": 234,
 							"character": 14
 						}
 					]
@@ -1879,7 +1854,7 @@
 					"sources": [
 						{
 							"fileName": "model.ts",
-							"line": 179,
+							"line": 222,
 							"character": 6
 						}
 					],
@@ -1909,7 +1884,7 @@
 					"sources": [
 						{
 							"fileName": "model.ts",
-							"line": 180,
+							"line": 223,
 							"character": 16
 						}
 					],
@@ -1935,7 +1910,7 @@
 					"sources": [
 						{
 							"fileName": "model.ts",
-							"line": 183,
+							"line": 226,
 							"character": 17
 						}
 					],
@@ -1960,7 +1935,7 @@
 					"sources": [
 						{
 							"fileName": "model.ts",
-							"line": 181,
+							"line": 224,
 							"character": 6
 						}
 					],
@@ -1985,7 +1960,7 @@
 					"sources": [
 						{
 							"fileName": "model.ts",
-							"line": 182,
+							"line": 225,
 							"character": 10
 						}
 					],
@@ -2011,7 +1986,7 @@
 					"sources": [
 						{
 							"fileName": "model.ts",
-							"line": 184,
+							"line": 227,
 							"character": 11
 						}
 					],
@@ -2037,7 +2012,7 @@
 					"sources": [
 						{
 							"fileName": "model.ts",
-							"line": 185,
+							"line": 228,
 							"character": 9
 						}
 					],
@@ -2064,7 +2039,7 @@
 					"sources": [
 						{
 							"fileName": "model.ts",
-							"line": 186,
+							"line": 229,
 							"character": 7
 						}
 					],
@@ -2089,7 +2064,7 @@
 					"sources": [
 						{
 							"fileName": "model.ts",
-							"line": 187,
+							"line": 230,
 							"character": 11
 						}
 					],
@@ -2115,7 +2090,7 @@
 					"sources": [
 						{
 							"fileName": "model.ts",
-							"line": 191,
+							"line": 234,
 							"character": 8
 						}
 					],
@@ -2140,7 +2115,7 @@
 					"sources": [
 						{
 							"fileName": "model.ts",
-							"line": 188,
+							"line": 231,
 							"character": 7
 						}
 					],
@@ -2166,7 +2141,7 @@
 					"sources": [
 						{
 							"fileName": "model.ts",
-							"line": 189,
+							"line": 232,
 							"character": 8
 						}
 					],
@@ -2191,7 +2166,7 @@
 					"sources": [
 						{
 							"fileName": "model.ts",
-							"line": 190,
+							"line": 233,
 							"character": 7
 						}
 					],
@@ -2221,15 +2196,6 @@
 							"kind": 4096,
 							"kindString": "Call signature",
 							"flags": {},
-							"comment": {
-								"shortText": "Adds the `gsik` value to the item, created by joining the `tenant` value\nwith a random value between `0` and `maxGSIK`.",
-								"tags": [
-									{
-										"tag": "memberof",
-										"text": "Model\n"
-									}
-								]
-							},
 							"type": {
 								"type": "reference",
 								"name": "IItem",
@@ -2245,7 +2211,7 @@
 					"sources": [
 						{
 							"fileName": "model.ts",
-							"line": 286,
+							"line": 308,
 							"character": 11
 						}
 					],
@@ -2270,15 +2236,6 @@
 							"kind": 4096,
 							"kindString": "Call signature",
 							"flags": {},
-							"comment": {
-								"shortText": "Gets the `hash` and `range` key from the model.\nIf `tenant` is defined, it also adds it to the `hash` key.",
-								"tags": [
-									{
-										"tag": "memberof",
-										"text": "Model\n"
-									}
-								]
-							},
 							"parameters": [
 								{
 									"id": 77,
@@ -2286,7 +2243,6 @@
 									"kind": 32768,
 									"kindString": "Parameter",
 									"flags": {},
-									"comment": {},
 									"type": {
 										"type": "reference",
 										"name": "IDynamoDBKey",
@@ -2309,7 +2265,7 @@
 					"sources": [
 						{
 							"fileName": "model.ts",
-							"line": 254,
+							"line": 282,
 							"character": 8
 						}
 					],
@@ -2326,6 +2282,15 @@
 					"kindString": "Method",
 					"flags": {
 						"isExported": true
+					},
+					"comment": {
+						"shortText": "Removes all `tenant` related data from an item, or a list of items.",
+						"tags": [
+							{
+								"tag": "memberof",
+								"text": "Model\n"
+							}
+						]
 					},
 					"signatures": [
 						{
@@ -2344,6 +2309,7 @@
 									"kind": 32768,
 									"kindString": "Parameter",
 									"flags": {},
+									"comment": {},
 									"type": {
 										"type": "reference",
 										"name": "IItem",
@@ -2368,6 +2334,9 @@
 							"kind": 4096,
 							"kindString": "Call signature",
 							"flags": {},
+							"comment": {
+								"shortText": "Removes all `tenant` related data from an item, or a list of items."
+							},
 							"parameters": [
 								{
 									"id": 84,
@@ -2375,6 +2344,7 @@
 									"kind": 32768,
 									"kindString": "Parameter",
 									"flags": {},
+									"comment": {},
 									"type": {
 										"type": "array",
 										"elementType": {
@@ -2403,17 +2373,17 @@
 					"sources": [
 						{
 							"fileName": "model.ts",
-							"line": 313,
+							"line": 323,
 							"character": 14
 						},
 						{
 							"fileName": "model.ts",
-							"line": 314,
+							"line": 324,
 							"character": 14
 						},
 						{
 							"fileName": "model.ts",
-							"line": 315,
+							"line": 332,
 							"character": 14
 						}
 					],
@@ -2438,15 +2408,6 @@
 							"kind": 4096,
 							"kindString": "Call signature",
 							"flags": {},
-							"comment": {
-								"shortText": "Adds the appropiate track values if the `track` option is on.",
-								"tags": [
-									{
-										"tag": "memberof",
-										"text": "Model\n"
-									}
-								]
-							},
 							"parameters": [
 								{
 									"id": 74,
@@ -2454,7 +2415,6 @@
 									"kind": 32768,
 									"kindString": "Parameter",
 									"flags": {},
-									"comment": {},
 									"type": {
 										"type": "reference",
 										"name": "IItem",
@@ -2477,7 +2437,7 @@
 					"sources": [
 						{
 							"fileName": "model.ts",
-							"line": 236,
+							"line": 272,
 							"character": 14
 						}
 					],
@@ -2502,15 +2462,6 @@
 							"kind": 4096,
 							"kindString": "Call signature",
 							"flags": {},
-							"comment": {
-								"shortText": "Validates the body of the request using [`superstruct`](https://github.com/ianstormtaylor/superstruct).",
-								"tags": [
-									{
-										"tag": "memberof",
-										"text": "Model\n"
-									}
-								]
-							},
 							"parameters": [
 								{
 									"id": 87,
@@ -2518,7 +2469,6 @@
 									"kind": 32768,
 									"kindString": "Parameter",
 									"flags": {},
-									"comment": {},
 									"type": {
 										"type": "reference",
 										"name": "IItem",
@@ -2540,7 +2490,7 @@
 					"sources": [
 						{
 							"fileName": "model.ts",
-							"line": 340,
+							"line": 351,
 							"character": 10
 						}
 					],
@@ -2593,7 +2543,7 @@
 			"sources": [
 				{
 					"fileName": "model.ts",
-					"line": 178,
+					"line": 221,
 					"character": 27
 				}
 			],
@@ -2632,7 +2582,7 @@
 					"sources": [
 						{
 							"fileName": "model.ts",
-							"line": 151,
+							"line": 158,
 							"character": 6
 						}
 					],
@@ -2661,7 +2611,7 @@
 					"sources": [
 						{
 							"fileName": "model.ts",
-							"line": 152,
+							"line": 159,
 							"character": 16
 						}
 					],
@@ -2687,7 +2637,7 @@
 					"sources": [
 						{
 							"fileName": "model.ts",
-							"line": 156,
+							"line": 171,
 							"character": 17
 						}
 					],
@@ -2712,7 +2662,7 @@
 					"sources": [
 						{
 							"fileName": "model.ts",
-							"line": 154,
+							"line": 169,
 							"character": 6
 						}
 					],
@@ -2737,7 +2687,7 @@
 					"sources": [
 						{
 							"fileName": "model.ts",
-							"line": 155,
+							"line": 170,
 							"character": 10
 						}
 					],
@@ -2762,7 +2712,7 @@
 					"sources": [
 						{
 							"fileName": "model.ts",
-							"line": 157,
+							"line": 172,
 							"character": 11
 						}
 					],
@@ -2787,7 +2737,7 @@
 					"sources": [
 						{
 							"fileName": "model.ts",
-							"line": 158,
+							"line": 173,
 							"character": 9
 						}
 					],
@@ -2813,7 +2763,7 @@
 					"sources": [
 						{
 							"fileName": "model.ts",
-							"line": 159,
+							"line": 174,
 							"character": 7
 						}
 					],
@@ -2838,7 +2788,7 @@
 					"sources": [
 						{
 							"fileName": "model.ts",
-							"line": 160,
+							"line": 175,
 							"character": 11
 						}
 					],
@@ -2863,7 +2813,7 @@
 					"sources": [
 						{
 							"fileName": "model.ts",
-							"line": 163,
+							"line": 192,
 							"character": 8
 						}
 					],
@@ -2888,7 +2838,7 @@
 					"sources": [
 						{
 							"fileName": "model.ts",
-							"line": 164,
+							"line": 193,
 							"character": 7
 						}
 					],
@@ -2914,7 +2864,7 @@
 					"sources": [
 						{
 							"fileName": "model.ts",
-							"line": 165,
+							"line": 194,
 							"character": 8
 						}
 					],
@@ -2939,7 +2889,7 @@
 					"sources": [
 						{
 							"fileName": "model.ts",
-							"line": 166,
+							"line": 195,
 							"character": 7
 						}
 					],
@@ -2968,6 +2918,15 @@
 							"kind": 4096,
 							"kindString": "Call signature",
 							"flags": {},
+							"comment": {
+								"shortText": "Adds the `gsik` value to the item, created by joining the `tenant` value\nwith a random value between `0` and `maxGSIK`.",
+								"tags": [
+									{
+										"tag": "memberof",
+										"text": "Model\n"
+									}
+								]
+							},
 							"type": {
 								"type": "reference",
 								"name": "IItem",
@@ -2983,7 +2942,7 @@
 					"sources": [
 						{
 							"fileName": "model.ts",
-							"line": 150,
+							"line": 157,
 							"character": 11
 						}
 					],
@@ -3253,6 +3212,15 @@
 							"kind": 4096,
 							"kindString": "Call signature",
 							"flags": {},
+							"comment": {
+								"shortText": "Gets the `hash` and `range` key from the model.\nIf `tenant` is defined, it also adds it to the `hash` key.",
+								"tags": [
+									{
+										"tag": "memberof",
+										"text": "Model\n"
+									}
+								]
+							},
 							"parameters": [
 								{
 									"id": 138,
@@ -3260,6 +3228,7 @@
 									"kind": 32768,
 									"kindString": "Parameter",
 									"flags": {},
+									"comment": {},
 									"type": {
 										"type": "reference",
 										"name": "IDynamoDBKey",
@@ -3282,7 +3251,7 @@
 					"sources": [
 						{
 							"fileName": "model.ts",
-							"line": 153,
+							"line": 168,
 							"character": 8
 						}
 					],
@@ -3398,6 +3367,15 @@
 							"kind": 4096,
 							"kindString": "Call signature",
 							"flags": {},
+							"comment": {
+								"shortText": "Removes all tenant data from an item.",
+								"tags": [
+									{
+										"tag": "memberof",
+										"text": "IModel\n"
+									}
+								]
+							},
 							"parameters": [
 								{
 									"id": 148,
@@ -3405,6 +3383,7 @@
 									"kind": 32768,
 									"kindString": "Parameter",
 									"flags": {},
+									"comment": {},
 									"type": {
 										"type": "reference",
 										"name": "IItem",
@@ -3429,6 +3408,15 @@
 							"kind": 4096,
 							"kindString": "Call signature",
 							"flags": {},
+							"comment": {
+								"shortText": "Removes all tenant data from a list of items.",
+								"tags": [
+									{
+										"tag": "memberof",
+										"text": "IModel\n"
+									}
+								]
+							},
 							"parameters": [
 								{
 									"id": 150,
@@ -3436,6 +3424,7 @@
 									"kind": 32768,
 									"kindString": "Parameter",
 									"flags": {},
+									"comment": {},
 									"type": {
 										"type": "array",
 										"elementType": {
@@ -3464,12 +3453,12 @@
 					"sources": [
 						{
 							"fileName": "model.ts",
-							"line": 161,
+							"line": 183,
 							"character": 14
 						},
 						{
 							"fileName": "model.ts",
-							"line": 162,
+							"line": 191,
 							"character": 14
 						}
 					],
@@ -3494,6 +3483,15 @@
 							"kind": 4096,
 							"kindString": "Call signature",
 							"flags": {},
+							"comment": {
+								"shortText": "Adds the appropiate track values if the `track` option is on.",
+								"tags": [
+									{
+										"tag": "memberof",
+										"text": "Model\n"
+									}
+								]
+							},
 							"parameters": [
 								{
 									"id": 157,
@@ -3501,6 +3499,7 @@
 									"kind": 32768,
 									"kindString": "Parameter",
 									"flags": {},
+									"comment": {},
 									"type": {
 										"type": "reference",
 										"name": "IItem",
@@ -3523,7 +3522,7 @@
 					"sources": [
 						{
 							"fileName": "model.ts",
-							"line": 167,
+							"line": 203,
 							"character": 14
 						}
 					],
@@ -3592,6 +3591,15 @@
 							"kind": 4096,
 							"kindString": "Call signature",
 							"flags": {},
+							"comment": {
+								"shortText": "Validates the body of the request using [`superstruct`](https://github.com/ianstormtaylor/superstruct).",
+								"tags": [
+									{
+										"tag": "memberof",
+										"text": "Model\n"
+									}
+								]
+							},
 							"parameters": [
 								{
 									"id": 160,
@@ -3599,6 +3607,7 @@
 									"kind": 32768,
 									"kindString": "Parameter",
 									"flags": {},
+									"comment": {},
 									"type": {
 										"type": "reference",
 										"name": "IItem",
@@ -3620,7 +3629,7 @@
 					"sources": [
 						{
 							"fileName": "model.ts",
-							"line": 168,
+							"line": 211,
 							"character": 10
 						}
 					],
@@ -4784,7 +4793,7 @@
 					"sources": [
 						{
 							"fileName": "model.ts",
-							"line": 151,
+							"line": 158,
 							"character": 6
 						}
 					],
@@ -4808,7 +4817,7 @@
 					"sources": [
 						{
 							"fileName": "model.ts",
-							"line": 152,
+							"line": 159,
 							"character": 16
 						}
 					],
@@ -4829,7 +4838,7 @@
 					"sources": [
 						{
 							"fileName": "model.ts",
-							"line": 156,
+							"line": 171,
 							"character": 17
 						}
 					],
@@ -4849,7 +4858,7 @@
 					"sources": [
 						{
 							"fileName": "model.ts",
-							"line": 154,
+							"line": 169,
 							"character": 6
 						}
 					],
@@ -4869,7 +4878,7 @@
 					"sources": [
 						{
 							"fileName": "model.ts",
-							"line": 155,
+							"line": 170,
 							"character": 10
 						}
 					],
@@ -4889,7 +4898,7 @@
 					"sources": [
 						{
 							"fileName": "model.ts",
-							"line": 157,
+							"line": 172,
 							"character": 11
 						}
 					],
@@ -4909,7 +4918,7 @@
 					"sources": [
 						{
 							"fileName": "model.ts",
-							"line": 158,
+							"line": 173,
 							"character": 9
 						}
 					],
@@ -4930,7 +4939,7 @@
 					"sources": [
 						{
 							"fileName": "model.ts",
-							"line": 159,
+							"line": 174,
 							"character": 7
 						}
 					],
@@ -4950,7 +4959,7 @@
 					"sources": [
 						{
 							"fileName": "model.ts",
-							"line": 160,
+							"line": 175,
 							"character": 11
 						}
 					],
@@ -4970,7 +4979,7 @@
 					"sources": [
 						{
 							"fileName": "model.ts",
-							"line": 163,
+							"line": 192,
 							"character": 8
 						}
 					],
@@ -4990,7 +4999,7 @@
 					"sources": [
 						{
 							"fileName": "model.ts",
-							"line": 164,
+							"line": 193,
 							"character": 7
 						}
 					],
@@ -5011,7 +5020,7 @@
 					"sources": [
 						{
 							"fileName": "model.ts",
-							"line": 165,
+							"line": 194,
 							"character": 8
 						}
 					],
@@ -5031,7 +5040,7 @@
 					"sources": [
 						{
 							"fileName": "model.ts",
-							"line": 166,
+							"line": 195,
 							"character": 7
 						}
 					],
@@ -5055,6 +5064,15 @@
 							"kind": 4096,
 							"kindString": "Call signature",
 							"flags": {},
+							"comment": {
+								"shortText": "Adds the `gsik` value to the item, created by joining the `tenant` value\nwith a random value between `0` and `maxGSIK`.",
+								"tags": [
+									{
+										"tag": "memberof",
+										"text": "Model\n"
+									}
+								]
+							},
 							"type": {
 								"type": "reference",
 								"name": "IItem",
@@ -5065,7 +5083,7 @@
 					"sources": [
 						{
 							"fileName": "model.ts",
-							"line": 150,
+							"line": 157,
 							"character": 11
 						}
 					]
@@ -5085,6 +5103,15 @@
 							"kind": 4096,
 							"kindString": "Call signature",
 							"flags": {},
+							"comment": {
+								"shortText": "Gets the `hash` and `range` key from the model.\nIf `tenant` is defined, it also adds it to the `hash` key.",
+								"tags": [
+									{
+										"tag": "memberof",
+										"text": "Model\n"
+									}
+								]
+							},
 							"parameters": [
 								{
 									"id": 32,
@@ -5092,6 +5119,7 @@
 									"kind": 32768,
 									"kindString": "Parameter",
 									"flags": {},
+									"comment": {},
 									"type": {
 										"type": "reference",
 										"name": "IDynamoDBKey",
@@ -5109,7 +5137,7 @@
 					"sources": [
 						{
 							"fileName": "model.ts",
-							"line": 153,
+							"line": 168,
 							"character": 8
 						}
 					]
@@ -5129,6 +5157,15 @@
 							"kind": 4096,
 							"kindString": "Call signature",
 							"flags": {},
+							"comment": {
+								"shortText": "Removes all tenant data from an item.",
+								"tags": [
+									{
+										"tag": "memberof",
+										"text": "IModel\n"
+									}
+								]
+							},
 							"parameters": [
 								{
 									"id": 42,
@@ -5136,6 +5173,7 @@
 									"kind": 32768,
 									"kindString": "Parameter",
 									"flags": {},
+									"comment": {},
 									"type": {
 										"type": "reference",
 										"name": "IItem",
@@ -5155,6 +5193,15 @@
 							"kind": 4096,
 							"kindString": "Call signature",
 							"flags": {},
+							"comment": {
+								"shortText": "Removes all tenant data from a list of items.",
+								"tags": [
+									{
+										"tag": "memberof",
+										"text": "IModel\n"
+									}
+								]
+							},
 							"parameters": [
 								{
 									"id": 44,
@@ -5162,6 +5209,7 @@
 									"kind": 32768,
 									"kindString": "Parameter",
 									"flags": {},
+									"comment": {},
 									"type": {
 										"type": "array",
 										"elementType": {
@@ -5185,12 +5233,12 @@
 					"sources": [
 						{
 							"fileName": "model.ts",
-							"line": 161,
+							"line": 183,
 							"character": 14
 						},
 						{
 							"fileName": "model.ts",
-							"line": 162,
+							"line": 191,
 							"character": 14
 						}
 					]
@@ -5210,6 +5258,15 @@
 							"kind": 4096,
 							"kindString": "Call signature",
 							"flags": {},
+							"comment": {
+								"shortText": "Adds the appropiate track values if the `track` option is on.",
+								"tags": [
+									{
+										"tag": "memberof",
+										"text": "Model\n"
+									}
+								]
+							},
 							"parameters": [
 								{
 									"id": 51,
@@ -5217,6 +5274,7 @@
 									"kind": 32768,
 									"kindString": "Parameter",
 									"flags": {},
+									"comment": {},
 									"type": {
 										"type": "reference",
 										"name": "IItem",
@@ -5234,7 +5292,7 @@
 					"sources": [
 						{
 							"fileName": "model.ts",
-							"line": 167,
+							"line": 203,
 							"character": 14
 						}
 					]
@@ -5254,6 +5312,15 @@
 							"kind": 4096,
 							"kindString": "Call signature",
 							"flags": {},
+							"comment": {
+								"shortText": "Validates the body of the request using [`superstruct`](https://github.com/ianstormtaylor/superstruct).",
+								"tags": [
+									{
+										"tag": "memberof",
+										"text": "Model\n"
+									}
+								]
+							},
 							"parameters": [
 								{
 									"id": 54,
@@ -5261,6 +5328,7 @@
 									"kind": 32768,
 									"kindString": "Parameter",
 									"flags": {},
+									"comment": {},
 									"type": {
 										"type": "reference",
 										"name": "IItem",
@@ -5277,7 +5345,7 @@
 					"sources": [
 						{
 							"fileName": "model.ts",
-							"line": 168,
+							"line": 211,
 							"character": 10
 						}
 					]

@@ -147,9 +147,24 @@ export interface IDynamoDBModelStruct {
  * @interface IModel
  */
 export interface IModel {
+  /**
+   * Adds the `gsik` value to the item, created by joining the `tenant` value
+   * with a random value between `0` and `maxGSIK`.
+   *
+   * @returns {IItem}
+   * @memberof Model
+   */
   addTenant(): IItem;
   data: IItem[];
   documentClient: DocumentClient;
+  /**
+   * Gets the `hash` and `range` key from the model.
+   * If `tenant` is defined, it also adds it to the `hash` key.
+   *
+   * @param {IDynamoDBKey} key
+   * @returns {IDynamoDBKey}
+   * @memberof Model
+   */
   getKey(key: IDynamoDBKey): IDynamoDBKey;
   hash: string;
   hashType: string;
@@ -158,13 +173,41 @@ export interface IModel {
   maxGSIK: number;
   range?: string;
   rangeType: string;
+  /**
+   * Removes all tenant data from an item.
+   *
+   * @param {IItem} items
+   * @returns {IItem}
+   * @memberof IModel
+   */
   removeTenant(items: IItem): IItem;
+  /**
+   * Removes all tenant data from a list of items.
+   *
+   * @param {IItem[]} items
+   * @returns {IItem[]}
+   * @memberof IModel
+   */
   removeTenant(items: IItem[]): IItem[];
   struct: any;
   table: string;
   tenant?: string;
   track: boolean;
+  /**
+   * Adds the appropiate track values if the `track` option is on.
+   *
+   * @param {IItem} body
+   * @returns {IDynamoDBModelTrack}
+   * @memberof Model
+   */
   trackChanges(body: IItem): IDynamoDBModelTrack;
+  /**
+   * Validates the body of the request using [`superstruct`](https://github.com/ianstormtaylor/superstruct).
+   *
+   * @param {IItem} body
+   * @returns {boolean}
+   * @memberof Model
+   */
   validate(body: IItem): boolean;
 }
 /**
@@ -226,13 +269,6 @@ export abstract class Model implements IModel {
       this.indexName = config.indexName;
     }
   }
-  /**
-   * Adds the appropiate track values if the `track` option is on.
-   *
-   * @param {IItem} body
-   * @returns {IDynamoDBModelTrack}
-   * @memberof Model
-   */
   trackChanges(body: IItem): IDynamoDBModelTrack {
     if (this.track === false) return {} as IDynamoDBModelTrack;
     var isoDate = new Date().toISOString();
@@ -243,14 +279,6 @@ export abstract class Model implements IModel {
     if (isNew === true) result.createdAt = isoDate;
     return result;
   }
-  /**
-   * Gets the `hash` and `range` key from the model.
-   * If `tenant` is defined, it also adds it to the `hash` key.
-   *
-   * @param {IDynamoDBKey} key
-   * @returns {IDynamoDBKey}
-   * @memberof Model
-   */
   getKey(key: IDynamoDBKey): IDynamoDBKey {
     key = pick(key, this.hash, this.range || '');
     key[this.hash] =
@@ -276,13 +304,7 @@ export abstract class Model implements IModel {
     return (value: string) =>
       predicate(value) === true ? value.substring(length) : value;
   }
-  /**
-   * Adds the `gsik` value to the item, created by joining the `tenant` value
-   * with a random value between `0` and `maxGSIK`.
-   *
-   * @returns {IItem}
-   * @memberof Model
-   */
+
   addTenant(): IItem {
     return this.tenant !== undefined && this.tenant !== ''
       ? {
@@ -290,15 +312,6 @@ export abstract class Model implements IModel {
         }
       : {};
   }
-  /**
-   * Removes all `tenant` related data from an item.
-   *
-   * @private
-   * @param {IItem} item
-   * @param {(value: string) => string} substring
-   * @returns {IItem}
-   * @memberof Model
-   */
   private removeTenantFromItem(
     item: IItem,
     substring: (value: string) => string
@@ -307,11 +320,15 @@ export abstract class Model implements IModel {
     if (item.gsik !== undefined) delete item.gsik;
     return item;
   }
-  /**
-   * Removes all `tenant` related data from an item, or a list of items.
-   */
   removeTenant(items: IItem): IItem;
   removeTenant(items: IItem[]): IItem[];
+  /**
+   * Removes all `tenant` related data from an item, or a list of items.
+   *
+   * @param {(IItem | IItem[])} items
+   * @returns {(IItem | IItem[])}
+   * @memberof Model
+   */
   removeTenant(items: IItem | IItem[]): IItem | IItem[] {
     if (this.tenant === undefined) return items;
 
@@ -330,13 +347,7 @@ export abstract class Model implements IModel {
 
     return this.removeTenantFromItem(items, substringIfTenantPrefix);
   }
-  /**
-   * Validates the body of the request using [`superstruct`](https://github.com/ianstormtaylor/superstruct).
-   *
-   * @param {IItem} body
-   * @returns {boolean}
-   * @memberof Model
-   */
+
   validate(body: IItem): boolean {
     return this.struct(body);
   }
