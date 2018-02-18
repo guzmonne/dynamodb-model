@@ -5,7 +5,7 @@
 	"flags": {},
 	"children": [
 		{
-			"id": 237,
+			"id": 243,
 			"name": "\"superstruct\"",
 			"kind": 2,
 			"kindString": "Module",
@@ -19,7 +19,7 @@
 			]
 		},
 		{
-			"id": 211,
+			"id": 217,
 			"name": "DynamoDBModel",
 			"kind": 2,
 			"kindString": "Module",
@@ -28,7 +28,7 @@
 			},
 			"children": [
 				{
-					"id": 214,
+					"id": 220,
 					"name": "config",
 					"kind": 64,
 					"kindString": "Function",
@@ -37,14 +37,14 @@
 					},
 					"signatures": [
 						{
-							"id": 215,
+							"id": 221,
 							"name": "config",
 							"kind": 4096,
 							"kindString": "Call signature",
 							"flags": {},
 							"parameters": [
 								{
-									"id": 216,
+									"id": 222,
 									"name": "options",
 									"kind": 32768,
 									"kindString": "Parameter",
@@ -52,7 +52,7 @@
 									"type": {
 										"type": "reference",
 										"name": "IDynamoDBModelGlobalConfig",
-										"id": 206
+										"id": 212
 									}
 								}
 							],
@@ -71,7 +71,7 @@
 					]
 				},
 				{
-					"id": 217,
+					"id": 223,
 					"name": "create",
 					"kind": 64,
 					"kindString": "Function",
@@ -80,14 +80,14 @@
 					},
 					"signatures": [
 						{
-							"id": 218,
+							"id": 224,
 							"name": "create",
 							"kind": 4096,
 							"kindString": "Call signature",
 							"flags": {},
 							"parameters": [
 								{
-									"id": 219,
+									"id": 225,
 									"name": "config",
 									"kind": 32768,
 									"kindString": "Parameter",
@@ -95,21 +95,21 @@
 									"type": {
 										"type": "reference",
 										"name": "IDynamoDBModelConfig",
-										"id": 10
+										"id": 16
 									}
 								}
 							],
 							"type": {
 								"type": "reflection",
 								"declaration": {
-									"id": 220,
+									"id": 226,
 									"name": "__type",
 									"kind": 65536,
 									"kindString": "Type literal",
 									"flags": {},
 									"signatures": [
 										{
-											"id": 221,
+											"id": 227,
 											"name": "__call",
 											"kind": 4096,
 											"kindString": "Call signature",
@@ -117,7 +117,7 @@
 											"type": {
 												"type": "reference",
 												"name": "IDefaultModel",
-												"id": 101
+												"id": 107
 											}
 										}
 									],
@@ -141,7 +141,7 @@
 					]
 				},
 				{
-					"id": 222,
+					"id": 228,
 					"name": "createModel",
 					"kind": 64,
 					"kindString": "Function",
@@ -150,14 +150,14 @@
 					},
 					"signatures": [
 						{
-							"id": 223,
+							"id": 229,
 							"name": "createModel",
 							"kind": 4096,
 							"kindString": "Call signature",
 							"flags": {},
 							"parameters": [
 								{
-									"id": 224,
+									"id": 230,
 									"name": "config",
 									"kind": 32768,
 									"kindString": "Parameter",
@@ -165,7 +165,7 @@
 									"type": {
 										"type": "reference",
 										"name": "IDynamoDBModelConfig",
-										"id": 10
+										"id": 16
 									}
 								}
 							],
@@ -184,7 +184,7 @@
 					]
 				},
 				{
-					"id": 225,
+					"id": 231,
 					"name": "extend",
 					"kind": 64,
 					"kindString": "Function",
@@ -193,14 +193,14 @@
 					},
 					"signatures": [
 						{
-							"id": 226,
+							"id": 232,
 							"name": "extend",
 							"kind": 4096,
 							"kindString": "Call signature",
 							"flags": {},
 							"parameters": [
 								{
-									"id": 227,
+									"id": 233,
 									"name": "config",
 									"kind": 32768,
 									"kindString": "Parameter",
@@ -208,11 +208,11 @@
 									"type": {
 										"type": "reference",
 										"name": "IDynamoDBModelConfig",
-										"id": 10
+										"id": 16
 									}
 								},
 								{
-									"id": 228,
+									"id": 234,
 									"name": "extendFn",
 									"kind": 32768,
 									"kindString": "Parameter",
@@ -220,21 +220,21 @@
 									"type": {
 										"type": "reflection",
 										"declaration": {
-											"id": 229,
+											"id": 235,
 											"name": "__type",
 											"kind": 65536,
 											"kindString": "Type literal",
 											"flags": {},
 											"signatures": [
 												{
-													"id": 230,
+													"id": 236,
 													"name": "__call",
 													"kind": 4096,
 													"kindString": "Call signature",
 													"flags": {},
 													"parameters": [
 														{
-															"id": 231,
+															"id": 237,
 															"name": "model",
 															"kind": 32768,
 															"kindString": "Parameter",
@@ -248,21 +248,21 @@
 													"type": {
 														"type": "reflection",
 														"declaration": {
-															"id": 232,
+															"id": 238,
 															"name": "__type",
 															"kind": 65536,
 															"kindString": "Type literal",
 															"flags": {},
 															"children": [
 																{
-																	"id": 233,
+																	"id": 239,
 																	"name": "constructor",
 																	"kind": 512,
 																	"kindString": "Constructor",
 																	"flags": {},
 																	"signatures": [
 																		{
-																			"id": 234,
+																			"id": 240,
 																			"name": "new __type",
 																			"kind": 16384,
 																			"kindString": "Constructor signature",
@@ -270,7 +270,7 @@
 																			"type": {
 																				"type": "reference",
 																				"name": "IDefaultModel",
-																				"id": 101
+																				"id": 107
 																			}
 																		}
 																	],
@@ -288,7 +288,7 @@
 																	"title": "Constructors",
 																	"kind": 512,
 																	"children": [
-																		233
+																		239
 																	]
 																}
 															],
@@ -317,14 +317,14 @@
 							"type": {
 								"type": "reflection",
 								"declaration": {
-									"id": 235,
+									"id": 241,
 									"name": "__type",
 									"kind": 65536,
 									"kindString": "Type literal",
 									"flags": {},
 									"signatures": [
 										{
-											"id": 236,
+											"id": 242,
 											"name": "__call",
 											"kind": 4096,
 											"kindString": "Call signature",
@@ -355,7 +355,7 @@
 					]
 				},
 				{
-					"id": 212,
+					"id": 218,
 					"name": "getConfig",
 					"kind": 64,
 					"kindString": "Function",
@@ -364,7 +364,7 @@
 					},
 					"signatures": [
 						{
-							"id": 213,
+							"id": 219,
 							"name": "getConfig",
 							"kind": 4096,
 							"kindString": "Call signature",
@@ -372,7 +372,7 @@
 							"type": {
 								"type": "reference",
 								"name": "IDynamoDBModelGlobalConfig",
-								"id": 206
+								"id": 212
 							}
 						}
 					],
@@ -390,11 +390,11 @@
 					"title": "Functions",
 					"kind": 64,
 					"children": [
-						214,
-						217,
-						222,
-						225,
-						212
+						220,
+						223,
+						228,
+						231,
+						218
 					]
 				}
 			],
@@ -407,7 +407,7 @@
 			]
 		},
 		{
-			"id": 139,
+			"id": 145,
 			"name": "DefaultModel",
 			"kind": 128,
 			"kindString": "Class",
@@ -416,7 +416,7 @@
 			},
 			"children": [
 				{
-					"id": 140,
+					"id": 146,
 					"name": "constructor",
 					"kind": 512,
 					"kindString": "Constructor",
@@ -425,14 +425,14 @@
 					},
 					"signatures": [
 						{
-							"id": 141,
+							"id": 147,
 							"name": "new DefaultModel",
 							"kind": 16384,
 							"kindString": "Constructor signature",
 							"flags": {},
 							"parameters": [
 								{
-									"id": 142,
+									"id": 148,
 									"name": "config",
 									"kind": 32768,
 									"kindString": "Parameter",
@@ -440,37 +440,37 @@
 									"type": {
 										"type": "reference",
 										"name": "IDynamoDBModelConfig",
-										"id": 10
+										"id": 16
 									}
 								}
 							],
 							"type": {
 								"type": "reference",
 								"name": "DefaultModel",
-								"id": 139
+								"id": 145
 							},
 							"overwrites": {
 								"type": "reference",
 								"name": "Model.__constructor",
-								"id": 53
+								"id": 59
 							}
 						}
 					],
 					"sources": [
 						{
 							"fileName": "default_model.ts",
-							"line": 49,
+							"line": 50,
 							"character": 70
 						}
 					],
 					"overwrites": {
 						"type": "reference",
 						"name": "Model.__constructor",
-						"id": 53
+						"id": 59
 					}
 				},
 				{
-					"id": 167,
+					"id": 173,
 					"name": "data",
 					"kind": 1024,
 					"kindString": "Property",
@@ -489,23 +489,23 @@
 						"elementType": {
 							"type": "reference",
 							"name": "IItem",
-							"id": 1
+							"id": 7
 						}
 					},
 					"defaultValue": " []",
 					"inheritedFrom": {
 						"type": "reference",
 						"name": "Model.data",
-						"id": 40
+						"id": 46
 					},
 					"implementationOf": {
 						"type": "reference",
 						"name": "IDefaultModel.data",
-						"id": 126
+						"id": 132
 					}
 				},
 				{
-					"id": 168,
+					"id": 174,
 					"name": "documentClient",
 					"kind": 1024,
 					"kindString": "Property",
@@ -526,16 +526,16 @@
 					"inheritedFrom": {
 						"type": "reference",
 						"name": "Model.documentClient",
-						"id": 41
+						"id": 47
 					},
 					"implementationOf": {
 						"type": "reference",
 						"name": "IDefaultModel.documentClient",
-						"id": 127
+						"id": 133
 					}
 				},
 				{
-					"id": 171,
+					"id": 177,
 					"name": "hasTenantRegExp",
 					"kind": 1024,
 					"kindString": "Property",
@@ -557,16 +557,16 @@
 					"inheritedFrom": {
 						"type": "reference",
 						"name": "Model.hasTenantRegExp",
-						"id": 44
+						"id": 50
 					},
 					"implementationOf": {
 						"type": "reference",
 						"name": "IDefaultModel.hasTenantRegExp",
-						"id": 130
+						"id": 136
 					}
 				},
 				{
-					"id": 169,
+					"id": 175,
 					"name": "hash",
 					"kind": 1024,
 					"kindString": "Property",
@@ -587,16 +587,16 @@
 					"inheritedFrom": {
 						"type": "reference",
 						"name": "Model.hash",
-						"id": 42
+						"id": 48
 					},
 					"implementationOf": {
 						"type": "reference",
 						"name": "IDefaultModel.hash",
-						"id": 128
+						"id": 134
 					}
 				},
 				{
-					"id": 170,
+					"id": 176,
 					"name": "hashType",
 					"kind": 1024,
 					"kindString": "Property",
@@ -618,16 +618,16 @@
 					"inheritedFrom": {
 						"type": "reference",
 						"name": "Model.hashType",
-						"id": 43
+						"id": 49
 					},
 					"implementationOf": {
 						"type": "reference",
 						"name": "IDefaultModel.hashType",
-						"id": 129
+						"id": 135
 					}
 				},
 				{
-					"id": 172,
+					"id": 178,
 					"name": "indexName",
 					"kind": 1024,
 					"kindString": "Property",
@@ -649,16 +649,16 @@
 					"inheritedFrom": {
 						"type": "reference",
 						"name": "Model.indexName",
-						"id": 45
+						"id": 51
 					},
 					"implementationOf": {
 						"type": "reference",
 						"name": "IDefaultModel.indexName",
-						"id": 131
+						"id": 137
 					}
 				},
 				{
-					"id": 173,
+					"id": 179,
 					"name": "maxGSIK",
 					"kind": 1024,
 					"kindString": "Property",
@@ -680,16 +680,16 @@
 					"inheritedFrom": {
 						"type": "reference",
 						"name": "Model.maxGSIK",
-						"id": 46
+						"id": 52
 					},
 					"implementationOf": {
 						"type": "reference",
 						"name": "IDefaultModel.maxGSIK",
-						"id": 132
+						"id": 138
 					}
 				},
 				{
-					"id": 174,
+					"id": 180,
 					"name": "range",
 					"kind": 1024,
 					"kindString": "Property",
@@ -711,16 +711,16 @@
 					"inheritedFrom": {
 						"type": "reference",
 						"name": "Model.range",
-						"id": 47
+						"id": 53
 					},
 					"implementationOf": {
 						"type": "reference",
 						"name": "IDefaultModel.range",
-						"id": 133
+						"id": 139
 					}
 				},
 				{
-					"id": 175,
+					"id": 181,
 					"name": "rangeType",
 					"kind": 1024,
 					"kindString": "Property",
@@ -742,16 +742,16 @@
 					"inheritedFrom": {
 						"type": "reference",
 						"name": "Model.rangeType",
-						"id": 48
+						"id": 54
 					},
 					"implementationOf": {
 						"type": "reference",
 						"name": "IDefaultModel.rangeType",
-						"id": 134
+						"id": 140
 					}
 				},
 				{
-					"id": 179,
+					"id": 185,
 					"name": "struct",
 					"kind": 1024,
 					"kindString": "Property",
@@ -772,16 +772,16 @@
 					"inheritedFrom": {
 						"type": "reference",
 						"name": "Model.struct",
-						"id": 52
+						"id": 58
 					},
 					"implementationOf": {
 						"type": "reference",
 						"name": "IDefaultModel.struct",
-						"id": 138
+						"id": 144
 					}
 				},
 				{
-					"id": 176,
+					"id": 182,
 					"name": "table",
 					"kind": 1024,
 					"kindString": "Property",
@@ -802,16 +802,16 @@
 					"inheritedFrom": {
 						"type": "reference",
 						"name": "Model.table",
-						"id": 49
+						"id": 55
 					},
 					"implementationOf": {
 						"type": "reference",
 						"name": "IDefaultModel.table",
-						"id": 135
+						"id": 141
 					}
 				},
 				{
-					"id": 177,
+					"id": 183,
 					"name": "tenant",
 					"kind": 1024,
 					"kindString": "Property",
@@ -833,16 +833,16 @@
 					"inheritedFrom": {
 						"type": "reference",
 						"name": "Model.tenant",
-						"id": 50
+						"id": 56
 					},
 					"implementationOf": {
 						"type": "reference",
 						"name": "IDefaultModel.tenant",
-						"id": 136
+						"id": 142
 					}
 				},
 				{
-					"id": 178,
+					"id": 184,
 					"name": "track",
 					"kind": 1024,
 					"kindString": "Property",
@@ -864,16 +864,16 @@
 					"inheritedFrom": {
 						"type": "reference",
 						"name": "Model.track",
-						"id": 51
+						"id": 57
 					},
 					"implementationOf": {
 						"type": "reference",
 						"name": "IDefaultModel.track",
-						"id": 137
+						"id": 143
 					}
 				},
 				{
-					"id": 196,
+					"id": 202,
 					"name": "addTenant",
 					"kind": 2048,
 					"kindString": "Method",
@@ -882,7 +882,7 @@
 					},
 					"signatures": [
 						{
-							"id": 197,
+							"id": 203,
 							"name": "addTenant",
 							"kind": 4096,
 							"kindString": "Call signature",
@@ -890,12 +890,12 @@
 							"type": {
 								"type": "reference",
 								"name": "IItem",
-								"id": 1
+								"id": 7
 							},
 							"inheritedFrom": {
 								"type": "reference",
 								"name": "Model.addTenant",
-								"id": 72
+								"id": 78
 							}
 						}
 					],
@@ -909,11 +909,11 @@
 					"inheritedFrom": {
 						"type": "reference",
 						"name": "Model.addTenant",
-						"id": 72
+						"id": 78
 					}
 				},
 				{
-					"id": 145,
+					"id": 151,
 					"name": "callback",
 					"kind": 2048,
 					"kindString": "Method",
@@ -922,14 +922,14 @@
 					},
 					"signatures": [
 						{
-							"id": 146,
+							"id": 152,
 							"name": "callback",
 							"kind": 4096,
 							"kindString": "Call signature",
 							"flags": {},
 							"parameters": [
 								{
-									"id": 147,
+									"id": 153,
 									"name": "callback",
 									"kind": 32768,
 									"kindString": "Parameter",
@@ -937,21 +937,21 @@
 									"type": {
 										"type": "reflection",
 										"declaration": {
-											"id": 148,
+											"id": 154,
 											"name": "__type",
 											"kind": 65536,
 											"kindString": "Type literal",
 											"flags": {},
 											"signatures": [
 												{
-													"id": 149,
+													"id": 155,
 													"name": "__call",
 													"kind": 4096,
 													"kindString": "Call signature",
 													"flags": {},
 													"parameters": [
 														{
-															"id": 150,
+															"id": 156,
 															"name": "error",
 															"kind": 32768,
 															"kindString": "Parameter",
@@ -971,7 +971,7 @@
 															}
 														},
 														{
-															"id": 151,
+															"id": 157,
 															"name": "data",
 															"kind": 32768,
 															"kindString": "Parameter",
@@ -984,7 +984,7 @@
 																	{
 																		"type": "reference",
 																		"name": "IItem",
-																		"id": 1
+																		"id": 7
 																	},
 																	{
 																		"type": "intrinsic",
@@ -1003,7 +1003,7 @@
 											"sources": [
 												{
 													"fileName": "default_model.ts",
-													"line": 96,
+													"line": 101,
 													"character": 20
 												}
 											]
@@ -1020,18 +1020,18 @@
 					"sources": [
 						{
 							"fileName": "default_model.ts",
-							"line": 96,
+							"line": 101,
 							"character": 10
 						}
 					],
 					"implementationOf": {
 						"type": "reference",
 						"name": "IDefaultModel.callback",
-						"id": 102
+						"id": 108
 					}
 				},
 				{
-					"id": 152,
+					"id": 158,
 					"name": "create",
 					"kind": 2048,
 					"kindString": "Method",
@@ -1040,14 +1040,14 @@
 					},
 					"signatures": [
 						{
-							"id": 153,
+							"id": 159,
 							"name": "create",
 							"kind": 4096,
 							"kindString": "Call signature",
 							"flags": {},
 							"parameters": [
 								{
-									"id": 154,
+									"id": 160,
 									"name": "body",
 									"kind": 32768,
 									"kindString": "Parameter",
@@ -1055,37 +1055,37 @@
 									"type": {
 										"type": "reference",
 										"name": "IItem",
-										"id": 1
+										"id": 7
 									}
 								}
 							],
 							"type": {
 								"type": "reference",
 								"name": "IDefaultModel",
-								"id": 101
+								"id": 107
 							},
 							"implementationOf": {
 								"type": "reference",
 								"name": "IDefaultModel.create",
-								"id": 118
+								"id": 124
 							}
 						}
 					],
 					"sources": [
 						{
 							"fileName": "default_model.ts",
-							"line": 102,
+							"line": 107,
 							"character": 8
 						}
 					],
 					"implementationOf": {
 						"type": "reference",
 						"name": "IDefaultModel.create",
-						"id": 117
+						"id": 123
 					}
 				},
 				{
-					"id": 161,
+					"id": 167,
 					"name": "delete",
 					"kind": 2048,
 					"kindString": "Method",
@@ -1094,14 +1094,14 @@
 					},
 					"signatures": [
 						{
-							"id": 162,
+							"id": 168,
 							"name": "delete",
 							"kind": 4096,
 							"kindString": "Call signature",
 							"flags": {},
 							"parameters": [
 								{
-									"id": 163,
+									"id": 169,
 									"name": "key",
 									"kind": 32768,
 									"kindString": "Parameter",
@@ -1109,37 +1109,37 @@
 									"type": {
 										"type": "reference",
 										"name": "IDynamoDBKey",
-										"id": 4
+										"id": 10
 									}
 								}
 							],
 							"type": {
 								"type": "reference",
 								"name": "IDefaultModel",
-								"id": 101
+								"id": 107
 							},
 							"implementationOf": {
 								"type": "reference",
 								"name": "IDefaultModel.delete",
-								"id": 115
+								"id": 121
 							}
 						}
 					],
 					"sources": [
 						{
 							"fileName": "default_model.ts",
-							"line": 178,
+							"line": 183,
 							"character": 8
 						}
 					],
 					"implementationOf": {
 						"type": "reference",
 						"name": "IDefaultModel.delete",
-						"id": 114
+						"id": 120
 					}
 				},
 				{
-					"id": 158,
+					"id": 164,
 					"name": "get",
 					"kind": 2048,
 					"kindString": "Method",
@@ -1148,14 +1148,14 @@
 					},
 					"signatures": [
 						{
-							"id": 159,
+							"id": 165,
 							"name": "get",
 							"kind": 4096,
 							"kindString": "Call signature",
 							"flags": {},
 							"parameters": [
 								{
-									"id": 160,
+									"id": 166,
 									"name": "key",
 									"kind": 32768,
 									"kindString": "Parameter",
@@ -1163,37 +1163,37 @@
 									"type": {
 										"type": "reference",
 										"name": "IDynamoDBKey",
-										"id": 4
+										"id": 10
 									}
 								}
 							],
 							"type": {
 								"type": "reference",
 								"name": "IDefaultModel",
-								"id": 101
+								"id": 107
 							},
 							"implementationOf": {
 								"type": "reference",
 								"name": "IDefaultModel.get",
-								"id": 112
+								"id": 118
 							}
 						}
 					],
 					"sources": [
 						{
 							"fileName": "default_model.ts",
-							"line": 165,
+							"line": 170,
 							"character": 5
 						}
 					],
 					"implementationOf": {
 						"type": "reference",
 						"name": "IDefaultModel.get",
-						"id": 111
+						"id": 117
 					}
 				},
 				{
-					"id": 183,
+					"id": 189,
 					"name": "getKey",
 					"kind": 2048,
 					"kindString": "Method",
@@ -1202,14 +1202,14 @@
 					},
 					"signatures": [
 						{
-							"id": 184,
+							"id": 190,
 							"name": "getKey",
 							"kind": 4096,
 							"kindString": "Call signature",
 							"flags": {},
 							"parameters": [
 								{
-									"id": 185,
+									"id": 191,
 									"name": "key",
 									"kind": 32768,
 									"kindString": "Parameter",
@@ -1217,19 +1217,19 @@
 									"type": {
 										"type": "reference",
 										"name": "IDynamoDBKey",
-										"id": 4
+										"id": 10
 									}
 								}
 							],
 							"type": {
 								"type": "reference",
 								"name": "IDynamoDBKey",
-								"id": 4
+								"id": 10
 							},
 							"inheritedFrom": {
 								"type": "reference",
 								"name": "Model.getKey",
-								"id": 59
+								"id": 65
 							}
 						}
 					],
@@ -1243,11 +1243,11 @@
 					"inheritedFrom": {
 						"type": "reference",
 						"name": "Model.getKey",
-						"id": 59
+						"id": 65
 					}
 				},
 				{
-					"id": 164,
+					"id": 170,
 					"name": "index",
 					"kind": 2048,
 					"kindString": "Method",
@@ -1256,14 +1256,14 @@
 					},
 					"signatures": [
 						{
-							"id": 165,
+							"id": 171,
 							"name": "index",
 							"kind": 4096,
 							"kindString": "Call signature",
 							"flags": {},
 							"parameters": [
 								{
-									"id": 166,
+									"id": 172,
 									"name": "options",
 									"kind": 32768,
 									"kindString": "Parameter",
@@ -1273,37 +1273,37 @@
 									"type": {
 										"type": "reference",
 										"name": "IDynamoDBModelScanOptions",
-										"id": 86
+										"id": 92
 									}
 								}
 							],
 							"type": {
 								"type": "reference",
 								"name": "IDefaultModel",
-								"id": 101
+								"id": 107
 							},
 							"implementationOf": {
 								"type": "reference",
 								"name": "IDefaultModel.index",
-								"id": 124
+								"id": 130
 							}
 						}
 					],
 					"sources": [
 						{
 							"fileName": "default_model.ts",
-							"line": 279,
+							"line": 290,
 							"character": 7
 						}
 					],
 					"implementationOf": {
 						"type": "reference",
 						"name": "IDefaultModel.index",
-						"id": 123
+						"id": 129
 					}
 				},
 				{
-					"id": 143,
+					"id": 149,
 					"name": "promise",
 					"kind": 2048,
 					"kindString": "Method",
@@ -1312,7 +1312,7 @@
 					},
 					"signatures": [
 						{
-							"id": 144,
+							"id": 150,
 							"name": "promise",
 							"kind": 4096,
 							"kindString": "Call signature",
@@ -1327,7 +1327,7 @@
 											{
 												"type": "reference",
 												"name": "IItem",
-												"id": 1
+												"id": 7
 											},
 											{
 												"type": "intrinsic",
@@ -1340,25 +1340,25 @@
 							"implementationOf": {
 								"type": "reference",
 								"name": "IDefaultModel.promise",
-								"id": 110
+								"id": 116
 							}
 						}
 					],
 					"sources": [
 						{
 							"fileName": "default_model.ts",
-							"line": 88,
+							"line": 93,
 							"character": 15
 						}
 					],
 					"implementationOf": {
 						"type": "reference",
 						"name": "IDefaultModel.promise",
-						"id": 109
+						"id": 115
 					}
 				},
 				{
-					"id": 198,
+					"id": 204,
 					"name": "removeTenant",
 					"kind": 2048,
 					"kindString": "Method",
@@ -1367,14 +1367,14 @@
 					},
 					"signatures": [
 						{
-							"id": 199,
+							"id": 205,
 							"name": "removeTenant",
 							"kind": 4096,
 							"kindString": "Call signature",
 							"flags": {},
 							"parameters": [
 								{
-									"id": 200,
+									"id": 206,
 									"name": "items",
 									"kind": 32768,
 									"kindString": "Parameter",
@@ -1382,30 +1382,30 @@
 									"type": {
 										"type": "reference",
 										"name": "IItem",
-										"id": 1
+										"id": 7
 									}
 								}
 							],
 							"type": {
 								"type": "reference",
 								"name": "IItem",
-								"id": 1
+								"id": 7
 							},
 							"inheritedFrom": {
 								"type": "reference",
 								"name": "Model.removeTenant",
-								"id": 74
+								"id": 80
 							}
 						},
 						{
-							"id": 201,
+							"id": 207,
 							"name": "removeTenant",
 							"kind": 4096,
 							"kindString": "Call signature",
 							"flags": {},
 							"parameters": [
 								{
-									"id": 202,
+									"id": 208,
 									"name": "items",
 									"kind": 32768,
 									"kindString": "Parameter",
@@ -1415,7 +1415,7 @@
 										"elementType": {
 											"type": "reference",
 											"name": "IItem",
-											"id": 1
+											"id": 7
 										}
 									}
 								}
@@ -1425,13 +1425,13 @@
 								"elementType": {
 									"type": "reference",
 									"name": "IItem",
-									"id": 1
+									"id": 7
 								}
 							},
 							"inheritedFrom": {
 								"type": "reference",
 								"name": "Model.removeTenant",
-								"id": 74
+								"id": 80
 							}
 						}
 					],
@@ -1455,11 +1455,11 @@
 					"inheritedFrom": {
 						"type": "reference",
 						"name": "Model.removeTenant",
-						"id": 74
+						"id": 80
 					}
 				},
 				{
-					"id": 186,
+					"id": 192,
 					"name": "substringBy",
 					"kind": 2048,
 					"kindString": "Method",
@@ -1468,14 +1468,14 @@
 					},
 					"signatures": [
 						{
-							"id": 187,
+							"id": 193,
 							"name": "substringBy",
 							"kind": 4096,
 							"kindString": "Call signature",
 							"flags": {},
 							"parameters": [
 								{
-									"id": 188,
+									"id": 194,
 									"name": "length",
 									"kind": 32768,
 									"kindString": "Parameter",
@@ -1486,7 +1486,7 @@
 									}
 								},
 								{
-									"id": 189,
+									"id": 195,
 									"name": "predicate",
 									"kind": 32768,
 									"kindString": "Parameter",
@@ -1494,21 +1494,21 @@
 									"type": {
 										"type": "reflection",
 										"declaration": {
-											"id": 190,
+											"id": 196,
 											"name": "__type",
 											"kind": 65536,
 											"kindString": "Type literal",
 											"flags": {},
 											"signatures": [
 												{
-													"id": 191,
+													"id": 197,
 													"name": "__call",
 													"kind": 4096,
 													"kindString": "Call signature",
 													"flags": {},
 													"parameters": [
 														{
-															"id": 192,
+															"id": 198,
 															"name": "value",
 															"kind": 32768,
 															"kindString": "Parameter",
@@ -1539,21 +1539,21 @@
 							"type": {
 								"type": "reflection",
 								"declaration": {
-									"id": 193,
+									"id": 199,
 									"name": "__type",
 									"kind": 65536,
 									"kindString": "Type literal",
 									"flags": {},
 									"signatures": [
 										{
-											"id": 194,
+											"id": 200,
 											"name": "__call",
 											"kind": 4096,
 											"kindString": "Call signature",
 											"flags": {},
 											"parameters": [
 												{
-													"id": 195,
+													"id": 201,
 													"name": "value",
 													"kind": 32768,
 													"kindString": "Parameter",
@@ -1582,7 +1582,7 @@
 							"inheritedFrom": {
 								"type": "reference",
 								"name": "Model.substringBy",
-								"id": 62
+								"id": 68
 							}
 						}
 					],
@@ -1596,11 +1596,11 @@
 					"inheritedFrom": {
 						"type": "reference",
 						"name": "Model.substringBy",
-						"id": 62
+						"id": 68
 					}
 				},
 				{
-					"id": 180,
+					"id": 186,
 					"name": "trackChanges",
 					"kind": 2048,
 					"kindString": "Method",
@@ -1609,14 +1609,14 @@
 					},
 					"signatures": [
 						{
-							"id": 181,
+							"id": 187,
 							"name": "trackChanges",
 							"kind": 4096,
 							"kindString": "Call signature",
 							"flags": {},
 							"parameters": [
 								{
-									"id": 182,
+									"id": 188,
 									"name": "body",
 									"kind": 32768,
 									"kindString": "Parameter",
@@ -1624,19 +1624,19 @@
 									"type": {
 										"type": "reference",
 										"name": "IItem",
-										"id": 1
+										"id": 7
 									}
 								}
 							],
 							"type": {
 								"type": "reference",
 								"name": "IDynamoDBModelTrack",
-								"id": 7
+								"id": 13
 							},
 							"inheritedFrom": {
 								"type": "reference",
 								"name": "Model.trackChanges",
-								"id": 56
+								"id": 62
 							}
 						}
 					],
@@ -1650,11 +1650,11 @@
 					"inheritedFrom": {
 						"type": "reference",
 						"name": "Model.trackChanges",
-						"id": 56
+						"id": 62
 					}
 				},
 				{
-					"id": 155,
+					"id": 161,
 					"name": "update",
 					"kind": 2048,
 					"kindString": "Method",
@@ -1663,14 +1663,14 @@
 					},
 					"signatures": [
 						{
-							"id": 156,
+							"id": 162,
 							"name": "update",
 							"kind": 4096,
 							"kindString": "Call signature",
 							"flags": {},
 							"parameters": [
 								{
-									"id": 157,
+									"id": 163,
 									"name": "body",
 									"kind": 32768,
 									"kindString": "Parameter",
@@ -1678,37 +1678,37 @@
 									"type": {
 										"type": "reference",
 										"name": "IItem",
-										"id": 1
+										"id": 7
 									}
 								}
 							],
 							"type": {
 								"type": "reference",
 								"name": "IDefaultModel",
-								"id": 101
+								"id": 107
 							},
 							"implementationOf": {
 								"type": "reference",
 								"name": "IDefaultModel.update",
-								"id": 121
+								"id": 127
 							}
 						}
 					],
 					"sources": [
 						{
 							"fileName": "default_model.ts",
-							"line": 131,
+							"line": 136,
 							"character": 8
 						}
 					],
 					"implementationOf": {
 						"type": "reference",
 						"name": "IDefaultModel.update",
-						"id": 120
+						"id": 126
 					}
 				},
 				{
-					"id": 203,
+					"id": 209,
 					"name": "validate",
 					"kind": 2048,
 					"kindString": "Method",
@@ -1717,14 +1717,14 @@
 					},
 					"signatures": [
 						{
-							"id": 204,
+							"id": 210,
 							"name": "validate",
 							"kind": 4096,
 							"kindString": "Call signature",
 							"flags": {},
 							"parameters": [
 								{
-									"id": 205,
+									"id": 211,
 									"name": "body",
 									"kind": 32768,
 									"kindString": "Parameter",
@@ -1732,7 +1732,7 @@
 									"type": {
 										"type": "reference",
 										"name": "IItem",
-										"id": 1
+										"id": 7
 									}
 								}
 							],
@@ -1743,7 +1743,7 @@
 							"inheritedFrom": {
 								"type": "reference",
 								"name": "Model.validate",
-								"id": 79
+								"id": 85
 							}
 						}
 					],
@@ -1757,7 +1757,7 @@
 					"inheritedFrom": {
 						"type": "reference",
 						"name": "Model.validate",
-						"id": 79
+						"id": 85
 					}
 				}
 			],
@@ -1766,52 +1766,52 @@
 					"title": "Constructors",
 					"kind": 512,
 					"children": [
-						140
+						146
 					]
 				},
 				{
 					"title": "Properties",
 					"kind": 1024,
 					"children": [
-						167,
-						168,
-						171,
-						169,
-						170,
-						172,
 						173,
 						174,
-						175,
-						179,
-						176,
 						177,
-						178
+						175,
+						176,
+						178,
+						179,
+						180,
+						181,
+						185,
+						182,
+						183,
+						184
 					]
 				},
 				{
 					"title": "Methods",
 					"kind": 2048,
 					"children": [
-						196,
-						145,
-						152,
-						161,
+						202,
+						151,
 						158,
-						183,
+						167,
 						164,
-						143,
-						198,
+						189,
+						170,
+						149,
+						204,
+						192,
 						186,
-						180,
-						155,
-						203
+						161,
+						209
 					]
 				}
 			],
 			"sources": [
 				{
 					"fileName": "default_model.ts",
-					"line": 48,
+					"line": 49,
 					"character": 25
 				}
 			],
@@ -1819,24 +1819,24 @@
 				{
 					"type": "reference",
 					"name": "Model",
-					"id": 39
+					"id": 45
 				}
 			],
 			"implementedTypes": [
 				{
 					"type": "reference",
 					"name": "IModel",
-					"id": 25
+					"id": 31
 				},
 				{
 					"type": "reference",
 					"name": "IDefaultModel",
-					"id": 101
+					"id": 107
 				}
 			]
 		},
 		{
-			"id": 39,
+			"id": 45,
 			"name": "Model",
 			"kind": 128,
 			"kindString": "Class",
@@ -1846,7 +1846,7 @@
 			},
 			"children": [
 				{
-					"id": 53,
+					"id": 59,
 					"name": "constructor",
 					"kind": 512,
 					"kindString": "Constructor",
@@ -1855,14 +1855,14 @@
 					},
 					"signatures": [
 						{
-							"id": 54,
+							"id": 60,
 							"name": "new Model",
 							"kind": 16384,
 							"kindString": "Constructor signature",
 							"flags": {},
 							"parameters": [
 								{
-									"id": 55,
+									"id": 61,
 									"name": "config",
 									"kind": 32768,
 									"kindString": "Parameter",
@@ -1870,14 +1870,14 @@
 									"type": {
 										"type": "reference",
 										"name": "IDynamoDBModelConfig",
-										"id": 10
+										"id": 16
 									}
 								}
 							],
 							"type": {
 								"type": "reference",
 								"name": "Model",
-								"id": 39
+								"id": 45
 							}
 						}
 					],
@@ -1890,7 +1890,7 @@
 					]
 				},
 				{
-					"id": 40,
+					"id": 46,
 					"name": "data",
 					"kind": 1024,
 					"kindString": "Property",
@@ -1909,18 +1909,18 @@
 						"elementType": {
 							"type": "reference",
 							"name": "IItem",
-							"id": 1
+							"id": 7
 						}
 					},
 					"defaultValue": " []",
 					"implementationOf": {
 						"type": "reference",
 						"name": "IModel.data",
-						"id": 26
+						"id": 32
 					}
 				},
 				{
-					"id": 41,
+					"id": 47,
 					"name": "documentClient",
 					"kind": 1024,
 					"kindString": "Property",
@@ -1941,11 +1941,11 @@
 					"implementationOf": {
 						"type": "reference",
 						"name": "IModel.documentClient",
-						"id": 27
+						"id": 33
 					}
 				},
 				{
-					"id": 44,
+					"id": 50,
 					"name": "hasTenantRegExp",
 					"kind": 1024,
 					"kindString": "Property",
@@ -1967,11 +1967,11 @@
 					"implementationOf": {
 						"type": "reference",
 						"name": "IModel.hasTenantRegExp",
-						"id": 30
+						"id": 36
 					}
 				},
 				{
-					"id": 42,
+					"id": 48,
 					"name": "hash",
 					"kind": 1024,
 					"kindString": "Property",
@@ -1992,11 +1992,11 @@
 					"implementationOf": {
 						"type": "reference",
 						"name": "IModel.hash",
-						"id": 28
+						"id": 34
 					}
 				},
 				{
-					"id": 43,
+					"id": 49,
 					"name": "hashType",
 					"kind": 1024,
 					"kindString": "Property",
@@ -2018,11 +2018,11 @@
 					"implementationOf": {
 						"type": "reference",
 						"name": "IModel.hashType",
-						"id": 29
+						"id": 35
 					}
 				},
 				{
-					"id": 45,
+					"id": 51,
 					"name": "indexName",
 					"kind": 1024,
 					"kindString": "Property",
@@ -2044,11 +2044,11 @@
 					"implementationOf": {
 						"type": "reference",
 						"name": "IModel.indexName",
-						"id": 31
+						"id": 37
 					}
 				},
 				{
-					"id": 46,
+					"id": 52,
 					"name": "maxGSIK",
 					"kind": 1024,
 					"kindString": "Property",
@@ -2070,11 +2070,11 @@
 					"implementationOf": {
 						"type": "reference",
 						"name": "IModel.maxGSIK",
-						"id": 32
+						"id": 38
 					}
 				},
 				{
-					"id": 47,
+					"id": 53,
 					"name": "range",
 					"kind": 1024,
 					"kindString": "Property",
@@ -2096,11 +2096,11 @@
 					"implementationOf": {
 						"type": "reference",
 						"name": "IModel.range",
-						"id": 33
+						"id": 39
 					}
 				},
 				{
-					"id": 48,
+					"id": 54,
 					"name": "rangeType",
 					"kind": 1024,
 					"kindString": "Property",
@@ -2122,11 +2122,11 @@
 					"implementationOf": {
 						"type": "reference",
 						"name": "IModel.rangeType",
-						"id": 34
+						"id": 40
 					}
 				},
 				{
-					"id": 52,
+					"id": 58,
 					"name": "struct",
 					"kind": 1024,
 					"kindString": "Property",
@@ -2147,11 +2147,11 @@
 					"implementationOf": {
 						"type": "reference",
 						"name": "IModel.struct",
-						"id": 38
+						"id": 44
 					}
 				},
 				{
-					"id": 49,
+					"id": 55,
 					"name": "table",
 					"kind": 1024,
 					"kindString": "Property",
@@ -2172,11 +2172,11 @@
 					"implementationOf": {
 						"type": "reference",
 						"name": "IModel.table",
-						"id": 35
+						"id": 41
 					}
 				},
 				{
-					"id": 50,
+					"id": 56,
 					"name": "tenant",
 					"kind": 1024,
 					"kindString": "Property",
@@ -2198,11 +2198,11 @@
 					"implementationOf": {
 						"type": "reference",
 						"name": "IModel.tenant",
-						"id": 36
+						"id": 42
 					}
 				},
 				{
-					"id": 51,
+					"id": 57,
 					"name": "track",
 					"kind": 1024,
 					"kindString": "Property",
@@ -2224,11 +2224,11 @@
 					"implementationOf": {
 						"type": "reference",
 						"name": "IModel.track",
-						"id": 37
+						"id": 43
 					}
 				},
 				{
-					"id": 72,
+					"id": 78,
 					"name": "addTenant",
 					"kind": 2048,
 					"kindString": "Method",
@@ -2237,7 +2237,7 @@
 					},
 					"signatures": [
 						{
-							"id": 73,
+							"id": 79,
 							"name": "addTenant",
 							"kind": 4096,
 							"kindString": "Call signature",
@@ -2245,7 +2245,7 @@
 							"type": {
 								"type": "reference",
 								"name": "IItem",
-								"id": 1
+								"id": 7
 							}
 						}
 					],
@@ -2258,7 +2258,7 @@
 					]
 				},
 				{
-					"id": 59,
+					"id": 65,
 					"name": "getKey",
 					"kind": 2048,
 					"kindString": "Method",
@@ -2267,14 +2267,14 @@
 					},
 					"signatures": [
 						{
-							"id": 60,
+							"id": 66,
 							"name": "getKey",
 							"kind": 4096,
 							"kindString": "Call signature",
 							"flags": {},
 							"parameters": [
 								{
-									"id": 61,
+									"id": 67,
 									"name": "key",
 									"kind": 32768,
 									"kindString": "Parameter",
@@ -2282,14 +2282,14 @@
 									"type": {
 										"type": "reference",
 										"name": "IDynamoDBKey",
-										"id": 4
+										"id": 10
 									}
 								}
 							],
 							"type": {
 								"type": "reference",
 								"name": "IDynamoDBKey",
-								"id": 4
+								"id": 10
 							}
 						}
 					],
@@ -2302,7 +2302,7 @@
 					]
 				},
 				{
-					"id": 74,
+					"id": 80,
 					"name": "removeTenant",
 					"kind": 2048,
 					"kindString": "Method",
@@ -2311,14 +2311,14 @@
 					},
 					"signatures": [
 						{
-							"id": 75,
+							"id": 81,
 							"name": "removeTenant",
 							"kind": 4096,
 							"kindString": "Call signature",
 							"flags": {},
 							"parameters": [
 								{
-									"id": 76,
+									"id": 82,
 									"name": "items",
 									"kind": 32768,
 									"kindString": "Parameter",
@@ -2326,25 +2326,25 @@
 									"type": {
 										"type": "reference",
 										"name": "IItem",
-										"id": 1
+										"id": 7
 									}
 								}
 							],
 							"type": {
 								"type": "reference",
 								"name": "IItem",
-								"id": 1
+								"id": 7
 							}
 						},
 						{
-							"id": 77,
+							"id": 83,
 							"name": "removeTenant",
 							"kind": 4096,
 							"kindString": "Call signature",
 							"flags": {},
 							"parameters": [
 								{
-									"id": 78,
+									"id": 84,
 									"name": "items",
 									"kind": 32768,
 									"kindString": "Parameter",
@@ -2354,7 +2354,7 @@
 										"elementType": {
 											"type": "reference",
 											"name": "IItem",
-											"id": 1
+											"id": 7
 										}
 									}
 								}
@@ -2364,7 +2364,7 @@
 								"elementType": {
 									"type": "reference",
 									"name": "IItem",
-									"id": 1
+									"id": 7
 								}
 							}
 						}
@@ -2388,7 +2388,7 @@
 					]
 				},
 				{
-					"id": 62,
+					"id": 68,
 					"name": "substringBy",
 					"kind": 2048,
 					"kindString": "Method",
@@ -2397,14 +2397,14 @@
 					},
 					"signatures": [
 						{
-							"id": 63,
+							"id": 69,
 							"name": "substringBy",
 							"kind": 4096,
 							"kindString": "Call signature",
 							"flags": {},
 							"parameters": [
 								{
-									"id": 64,
+									"id": 70,
 									"name": "length",
 									"kind": 32768,
 									"kindString": "Parameter",
@@ -2415,7 +2415,7 @@
 									}
 								},
 								{
-									"id": 65,
+									"id": 71,
 									"name": "predicate",
 									"kind": 32768,
 									"kindString": "Parameter",
@@ -2423,21 +2423,21 @@
 									"type": {
 										"type": "reflection",
 										"declaration": {
-											"id": 66,
+											"id": 72,
 											"name": "__type",
 											"kind": 65536,
 											"kindString": "Type literal",
 											"flags": {},
 											"signatures": [
 												{
-													"id": 67,
+													"id": 73,
 													"name": "__call",
 													"kind": 4096,
 													"kindString": "Call signature",
 													"flags": {},
 													"parameters": [
 														{
-															"id": 68,
+															"id": 74,
 															"name": "value",
 															"kind": 32768,
 															"kindString": "Parameter",
@@ -2468,21 +2468,21 @@
 							"type": {
 								"type": "reflection",
 								"declaration": {
-									"id": 69,
+									"id": 75,
 									"name": "__type",
 									"kind": 65536,
 									"kindString": "Type literal",
 									"flags": {},
 									"signatures": [
 										{
-											"id": 70,
+											"id": 76,
 											"name": "__call",
 											"kind": 4096,
 											"kindString": "Call signature",
 											"flags": {},
 											"parameters": [
 												{
-													"id": 71,
+													"id": 77,
 													"name": "value",
 													"kind": 32768,
 													"kindString": "Parameter",
@@ -2519,7 +2519,7 @@
 					]
 				},
 				{
-					"id": 56,
+					"id": 62,
 					"name": "trackChanges",
 					"kind": 2048,
 					"kindString": "Method",
@@ -2528,14 +2528,14 @@
 					},
 					"signatures": [
 						{
-							"id": 57,
+							"id": 63,
 							"name": "trackChanges",
 							"kind": 4096,
 							"kindString": "Call signature",
 							"flags": {},
 							"parameters": [
 								{
-									"id": 58,
+									"id": 64,
 									"name": "body",
 									"kind": 32768,
 									"kindString": "Parameter",
@@ -2543,14 +2543,14 @@
 									"type": {
 										"type": "reference",
 										"name": "IItem",
-										"id": 1
+										"id": 7
 									}
 								}
 							],
 							"type": {
 								"type": "reference",
 								"name": "IDynamoDBModelTrack",
-								"id": 7
+								"id": 13
 							}
 						}
 					],
@@ -2563,7 +2563,7 @@
 					]
 				},
 				{
-					"id": 79,
+					"id": 85,
 					"name": "validate",
 					"kind": 2048,
 					"kindString": "Method",
@@ -2572,14 +2572,14 @@
 					},
 					"signatures": [
 						{
-							"id": 80,
+							"id": 86,
 							"name": "validate",
 							"kind": 4096,
 							"kindString": "Call signature",
 							"flags": {},
 							"parameters": [
 								{
-									"id": 81,
+									"id": 87,
 									"name": "body",
 									"kind": 32768,
 									"kindString": "Parameter",
@@ -2587,7 +2587,7 @@
 									"type": {
 										"type": "reference",
 										"name": "IItem",
-										"id": 1
+										"id": 7
 									}
 								}
 							],
@@ -2611,38 +2611,38 @@
 					"title": "Constructors",
 					"kind": 512,
 					"children": [
-						53
+						59
 					]
 				},
 				{
 					"title": "Properties",
 					"kind": 1024,
 					"children": [
-						40,
-						41,
-						44,
-						42,
-						43,
-						45,
 						46,
 						47,
-						48,
-						52,
-						49,
 						50,
-						51
+						48,
+						49,
+						51,
+						52,
+						53,
+						54,
+						58,
+						55,
+						56,
+						57
 					]
 				},
 				{
 					"title": "Methods",
 					"kind": 2048,
 					"children": [
-						72,
-						59,
-						74,
+						78,
+						65,
+						80,
+						68,
 						62,
-						56,
-						79
+						85
 					]
 				}
 			],
@@ -2657,19 +2657,19 @@
 				{
 					"type": "reference",
 					"name": "DefaultModel",
-					"id": 139
+					"id": 145
 				}
 			],
 			"implementedTypes": [
 				{
 					"type": "reference",
 					"name": "IModel",
-					"id": 25
+					"id": 31
 				}
 			]
 		},
 		{
-			"id": 101,
+			"id": 107,
 			"name": "IDefaultModel",
 			"kind": 256,
 			"kindString": "Interface",
@@ -2678,7 +2678,7 @@
 			},
 			"children": [
 				{
-					"id": 126,
+					"id": 132,
 					"name": "data",
 					"kind": 1024,
 					"kindString": "Property",
@@ -2697,17 +2697,17 @@
 						"elementType": {
 							"type": "reference",
 							"name": "IItem",
-							"id": 1
+							"id": 7
 						}
 					},
 					"inheritedFrom": {
 						"type": "reference",
 						"name": "IModel.data",
-						"id": 26
+						"id": 32
 					}
 				},
 				{
-					"id": 127,
+					"id": 133,
 					"name": "documentClient",
 					"kind": 1024,
 					"kindString": "Property",
@@ -2728,11 +2728,11 @@
 					"inheritedFrom": {
 						"type": "reference",
 						"name": "IModel.documentClient",
-						"id": 27
+						"id": 33
 					}
 				},
 				{
-					"id": 130,
+					"id": 136,
 					"name": "hasTenantRegExp",
 					"kind": 1024,
 					"kindString": "Property",
@@ -2754,11 +2754,11 @@
 					"inheritedFrom": {
 						"type": "reference",
 						"name": "IModel.hasTenantRegExp",
-						"id": 30
+						"id": 36
 					}
 				},
 				{
-					"id": 128,
+					"id": 134,
 					"name": "hash",
 					"kind": 1024,
 					"kindString": "Property",
@@ -2779,11 +2779,11 @@
 					"inheritedFrom": {
 						"type": "reference",
 						"name": "IModel.hash",
-						"id": 28
+						"id": 34
 					}
 				},
 				{
-					"id": 129,
+					"id": 135,
 					"name": "hashType",
 					"kind": 1024,
 					"kindString": "Property",
@@ -2804,11 +2804,11 @@
 					"inheritedFrom": {
 						"type": "reference",
 						"name": "IModel.hashType",
-						"id": 29
+						"id": 35
 					}
 				},
 				{
-					"id": 131,
+					"id": 137,
 					"name": "indexName",
 					"kind": 1024,
 					"kindString": "Property",
@@ -2829,11 +2829,11 @@
 					"inheritedFrom": {
 						"type": "reference",
 						"name": "IModel.indexName",
-						"id": 31
+						"id": 37
 					}
 				},
 				{
-					"id": 132,
+					"id": 138,
 					"name": "maxGSIK",
 					"kind": 1024,
 					"kindString": "Property",
@@ -2854,11 +2854,11 @@
 					"inheritedFrom": {
 						"type": "reference",
 						"name": "IModel.maxGSIK",
-						"id": 32
+						"id": 38
 					}
 				},
 				{
-					"id": 133,
+					"id": 139,
 					"name": "range",
 					"kind": 1024,
 					"kindString": "Property",
@@ -2880,11 +2880,11 @@
 					"inheritedFrom": {
 						"type": "reference",
 						"name": "IModel.range",
-						"id": 33
+						"id": 39
 					}
 				},
 				{
-					"id": 134,
+					"id": 140,
 					"name": "rangeType",
 					"kind": 1024,
 					"kindString": "Property",
@@ -2905,11 +2905,11 @@
 					"inheritedFrom": {
 						"type": "reference",
 						"name": "IModel.rangeType",
-						"id": 34
+						"id": 40
 					}
 				},
 				{
-					"id": 138,
+					"id": 144,
 					"name": "struct",
 					"kind": 1024,
 					"kindString": "Property",
@@ -2930,11 +2930,11 @@
 					"inheritedFrom": {
 						"type": "reference",
 						"name": "IModel.struct",
-						"id": 38
+						"id": 44
 					}
 				},
 				{
-					"id": 135,
+					"id": 141,
 					"name": "table",
 					"kind": 1024,
 					"kindString": "Property",
@@ -2955,11 +2955,11 @@
 					"inheritedFrom": {
 						"type": "reference",
 						"name": "IModel.table",
-						"id": 35
+						"id": 41
 					}
 				},
 				{
-					"id": 136,
+					"id": 142,
 					"name": "tenant",
 					"kind": 1024,
 					"kindString": "Property",
@@ -2981,11 +2981,11 @@
 					"inheritedFrom": {
 						"type": "reference",
 						"name": "IModel.tenant",
-						"id": 36
+						"id": 42
 					}
 				},
 				{
-					"id": 137,
+					"id": 143,
 					"name": "track",
 					"kind": 1024,
 					"kindString": "Property",
@@ -3006,11 +3006,11 @@
 					"inheritedFrom": {
 						"type": "reference",
 						"name": "IModel.track",
-						"id": 37
+						"id": 43
 					}
 				},
 				{
-					"id": 102,
+					"id": 108,
 					"name": "callback",
 					"kind": 2048,
 					"kindString": "Method",
@@ -3019,14 +3019,14 @@
 					},
 					"signatures": [
 						{
-							"id": 103,
+							"id": 109,
 							"name": "callback",
 							"kind": 4096,
 							"kindString": "Call signature",
 							"flags": {},
 							"parameters": [
 								{
-									"id": 104,
+									"id": 110,
 									"name": "callback",
 									"kind": 32768,
 									"kindString": "Parameter",
@@ -3034,21 +3034,21 @@
 									"type": {
 										"type": "reflection",
 										"declaration": {
-											"id": 105,
+											"id": 111,
 											"name": "__type",
 											"kind": 65536,
 											"kindString": "Type literal",
 											"flags": {},
 											"signatures": [
 												{
-													"id": 106,
+													"id": 112,
 													"name": "__call",
 													"kind": 4096,
 													"kindString": "Call signature",
 													"flags": {},
 													"parameters": [
 														{
-															"id": 107,
+															"id": 113,
 															"name": "error",
 															"kind": 32768,
 															"kindString": "Parameter",
@@ -3068,7 +3068,7 @@
 															}
 														},
 														{
-															"id": 108,
+															"id": 114,
 															"name": "data",
 															"kind": 32768,
 															"kindString": "Parameter",
@@ -3081,7 +3081,7 @@
 																	{
 																		"type": "reference",
 																		"name": "IItem",
-																		"id": 1
+																		"id": 7
 																	},
 																	{
 																		"type": "intrinsic",
@@ -3100,7 +3100,7 @@
 											"sources": [
 												{
 													"fileName": "default_model.ts",
-													"line": 39,
+													"line": 40,
 													"character": 20
 												}
 											]
@@ -3117,13 +3117,13 @@
 					"sources": [
 						{
 							"fileName": "default_model.ts",
-							"line": 39,
+							"line": 40,
 							"character": 10
 						}
 					]
 				},
 				{
-					"id": 117,
+					"id": 123,
 					"name": "create",
 					"kind": 2048,
 					"kindString": "Method",
@@ -3132,14 +3132,14 @@
 					},
 					"signatures": [
 						{
-							"id": 118,
+							"id": 124,
 							"name": "create",
 							"kind": 4096,
 							"kindString": "Call signature",
 							"flags": {},
 							"parameters": [
 								{
-									"id": 119,
+									"id": 125,
 									"name": "body",
 									"kind": 32768,
 									"kindString": "Parameter",
@@ -3147,14 +3147,58 @@
 									"type": {
 										"type": "reference",
 										"name": "IItem",
-										"id": 1
+										"id": 7
 									}
 								}
 							],
 							"type": {
 								"type": "reference",
 								"name": "IDefaultModel",
-								"id": 101
+								"id": 107
+							}
+						}
+					],
+					"sources": [
+						{
+							"fileName": "default_model.ts",
+							"line": 44,
+							"character": 8
+						}
+					]
+				},
+				{
+					"id": 120,
+					"name": "delete",
+					"kind": 2048,
+					"kindString": "Method",
+					"flags": {
+						"isExported": true
+					},
+					"signatures": [
+						{
+							"id": 121,
+							"name": "delete",
+							"kind": 4096,
+							"kindString": "Call signature",
+							"flags": {},
+							"parameters": [
+								{
+									"id": 122,
+									"name": "key",
+									"kind": 32768,
+									"kindString": "Parameter",
+									"flags": {},
+									"type": {
+										"type": "reference",
+										"name": "IDynamoDBKey",
+										"id": 10
+									}
+								}
+							],
+							"type": {
+								"type": "reference",
+								"name": "IDefaultModel",
+								"id": 107
 							}
 						}
 					],
@@ -3167,51 +3211,7 @@
 					]
 				},
 				{
-					"id": 114,
-					"name": "delete",
-					"kind": 2048,
-					"kindString": "Method",
-					"flags": {
-						"isExported": true
-					},
-					"signatures": [
-						{
-							"id": 115,
-							"name": "delete",
-							"kind": 4096,
-							"kindString": "Call signature",
-							"flags": {},
-							"parameters": [
-								{
-									"id": 116,
-									"name": "key",
-									"kind": 32768,
-									"kindString": "Parameter",
-									"flags": {},
-									"type": {
-										"type": "reference",
-										"name": "IDynamoDBKey",
-										"id": 4
-									}
-								}
-							],
-							"type": {
-								"type": "reference",
-								"name": "IDefaultModel",
-								"id": 101
-							}
-						}
-					],
-					"sources": [
-						{
-							"fileName": "default_model.ts",
-							"line": 42,
-							"character": 8
-						}
-					]
-				},
-				{
-					"id": 111,
+					"id": 117,
 					"name": "get",
 					"kind": 2048,
 					"kindString": "Method",
@@ -3220,14 +3220,14 @@
 					},
 					"signatures": [
 						{
-							"id": 112,
+							"id": 118,
 							"name": "get",
 							"kind": 4096,
 							"kindString": "Call signature",
 							"flags": {},
 							"parameters": [
 								{
-									"id": 113,
+									"id": 119,
 									"name": "key",
 									"kind": 32768,
 									"kindString": "Parameter",
@@ -3235,27 +3235,27 @@
 									"type": {
 										"type": "reference",
 										"name": "IDynamoDBKey",
-										"id": 4
+										"id": 10
 									}
 								}
 							],
 							"type": {
 								"type": "reference",
 								"name": "IDefaultModel",
-								"id": 101
+								"id": 107
 							}
 						}
 					],
 					"sources": [
 						{
 							"fileName": "default_model.ts",
-							"line": 41,
+							"line": 42,
 							"character": 5
 						}
 					]
 				},
 				{
-					"id": 123,
+					"id": 129,
 					"name": "index",
 					"kind": 2048,
 					"kindString": "Method",
@@ -3264,14 +3264,14 @@
 					},
 					"signatures": [
 						{
-							"id": 124,
+							"id": 130,
 							"name": "index",
 							"kind": 4096,
 							"kindString": "Call signature",
 							"flags": {},
 							"parameters": [
 								{
-									"id": 125,
+									"id": 131,
 									"name": "options",
 									"kind": 32768,
 									"kindString": "Parameter",
@@ -3281,27 +3281,27 @@
 									"type": {
 										"type": "reference",
 										"name": "IDynamoDBModelScanOptions",
-										"id": 86
+										"id": 92
 									}
 								}
 							],
 							"type": {
 								"type": "reference",
 								"name": "IDefaultModel",
-								"id": 101
+								"id": 107
 							}
 						}
 					],
 					"sources": [
 						{
 							"fileName": "default_model.ts",
-							"line": 45,
+							"line": 46,
 							"character": 7
 						}
 					]
 				},
 				{
-					"id": 109,
+					"id": 115,
 					"name": "promise",
 					"kind": 2048,
 					"kindString": "Method",
@@ -3310,7 +3310,7 @@
 					},
 					"signatures": [
 						{
-							"id": 110,
+							"id": 116,
 							"name": "promise",
 							"kind": 4096,
 							"kindString": "Call signature",
@@ -3325,7 +3325,7 @@
 											{
 												"type": "reference",
 												"name": "IItem",
-												"id": 1
+												"id": 7
 											},
 											{
 												"type": "intrinsic",
@@ -3340,13 +3340,13 @@
 					"sources": [
 						{
 							"fileName": "default_model.ts",
-							"line": 40,
+							"line": 41,
 							"character": 9
 						}
 					]
 				},
 				{
-					"id": 120,
+					"id": 126,
 					"name": "update",
 					"kind": 2048,
 					"kindString": "Method",
@@ -3355,14 +3355,14 @@
 					},
 					"signatures": [
 						{
-							"id": 121,
+							"id": 127,
 							"name": "update",
 							"kind": 4096,
 							"kindString": "Call signature",
 							"flags": {},
 							"parameters": [
 								{
-									"id": 122,
+									"id": 128,
 									"name": "body",
 									"kind": 32768,
 									"kindString": "Parameter",
@@ -3370,21 +3370,21 @@
 									"type": {
 										"type": "reference",
 										"name": "IItem",
-										"id": 1
+										"id": 7
 									}
 								}
 							],
 							"type": {
 								"type": "reference",
 								"name": "IDefaultModel",
-								"id": 101
+								"id": 107
 							}
 						}
 					],
 					"sources": [
 						{
 							"fileName": "default_model.ts",
-							"line": 44,
+							"line": 45,
 							"character": 8
 						}
 					]
@@ -3395,39 +3395,39 @@
 					"title": "Properties",
 					"kind": 1024,
 					"children": [
-						126,
-						127,
-						130,
-						128,
-						129,
-						131,
 						132,
 						133,
-						134,
-						138,
-						135,
 						136,
-						137
+						134,
+						135,
+						137,
+						138,
+						139,
+						140,
+						144,
+						141,
+						142,
+						143
 					]
 				},
 				{
 					"title": "Methods",
 					"kind": 2048,
 					"children": [
-						102,
-						117,
-						114,
-						111,
+						108,
 						123,
-						109,
-						120
+						120,
+						117,
+						129,
+						115,
+						126
 					]
 				}
 			],
 			"sources": [
 				{
 					"fileName": "default_model.ts",
-					"line": 38,
+					"line": 39,
 					"character": 30
 				}
 			],
@@ -3435,19 +3435,19 @@
 				{
 					"type": "reference",
 					"name": "IModel",
-					"id": 25
+					"id": 31
 				}
 			],
 			"implementedBy": [
 				{
 					"type": "reference",
 					"name": "DefaultModel",
-					"id": 139
+					"id": 145
 				}
 			]
 		},
 		{
-			"id": 4,
+			"id": 10,
 			"name": "IDynamoDBKey",
 			"kind": 256,
 			"kindString": "Interface",
@@ -3455,14 +3455,14 @@
 				"isExported": true
 			},
 			"indexSignature": {
-				"id": 5,
+				"id": 11,
 				"name": "__index",
 				"kind": 8192,
 				"kindString": "Index signature",
 				"flags": {},
 				"parameters": [
 					{
-						"id": 6,
+						"id": 12,
 						"name": "key",
 						"kind": 32768,
 						"kindString": "Parameter",
@@ -3487,7 +3487,7 @@
 			]
 		},
 		{
-			"id": 10,
+			"id": 16,
 			"name": "IDynamoDBModelConfig",
 			"kind": 256,
 			"kindString": "Interface",
@@ -3496,7 +3496,7 @@
 			},
 			"children": [
 				{
-					"id": 11,
+					"id": 17,
 					"name": "documentClient",
 					"kind": 1024,
 					"kindString": "Property",
@@ -3516,7 +3516,7 @@
 					}
 				},
 				{
-					"id": 12,
+					"id": 18,
 					"name": "hash",
 					"kind": 1024,
 					"kindString": "Property",
@@ -3536,7 +3536,7 @@
 					}
 				},
 				{
-					"id": 13,
+					"id": 19,
 					"name": "hashType",
 					"kind": 1024,
 					"kindString": "Property",
@@ -3566,7 +3566,7 @@
 					}
 				},
 				{
-					"id": 14,
+					"id": 20,
 					"name": "indexName",
 					"kind": 1024,
 					"kindString": "Property",
@@ -3587,7 +3587,7 @@
 					}
 				},
 				{
-					"id": 15,
+					"id": 21,
 					"name": "maxGSIK",
 					"kind": 1024,
 					"kindString": "Property",
@@ -3608,7 +3608,7 @@
 					}
 				},
 				{
-					"id": 16,
+					"id": 22,
 					"name": "range",
 					"kind": 1024,
 					"kindString": "Property",
@@ -3629,7 +3629,7 @@
 					}
 				},
 				{
-					"id": 17,
+					"id": 23,
 					"name": "rangeType",
 					"kind": 1024,
 					"kindString": "Property",
@@ -3659,7 +3659,7 @@
 					}
 				},
 				{
-					"id": 18,
+					"id": 24,
 					"name": "struct",
 					"kind": 1024,
 					"kindString": "Property",
@@ -3676,11 +3676,11 @@
 					"type": {
 						"type": "reference",
 						"name": "IDynamoDBModelStruct",
-						"id": 22
+						"id": 28
 					}
 				},
 				{
-					"id": 19,
+					"id": 25,
 					"name": "table",
 					"kind": 1024,
 					"kindString": "Property",
@@ -3700,7 +3700,7 @@
 					}
 				},
 				{
-					"id": 20,
+					"id": 26,
 					"name": "tenant",
 					"kind": 1024,
 					"kindString": "Property",
@@ -3721,7 +3721,7 @@
 					}
 				},
 				{
-					"id": 21,
+					"id": 27,
 					"name": "track",
 					"kind": 1024,
 					"kindString": "Property",
@@ -3747,17 +3747,17 @@
 					"title": "Properties",
 					"kind": 1024,
 					"children": [
-						11,
-						12,
-						13,
-						14,
-						15,
-						16,
 						17,
 						18,
 						19,
 						20,
-						21
+						21,
+						22,
+						23,
+						24,
+						25,
+						26,
+						27
 					]
 				}
 			],
@@ -3770,7 +3770,7 @@
 			]
 		},
 		{
-			"id": 206,
+			"id": 212,
 			"name": "IDynamoDBModelGlobalConfig",
 			"kind": 256,
 			"kindString": "Interface",
@@ -3779,7 +3779,7 @@
 			},
 			"children": [
 				{
-					"id": 209,
+					"id": 215,
 					"name": "documentClient",
 					"kind": 1024,
 					"kindString": "Property",
@@ -3800,7 +3800,7 @@
 					}
 				},
 				{
-					"id": 208,
+					"id": 214,
 					"name": "table",
 					"kind": 1024,
 					"kindString": "Property",
@@ -3821,7 +3821,7 @@
 					}
 				},
 				{
-					"id": 207,
+					"id": 213,
 					"name": "tenant",
 					"kind": 1024,
 					"kindString": "Property",
@@ -3847,9 +3847,9 @@
 					"title": "Properties",
 					"kind": 1024,
 					"children": [
-						209,
-						208,
-						207
+						215,
+						214,
+						213
 					]
 				}
 			],
@@ -3862,15 +3862,33 @@
 			]
 		},
 		{
-			"id": 82,
+			"id": 88,
 			"name": "IDynamoDBModelScanData",
 			"kind": 256,
 			"kindString": "Interface",
 			"flags": {},
 			"children": [
 				{
-					"id": 84,
+					"id": 90,
 					"name": "count",
+					"kind": 1024,
+					"kindString": "Property",
+					"flags": {},
+					"sources": [
+						{
+							"fileName": "default_model.ts",
+							"line": 14,
+							"character": 7
+						}
+					],
+					"type": {
+						"type": "intrinsic",
+						"name": "number"
+					}
+				},
+				{
+					"id": 89,
+					"name": "items",
 					"kind": 1024,
 					"kindString": "Property",
 					"flags": {},
@@ -3882,34 +3900,16 @@
 						}
 					],
 					"type": {
-						"type": "intrinsic",
-						"name": "number"
-					}
-				},
-				{
-					"id": 83,
-					"name": "items",
-					"kind": 1024,
-					"kindString": "Property",
-					"flags": {},
-					"sources": [
-						{
-							"fileName": "default_model.ts",
-							"line": 12,
-							"character": 7
-						}
-					],
-					"type": {
 						"type": "array",
 						"elementType": {
 							"type": "reference",
 							"name": "IItem",
-							"id": 1
+							"id": 7
 						}
 					}
 				},
 				{
-					"id": 85,
+					"id": 91,
 					"name": "offset",
 					"kind": 1024,
 					"kindString": "Property",
@@ -3919,7 +3919,7 @@
 					"sources": [
 						{
 							"fileName": "default_model.ts",
-							"line": 14,
+							"line": 15,
 							"character": 8
 						}
 					],
@@ -3934,22 +3934,22 @@
 					"title": "Properties",
 					"kind": 1024,
 					"children": [
-						84,
-						83,
-						85
+						90,
+						89,
+						91
 					]
 				}
 			],
 			"sources": [
 				{
 					"fileName": "default_model.ts",
-					"line": 11,
+					"line": 12,
 					"character": 32
 				}
 			]
 		},
 		{
-			"id": 86,
+			"id": 92,
 			"name": "IDynamoDBModelScanOptions",
 			"kind": 256,
 			"kindString": "Interface",
@@ -3958,7 +3958,7 @@
 			},
 			"children": [
 				{
-					"id": 90,
+					"id": 96,
 					"name": "attributes",
 					"kind": 1024,
 					"kindString": "Property",
@@ -3969,7 +3969,7 @@
 					"sources": [
 						{
 							"fileName": "default_model.ts",
-							"line": 21,
+							"line": 22,
 							"character": 12
 						}
 					],
@@ -3979,8 +3979,50 @@
 					}
 				},
 				{
-					"id": 89,
+					"id": 95,
 					"name": "filter",
+					"kind": 1024,
+					"kindString": "Property",
+					"flags": {
+						"isExported": true,
+						"isOptional": true
+					},
+					"sources": [
+						{
+							"fileName": "default_model.ts",
+							"line": 21,
+							"character": 8
+						}
+					],
+					"type": {
+						"type": "intrinsic",
+						"name": "string"
+					}
+				},
+				{
+					"id": 93,
+					"name": "limit",
+					"kind": 1024,
+					"kindString": "Property",
+					"flags": {
+						"isExported": true,
+						"isOptional": true
+					},
+					"sources": [
+						{
+							"fileName": "default_model.ts",
+							"line": 19,
+							"character": 7
+						}
+					],
+					"type": {
+						"type": "intrinsic",
+						"name": "number"
+					}
+				},
+				{
+					"id": 94,
+					"name": "offset",
 					"kind": 1024,
 					"kindString": "Property",
 					"flags": {
@@ -3998,48 +4040,6 @@
 						"type": "intrinsic",
 						"name": "string"
 					}
-				},
-				{
-					"id": 87,
-					"name": "limit",
-					"kind": 1024,
-					"kindString": "Property",
-					"flags": {
-						"isExported": true,
-						"isOptional": true
-					},
-					"sources": [
-						{
-							"fileName": "default_model.ts",
-							"line": 18,
-							"character": 7
-						}
-					],
-					"type": {
-						"type": "intrinsic",
-						"name": "number"
-					}
-				},
-				{
-					"id": 88,
-					"name": "offset",
-					"kind": 1024,
-					"kindString": "Property",
-					"flags": {
-						"isExported": true,
-						"isOptional": true
-					},
-					"sources": [
-						{
-							"fileName": "default_model.ts",
-							"line": 19,
-							"character": 8
-						}
-					],
-					"type": {
-						"type": "intrinsic",
-						"name": "string"
-					}
 				}
 			],
 			"groups": [
@@ -4047,23 +4047,23 @@
 					"title": "Properties",
 					"kind": 1024,
 					"children": [
-						90,
-						89,
-						87,
-						88
+						96,
+						95,
+						93,
+						94
 					]
 				}
 			],
 			"sources": [
 				{
 					"fileName": "default_model.ts",
-					"line": 17,
+					"line": 18,
 					"character": 42
 				}
 			]
 		},
 		{
-			"id": 22,
+			"id": 28,
 			"name": "IDynamoDBModelStruct",
 			"kind": 256,
 			"kindString": "Interface",
@@ -4071,14 +4071,14 @@
 				"isExported": true
 			},
 			"indexSignature": {
-				"id": 23,
+				"id": 29,
 				"name": "__index",
 				"kind": 8192,
 				"kindString": "Index signature",
 				"flags": {},
 				"parameters": [
 					{
-						"id": 24,
+						"id": 30,
 						"name": "key",
 						"kind": 32768,
 						"kindString": "Parameter",
@@ -4103,7 +4103,7 @@
 			]
 		},
 		{
-			"id": 7,
+			"id": 13,
 			"name": "IDynamoDBModelTrack",
 			"kind": 256,
 			"kindString": "Interface",
@@ -4112,7 +4112,7 @@
 			},
 			"children": [
 				{
-					"id": 9,
+					"id": 15,
 					"name": "createdAt",
 					"kind": 1024,
 					"kindString": "Property",
@@ -4133,7 +4133,7 @@
 					}
 				},
 				{
-					"id": 8,
+					"id": 14,
 					"name": "updatedAt",
 					"kind": 1024,
 					"kindString": "Property",
@@ -4159,8 +4159,8 @@
 					"title": "Properties",
 					"kind": 1024,
 					"children": [
-						9,
-						8
+						15,
+						14
 					]
 				}
 			],
@@ -4173,20 +4173,20 @@
 			]
 		},
 		{
-			"id": 94,
+			"id": 100,
 			"name": "IExpressionAttributeNames",
 			"kind": 256,
 			"kindString": "Interface",
 			"flags": {},
 			"indexSignature": {
-				"id": 95,
+				"id": 101,
 				"name": "__index",
 				"kind": 8192,
 				"kindString": "Index signature",
 				"flags": {},
 				"parameters": [
 					{
-						"id": 96,
+						"id": 102,
 						"name": "key",
 						"kind": 32768,
 						"kindString": "Parameter",
@@ -4205,26 +4205,26 @@
 			"sources": [
 				{
 					"fileName": "default_model.ts",
-					"line": 28,
+					"line": 29,
 					"character": 35
 				}
 			]
 		},
 		{
-			"id": 91,
+			"id": 97,
 			"name": "IExpressionAttributeValues",
 			"kind": 256,
 			"kindString": "Interface",
 			"flags": {},
 			"indexSignature": {
-				"id": 92,
+				"id": 98,
 				"name": "__index",
 				"kind": 8192,
 				"kindString": "Index signature",
 				"flags": {},
 				"parameters": [
 					{
-						"id": 93,
+						"id": 99,
 						"name": "key",
 						"kind": 32768,
 						"kindString": "Parameter",
@@ -4243,13 +4243,13 @@
 			"sources": [
 				{
 					"fileName": "default_model.ts",
-					"line": 24,
+					"line": 25,
 					"character": 36
 				}
 			]
 		},
 		{
-			"id": 1,
+			"id": 7,
 			"name": "IItem",
 			"kind": 256,
 			"kindString": "Interface",
@@ -4257,14 +4257,14 @@
 				"isExported": true
 			},
 			"indexSignature": {
-				"id": 2,
+				"id": 8,
 				"name": "__index",
 				"kind": 8192,
 				"kindString": "Index signature",
 				"flags": {},
 				"parameters": [
 					{
-						"id": 3,
+						"id": 9,
 						"name": "key",
 						"kind": 32768,
 						"kindString": "Parameter",
@@ -4289,7 +4289,7 @@
 			]
 		},
 		{
-			"id": 25,
+			"id": 31,
 			"name": "IModel",
 			"kind": 256,
 			"kindString": "Interface",
@@ -4298,7 +4298,7 @@
 			},
 			"children": [
 				{
-					"id": 26,
+					"id": 32,
 					"name": "data",
 					"kind": 1024,
 					"kindString": "Property",
@@ -4317,12 +4317,12 @@
 						"elementType": {
 							"type": "reference",
 							"name": "IItem",
-							"id": 1
+							"id": 7
 						}
 					}
 				},
 				{
-					"id": 27,
+					"id": 33,
 					"name": "documentClient",
 					"kind": 1024,
 					"kindString": "Property",
@@ -4342,7 +4342,7 @@
 					}
 				},
 				{
-					"id": 30,
+					"id": 36,
 					"name": "hasTenantRegExp",
 					"kind": 1024,
 					"kindString": "Property",
@@ -4363,7 +4363,7 @@
 					}
 				},
 				{
-					"id": 28,
+					"id": 34,
 					"name": "hash",
 					"kind": 1024,
 					"kindString": "Property",
@@ -4383,7 +4383,7 @@
 					}
 				},
 				{
-					"id": 29,
+					"id": 35,
 					"name": "hashType",
 					"kind": 1024,
 					"kindString": "Property",
@@ -4403,7 +4403,7 @@
 					}
 				},
 				{
-					"id": 31,
+					"id": 37,
 					"name": "indexName",
 					"kind": 1024,
 					"kindString": "Property",
@@ -4423,7 +4423,7 @@
 					}
 				},
 				{
-					"id": 32,
+					"id": 38,
 					"name": "maxGSIK",
 					"kind": 1024,
 					"kindString": "Property",
@@ -4443,7 +4443,7 @@
 					}
 				},
 				{
-					"id": 33,
+					"id": 39,
 					"name": "range",
 					"kind": 1024,
 					"kindString": "Property",
@@ -4464,7 +4464,7 @@
 					}
 				},
 				{
-					"id": 34,
+					"id": 40,
 					"name": "rangeType",
 					"kind": 1024,
 					"kindString": "Property",
@@ -4484,7 +4484,7 @@
 					}
 				},
 				{
-					"id": 38,
+					"id": 44,
 					"name": "struct",
 					"kind": 1024,
 					"kindString": "Property",
@@ -4504,7 +4504,7 @@
 					}
 				},
 				{
-					"id": 35,
+					"id": 41,
 					"name": "table",
 					"kind": 1024,
 					"kindString": "Property",
@@ -4524,7 +4524,7 @@
 					}
 				},
 				{
-					"id": 36,
+					"id": 42,
 					"name": "tenant",
 					"kind": 1024,
 					"kindString": "Property",
@@ -4545,7 +4545,7 @@
 					}
 				},
 				{
-					"id": 37,
+					"id": 43,
 					"name": "track",
 					"kind": 1024,
 					"kindString": "Property",
@@ -4570,19 +4570,19 @@
 					"title": "Properties",
 					"kind": 1024,
 					"children": [
-						26,
-						27,
-						30,
-						28,
-						29,
-						31,
 						32,
 						33,
-						34,
-						38,
-						35,
 						36,
-						37
+						34,
+						35,
+						37,
+						38,
+						39,
+						40,
+						44,
+						41,
+						42,
+						43
 					]
 				}
 			],
@@ -4597,31 +4597,31 @@
 				{
 					"type": "reference",
 					"name": "IDefaultModel",
-					"id": 101
+					"id": 107
 				}
 			],
 			"implementedBy": [
 				{
 					"type": "reference",
 					"name": "DefaultModel",
-					"id": 139
+					"id": 145
 				},
 				{
 					"type": "reference",
 					"name": "Model",
-					"id": 39
+					"id": 45
 				}
 			]
 		},
 		{
-			"id": 97,
+			"id": 103,
 			"name": "IUpdateExpressionAttributes",
 			"kind": 256,
 			"kindString": "Interface",
 			"flags": {},
 			"children": [
 				{
-					"id": 99,
+					"id": 105,
 					"name": "ExpressionAttributeNames",
 					"kind": 1024,
 					"kindString": "Property",
@@ -4629,18 +4629,18 @@
 					"sources": [
 						{
 							"fileName": "default_model.ts",
-							"line": 34,
+							"line": 35,
 							"character": 26
 						}
 					],
 					"type": {
 						"type": "reference",
 						"name": "IExpressionAttributeNames",
-						"id": 94
+						"id": 100
 					}
 				},
 				{
-					"id": 100,
+					"id": 106,
 					"name": "ExpressionAttributeValues",
 					"kind": 1024,
 					"kindString": "Property",
@@ -4648,18 +4648,18 @@
 					"sources": [
 						{
 							"fileName": "default_model.ts",
-							"line": 35,
+							"line": 36,
 							"character": 27
 						}
 					],
 					"type": {
 						"type": "reference",
 						"name": "IExpressionAttributeValues",
-						"id": 91
+						"id": 97
 					}
 				},
 				{
-					"id": 98,
+					"id": 104,
 					"name": "UpdateExpression",
 					"kind": 1024,
 					"kindString": "Property",
@@ -4667,7 +4667,7 @@
 					"sources": [
 						{
 							"fileName": "default_model.ts",
-							"line": 33,
+							"line": 34,
 							"character": 18
 						}
 					],
@@ -4682,22 +4682,22 @@
 					"title": "Properties",
 					"kind": 1024,
 					"children": [
-						99,
-						100,
-						98
+						105,
+						106,
+						104
 					]
 				}
 			],
 			"sources": [
 				{
 					"fileName": "default_model.ts",
-					"line": 32,
+					"line": 33,
 					"character": 37
 				}
 			]
 		},
 		{
-			"id": 210,
+			"id": 216,
 			"name": "global",
 			"kind": 32,
 			"kindString": "Variable",
@@ -4712,11 +4712,11 @@
 			"type": {
 				"type": "reference",
 				"name": "IDynamoDBModelGlobalConfig",
-				"id": 206
+				"id": 212
 			}
 		},
 		{
-			"id": 241,
+			"id": 4,
 			"name": "atob",
 			"kind": 64,
 			"kindString": "Function",
@@ -4725,14 +4725,14 @@
 			},
 			"signatures": [
 				{
-					"id": 242,
+					"id": 5,
 					"name": "atob",
 					"kind": 4096,
 					"kindString": "Call signature",
 					"flags": {},
 					"parameters": [
 						{
-							"id": 243,
+							"id": 6,
 							"name": "string",
 							"kind": 32768,
 							"kindString": "Parameter",
@@ -4758,7 +4758,7 @@
 			]
 		},
 		{
-			"id": 238,
+			"id": 1,
 			"name": "btoa",
 			"kind": 64,
 			"kindString": "Function",
@@ -4767,14 +4767,14 @@
 			},
 			"signatures": [
 				{
-					"id": 239,
+					"id": 2,
 					"name": "btoa",
 					"kind": 4096,
 					"kindString": "Call signature",
 					"flags": {},
 					"parameters": [
 						{
-							"id": 240,
+							"id": 3,
 							"name": "string",
 							"kind": 32768,
 							"kindString": "Parameter",
@@ -4805,50 +4805,50 @@
 			"title": "Modules",
 			"kind": 2,
 			"children": [
-				237,
-				211
+				243,
+				217
 			]
 		},
 		{
 			"title": "Classes",
 			"kind": 128,
 			"children": [
-				139,
-				39
+				145,
+				45
 			]
 		},
 		{
 			"title": "Interfaces",
 			"kind": 256,
 			"children": [
-				101,
-				4,
+				107,
 				10,
-				206,
-				82,
-				86,
-				22,
+				16,
+				212,
+				88,
+				92,
+				28,
+				13,
+				100,
+				97,
 				7,
-				94,
-				91,
-				1,
-				25,
-				97
+				31,
+				103
 			]
 		},
 		{
 			"title": "Variables",
 			"kind": 32,
 			"children": [
-				210
+				216
 			]
 		},
 		{
 			"title": "Functions",
 			"kind": 64,
 			"children": [
-				241,
-				238
+				4,
+				1
 			]
 		}
 	]
