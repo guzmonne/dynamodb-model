@@ -475,15 +475,9 @@ export abstract class Model implements IModel {
     if (item.gsik !== undefined) delete item.gsik;
     return item;
   }
+
   removeTenant(items: IItem): IItem;
   removeTenant(items: IItem[]): IItem[];
-  /**
-   * Removes all `tenant` related data from an item, or a list of items.
-   *
-   * @param {(IItem | IItem[])} items
-   * @returns {(IItem | IItem[])}
-   * @memberof Model
-   */
   removeTenant(items: IItem | IItem[]): IItem | IItem[] {
     if (this.tenant === undefined) return items;
 

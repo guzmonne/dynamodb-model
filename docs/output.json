@@ -1509,15 +1509,6 @@
 					"flags": {
 						"isExported": true
 					},
-					"comment": {
-						"shortText": "Removes all `tenant` related data from an item, or a list of items.",
-						"tags": [
-							{
-								"tag": "memberof",
-								"text": "Model\n"
-							}
-						]
-					},
 					"signatures": [
 						{
 							"id": 207,
@@ -1525,9 +1516,6 @@
 							"kind": 4096,
 							"kindString": "Call signature",
 							"flags": {},
-							"comment": {
-								"shortText": "Removes all `tenant` related data from an item, or a list of items."
-							},
 							"parameters": [
 								{
 									"id": 208,
@@ -1535,7 +1523,6 @@
 									"kind": 32768,
 									"kindString": "Parameter",
 									"flags": {},
-									"comment": {},
 									"type": {
 										"type": "reference",
 										"name": "IItem",
@@ -1565,9 +1552,6 @@
 							"kind": 4096,
 							"kindString": "Call signature",
 							"flags": {},
-							"comment": {
-								"shortText": "Removes all `tenant` related data from an item, or a list of items."
-							},
 							"parameters": [
 								{
 									"id": 210,
@@ -1575,7 +1559,6 @@
 									"kind": 32768,
 									"kindString": "Parameter",
 									"flags": {},
-									"comment": {},
 									"type": {
 										"type": "array",
 										"elementType": {
@@ -1609,17 +1592,17 @@
 					"sources": [
 						{
 							"fileName": "model.ts",
-							"line": 478,
-							"character": 14
-						},
-						{
-							"fileName": "model.ts",
 							"line": 479,
 							"character": 14
 						},
 						{
 							"fileName": "model.ts",
-							"line": 487,
+							"line": 480,
+							"character": 14
+						},
+						{
+							"fileName": "model.ts",
+							"line": 481,
 							"character": 14
 						}
 					],
@@ -1800,7 +1783,7 @@
 					"sources": [
 						{
 							"fileName": "model.ts",
-							"line": 506,
+							"line": 500,
 							"character": 10
 						}
 					],
@@ -2529,15 +2512,6 @@
 					"flags": {
 						"isExported": true
 					},
-					"comment": {
-						"shortText": "Removes all `tenant` related data from an item, or a list of items.",
-						"tags": [
-							{
-								"tag": "memberof",
-								"text": "Model\n"
-							}
-						]
-					},
 					"signatures": [
 						{
 							"id": 79,
@@ -2545,9 +2519,6 @@
 							"kind": 4096,
 							"kindString": "Call signature",
 							"flags": {},
-							"comment": {
-								"shortText": "Removes all `tenant` related data from an item, or a list of items."
-							},
 							"parameters": [
 								{
 									"id": 80,
@@ -2555,7 +2526,6 @@
 									"kind": 32768,
 									"kindString": "Parameter",
 									"flags": {},
-									"comment": {},
 									"type": {
 										"type": "reference",
 										"name": "IItem",
@@ -2580,9 +2550,6 @@
 							"kind": 4096,
 							"kindString": "Call signature",
 							"flags": {},
-							"comment": {
-								"shortText": "Removes all `tenant` related data from an item, or a list of items."
-							},
 							"parameters": [
 								{
 									"id": 82,
@@ -2590,7 +2557,6 @@
 									"kind": 32768,
 									"kindString": "Parameter",
 									"flags": {},
-									"comment": {},
 									"type": {
 										"type": "array",
 										"elementType": {
@@ -2619,17 +2585,17 @@
 					"sources": [
 						{
 							"fileName": "model.ts",
-							"line": 478,
-							"character": 14
-						},
-						{
-							"fileName": "model.ts",
 							"line": 479,
 							"character": 14
 						},
 						{
 							"fileName": "model.ts",
-							"line": 487,
+							"line": 480,
+							"character": 14
+						},
+						{
+							"fileName": "model.ts",
+							"line": 481,
 							"character": 14
 						}
 					],
@@ -2736,7 +2702,7 @@
 					"sources": [
 						{
 							"fileName": "model.ts",
-							"line": 506,
+							"line": 500,
 							"character": 10
 						}
 					],
