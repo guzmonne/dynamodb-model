@@ -78,8 +78,12 @@ export class DefaultModel extends Model implements IDefaultModel {
     if (expressions.length === 0)
       throw new Error(`Can't construct UpdateExpression from the body`);
 
+    expressions = [`SET ${expressions[0]}`].concat(
+      expressions.slice(1, expressions.length)
+    );
+
     return {
-      UpdateExpression: expressions.join(','),
+      UpdateExpression: expressions.join(', '),
       ExpressionAttributeNames: attributeNames,
       ExpressionAttributeValues: attributeValues
     };

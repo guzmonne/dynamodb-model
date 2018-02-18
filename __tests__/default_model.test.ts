@@ -287,7 +287,7 @@ describe('DefaultModel', () => {
             Key: {
               id: tenant + '|' + id
             },
-            UpdateExpression: '#age = :age',
+            UpdateExpression: 'SET #age = :age',
             ExpressionAttributeNames: {
               '#age': 'age'
             },
@@ -361,7 +361,9 @@ describe('DefaultModel', () => {
         .promise()
         .then(() => {
           var params = updateStub.args[0][0];
-          expect(params.UpdateExpression).toEqual('#name = :name,#age = :age');
+          expect(params.UpdateExpression).toEqual(
+            'SET #name = :name, #age = :age'
+          );
           done();
         });
     });
