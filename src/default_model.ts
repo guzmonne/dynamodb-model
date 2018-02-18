@@ -229,7 +229,7 @@ export class DefaultModel extends Model implements IDefaultModel {
               ...(options.offset !== undefined
                 ? {
                     ExclusiveStartKey: this.getKey(
-                      JSON.parse(atob(options.offset))
+                      JSON.parse(atob(options.offset))[i]
                     )
                   }
                 : {})
