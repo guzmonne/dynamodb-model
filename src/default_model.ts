@@ -1,4 +1,5 @@
 import * as cuid from 'cuid';
+import { btoa } from './utils';
 import { pick, omit, range } from 'lodash';
 import {
   Model,
@@ -203,9 +204,11 @@ export class DefaultModel extends Model implements IDefaultModel {
         .promise()
         .then(data => {
           return {
-            items: this.removeTenant(data.Items as IItem[]),
+            items: data.Items as IItem[],
             count: data.Count,
-            offset: btoa(JSON.stringify(data.LastEvaluatedKey))
+            ...(data.LastEvaluatedKey !== undefined
+              ? { offset: btoa(JSON.stringify(data.LastEvaluatedKey)) }
+              : {})
           };
         });
 
@@ -215,42 +218,46 @@ export class DefaultModel extends Model implements IDefaultModel {
   private query(options: IDynamoDBModelScanOptions): IDefaultModel {
     this.call = () =>
       Promise.all(
-        range(0, this.maxGSIK).map(i =>
-          this.documentClient
-            .query({
-              TableName: this.table,
-              IndexName: this.indexName,
-              KeyConditionExpression: `#gsik = :gsik`,
-              ExpressionAttributeNames: {
-                '#gsik': 'gsik'
-              },
-              ExpressionAttributeValues: {
-                ':gsik': `${this.tenant}|${i}`
-              },
-              ...(options.limit !== undefined
-                ? { Limit: Math.floor(options.limit / this.maxGSIK) }
-                : {}),
-              ...(options.offset !== undefined
-                ? {
-                    ExclusiveStartKey: this.getKey(
-                      JSON.parse(atob(options.offset))
-                    )
-                  }
-                : {})
-            })
+        range(0, this.maxGSIK).map(i => {
+          var params = {
+            TableName: this.table,
+            IndexName: this.indexName,
+            KeyConditionExpression: `#gsik = :gsik`,
+            ExpressionAttributeNames: {
+              '#gsik': 'gsik'
+            },
+            ExpressionAttributeValues: {
+              ':gsik': `${this.tenant}|${i}`
+            },
+            ...(options.limit !== undefined
+              ? { Limit: Math.floor(options.limit / this.maxGSIK) }
+              : {}),
+            ...(options.offset !== undefined
+              ? {
+                  ExclusiveStartKey: this.getKey(
+                    JSON.parse(atob(options.offset))
+                  )
+                }
+              : {})
+          };
+
+          return this.documentClient
+            .query(params)
             .promise()
-            .then((data): IDynamoDBModelScanData => ({
-              items: data.Items || [],
-              count: data.Count || 0,
-              ...(data.LastEvaluatedKey !== undefined
-                ? {
-                    offset: JSON.stringify(
-                      this.removeTenant(data.LastEvaluatedKey)
-                    )
-                  }
-                : {})
-            }))
-        )
+            .then((data): IDynamoDBModelScanData => {
+              return {
+                items: data.Items || [],
+                count: data.Count || 0,
+                ...(data.LastEvaluatedKey !== undefined
+                  ? {
+                      offset: JSON.stringify(
+                        this.removeTenant(data.LastEvaluatedKey)
+                      )
+                    }
+                  : {})
+              };
+            });
+        })
       ).then((results: IDynamoDBModelScanData[]): IDynamoDBModelScanData =>
         results.reduce(
           (

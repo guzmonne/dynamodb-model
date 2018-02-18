@@ -1,10 +1,4 @@
-import * as AWS from 'aws-sdk';
-import { DynamoDBModel } from '../dist/';
-
-AWS.config.update({ region: 'us-east-1' });
-var DynamoDB = new AWS.DynamoDB({
-  endpoint: 'http://localhost:8989'
-});
+var { DynamoDB, documentClient } = require('./aws');
 
 DynamoDB.createTable({
   AttributeDefinitions: [
@@ -55,7 +49,3 @@ DynamoDB.createTable({
   .catch(error => {
     console.log(error);
   });
-
-export var documentClient = new AWS.DynamoDB.DocumentClient({
-  service: DynamoDB
-});

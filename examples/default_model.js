@@ -1,11 +1,10 @@
-import * as cuid from 'cuid';
-import { documentClient } from './setup';
-import { DynamoDBModel } from '../dist/';
-import { IDynamoDBModelConfig } from '../src/model';
+var cuid = require('cuid');
+var { documentClient } = require('./aws');
+var { DynamoDBModel } = require('../dist/');
 
 var tenant = cuid();
 
-var config: IDynamoDBModelConfig = {
+var config = {
   documentClient,
   table: 'DynamoDBUserModel',
   hash: 'id',
@@ -38,21 +37,19 @@ async function main() {
     var id = result.id;
     console.log('Creating a new user', JSON.stringify(result, null, 2));
     console.log(
-      `Getting the user`,
+      `\nGetting the user`,
       JSON.stringify(await getModel(id).promise(), null, 2)
     );
     console.log(
-      `Updating the user`,
+      `\nUpdating the user`,
       JSON.stringify(await updateModel(id).promise(), null, 2)
     );
     console.log(
-      `Getting list of users`,
-      JSON.stringify(await indexModel.promise()),
-      null,
-      2
+      `\nGetting list of users`,
+      JSON.stringify(await indexModel.promise(), null, 2)
     );
     console.log(
-      `Deleting the user`,
+      `\nDeleting the user`,
       JSON.stringify(await deleteModel(id).promise(), null, 2)
     );
   } catch (error) {

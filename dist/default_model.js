@@ -9,6 +9,7 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 const cuid = require("cuid");
+const utils_1 = require("./utils");
 const lodash_1 = require("lodash");
 const model_1 = require("./model");
 class DefaultModel extends model_1.Model {
@@ -30,8 +31,9 @@ class DefaultModel extends model_1.Model {
         }
         if (expressions.length === 0)
             throw new Error(`Can't construct UpdateExpression from the body`);
+        expressions = [`SET ${expressions[0]}`].concat(expressions.slice(1, expressions.length));
         return {
-            UpdateExpression: expressions.join(','),
+            UpdateExpression: expressions.join(', '),
             ExpressionAttributeNames: attributeNames,
             ExpressionAttributeValues: attributeValues
         };
@@ -119,33 +121,36 @@ class DefaultModel extends model_1.Model {
             : {})))
             .promise()
             .then(data => {
-            return {
-                items: this.removeTenant(data.Items),
-                count: data.Count,
-                offset: btoa(JSON.stringify(data.LastEvaluatedKey))
-            };
+            return Object.assign({ items: data.Items, count: data.Count }, (data.LastEvaluatedKey !== undefined
+                ? { offset: utils_1.btoa(JSON.stringify(data.LastEvaluatedKey)) }
+                : {}));
         });
         return this;
     }
     query(options) {
-        this.call = () => Promise.all(lodash_1.range(0, this.maxGSIK).map(i => this.documentClient
-            .query(Object.assign({ TableName: this.table, IndexName: this.indexName, KeyConditionExpression: `#gsik = :gsik`, ExpressionAttributeNames: {
-                '#gsik': 'gsik'
-            }, ExpressionAttributeValues: {
-                ':gsik': `${this.tenant}|${i}`
-            } }, (options.limit !== undefined
-            ? { Limit: Math.floor(options.limit / this.maxGSIK) }
-            : {}), (options.offset !== undefined
-            ? {
-                ExclusiveStartKey: this.getKey(JSON.parse(atob(options.offset)))
-            }
-            : {})))
-            .promise()
-            .then((data) => (Object.assign({ items: data.Items || [], count: data.Count || 0 }, (data.LastEvaluatedKey !== undefined
-            ? {
-                offset: JSON.stringify(this.removeTenant(data.LastEvaluatedKey))
-            }
-            : {})))))).then((results) => results.reduce((acc, result) => (Object.assign({}, acc, { items: acc.items.concat(this.removeTenant(result.items) || []), count: acc.count + result.count }, (result.offset !== undefined
+        this.call = () => Promise.all(lodash_1.range(0, this.maxGSIK).map(i => {
+            var params = Object.assign({ TableName: this.table, IndexName: this.indexName, KeyConditionExpression: `#gsik = :gsik`, ExpressionAttributeNames: {
+                    '#gsik': 'gsik'
+                }, ExpressionAttributeValues: {
+                    ':gsik': `${this.tenant}|${i}`
+                } }, (options.limit !== undefined
+                ? { Limit: Math.floor(options.limit / this.maxGSIK) }
+                : {}), (options.offset !== undefined
+                ? {
+                    ExclusiveStartKey: this.getKey(JSON.parse(atob(options.offset)))
+                }
+                : {}));
+            return this.documentClient
+                .query(params)
+                .promise()
+                .then((data) => {
+                return Object.assign({ items: data.Items || [], count: data.Count || 0 }, (data.LastEvaluatedKey !== undefined
+                    ? {
+                        offset: JSON.stringify(this.removeTenant(data.LastEvaluatedKey))
+                    }
+                    : {}));
+            });
+        })).then((results) => results.reduce((acc, result) => (Object.assign({}, acc, { items: acc.items.concat(this.removeTenant(result.items) || []), count: acc.count + result.count }, (result.offset !== undefined
             ? {
                 offset: acc.offset !== undefined
                     ? acc.offset + '|' + result.offset
