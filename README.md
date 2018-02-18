@@ -1,4 +1,4 @@
-# DynamoDB Models
+# DynamoDB Simple Model
 
 The AWS JavaScript SDK provides access to DynamoDB without restrains. You can accomplish a lot just by using it, but sometimes, you need to constrain this access, to avoid errors, or you need some functionality that is not directly available on the SDK. This library aims to solve some of these problems by providing a framework that provides:
 

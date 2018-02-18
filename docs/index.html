@@ -62,7 +62,7 @@
 	<div class="row">
 		<div class="col-8 col-content">
 			<div class="tsd-panel tsd-typography">
-				<h1 id="dynamodb-models">DynamoDB Models</h1>
+				<h1 id="dynamodb-simple-model">DynamoDB Simple Model</h1>
 				<p>The AWS JavaScript SDK provides access to DynamoDB without restrains. You can accomplish a lot just by using it, but sometimes, you need to constrain this access, to avoid errors, or you need some functionality that is not directly available on the SDK. This library aims to solve some of these problems by providing a framework that provides:</p>
 				<ul>
 					<li>The ability to configure a top-level schema.</li>
@@ -70,9 +70,15 @@
 					<li>The ability to extend the base model to include your methods.</li>
 					<li>The ability to handle a <code>tenant</code> attribute that would allow to segment the information of multiple clients on the same table.</li>
 				</ul>
+				<h2 id="install">Install</h2>
+				<p>You can get the code through <code>npm</code> or <code>yarn</code>.</p>
+				<pre><code>yarn <span class="hljs-keyword">add</span><span class="bash"> dynamodb-simple-model
+</span>
+npm install dynamodb-simple-model
+</code></pre><p><a href="https://www.npmjs.com/package/dynamodb-simple-model">Here is the link to the NPM site.</a></p>
 				<h2 id="getting-started">Getting Started</h2>
 				<p>Before we can start defining our models, we should configure the library:</p>
-				<pre><code class="lang-javascript"><span class="hljs-keyword">var</span> { DynamoDBModel } = <span class="hljs-built_in">require</span>(<span class="hljs-string">'dynamodb-model'</span>);
+				<pre><code class="lang-javascript"><span class="hljs-keyword">var</span> { DynamoDBModel } = <span class="hljs-built_in">require</span>(<span class="hljs-string">'dynamodb-simple-model'</span>);
 
 DynamoDBModel.config({
   <span class="hljs-attr">tenant</span>: process.env.TENANT,
@@ -83,7 +89,7 @@ DynamoDBModel.config({
 				<p>If the <code>config()</code> method is not run, the <code>tenant</code> value is going to be empty. Also, if the <code>documentClient</code> option is undefined, the library tries to create an <code>AWS.DynamoDB.DocumentClient</code> instance. The <code>table</code> option is useful if you are planning to store all the items on a single table, or if you want to use it as default. If you do not provide a <code>table</code> value as default, you must configure it as a static
 				Now we can define default instances of the models, or extend the <code>Base</code> class to include our logic.</p>
 				<h3 id="create-a-default-model">Create a default Model</h3>
-				<pre><code class="lang-javascript"><span class="hljs-keyword">import</span> { btoa } <span class="hljs-keyword">from</span> <span class="hljs-string">'dynamodb-models/dist/utils'</span>;
+				<pre><code class="lang-javascript"><span class="hljs-keyword">import</span> { btoa } <span class="hljs-keyword">from</span> <span class="hljs-string">'dynamodb-simple-models/dist/utils'</span>;
 
 <span class="hljs-keyword">var</span> UserModel = DynamoDBModel.create({
   <span class="hljs-attr">hash</span>: <span class="hljs-string">'id'</span>,
@@ -116,7 +122,16 @@ UserModel().update({
 UserModel().delete({<span class="hljs-attr">id</span>: <span class="hljs-string">'abc'</span>});
 
 <span class="hljs-comment">// Index</span>
-UserModel().index({<span class="hljs-attr">offset</span>: btoa(<span class="hljs-built_in">JSON</span>.stringify({<span class="hljs-number">0</span>: {<span class="hljs-attr">id</span>: <span class="hljs-string">'abc'</span>}})), <span class="hljs-attr">limit</span>: <span class="hljs-number">10</span>});
+<span class="hljs-comment">/**
+ * Offset values are handled as base64 encoded DynamoDB.DocumentClient keys.
+ * This is to simplify the handling of the offset values. There are some helper
+ * functions that can be taken from this library that can encode and decode
+ * base64 strings on NodeJS.
+ */</span>
+UserModel().index({
+  <span class="hljs-attr">offset</span>: btoa(<span class="hljs-built_in">JSON</span>.stringify({<span class="hljs-number">0</span>: {<span class="hljs-attr">id</span>: <span class="hljs-string">'abc'</span>}})),
+  <span class="hljs-attr">limit</span>: <span class="hljs-number">10</span>
+});
 
 <span class="hljs-comment">// All the methods describe before are lazily evaluated.</span>
 <span class="hljs-comment">// You have to call the `promise()` or `callback` methods on it for them to run.</span>
@@ -137,8 +152,7 @@ model.callback(<span class="hljs-function">(<span class="hljs-params">err, data<
 </code></pre>
 				<h3 id="extend-the-default-model">Extend the default model</h3>
 				<p>If you extend a model, you can create the default model class, add your own methods and then</p>
-				<pre><code class="lang-javascript"><span class="hljs-keyword">var</span> { DynamoDBModel, IDefaultModel, DefaultModel } = <span class="hljs-built_in">require</span>(<span class="hljs-string">'dynamodb-model'</span>);
-<span class="hljs-keyword">var</span>
+				<pre><code class="lang-javascript"><span class="hljs-keyword">var</span> { DynamoDBModel, IDefaultModel, DefaultModel } = <span class="hljs-built_in">require</span>(<span class="hljs-string">'dynamodb-simple-model'</span>);
 
 <span class="hljs-keyword">var</span> config = {
   <span class="hljs-attr">hash</span>: <span class="hljs-string">'id'</span>,
