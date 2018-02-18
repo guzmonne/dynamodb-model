@@ -480,10 +480,23 @@
 					"flags": {
 						"isExported": true
 					},
+					"comment": {
+						"shortText": "DynamoDBDocument client instance. Must be declared before configuring the\nmodel.",
+						"tags": [
+							{
+								"tag": "type",
+								"text": "{DocumentClient}"
+							},
+							{
+								"tag": "memberof",
+								"text": "Model\n"
+							}
+						]
+					},
 					"sources": [
 						{
 							"fileName": "model.ts",
-							"line": 283,
+							"line": 301,
 							"character": 16
 						}
 					],
@@ -511,10 +524,23 @@
 						"isExported": true,
 						"isOptional": true
 					},
+					"comment": {
+						"shortText": "Regular expression to use when checking if the `hash` key has the `tenant`\nprefixed.",
+						"tags": [
+							{
+								"tag": "type",
+								"text": "{RegExp}"
+							},
+							{
+								"tag": "memberof",
+								"text": "Model\n"
+							}
+						]
+					},
 					"sources": [
 						{
 							"fileName": "model.ts",
-							"line": 286,
+							"line": 323,
 							"character": 17
 						}
 					],
@@ -541,10 +567,23 @@
 					"flags": {
 						"isExported": true
 					},
+					"comment": {
+						"shortText": "The name of the `hash` key.",
+						"tags": [
+							{
+								"tag": "type",
+								"text": "{string}"
+							},
+							{
+								"tag": "memberof",
+								"text": "Model\n"
+							}
+						]
+					},
 					"sources": [
 						{
 							"fileName": "model.ts",
-							"line": 284,
+							"line": 308,
 							"character": 6
 						}
 					],
@@ -571,10 +610,23 @@
 					"flags": {
 						"isExported": true
 					},
+					"comment": {
+						"shortText": "The type of the `hash` key.",
+						"tags": [
+							{
+								"tag": "type",
+								"text": "{string}"
+							},
+							{
+								"tag": "memberof",
+								"text": "Model\n"
+							}
+						]
+					},
 					"sources": [
 						{
 							"fileName": "model.ts",
-							"line": 285,
+							"line": 315,
 							"character": 10
 						}
 					],
@@ -602,10 +654,23 @@
 					"flags": {
 						"isExported": true
 					},
+					"comment": {
+						"shortText": "The name of the index to use when running an `index` operation. By default\nif will be called `byGSIK`. If the index is not created before hand, and\nthe model is configured with a `tenant`, then the method will fail.",
+						"tags": [
+							{
+								"tag": "type",
+								"text": "{string}"
+							},
+							{
+								"tag": "memberof",
+								"text": "Model\n"
+							}
+						]
+					},
 					"sources": [
 						{
 							"fileName": "model.ts",
-							"line": 287,
+							"line": 332,
 							"character": 11
 						}
 					],
@@ -633,10 +698,23 @@
 					"flags": {
 						"isExported": true
 					},
+					"comment": {
+						"shortText": "The maximum GSIK values to use to index the models. This is necessary when\nconfiguring a `tenant`, since you can't configure an IAM policy to restrict\naccess to an item with a prefix on its hash ID. So, a GSIK will be\nconfigured on every item by the library, using the `tenant` value plus a\nnumber between `0` and `maxGSIK`. Then you can create an IAM policy that\nrestrict access on the index (called by defaylt `byGSIK`) with access only\non the items with the appropiate GSIK value.",
+						"tags": [
+							{
+								"tag": "type",
+								"text": "{number}"
+							},
+							{
+								"tag": "memberof",
+								"text": "Model\n"
+							}
+						]
+					},
 					"sources": [
 						{
 							"fileName": "model.ts",
-							"line": 288,
+							"line": 345,
 							"character": 9
 						}
 					],
@@ -665,10 +743,23 @@
 						"isExported": true,
 						"isOptional": true
 					},
+					"comment": {
+						"shortText": "The name of the `range` key.",
+						"tags": [
+							{
+								"tag": "type",
+								"text": "{string}"
+							},
+							{
+								"tag": "memberof",
+								"text": "Model\n"
+							}
+						]
+					},
 					"sources": [
 						{
 							"fileName": "model.ts",
-							"line": 289,
+							"line": 352,
 							"character": 7
 						}
 					],
@@ -695,10 +786,23 @@
 					"flags": {
 						"isExported": true
 					},
+					"comment": {
+						"shortText": "The type of the `range` key.",
+						"tags": [
+							{
+								"tag": "type",
+								"text": "{string}"
+							},
+							{
+								"tag": "memberof",
+								"text": "Model\n"
+							}
+						]
+					},
 					"sources": [
 						{
 							"fileName": "model.ts",
-							"line": 290,
+							"line": 359,
 							"character": 11
 						}
 					],
@@ -726,10 +830,23 @@
 					"flags": {
 						"isExported": true
 					},
+					"comment": {
+						"shortText": "Struct instance created from the `struct` data passed through the model\nconfiguration.",
+						"tags": [
+							{
+								"tag": "type",
+								"text": "{*}"
+							},
+							{
+								"tag": "memberof",
+								"text": "Model\n"
+							}
+						]
+					},
 					"sources": [
 						{
 							"fileName": "model.ts",
-							"line": 294,
+							"line": 389,
 							"character": 8
 						}
 					],
@@ -756,10 +873,23 @@
 					"flags": {
 						"isExported": true
 					},
+					"comment": {
+						"shortText": "The table name. If not provided it will try to use the `table` name\nglobally configured.",
+						"tags": [
+							{
+								"tag": "type",
+								"text": "{string}"
+							},
+							{
+								"tag": "memberof",
+								"text": "Model\n"
+							}
+						]
+					},
 					"sources": [
 						{
 							"fileName": "model.ts",
-							"line": 291,
+							"line": 367,
 							"character": 7
 						}
 					],
@@ -787,10 +917,23 @@
 						"isExported": true,
 						"isOptional": true
 					},
+					"comment": {
+						"shortText": "The `tenant` unique identifier.",
+						"tags": [
+							{
+								"tag": "type",
+								"text": "{string}"
+							},
+							{
+								"tag": "memberof",
+								"text": "Model\n"
+							}
+						]
+					},
 					"sources": [
 						{
 							"fileName": "model.ts",
-							"line": 292,
+							"line": 374,
 							"character": 8
 						}
 					],
@@ -817,10 +960,23 @@
 					"flags": {
 						"isExported": true
 					},
+					"comment": {
+						"shortText": "Value used to track the dates where modifications were done to the item.",
+						"tags": [
+							{
+								"tag": "type",
+								"text": "{boolean}"
+							},
+							{
+								"tag": "memberof",
+								"text": "Model\n"
+							}
+						]
+					},
 					"sources": [
 						{
 							"fileName": "model.ts",
-							"line": 293,
+							"line": 381,
 							"character": 7
 						}
 					],
@@ -875,7 +1031,7 @@
 					"sources": [
 						{
 							"fileName": "model.ts",
-							"line": 368,
+							"line": 463,
 							"character": 11
 						}
 					],
@@ -1219,7 +1375,7 @@
 					"sources": [
 						{
 							"fileName": "model.ts",
-							"line": 342,
+							"line": 437,
 							"character": 8
 						}
 					],
@@ -1353,15 +1509,6 @@
 					"flags": {
 						"isExported": true
 					},
-					"comment": {
-						"shortText": "Removes all `tenant` related data from an item, or a list of items.",
-						"tags": [
-							{
-								"tag": "memberof",
-								"text": "Model\n"
-							}
-						]
-					},
 					"signatures": [
 						{
 							"id": 207,
@@ -1369,9 +1516,6 @@
 							"kind": 4096,
 							"kindString": "Call signature",
 							"flags": {},
-							"comment": {
-								"shortText": "Removes all `tenant` related data from an item, or a list of items."
-							},
 							"parameters": [
 								{
 									"id": 208,
@@ -1379,7 +1523,6 @@
 									"kind": 32768,
 									"kindString": "Parameter",
 									"flags": {},
-									"comment": {},
 									"type": {
 										"type": "reference",
 										"name": "IItem",
@@ -1409,9 +1552,6 @@
 							"kind": 4096,
 							"kindString": "Call signature",
 							"flags": {},
-							"comment": {
-								"shortText": "Removes all `tenant` related data from an item, or a list of items."
-							},
 							"parameters": [
 								{
 									"id": 210,
@@ -1419,7 +1559,6 @@
 									"kind": 32768,
 									"kindString": "Parameter",
 									"flags": {},
-									"comment": {},
 									"type": {
 										"type": "array",
 										"elementType": {
@@ -1453,17 +1592,17 @@
 					"sources": [
 						{
 							"fileName": "model.ts",
-							"line": 383,
+							"line": 479,
 							"character": 14
 						},
 						{
 							"fileName": "model.ts",
-							"line": 384,
+							"line": 480,
 							"character": 14
 						},
 						{
 							"fileName": "model.ts",
-							"line": 392,
+							"line": 481,
 							"character": 14
 						}
 					],
@@ -1527,7 +1666,7 @@
 					"sources": [
 						{
 							"fileName": "model.ts",
-							"line": 332,
+							"line": 427,
 							"character": 14
 						}
 					],
@@ -1644,7 +1783,7 @@
 					"sources": [
 						{
 							"fileName": "model.ts",
-							"line": 411,
+							"line": 500,
 							"character": 10
 						}
 					],
@@ -1742,7 +1881,25 @@
 				"isAbstract": true
 			},
 			"comment": {
-				"shortText": "Abstract class used to bootstrap a new Model."
+				"shortText": "Abstract class used to bootstrap a new Model.",
+				"tags": [
+					{
+						"tag": "export",
+						"text": ""
+					},
+					{
+						"tag": "abstract",
+						"text": ""
+					},
+					{
+						"tag": "class",
+						"text": "Model"
+					},
+					{
+						"tag": "implements",
+						"text": "{IModel}\n"
+					}
+				]
 			},
 			"children": [
 				{
@@ -1784,7 +1941,7 @@
 					"sources": [
 						{
 							"fileName": "model.ts",
-							"line": 294,
+							"line": 389,
 							"character": 14
 						}
 					]
@@ -1797,10 +1954,23 @@
 					"flags": {
 						"isExported": true
 					},
+					"comment": {
+						"shortText": "DynamoDBDocument client instance. Must be declared before configuring the\nmodel.",
+						"tags": [
+							{
+								"tag": "type",
+								"text": "{DocumentClient}"
+							},
+							{
+								"tag": "memberof",
+								"text": "Model\n"
+							}
+						]
+					},
 					"sources": [
 						{
 							"fileName": "model.ts",
-							"line": 283,
+							"line": 301,
 							"character": 16
 						}
 					],
@@ -1823,10 +1993,23 @@
 						"isExported": true,
 						"isOptional": true
 					},
+					"comment": {
+						"shortText": "Regular expression to use when checking if the `hash` key has the `tenant`\nprefixed.",
+						"tags": [
+							{
+								"tag": "type",
+								"text": "{RegExp}"
+							},
+							{
+								"tag": "memberof",
+								"text": "Model\n"
+							}
+						]
+					},
 					"sources": [
 						{
 							"fileName": "model.ts",
-							"line": 286,
+							"line": 323,
 							"character": 17
 						}
 					],
@@ -1848,10 +2031,23 @@
 					"flags": {
 						"isExported": true
 					},
+					"comment": {
+						"shortText": "The name of the `hash` key.",
+						"tags": [
+							{
+								"tag": "type",
+								"text": "{string}"
+							},
+							{
+								"tag": "memberof",
+								"text": "Model\n"
+							}
+						]
+					},
 					"sources": [
 						{
 							"fileName": "model.ts",
-							"line": 284,
+							"line": 308,
 							"character": 6
 						}
 					],
@@ -1873,10 +2069,23 @@
 					"flags": {
 						"isExported": true
 					},
+					"comment": {
+						"shortText": "The type of the `hash` key.",
+						"tags": [
+							{
+								"tag": "type",
+								"text": "{string}"
+							},
+							{
+								"tag": "memberof",
+								"text": "Model\n"
+							}
+						]
+					},
 					"sources": [
 						{
 							"fileName": "model.ts",
-							"line": 285,
+							"line": 315,
 							"character": 10
 						}
 					],
@@ -1899,10 +2108,23 @@
 					"flags": {
 						"isExported": true
 					},
+					"comment": {
+						"shortText": "The name of the index to use when running an `index` operation. By default\nif will be called `byGSIK`. If the index is not created before hand, and\nthe model is configured with a `tenant`, then the method will fail.",
+						"tags": [
+							{
+								"tag": "type",
+								"text": "{string}"
+							},
+							{
+								"tag": "memberof",
+								"text": "Model\n"
+							}
+						]
+					},
 					"sources": [
 						{
 							"fileName": "model.ts",
-							"line": 287,
+							"line": 332,
 							"character": 11
 						}
 					],
@@ -1925,10 +2147,23 @@
 					"flags": {
 						"isExported": true
 					},
+					"comment": {
+						"shortText": "The maximum GSIK values to use to index the models. This is necessary when\nconfiguring a `tenant`, since you can't configure an IAM policy to restrict\naccess to an item with a prefix on its hash ID. So, a GSIK will be\nconfigured on every item by the library, using the `tenant` value plus a\nnumber between `0` and `maxGSIK`. Then you can create an IAM policy that\nrestrict access on the index (called by defaylt `byGSIK`) with access only\non the items with the appropiate GSIK value.",
+						"tags": [
+							{
+								"tag": "type",
+								"text": "{number}"
+							},
+							{
+								"tag": "memberof",
+								"text": "Model\n"
+							}
+						]
+					},
 					"sources": [
 						{
 							"fileName": "model.ts",
-							"line": 288,
+							"line": 345,
 							"character": 9
 						}
 					],
@@ -1952,10 +2187,23 @@
 						"isExported": true,
 						"isOptional": true
 					},
+					"comment": {
+						"shortText": "The name of the `range` key.",
+						"tags": [
+							{
+								"tag": "type",
+								"text": "{string}"
+							},
+							{
+								"tag": "memberof",
+								"text": "Model\n"
+							}
+						]
+					},
 					"sources": [
 						{
 							"fileName": "model.ts",
-							"line": 289,
+							"line": 352,
 							"character": 7
 						}
 					],
@@ -1977,10 +2225,23 @@
 					"flags": {
 						"isExported": true
 					},
+					"comment": {
+						"shortText": "The type of the `range` key.",
+						"tags": [
+							{
+								"tag": "type",
+								"text": "{string}"
+							},
+							{
+								"tag": "memberof",
+								"text": "Model\n"
+							}
+						]
+					},
 					"sources": [
 						{
 							"fileName": "model.ts",
-							"line": 290,
+							"line": 359,
 							"character": 11
 						}
 					],
@@ -2003,10 +2264,23 @@
 					"flags": {
 						"isExported": true
 					},
+					"comment": {
+						"shortText": "Struct instance created from the `struct` data passed through the model\nconfiguration.",
+						"tags": [
+							{
+								"tag": "type",
+								"text": "{*}"
+							},
+							{
+								"tag": "memberof",
+								"text": "Model\n"
+							}
+						]
+					},
 					"sources": [
 						{
 							"fileName": "model.ts",
-							"line": 294,
+							"line": 389,
 							"character": 8
 						}
 					],
@@ -2028,10 +2302,23 @@
 					"flags": {
 						"isExported": true
 					},
+					"comment": {
+						"shortText": "The table name. If not provided it will try to use the `table` name\nglobally configured.",
+						"tags": [
+							{
+								"tag": "type",
+								"text": "{string}"
+							},
+							{
+								"tag": "memberof",
+								"text": "Model\n"
+							}
+						]
+					},
 					"sources": [
 						{
 							"fileName": "model.ts",
-							"line": 291,
+							"line": 367,
 							"character": 7
 						}
 					],
@@ -2054,10 +2341,23 @@
 						"isExported": true,
 						"isOptional": true
 					},
+					"comment": {
+						"shortText": "The `tenant` unique identifier.",
+						"tags": [
+							{
+								"tag": "type",
+								"text": "{string}"
+							},
+							{
+								"tag": "memberof",
+								"text": "Model\n"
+							}
+						]
+					},
 					"sources": [
 						{
 							"fileName": "model.ts",
-							"line": 292,
+							"line": 374,
 							"character": 8
 						}
 					],
@@ -2079,10 +2379,23 @@
 					"flags": {
 						"isExported": true
 					},
+					"comment": {
+						"shortText": "Value used to track the dates where modifications were done to the item.",
+						"tags": [
+							{
+								"tag": "type",
+								"text": "{boolean}"
+							},
+							{
+								"tag": "memberof",
+								"text": "Model\n"
+							}
+						]
+					},
 					"sources": [
 						{
 							"fileName": "model.ts",
-							"line": 293,
+							"line": 381,
 							"character": 7
 						}
 					],
@@ -2127,7 +2440,7 @@
 					"sources": [
 						{
 							"fileName": "model.ts",
-							"line": 368,
+							"line": 463,
 							"character": 11
 						}
 					],
@@ -2181,7 +2494,7 @@
 					"sources": [
 						{
 							"fileName": "model.ts",
-							"line": 342,
+							"line": 437,
 							"character": 8
 						}
 					],
@@ -2199,15 +2512,6 @@
 					"flags": {
 						"isExported": true
 					},
-					"comment": {
-						"shortText": "Removes all `tenant` related data from an item, or a list of items.",
-						"tags": [
-							{
-								"tag": "memberof",
-								"text": "Model\n"
-							}
-						]
-					},
 					"signatures": [
 						{
 							"id": 79,
@@ -2215,9 +2519,6 @@
 							"kind": 4096,
 							"kindString": "Call signature",
 							"flags": {},
-							"comment": {
-								"shortText": "Removes all `tenant` related data from an item, or a list of items."
-							},
 							"parameters": [
 								{
 									"id": 80,
@@ -2225,7 +2526,6 @@
 									"kind": 32768,
 									"kindString": "Parameter",
 									"flags": {},
-									"comment": {},
 									"type": {
 										"type": "reference",
 										"name": "IItem",
@@ -2250,9 +2550,6 @@
 							"kind": 4096,
 							"kindString": "Call signature",
 							"flags": {},
-							"comment": {
-								"shortText": "Removes all `tenant` related data from an item, or a list of items."
-							},
 							"parameters": [
 								{
 									"id": 82,
@@ -2260,7 +2557,6 @@
 									"kind": 32768,
 									"kindString": "Parameter",
 									"flags": {},
-									"comment": {},
 									"type": {
 										"type": "array",
 										"elementType": {
@@ -2289,17 +2585,17 @@
 					"sources": [
 						{
 							"fileName": "model.ts",
-							"line": 383,
+							"line": 479,
 							"character": 14
 						},
 						{
 							"fileName": "model.ts",
-							"line": 384,
+							"line": 480,
 							"character": 14
 						},
 						{
 							"fileName": "model.ts",
-							"line": 392,
+							"line": 481,
 							"character": 14
 						}
 					],
@@ -2353,7 +2649,7 @@
 					"sources": [
 						{
 							"fileName": "model.ts",
-							"line": 332,
+							"line": 427,
 							"character": 14
 						}
 					],
@@ -2406,7 +2702,7 @@
 					"sources": [
 						{
 							"fileName": "model.ts",
-							"line": 411,
+							"line": 500,
 							"character": 10
 						}
 					],
@@ -2458,7 +2754,7 @@
 			"sources": [
 				{
 					"fileName": "model.ts",
-					"line": 282,
+					"line": 293,
 					"character": 27
 				}
 			],
@@ -2893,10 +3189,23 @@
 					"flags": {
 						"isExported": true
 					},
+					"comment": {
+						"shortText": "Value used to track the dates where modifications were done to the item.",
+						"tags": [
+							{
+								"tag": "type",
+								"text": "{boolean}"
+							},
+							{
+								"tag": "memberof",
+								"text": "IModel\n"
+							}
+						]
+					},
 					"sources": [
 						{
 							"fileName": "model.ts",
-							"line": 261,
+							"line": 267,
 							"character": 7
 						}
 					],
@@ -3529,7 +3838,7 @@
 					"sources": [
 						{
 							"fileName": "model.ts",
-							"line": 269,
+							"line": 275,
 							"character": 14
 						}
 					],
@@ -3636,7 +3945,7 @@
 					"sources": [
 						{
 							"fileName": "model.ts",
-							"line": 277,
+							"line": 283,
 							"character": 10
 						}
 					],
@@ -5140,10 +5449,23 @@
 					"flags": {
 						"isExported": true
 					},
+					"comment": {
+						"shortText": "Value used to track the dates where modifications were done to the item.",
+						"tags": [
+							{
+								"tag": "type",
+								"text": "{boolean}"
+							},
+							{
+								"tag": "memberof",
+								"text": "IModel\n"
+							}
+						]
+					},
 					"sources": [
 						{
 							"fileName": "model.ts",
-							"line": 261,
+							"line": 267,
 							"character": 7
 						}
 					],
@@ -5395,7 +5717,7 @@
 					"sources": [
 						{
 							"fileName": "model.ts",
-							"line": 269,
+							"line": 275,
 							"character": 14
 						}
 					]
@@ -5448,7 +5770,7 @@
 					"sources": [
 						{
 							"fileName": "model.ts",
-							"line": 277,
+							"line": 283,
 							"character": 10
 						}
 					]
