@@ -1,6 +1,6 @@
 {
   "name": "dynamodb-model",
-  "version": "1.0.0",
+  "version": "1.0.2",
   "description": "DynamoDB models to use on internal projects.",
   "main": "dist/index.js",
   "repository": "https://github.com/guzmonne/dynamodb-model",
