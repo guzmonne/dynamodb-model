@@ -14,7 +14,7 @@ interface IDynamoDBModelScanData {
   offset?: string;
 }
 
-export interface IDynamoDBModelScanOptions {
+export interface IDynamoDBModelIndexOptions {
   limit?: number;
   offset?: string;
   filter?: string;
@@ -42,21 +42,44 @@ export interface IDefaultModel extends IModel {
   delete(key: IDynamoDBKey): IDefaultModel;
   create(body: IItem): IDefaultModel;
   update(body: IItem): IDefaultModel;
-  index(options?: IDynamoDBModelScanOptions): IDefaultModel;
+  index(options?: IDynamoDBModelIndexOptions): IDefaultModel;
 }
-
+/**
+ * Default Model
+ * ===
+ *
+ * This basic model has some basic methods to interact with DynamoDB. It has
+ * implemented all the typical `CRUD` operations, and translates them into
+ * DynamoDB DocumentClient calls. By using a model, you can avoid having to
+ * learn how to work with DynamoDB.
+ *
+ * If you want to add more methods to your model, you can create your own class
+ * extended from this one.
+ */
 export class DefaultModel extends Model implements IDefaultModel {
+  /**
+   * DynamoDB Document Client call. You can call it by using the `callback` or
+   * `promise` method.
+   */
   private call: () => Promise<IItem | void> = () => Promise.resolve();
 
   constructor(config: IDynamoDBModelConfig) {
     super(config);
   }
-
+  /**
+   * Helper function to handle errors lazily. This way the user can handle
+   * them through the `callback` or `promise` api.
+   * @param error Error thrown during a method call.
+   */
   private handleError(error: Error): IDefaultModel {
     this.call = () => Promise.reject(error);
     return this;
   }
-
+  /**
+   * Creates the `UpdateExpression`, `ExpressionAttributeNames` and
+   * `ExpressionAttributeValues` for the `documentClient.update` method params.
+   * @param body Body if the item to be stored.
+   */
   private createUpdateExpressionParams(
     body: IItem
   ): IUpdateExpressionAttributes {
@@ -84,7 +107,10 @@ export class DefaultModel extends Model implements IDefaultModel {
       ExpressionAttributeValues: attributeValues
     };
   }
-
+  /**
+   * Does the stored DynamoDB DocumentClient call and wraps the result in
+   * promise. It handles error produced on the call.
+   */
   async promise(): Promise<IItem | void> {
     try {
       return await this.call();
@@ -92,13 +118,22 @@ export class DefaultModel extends Model implements IDefaultModel {
       return Promise.reject(error);
     }
   }
-
+  /**
+   * Does the stored DynamoDB DocumentClient call and wraps the result in a
+   * callback. It handles error produced on the call, and passes the onto the
+   * callback on the `err` argument.
+   * @param callback Callback function to invoke with the data or the error
+   * generated on the DynamoDB DocumentClient call.
+   */
   callback(callback: (error: Error | null, data?: IItem | void) => void): void {
     this.promise()
       .then(data => callback(null, data))
       .catch(err => callback(err));
   }
-
+  /**
+   * Sets up a call to DynamoDB to create a new item.
+   * @param body Body of the item to be created.
+   */
   create(body: IItem): IDefaultModel {
     body = pick(body, Object.keys(this.struct.schema));
 
@@ -127,7 +162,10 @@ export class DefaultModel extends Model implements IDefaultModel {
 
     return this;
   }
-
+  /**
+   * Sets a call to DynamoDB to update an item.
+   * @param body Body of the item to be updated.
+   */
   update(body: IItem): IDefaultModel {
     if (body[this.hash] === undefined)
       return this.handleError(
@@ -161,7 +199,10 @@ export class DefaultModel extends Model implements IDefaultModel {
 
     return this;
   }
-
+  /**
+   * Sets a call to get an item from DynamoDB.
+   * @param key Item key.
+   */
   get(key: IDynamoDBKey): IDefaultModel {
     this.call = () =>
       this.documentClient
@@ -174,7 +215,10 @@ export class DefaultModel extends Model implements IDefaultModel {
 
     return this;
   }
-
+  /**
+   * Sets a call to DynamoDB to delete an item.
+   * @param key Item key.
+   */
   delete(key: IDynamoDBKey): IDefaultModel {
     this.call = () =>
       this.documentClient
@@ -185,8 +229,11 @@ export class DefaultModel extends Model implements IDefaultModel {
         .promise();
     return this;
   }
-
-  private scan(options: IDynamoDBModelScanOptions): IDefaultModel {
+  /**
+   * Sets a call to scan the DynamoDB table according to the provided options.
+   * @param options Index options used to define what items to return.
+   */
+  private scan(options: IDynamoDBModelIndexOptions): IDefaultModel {
     this.call = () =>
       this.documentClient
         .scan({
@@ -207,8 +254,11 @@ export class DefaultModel extends Model implements IDefaultModel {
 
     return this;
   }
-
-  private query(options: IDynamoDBModelScanOptions): IDefaultModel {
+  /**
+   * Sets a call to query the DynamoDB table according to the provided options.
+   * @param options Index options used to define what items to return.
+   */
+  private query(options: IDynamoDBModelIndexOptions): IDefaultModel {
     this.call = () =>
       Promise.all(
         range(0, this.maxGSIK).map(i =>
@@ -275,8 +325,11 @@ export class DefaultModel extends Model implements IDefaultModel {
 
     return this;
   }
-
-  index(options?: IDynamoDBModelScanOptions): IDefaultModel {
+  /**
+   * Sets a call to DynamoDB to get a list of items.
+   * @param options Index options used to set what items to return.
+   */
+  index(options?: IDynamoDBModelIndexOptions): IDefaultModel {
     options = { limit: 100, ...options };
 
     if (this.tenant === undefined) return this.scan(options);
