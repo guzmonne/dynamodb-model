@@ -258,6 +258,12 @@ export interface IModel {
    * @memberof IModel
    */
   tenant?: string;
+  /**
+   * Value used to track the dates where modifications were done to the item.
+   *
+   * @type {boolean}
+   * @memberof IModel
+   */
   track: boolean;
   /**
    * Adds the appropiate track values if the `track` option is on.
@@ -278,19 +284,108 @@ export interface IModel {
 }
 /**
  * Abstract class used to bootstrap a new Model.
+ *
+ * @export
+ * @abstract
+ * @class Model
+ * @implements {IModel}
  */
 export abstract class Model implements IModel {
+  /**
+   * DynamoDBDocument client instance. Must be declared before configuring the
+   * model.
+   *
+   * @type {DocumentClient}
+   * @memberof Model
+   */
   documentClient: DocumentClient;
+  /**
+   * The name of the `hash` key.
+   *
+   * @type {string}
+   * @memberof Model
+   */
   hash: string;
+  /**
+   * The type of the `hash` key.
+   *
+   * @type {string}
+   * @memberof Model
+   */
   hashType: string = 'string';
+  /**
+   * Regular expression to use when checking if the `hash` key has the `tenant`
+   * prefixed.
+   *
+   * @type {RegExp}
+   * @memberof Model
+   */
   hasTenantRegExp?: RegExp;
+  /**
+   * The name of the index to use when running an `index` operation. By default
+   * if will be called `byGSIK`. If the index is not created before hand, and
+   * the model is configured with a `tenant`, then the method will fail.
+   *
+   * @type {string}
+   * @memberof Model
+   */
   indexName: string = 'byGSIK';
+  /**
+   * The maximum GSIK values to use to index the models. This is necessary when
+   * configuring a `tenant`, since you can't configure an IAM policy to restrict
+   * access to an item with a prefix on its hash ID. So, a GSIK will be
+   * configured on every item by the library, using the `tenant` value plus a
+   * number between `0` and `maxGSIK`. Then you can create an IAM policy that
+   * restrict access on the index (called by defaylt `byGSIK`) with access only
+   * on the items with the appropiate GSIK value.
+   *
+   * @type {number}
+   * @memberof Model
+   */
   maxGSIK: number = 10;
+  /**
+   * The name of the `range` key.
+   *
+   * @type {string}
+   * @memberof Model
+   */
   range?: string;
+  /**
+   * The type of the `range` key.
+   *
+   * @type {string}
+   * @memberof Model
+   */
   rangeType: string = 'string';
+  /**
+   * The table name. If not provided it will try to use the `table` name
+   * globally configured.
+   *
+   * @type {string}
+   * @memberof Model
+   */
   table: string;
+  /**
+   * The `tenant` unique identifier.
+   *
+   * @type {string}
+   * @memberof Model
+   */
   tenant?: string;
+  /**
+   * Value used to track the dates where modifications were done to the item.
+   *
+   * @type {boolean}
+   * @memberof Model
+   */
   track: boolean = false;
+  /**
+   * Struct instance created from the `struct` data passed through the model
+   * configuration.
+   *
+   * @type {*}
+   * @memberof Model
+   */
   struct: any;
 
   constructor(config: IDynamoDBModelConfig) {
