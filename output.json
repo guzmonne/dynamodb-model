@@ -417,6 +417,10 @@
 			"flags": {
 				"isExported": true
 			},
+			"comment": {
+				"shortText": "Default Model\n===",
+				"text": "This basic model has some basic methods to interact with DynamoDB. It has\nimplemented all the typical `CRUD` operations, and translates them into\nDynamoDB DocumentClient calls. By using a model, you can avoid having to\nlearn how to work with DynamoDB.\n\nIf you want to add more methods to your model, you can create your own class\nextended from this one.\n"
+			},
 			"children": [
 				{
 					"id": 159,
@@ -462,7 +466,7 @@
 					"sources": [
 						{
 							"fileName": "default_model.ts",
-							"line": 49,
+							"line": 64,
 							"character": 70
 						}
 					],
@@ -1061,6 +1065,9 @@
 							"kind": 4096,
 							"kindString": "Call signature",
 							"flags": {},
+							"comment": {
+								"shortText": "Does the stored DynamoDB DocumentClient call and wraps the result in a\ncallback. It handles error produced on the call, and passes the onto the\ncallback on the `err` argument."
+							},
 							"parameters": [
 								{
 									"id": 166,
@@ -1068,6 +1075,9 @@
 									"kind": 32768,
 									"kindString": "Parameter",
 									"flags": {},
+									"comment": {
+										"text": "Callback function to invoke with the data or the error\ngenerated on the DynamoDB DocumentClient call.\n"
+									},
 									"type": {
 										"type": "reflection",
 										"declaration": {
@@ -1137,7 +1147,7 @@
 											"sources": [
 												{
 													"fileName": "default_model.ts",
-													"line": 96,
+													"line": 128,
 													"character": 20
 												}
 											]
@@ -1154,7 +1164,7 @@
 					"sources": [
 						{
 							"fileName": "default_model.ts",
-							"line": 96,
+							"line": 128,
 							"character": 10
 						}
 					],
@@ -1179,6 +1189,9 @@
 							"kind": 4096,
 							"kindString": "Call signature",
 							"flags": {},
+							"comment": {
+								"shortText": "Sets up a call to DynamoDB to create a new item."
+							},
 							"parameters": [
 								{
 									"id": 173,
@@ -1186,6 +1199,9 @@
 									"kind": 32768,
 									"kindString": "Parameter",
 									"flags": {},
+									"comment": {
+										"text": "Body of the item to be created.\n"
+									},
 									"type": {
 										"type": "reference",
 										"name": "IItem",
@@ -1208,7 +1224,7 @@
 					"sources": [
 						{
 							"fileName": "default_model.ts",
-							"line": 102,
+							"line": 137,
 							"character": 8
 						}
 					],
@@ -1233,6 +1249,9 @@
 							"kind": 4096,
 							"kindString": "Call signature",
 							"flags": {},
+							"comment": {
+								"shortText": "Sets a call to DynamoDB to delete an item."
+							},
 							"parameters": [
 								{
 									"id": 182,
@@ -1240,6 +1259,9 @@
 									"kind": 32768,
 									"kindString": "Parameter",
 									"flags": {},
+									"comment": {
+										"text": "Item key.\n"
+									},
 									"type": {
 										"type": "reference",
 										"name": "IDynamoDBKey",
@@ -1262,7 +1284,7 @@
 					"sources": [
 						{
 							"fileName": "default_model.ts",
-							"line": 178,
+							"line": 222,
 							"character": 8
 						}
 					],
@@ -1287,6 +1309,9 @@
 							"kind": 4096,
 							"kindString": "Call signature",
 							"flags": {},
+							"comment": {
+								"shortText": "Sets a call to get an item from DynamoDB."
+							},
 							"parameters": [
 								{
 									"id": 179,
@@ -1294,6 +1319,9 @@
 									"kind": 32768,
 									"kindString": "Parameter",
 									"flags": {},
+									"comment": {
+										"text": "Item key.\n"
+									},
 									"type": {
 										"type": "reference",
 										"name": "IDynamoDBKey",
@@ -1316,7 +1344,7 @@
 					"sources": [
 						{
 							"fileName": "default_model.ts",
-							"line": 165,
+							"line": 206,
 							"character": 5
 						}
 					],
@@ -1405,6 +1433,9 @@
 							"kind": 4096,
 							"kindString": "Call signature",
 							"flags": {},
+							"comment": {
+								"shortText": "Sets a call to DynamoDB to get a list of items."
+							},
 							"parameters": [
 								{
 									"id": 185,
@@ -1414,9 +1445,12 @@
 									"flags": {
 										"isOptional": true
 									},
+									"comment": {
+										"text": "Index options used to set what items to return.\n"
+									},
 									"type": {
 										"type": "reference",
-										"name": "IDynamoDBModelScanOptions",
+										"name": "IDynamoDBModelIndexOptions",
 										"id": 90
 									}
 								}
@@ -1436,7 +1470,7 @@
 					"sources": [
 						{
 							"fileName": "default_model.ts",
-							"line": 279,
+							"line": 332,
 							"character": 7
 						}
 					],
@@ -1461,6 +1495,9 @@
 							"kind": 4096,
 							"kindString": "Call signature",
 							"flags": {},
+							"comment": {
+								"shortText": "Does the stored DynamoDB DocumentClient call and wraps the result in\npromise. It handles error produced on the call."
+							},
 							"type": {
 								"type": "reference",
 								"name": "Promise",
@@ -1491,7 +1528,7 @@
 					"sources": [
 						{
 							"fileName": "default_model.ts",
-							"line": 88,
+							"line": 114,
 							"character": 15
 						}
 					],
@@ -1696,6 +1733,9 @@
 							"kind": 4096,
 							"kindString": "Call signature",
 							"flags": {},
+							"comment": {
+								"shortText": "Sets a call to DynamoDB to update an item."
+							},
 							"parameters": [
 								{
 									"id": 176,
@@ -1703,6 +1743,9 @@
 									"kind": 32768,
 									"kindString": "Parameter",
 									"flags": {},
+									"comment": {
+										"text": "Body of the item to be updated.\n"
+									},
 									"type": {
 										"type": "reference",
 										"name": "IItem",
@@ -1725,7 +1768,7 @@
 					"sources": [
 						{
 							"fileName": "default_model.ts",
-							"line": 131,
+							"line": 169,
 							"character": 8
 						}
 					],
@@ -1847,7 +1890,7 @@
 			"sources": [
 				{
 					"fileName": "default_model.ts",
-					"line": 48,
+					"line": 59,
 					"character": 25
 				}
 			],
@@ -3603,7 +3646,7 @@
 									},
 									"type": {
 										"type": "reference",
-										"name": "IDynamoDBModelScanOptions",
+										"name": "IDynamoDBModelIndexOptions",
 										"id": 90
 									}
 								}
@@ -4604,95 +4647,8 @@
 			]
 		},
 		{
-			"id": 86,
-			"name": "IDynamoDBModelScanData",
-			"kind": 256,
-			"kindString": "Interface",
-			"flags": {},
-			"children": [
-				{
-					"id": 88,
-					"name": "count",
-					"kind": 1024,
-					"kindString": "Property",
-					"flags": {},
-					"sources": [
-						{
-							"fileName": "default_model.ts",
-							"line": 13,
-							"character": 7
-						}
-					],
-					"type": {
-						"type": "intrinsic",
-						"name": "number"
-					}
-				},
-				{
-					"id": 87,
-					"name": "items",
-					"kind": 1024,
-					"kindString": "Property",
-					"flags": {},
-					"sources": [
-						{
-							"fileName": "default_model.ts",
-							"line": 12,
-							"character": 7
-						}
-					],
-					"type": {
-						"type": "array",
-						"elementType": {
-							"type": "reference",
-							"name": "IItem",
-							"id": 1
-						}
-					}
-				},
-				{
-					"id": 89,
-					"name": "offset",
-					"kind": 1024,
-					"kindString": "Property",
-					"flags": {
-						"isOptional": true
-					},
-					"sources": [
-						{
-							"fileName": "default_model.ts",
-							"line": 14,
-							"character": 8
-						}
-					],
-					"type": {
-						"type": "intrinsic",
-						"name": "string"
-					}
-				}
-			],
-			"groups": [
-				{
-					"title": "Properties",
-					"kind": 1024,
-					"children": [
-						88,
-						87,
-						89
-					]
-				}
-			],
-			"sources": [
-				{
-					"fileName": "default_model.ts",
-					"line": 11,
-					"character": 32
-				}
-			]
-		},
-		{
 			"id": 90,
-			"name": "IDynamoDBModelScanOptions",
+			"name": "IDynamoDBModelIndexOptions",
 			"kind": 256,
 			"kindString": "Interface",
 			"flags": {
@@ -4800,7 +4756,94 @@
 				{
 					"fileName": "default_model.ts",
 					"line": 17,
-					"character": 42
+					"character": 43
+				}
+			]
+		},
+		{
+			"id": 86,
+			"name": "IDynamoDBModelScanData",
+			"kind": 256,
+			"kindString": "Interface",
+			"flags": {},
+			"children": [
+				{
+					"id": 88,
+					"name": "count",
+					"kind": 1024,
+					"kindString": "Property",
+					"flags": {},
+					"sources": [
+						{
+							"fileName": "default_model.ts",
+							"line": 13,
+							"character": 7
+						}
+					],
+					"type": {
+						"type": "intrinsic",
+						"name": "number"
+					}
+				},
+				{
+					"id": 87,
+					"name": "items",
+					"kind": 1024,
+					"kindString": "Property",
+					"flags": {},
+					"sources": [
+						{
+							"fileName": "default_model.ts",
+							"line": 12,
+							"character": 7
+						}
+					],
+					"type": {
+						"type": "array",
+						"elementType": {
+							"type": "reference",
+							"name": "IItem",
+							"id": 1
+						}
+					}
+				},
+				{
+					"id": 89,
+					"name": "offset",
+					"kind": 1024,
+					"kindString": "Property",
+					"flags": {
+						"isOptional": true
+					},
+					"sources": [
+						{
+							"fileName": "default_model.ts",
+							"line": 14,
+							"character": 8
+						}
+					],
+					"type": {
+						"type": "intrinsic",
+						"name": "string"
+					}
+				}
+			],
+			"groups": [
+				{
+					"title": "Properties",
+					"kind": 1024,
+					"children": [
+						88,
+						87,
+						89
+					]
+				}
+			],
+			"sources": [
+				{
+					"fileName": "default_model.ts",
+					"line": 11,
+					"character": 32
 				}
 			]
 		},
@@ -6058,8 +6101,8 @@
 				4,
 				10,
 				214,
-				86,
 				90,
+				86,
 				22,
 				7,
 				98,
