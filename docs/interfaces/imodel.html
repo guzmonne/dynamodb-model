@@ -105,7 +105,6 @@
 						<section class="tsd-index-section ">
 							<h3>Properties</h3>
 							<ul class="tsd-index-list">
-								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="imodel.html#data" class="tsd-kind-icon">data</a></li>
 								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="imodel.html#documentclient" class="tsd-kind-icon">document<wbr>Client</a></li>
 								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="imodel.html#hastenantregexp" class="tsd-kind-icon">has<wbr>Tenant<wbr>Reg<wbr>Exp</a></li>
 								<li class="tsd-kind-property tsd-parent-kind-interface"><a href="imodel.html#hash" class="tsd-kind-icon">hash</a></li>
@@ -136,22 +135,12 @@
 			<section class="tsd-panel-group tsd-member-group ">
 				<h2>Properties</h2>
 				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
-					<a name="data" class="tsd-anchor"></a>
-					<h3>data</h3>
-					<div class="tsd-signature tsd-kind-icon">data<span class="tsd-signature-symbol">:</span> <a href="iitem.html" class="tsd-signature-type">IItem</a><span class="tsd-signature-symbol">[]</span></div>
-					<aside class="tsd-sources">
-						<ul>
-							<li>Defined in <a href="https://github.com/guzmonne/dynamodb-model/blob/293e928/src/model.ts#L158">model.ts:158</a></li>
-						</ul>
-					</aside>
-				</section>
-				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
 					<a name="documentclient" class="tsd-anchor"></a>
 					<h3>document<wbr>Client</h3>
 					<div class="tsd-signature tsd-kind-icon">document<wbr>Client<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">DocumentClient</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/guzmonne/dynamodb-model/blob/293e928/src/model.ts#L159">model.ts:159</a></li>
+							<li>Defined in <a href="https://github.com/guzmonne/dynamodb-model/blob/7b8cff1/src/model.ts#L158">model.ts:158</a></li>
 						</ul>
 					</aside>
 				</section>
@@ -161,9 +150,23 @@
 					<div class="tsd-signature tsd-kind-icon">has<wbr>Tenant<wbr>Reg<wbr>Exp<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">RegExp</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/guzmonne/dynamodb-model/blob/293e928/src/model.ts#L171">model.ts:171</a></li>
+							<li>Defined in <a href="https://github.com/guzmonne/dynamodb-model/blob/7b8cff1/src/model.ts#L189">model.ts:189</a></li>
 						</ul>
 					</aside>
+					<div class="tsd-comment tsd-typography">
+						<div class="lead">
+							<p>Regular expression to use when checking if the <code>hash</code> key has the <code>tenant</code>
+							prefixed.</p>
+						</div>
+						<dl class="tsd-comment-tags">
+							<dt>type</dt>
+							<dd><p>{RegExp}</p>
+							</dd>
+							<dt>memberof</dt>
+							<dd><p>IModel</p>
+							</dd>
+						</dl>
+					</div>
 				</section>
 				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
 					<a name="hash" class="tsd-anchor"></a>
@@ -171,9 +174,22 @@
 					<div class="tsd-signature tsd-kind-icon">hash<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/guzmonne/dynamodb-model/blob/293e928/src/model.ts#L169">model.ts:169</a></li>
+							<li>Defined in <a href="https://github.com/guzmonne/dynamodb-model/blob/7b8cff1/src/model.ts#L174">model.ts:174</a></li>
 						</ul>
 					</aside>
+					<div class="tsd-comment tsd-typography">
+						<div class="lead">
+							<p>The name of the <code>hash</code> key.</p>
+						</div>
+						<dl class="tsd-comment-tags">
+							<dt>type</dt>
+							<dd><p>{string}</p>
+							</dd>
+							<dt>memberof</dt>
+							<dd><p>IDynamoDBModelConfig</p>
+							</dd>
+						</dl>
+					</div>
 				</section>
 				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
 					<a name="hashtype" class="tsd-anchor"></a>
@@ -181,9 +197,22 @@
 					<div class="tsd-signature tsd-kind-icon">hash<wbr>Type<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/guzmonne/dynamodb-model/blob/293e928/src/model.ts#L170">model.ts:170</a></li>
+							<li>Defined in <a href="https://github.com/guzmonne/dynamodb-model/blob/7b8cff1/src/model.ts#L181">model.ts:181</a></li>
 						</ul>
 					</aside>
+					<div class="tsd-comment tsd-typography">
+						<div class="lead">
+							<p>The type of the <code>hash</code> key.</p>
+						</div>
+						<dl class="tsd-comment-tags">
+							<dt>type</dt>
+							<dd><p>{string}</p>
+							</dd>
+							<dt>memberof</dt>
+							<dd><p>IDynamoDBModelConfig</p>
+							</dd>
+						</dl>
+					</div>
 				</section>
 				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
 					<a name="indexname" class="tsd-anchor"></a>
@@ -191,9 +220,24 @@
 					<div class="tsd-signature tsd-kind-icon">index<wbr>Name<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/guzmonne/dynamodb-model/blob/293e928/src/model.ts#L172">model.ts:172</a></li>
+							<li>Defined in <a href="https://github.com/guzmonne/dynamodb-model/blob/7b8cff1/src/model.ts#L198">model.ts:198</a></li>
 						</ul>
 					</aside>
+					<div class="tsd-comment tsd-typography">
+						<div class="lead">
+							<p>The name of the index to use when running an <code>index</code> operation. By default
+								if will be called <code>byGSIK</code>. If the index is not created before hand, and
+							the model is configured with a <code>tenant</code>, then the method will fail.</p>
+						</div>
+						<dl class="tsd-comment-tags">
+							<dt>type</dt>
+							<dd><p>{string}</p>
+							</dd>
+							<dt>memberof</dt>
+							<dd><p>IModel</p>
+							</dd>
+						</dl>
+					</div>
 				</section>
 				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
 					<a name="maxgsik" class="tsd-anchor"></a>
@@ -201,9 +245,28 @@
 					<div class="tsd-signature tsd-kind-icon">maxGSIK<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">number</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/guzmonne/dynamodb-model/blob/293e928/src/model.ts#L173">model.ts:173</a></li>
+							<li>Defined in <a href="https://github.com/guzmonne/dynamodb-model/blob/7b8cff1/src/model.ts#L211">model.ts:211</a></li>
 						</ul>
 					</aside>
+					<div class="tsd-comment tsd-typography">
+						<div class="lead">
+							<p>The maximum GSIK values to use to index the models. This is necessary when
+								configuring a <code>tenant</code>, since you can&#39;t configure an IAM policy to restrict
+								access to an item with a prefix on its hash ID. So, a GSIK will be
+								configured on every item by the library, using the <code>tenant</code> value plus a
+								number between <code>0</code> and <code>maxGSIK</code>. Then you can create an IAM policy that
+								restrict access on the index (called by defaylt <code>byGSIK</code>) with access only
+							on the items with the appropiate GSIK value.</p>
+						</div>
+						<dl class="tsd-comment-tags">
+							<dt>type</dt>
+							<dd><p>{number}</p>
+							</dd>
+							<dt>memberof</dt>
+							<dd><p>IModel</p>
+							</dd>
+						</dl>
+					</div>
 				</section>
 				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
 					<a name="range" class="tsd-anchor"></a>
@@ -211,9 +274,22 @@
 					<div class="tsd-signature tsd-kind-icon">range<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/guzmonne/dynamodb-model/blob/293e928/src/model.ts#L174">model.ts:174</a></li>
+							<li>Defined in <a href="https://github.com/guzmonne/dynamodb-model/blob/7b8cff1/src/model.ts#L218">model.ts:218</a></li>
 						</ul>
 					</aside>
+					<div class="tsd-comment tsd-typography">
+						<div class="lead">
+							<p>The name of the <code>range</code> key.</p>
+						</div>
+						<dl class="tsd-comment-tags">
+							<dt>type</dt>
+							<dd><p>{string}</p>
+							</dd>
+							<dt>memberof</dt>
+							<dd><p>IModel</p>
+							</dd>
+						</dl>
+					</div>
 				</section>
 				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
 					<a name="rangetype" class="tsd-anchor"></a>
@@ -221,19 +297,38 @@
 					<div class="tsd-signature tsd-kind-icon">range<wbr>Type<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/guzmonne/dynamodb-model/blob/293e928/src/model.ts#L175">model.ts:175</a></li>
+							<li>Defined in <a href="https://github.com/guzmonne/dynamodb-model/blob/7b8cff1/src/model.ts#L225">model.ts:225</a></li>
 						</ul>
 					</aside>
+					<div class="tsd-comment tsd-typography">
+						<div class="lead">
+							<p>The type of the <code>range</code> key.</p>
+						</div>
+						<dl class="tsd-comment-tags">
+							<dt>type</dt>
+							<dd><p>{string}</p>
+							</dd>
+							<dt>memberof</dt>
+							<dd><p>IModel</p>
+							</dd>
+						</dl>
+					</div>
 				</section>
 				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
 					<a name="struct" class="tsd-anchor"></a>
 					<h3>struct</h3>
-					<div class="tsd-signature tsd-kind-icon">struct<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">any</span></div>
+					<div class="tsd-signature tsd-kind-icon">struct<span class="tsd-signature-symbol">:</span> <a href="idynamodbmodelstruct.html" class="tsd-signature-type">IDynamoDBModelStruct</a></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/guzmonne/dynamodb-model/blob/293e928/src/model.ts#L192">model.ts:192</a></li>
+							<li>Defined in <a href="https://github.com/guzmonne/dynamodb-model/blob/7b8cff1/src/model.ts#L246">model.ts:246</a></li>
 						</ul>
 					</aside>
+					<div class="tsd-comment tsd-typography">
+						<div class="lead">
+							<p>The struct representing the model. Should be configured followin the
+							<a href="https://github.com/ianstormtaylor/superstruct">superstruct</a> configuration guide.</p>
+						</div>
+					</div>
 				</section>
 				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
 					<a name="table" class="tsd-anchor"></a>
@@ -241,9 +336,22 @@
 					<div class="tsd-signature tsd-kind-icon">table<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/guzmonne/dynamodb-model/blob/293e928/src/model.ts#L193">model.ts:193</a></li>
+							<li>Defined in <a href="https://github.com/guzmonne/dynamodb-model/blob/7b8cff1/src/model.ts#L253">model.ts:253</a></li>
 						</ul>
 					</aside>
+					<div class="tsd-comment tsd-typography">
+						<div class="lead">
+							<p>DynamoDB table name to store the model.</p>
+						</div>
+						<dl class="tsd-comment-tags">
+							<dt>type</dt>
+							<dd><p>{string}</p>
+							</dd>
+							<dt>memberof</dt>
+							<dd><p>IModel</p>
+							</dd>
+						</dl>
+					</div>
 				</section>
 				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
 					<a name="tenant" class="tsd-anchor"></a>
@@ -251,9 +359,22 @@
 					<div class="tsd-signature tsd-kind-icon">tenant<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/guzmonne/dynamodb-model/blob/293e928/src/model.ts#L194">model.ts:194</a></li>
+							<li>Defined in <a href="https://github.com/guzmonne/dynamodb-model/blob/7b8cff1/src/model.ts#L260">model.ts:260</a></li>
 						</ul>
 					</aside>
+					<div class="tsd-comment tsd-typography">
+						<div class="lead">
+							<p>The <code>tenant</code> unique identifier.</p>
+						</div>
+						<dl class="tsd-comment-tags">
+							<dt>type</dt>
+							<dd><p>{string}</p>
+							</dd>
+							<dt>memberof</dt>
+							<dd><p>IModel</p>
+							</dd>
+						</dl>
+					</div>
 				</section>
 				<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
 					<a name="track" class="tsd-anchor"></a>
@@ -261,7 +382,7 @@
 					<div class="tsd-signature tsd-kind-icon">track<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">boolean</span></div>
 					<aside class="tsd-sources">
 						<ul>
-							<li>Defined in <a href="https://github.com/guzmonne/dynamodb-model/blob/293e928/src/model.ts#L195">model.ts:195</a></li>
+							<li>Defined in <a href="https://github.com/guzmonne/dynamodb-model/blob/7b8cff1/src/model.ts#L261">model.ts:261</a></li>
 						</ul>
 					</aside>
 				</section>
@@ -278,7 +399,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/guzmonne/dynamodb-model/blob/293e928/src/model.ts#L157">model.ts:157</a></li>
+									<li>Defined in <a href="https://github.com/guzmonne/dynamodb-model/blob/7b8cff1/src/model.ts#L157">model.ts:157</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -306,7 +427,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/guzmonne/dynamodb-model/blob/293e928/src/model.ts#L168">model.ts:168</a></li>
+									<li>Defined in <a href="https://github.com/guzmonne/dynamodb-model/blob/7b8cff1/src/model.ts#L167">model.ts:167</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -341,7 +462,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/guzmonne/dynamodb-model/blob/293e928/src/model.ts#L183">model.ts:183</a></li>
+									<li>Defined in <a href="https://github.com/guzmonne/dynamodb-model/blob/7b8cff1/src/model.ts#L233">model.ts:233</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -365,7 +486,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/guzmonne/dynamodb-model/blob/293e928/src/model.ts#L191">model.ts:191</a></li>
+									<li>Defined in <a href="https://github.com/guzmonne/dynamodb-model/blob/7b8cff1/src/model.ts#L241">model.ts:241</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -398,7 +519,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/guzmonne/dynamodb-model/blob/293e928/src/model.ts#L203">model.ts:203</a></li>
+									<li>Defined in <a href="https://github.com/guzmonne/dynamodb-model/blob/7b8cff1/src/model.ts#L269">model.ts:269</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -431,7 +552,7 @@
 						<li class="tsd-description">
 							<aside class="tsd-sources">
 								<ul>
-									<li>Defined in <a href="https://github.com/guzmonne/dynamodb-model/blob/293e928/src/model.ts#L211">model.ts:211</a></li>
+									<li>Defined in <a href="https://github.com/guzmonne/dynamodb-model/blob/7b8cff1/src/model.ts#L277">model.ts:277</a></li>
 								</ul>
 							</aside>
 							<div class="tsd-comment tsd-typography">
@@ -510,9 +631,6 @@
 					<li class="current tsd-kind-interface">
 						<a href="imodel.html" class="tsd-kind-icon">IModel</a>
 						<ul>
-							<li class=" tsd-kind-property tsd-parent-kind-interface">
-								<a href="imodel.html#data" class="tsd-kind-icon">data</a>
-							</li>
 							<li class=" tsd-kind-property tsd-parent-kind-interface">
 								<a href="imodel.html#documentclient" class="tsd-kind-icon">document<wbr>Client</a>
 							</li>

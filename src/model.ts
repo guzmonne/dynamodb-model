@@ -155,7 +155,6 @@ export interface IModel {
    * @memberof Model
    */
   addTenant(): IItem;
-  data: IItem[];
   documentClient: DocumentClient;
   /**
    * Gets the `hash` and `range` key from the model.
@@ -166,12 +165,63 @@ export interface IModel {
    * @memberof Model
    */
   getKey(key: IDynamoDBKey): IDynamoDBKey;
+  /**
+   * The name of the `hash` key.
+   *
+   * @type {string}
+   * @memberof IDynamoDBModelConfig
+   */
   hash: string;
+  /**
+   * The type of the `hash` key.
+   *
+   * @type {string}
+   * @memberof IDynamoDBModelConfig
+   */
   hashType: string;
+  /**
+   * Regular expression to use when checking if the `hash` key has the `tenant`
+   * prefixed.
+   *
+   * @type {RegExp}
+   * @memberof IModel
+   */
   hasTenantRegExp?: RegExp;
+  /**
+   * The name of the index to use when running an `index` operation. By default
+   * if will be called `byGSIK`. If the index is not created before hand, and
+   * the model is configured with a `tenant`, then the method will fail.
+   *
+   * @type {string}
+   * @memberof IModel
+   */
   indexName: string;
+  /**
+   * The maximum GSIK values to use to index the models. This is necessary when
+   * configuring a `tenant`, since you can't configure an IAM policy to restrict
+   * access to an item with a prefix on its hash ID. So, a GSIK will be
+   * configured on every item by the library, using the `tenant` value plus a
+   * number between `0` and `maxGSIK`. Then you can create an IAM policy that
+   * restrict access on the index (called by defaylt `byGSIK`) with access only
+   * on the items with the appropiate GSIK value.
+   *
+   * @type {number}
+   * @memberof IModel
+   */
   maxGSIK: number;
+  /**
+   * The name of the `range` key.
+   *
+   * @type {string}
+   * @memberof IModel
+   */
   range?: string;
+  /**
+   * The type of the `range` key.
+   *
+   * @type {string}
+   * @memberof IModel
+   */
   rangeType: string;
   /**
    * Removes all tenant data from an item.
@@ -189,8 +239,24 @@ export interface IModel {
    * @memberof IModel
    */
   removeTenant(items: IItem[]): IItem[];
-  struct: any;
+  /**
+   * The struct representing the model. Should be configured followin the
+   * [superstruct](https://github.com/ianstormtaylor/superstruct) configuration guide.
+   */
+  struct: IDynamoDBModelStruct;
+  /**
+   * DynamoDB table name to store the model.
+   *
+   * @type {string}
+   * @memberof IModel
+   */
   table: string;
+  /**
+   * The `tenant` unique identifier.
+   *
+   * @type {string}
+   * @memberof IModel
+   */
   tenant?: string;
   track: boolean;
   /**
@@ -212,14 +278,8 @@ export interface IModel {
 }
 /**
  * Abstract class used to bootstrap a new Model.
- *
- * @export
- * @abstract
- * @class Model
- * @implements {IModel}
  */
 export abstract class Model implements IModel {
-  data: IItem[] = [];
   documentClient: DocumentClient;
   hash: string;
   hashType: string = 'string';
