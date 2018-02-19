@@ -83,8 +83,8 @@ UserModel().index({
   limit: 10
 });
 
-// All the methods describe before are lazily evaluated.
-// You have to call the `promise()` or `callback` methods on it for them to run.
+// All the methods described before are lazily evaluated. Meaning they won't run
+// until you call the `promise()` or `callback` methods on them.
 
 // Promise
 model.promise()
@@ -103,10 +103,10 @@ model.callback((err, data) => {
 
 ### Extend the default model
 
-If you extend a model, you can create the default model class, add your own methods and then
+To extend the default model you can use the `extend` function. It takes the configuration parameters needed to configure the default model, and a function that provides the model, and returns an extended model class. You can then use all the methods define on the default model, and your own, the same way as explained before.
 
 ```javascript
-var { DynamoDBModel, IDefaultModel, DefaultModel } = require('dynamodb-simple-model');
+var { DynamoDBModel } = require('dynamodb-simple-model');
 
 var config = {
   hash: 'id',
@@ -121,10 +121,6 @@ var config = {
   table: 'UserTable',
   track: true // Tracks `createdAt` and `updatedAt` attributes
 };
-
-interface IUserModel extends IDefaultModel {
-  echo(value: string): string;
-}
 
 var CustomModel = DynamoDBModel.extend(params, model => {
   class CustomModel extends model {
@@ -144,7 +140,7 @@ CustomModel().echo('Something');
 // >>> 'Something'
 ```
 
-If you are using Typescript then you must create the interface that the new class will implement, which should inherit `IDefaultModel`. You are going to have to help the Typescript compiler to know the type of the model by casting them to the new interface.
+If you are using Typescript then you might want to create the interface that the new class will implement, which should inherit `IDefaultModel`. You can then cast the created model to this interface to help Typescript out.
 
 ```typescript
 interface ICustomModel extends IDefaultModel {
