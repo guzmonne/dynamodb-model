@@ -133,8 +133,8 @@ UserModel().index({
   <span class="hljs-attr">limit</span>: <span class="hljs-number">10</span>
 });
 
-<span class="hljs-comment">// All the methods describe before are lazily evaluated.</span>
-<span class="hljs-comment">// You have to call the `promise()` or `callback` methods on it for them to run.</span>
+<span class="hljs-comment">// All the methods described before are lazily evaluated. Meaning they won't run</span>
+<span class="hljs-comment">// until you call the `promise()` or `callback` methods on them.</span>
 
 <span class="hljs-comment">// Promise</span>
 model.promise()
@@ -151,8 +151,8 @@ model.callback(<span class="hljs-function">(<span class="hljs-params">err, data<
 })
 </code></pre>
 				<h3 id="extend-the-default-model">Extend the default model</h3>
-				<p>If you extend a model, you can create the default model class, add your own methods and then</p>
-				<pre><code class="lang-javascript"><span class="hljs-keyword">var</span> { DynamoDBModel, IDefaultModel, DefaultModel } = <span class="hljs-built_in">require</span>(<span class="hljs-string">'dynamodb-simple-model'</span>);
+				<p>To extend the default model you can use the <code>extend</code> function. It takes the configuration parameters needed to configure the default model, and a function that provides the model, and returns an extended model class. You can then use all the methods define on the default model, and your own, the same way as explained before.</p>
+				<pre><code class="lang-javascript"><span class="hljs-keyword">var</span> { DynamoDBModel } = <span class="hljs-built_in">require</span>(<span class="hljs-string">'dynamodb-simple-model'</span>);
 
 <span class="hljs-keyword">var</span> config = {
   <span class="hljs-attr">hash</span>: <span class="hljs-string">'id'</span>,
@@ -167,10 +167,6 @@ model.callback(<span class="hljs-function">(<span class="hljs-params">err, data<
   table: <span class="hljs-string">'UserTable'</span>,
   <span class="hljs-attr">track</span>: <span class="hljs-literal">true</span> <span class="hljs-comment">// Tracks `createdAt` and `updatedAt` attributes</span>
 };
-
-interface IUserModel extends IDefaultModel {
-  echo(value: string): string;
-}
 
 <span class="hljs-keyword">var</span> CustomModel = DynamoDBModel.extend(params, model =&gt; {
   <span class="hljs-class"><span class="hljs-keyword">class</span> <span class="hljs-title">CustomModel</span> <span class="hljs-keyword">extends</span> <span class="hljs-title">model</span> </span>{
@@ -189,7 +185,7 @@ interface IUserModel extends IDefaultModel {
 CustomModel().echo(<span class="hljs-string">'Something'</span>);
 <span class="hljs-comment">// &gt;&gt;&gt; 'Something'</span>
 </code></pre>
-				<p>If you are using Typescript then you must create the interface that the new class will implement, which should inherit <code>IDefaultModel</code>. You are going to have to help the Typescript compiler to know the type of the model by casting them to the new interface.</p>
+				<p>If you are using Typescript then you might want to create the interface that the new class will implement, which should inherit <code>IDefaultModel</code>. You can then cast the created model to this interface to help Typescript out.</p>
 				<pre><code class="lang-typescript"><span class="hljs-keyword">interface</span> ICustomModel <span class="hljs-keyword">extends</span> IDefaultModel {
   echo(value: <span class="hljs-built_in">string</span>): <span class="hljs-built_in">string</span>;
 }
