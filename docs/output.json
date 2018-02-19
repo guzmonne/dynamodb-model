@@ -1,0 +1,6131 @@
+{
+	"id": 0,
+	"name": "dynamodb-simple-model",
+	"kind": 0,
+	"flags": {},
+	"children": [
+		{
+			"id": 245,
+			"name": "\"superstruct\"",
+			"kind": 2,
+			"kindString": "Module",
+			"flags": {},
+			"comment": {
+				"shortText": "Superstruct model declaration.\nRepo: https://github.com/ianstormtaylor/superstruct"
+			},
+			"sources": [
+				{
+					"fileName": "superstruct.d.ts",
+					"line": 5,
+					"character": 28
+				}
+			]
+		},
+		{
+			"id": 219,
+			"name": "DynamoDBModel",
+			"kind": 2,
+			"kindString": "Module",
+			"flags": {
+				"isExported": true
+			},
+			"children": [
+				{
+					"id": 222,
+					"name": "config",
+					"kind": 64,
+					"kindString": "Function",
+					"flags": {
+						"isExported": true
+					},
+					"signatures": [
+						{
+							"id": 223,
+							"name": "config",
+							"kind": 4096,
+							"kindString": "Call signature",
+							"flags": {},
+							"parameters": [
+								{
+									"id": 224,
+									"name": "options",
+									"kind": 32768,
+									"kindString": "Parameter",
+									"flags": {},
+									"type": {
+										"type": "reference",
+										"name": "IDynamoDBModelGlobalConfig",
+										"id": 214
+									}
+								}
+							],
+							"type": {
+								"type": "intrinsic",
+								"name": "void"
+							}
+						}
+					],
+					"sources": [
+						{
+							"fileName": "index.ts",
+							"line": 20,
+							"character": 24
+						}
+					]
+				},
+				{
+					"id": 225,
+					"name": "create",
+					"kind": 64,
+					"kindString": "Function",
+					"flags": {
+						"isExported": true
+					},
+					"signatures": [
+						{
+							"id": 226,
+							"name": "create",
+							"kind": 4096,
+							"kindString": "Call signature",
+							"flags": {},
+							"parameters": [
+								{
+									"id": 227,
+									"name": "config",
+									"kind": 32768,
+									"kindString": "Parameter",
+									"flags": {},
+									"type": {
+										"type": "reference",
+										"name": "IDynamoDBModelConfig",
+										"id": 10
+									}
+								}
+							],
+							"type": {
+								"type": "reflection",
+								"declaration": {
+									"id": 228,
+									"name": "__type",
+									"kind": 65536,
+									"kindString": "Type literal",
+									"flags": {},
+									"signatures": [
+										{
+											"id": 229,
+											"name": "__call",
+											"kind": 4096,
+											"kindString": "Call signature",
+											"flags": {},
+											"type": {
+												"type": "reference",
+												"name": "IDefaultModel",
+												"id": 105
+											}
+										}
+									],
+									"sources": [
+										{
+											"fileName": "index.ts",
+											"line": 24,
+											"character": 55
+										}
+									]
+								}
+							}
+						}
+					],
+					"sources": [
+						{
+							"fileName": "index.ts",
+							"line": 24,
+							"character": 24
+						}
+					]
+				},
+				{
+					"id": 230,
+					"name": "createModel",
+					"kind": 64,
+					"kindString": "Function",
+					"flags": {
+						"isExported": true
+					},
+					"signatures": [
+						{
+							"id": 231,
+							"name": "createModel",
+							"kind": 4096,
+							"kindString": "Call signature",
+							"flags": {},
+							"parameters": [
+								{
+									"id": 232,
+									"name": "config",
+									"kind": 32768,
+									"kindString": "Parameter",
+									"flags": {},
+									"type": {
+										"type": "reference",
+										"name": "IDynamoDBModelConfig",
+										"id": 10
+									}
+								}
+							],
+							"type": {
+								"type": "intrinsic",
+								"name": "any"
+							}
+						}
+					],
+					"sources": [
+						{
+							"fileName": "index.ts",
+							"line": 32,
+							"character": 29
+						}
+					]
+				},
+				{
+					"id": 233,
+					"name": "extend",
+					"kind": 64,
+					"kindString": "Function",
+					"flags": {
+						"isExported": true
+					},
+					"signatures": [
+						{
+							"id": 234,
+							"name": "extend",
+							"kind": 4096,
+							"kindString": "Call signature",
+							"flags": {},
+							"parameters": [
+								{
+									"id": 235,
+									"name": "config",
+									"kind": 32768,
+									"kindString": "Parameter",
+									"flags": {},
+									"type": {
+										"type": "reference",
+										"name": "IDynamoDBModelConfig",
+										"id": 10
+									}
+								},
+								{
+									"id": 236,
+									"name": "extendFn",
+									"kind": 32768,
+									"kindString": "Parameter",
+									"flags": {},
+									"type": {
+										"type": "reflection",
+										"declaration": {
+											"id": 237,
+											"name": "__type",
+											"kind": 65536,
+											"kindString": "Type literal",
+											"flags": {},
+											"signatures": [
+												{
+													"id": 238,
+													"name": "__call",
+													"kind": 4096,
+													"kindString": "Call signature",
+													"flags": {},
+													"parameters": [
+														{
+															"id": 239,
+															"name": "model",
+															"kind": 32768,
+															"kindString": "Parameter",
+															"flags": {},
+															"type": {
+																"type": "intrinsic",
+																"name": "any"
+															}
+														}
+													],
+													"type": {
+														"type": "reflection",
+														"declaration": {
+															"id": 240,
+															"name": "__type",
+															"kind": 65536,
+															"kindString": "Type literal",
+															"flags": {},
+															"children": [
+																{
+																	"id": 241,
+																	"name": "constructor",
+																	"kind": 512,
+																	"kindString": "Constructor",
+																	"flags": {},
+																	"signatures": [
+																		{
+																			"id": 242,
+																			"name": "new __type",
+																			"kind": 16384,
+																			"kindString": "Constructor signature",
+																			"flags": {},
+																			"type": {
+																				"type": "reference",
+																				"name": "IDefaultModel",
+																				"id": 105
+																			}
+																		}
+																	],
+																	"sources": [
+																		{
+																			"fileName": "index.ts",
+																			"line": 46,
+																			"character": 31
+																		}
+																	]
+																}
+															],
+															"groups": [
+																{
+																	"title": "Constructors",
+																	"kind": 512,
+																	"children": [
+																		241
+																	]
+																}
+															],
+															"sources": [
+																{
+																	"fileName": "index.ts",
+																	"line": 46,
+																	"character": 29
+																}
+															]
+														}
+													}
+												}
+											],
+											"sources": [
+												{
+													"fileName": "index.ts",
+													"line": 46,
+													"character": 13
+												}
+											]
+										}
+									}
+								}
+							],
+							"type": {
+								"type": "reflection",
+								"declaration": {
+									"id": 243,
+									"name": "__type",
+									"kind": 65536,
+									"kindString": "Type literal",
+									"flags": {},
+									"signatures": [
+										{
+											"id": 244,
+											"name": "__call",
+											"kind": 4096,
+											"kindString": "Call signature",
+											"flags": {},
+											"type": {
+												"type": "intrinsic",
+												"name": "any"
+											}
+										}
+									],
+									"sources": [
+										{
+											"fileName": "index.ts",
+											"line": 47,
+											"character": 4
+										}
+									]
+								}
+							}
+						}
+					],
+					"sources": [
+						{
+							"fileName": "index.ts",
+							"line": 44,
+							"character": 24
+						}
+					]
+				},
+				{
+					"id": 220,
+					"name": "getConfig",
+					"kind": 64,
+					"kindString": "Function",
+					"flags": {
+						"isExported": true
+					},
+					"signatures": [
+						{
+							"id": 221,
+							"name": "getConfig",
+							"kind": 4096,
+							"kindString": "Call signature",
+							"flags": {},
+							"type": {
+								"type": "reference",
+								"name": "IDynamoDBModelGlobalConfig",
+								"id": 214
+							}
+						}
+					],
+					"sources": [
+						{
+							"fileName": "index.ts",
+							"line": 16,
+							"character": 27
+						}
+					]
+				}
+			],
+			"groups": [
+				{
+					"title": "Functions",
+					"kind": 64,
+					"children": [
+						222,
+						225,
+						230,
+						233,
+						220
+					]
+				}
+			],
+			"sources": [
+				{
+					"fileName": "index.ts",
+					"line": 15,
+					"character": 30
+				}
+			]
+		},
+		{
+			"id": 158,
+			"name": "DefaultModel",
+			"kind": 128,
+			"kindString": "Class",
+			"flags": {
+				"isExported": true
+			},
+			"comment": {
+				"shortText": "Default Model\n===",
+				"text": "This basic model has some basic methods to interact with DynamoDB. It has\nimplemented all the typical `CRUD` operations, and translates them into\nDynamoDB DocumentClient calls. By using a model, you can avoid having to\nlearn how to work with DynamoDB.\n\nIf you want to add more methods to your model, you can create your own class\nextended from this one.\n"
+			},
+			"children": [
+				{
+					"id": 159,
+					"name": "constructor",
+					"kind": 512,
+					"kindString": "Constructor",
+					"flags": {
+						"isExported": true
+					},
+					"signatures": [
+						{
+							"id": 160,
+							"name": "new DefaultModel",
+							"kind": 16384,
+							"kindString": "Constructor signature",
+							"flags": {},
+							"parameters": [
+								{
+									"id": 161,
+									"name": "config",
+									"kind": 32768,
+									"kindString": "Parameter",
+									"flags": {},
+									"type": {
+										"type": "reference",
+										"name": "IDynamoDBModelConfig",
+										"id": 10
+									}
+								}
+							],
+							"type": {
+								"type": "reference",
+								"name": "DefaultModel",
+								"id": 158
+							},
+							"overwrites": {
+								"type": "reference",
+								"name": "Model.__constructor",
+								"id": 67
+							}
+						}
+					],
+					"sources": [
+						{
+							"fileName": "default_model.ts",
+							"line": 64,
+							"character": 70
+						}
+					],
+					"overwrites": {
+						"type": "reference",
+						"name": "Model.__constructor",
+						"id": 67
+					}
+				},
+				{
+					"id": 186,
+					"name": "documentClient",
+					"kind": 1024,
+					"kindString": "Property",
+					"flags": {
+						"isExported": true
+					},
+					"comment": {
+						"shortText": "DynamoDBDocument client instance. Must be declared before configuring the\nmodel.",
+						"tags": [
+							{
+								"tag": "type",
+								"text": "{DocumentClient}"
+							},
+							{
+								"tag": "memberof",
+								"text": "Model\n"
+							}
+						]
+					},
+					"sources": [
+						{
+							"fileName": "model.ts",
+							"line": 301,
+							"character": 16
+						}
+					],
+					"type": {
+						"type": "reference",
+						"name": "DocumentClient"
+					},
+					"inheritedFrom": {
+						"type": "reference",
+						"name": "Model.documentClient",
+						"id": 55
+					},
+					"implementationOf": {
+						"type": "reference",
+						"name": "IDefaultModel.documentClient",
+						"id": 132
+					}
+				},
+				{
+					"id": 189,
+					"name": "hasTenantRegExp",
+					"kind": 1024,
+					"kindString": "Property",
+					"flags": {
+						"isExported": true,
+						"isOptional": true
+					},
+					"comment": {
+						"shortText": "Regular expression to use when checking if the `hash` key has the `tenant`\nprefixed.",
+						"tags": [
+							{
+								"tag": "type",
+								"text": "{RegExp}"
+							},
+							{
+								"tag": "memberof",
+								"text": "Model\n"
+							}
+						]
+					},
+					"sources": [
+						{
+							"fileName": "model.ts",
+							"line": 323,
+							"character": 17
+						}
+					],
+					"type": {
+						"type": "reference",
+						"name": "RegExp"
+					},
+					"inheritedFrom": {
+						"type": "reference",
+						"name": "Model.hasTenantRegExp",
+						"id": 58
+					},
+					"implementationOf": {
+						"type": "reference",
+						"name": "IDefaultModel.hasTenantRegExp",
+						"id": 138
+					}
+				},
+				{
+					"id": 187,
+					"name": "hash",
+					"kind": 1024,
+					"kindString": "Property",
+					"flags": {
+						"isExported": true
+					},
+					"comment": {
+						"shortText": "The name of the `hash` key.",
+						"tags": [
+							{
+								"tag": "type",
+								"text": "{string}"
+							},
+							{
+								"tag": "memberof",
+								"text": "Model\n"
+							}
+						]
+					},
+					"sources": [
+						{
+							"fileName": "model.ts",
+							"line": 308,
+							"character": 6
+						}
+					],
+					"type": {
+						"type": "intrinsic",
+						"name": "string"
+					},
+					"inheritedFrom": {
+						"type": "reference",
+						"name": "Model.hash",
+						"id": 56
+					},
+					"implementationOf": {
+						"type": "reference",
+						"name": "IDefaultModel.hash",
+						"id": 136
+					}
+				},
+				{
+					"id": 188,
+					"name": "hashType",
+					"kind": 1024,
+					"kindString": "Property",
+					"flags": {
+						"isExported": true
+					},
+					"comment": {
+						"shortText": "The type of the `hash` key.",
+						"tags": [
+							{
+								"tag": "type",
+								"text": "{string}"
+							},
+							{
+								"tag": "memberof",
+								"text": "Model\n"
+							}
+						]
+					},
+					"sources": [
+						{
+							"fileName": "model.ts",
+							"line": 315,
+							"character": 10
+						}
+					],
+					"type": {
+						"type": "intrinsic",
+						"name": "string"
+					},
+					"defaultValue": "\"string\"",
+					"inheritedFrom": {
+						"type": "reference",
+						"name": "Model.hashType",
+						"id": 57
+					},
+					"implementationOf": {
+						"type": "reference",
+						"name": "IDefaultModel.hashType",
+						"id": 137
+					}
+				},
+				{
+					"id": 190,
+					"name": "indexName",
+					"kind": 1024,
+					"kindString": "Property",
+					"flags": {
+						"isExported": true
+					},
+					"comment": {
+						"shortText": "The name of the index to use when running an `index` operation. By default\nif will be called `byGSIK`. If the index is not created before hand, and\nthe model is configured with a `tenant`, then the method will fail.",
+						"tags": [
+							{
+								"tag": "type",
+								"text": "{string}"
+							},
+							{
+								"tag": "memberof",
+								"text": "Model\n"
+							}
+						]
+					},
+					"sources": [
+						{
+							"fileName": "model.ts",
+							"line": 332,
+							"character": 11
+						}
+					],
+					"type": {
+						"type": "intrinsic",
+						"name": "string"
+					},
+					"defaultValue": "\"byGSIK\"",
+					"inheritedFrom": {
+						"type": "reference",
+						"name": "Model.indexName",
+						"id": 59
+					},
+					"implementationOf": {
+						"type": "reference",
+						"name": "IDefaultModel.indexName",
+						"id": 139
+					}
+				},
+				{
+					"id": 191,
+					"name": "maxGSIK",
+					"kind": 1024,
+					"kindString": "Property",
+					"flags": {
+						"isExported": true
+					},
+					"comment": {
+						"shortText": "The maximum GSIK values to use to index the models. This is necessary when\nconfiguring a `tenant`, since you can't configure an IAM policy to restrict\naccess to an item with a prefix on its hash ID. So, a GSIK will be\nconfigured on every item by the library, using the `tenant` value plus a\nnumber between `0` and `maxGSIK`. Then you can create an IAM policy that\nrestrict access on the index (called by defaylt `byGSIK`) with access only\non the items with the appropiate GSIK value.",
+						"tags": [
+							{
+								"tag": "type",
+								"text": "{number}"
+							},
+							{
+								"tag": "memberof",
+								"text": "Model\n"
+							}
+						]
+					},
+					"sources": [
+						{
+							"fileName": "model.ts",
+							"line": 345,
+							"character": 9
+						}
+					],
+					"type": {
+						"type": "intrinsic",
+						"name": "number"
+					},
+					"defaultValue": "10",
+					"inheritedFrom": {
+						"type": "reference",
+						"name": "Model.maxGSIK",
+						"id": 60
+					},
+					"implementationOf": {
+						"type": "reference",
+						"name": "IDefaultModel.maxGSIK",
+						"id": 140
+					}
+				},
+				{
+					"id": 192,
+					"name": "range",
+					"kind": 1024,
+					"kindString": "Property",
+					"flags": {
+						"isExported": true,
+						"isOptional": true
+					},
+					"comment": {
+						"shortText": "The name of the `range` key.",
+						"tags": [
+							{
+								"tag": "type",
+								"text": "{string}"
+							},
+							{
+								"tag": "memberof",
+								"text": "Model\n"
+							}
+						]
+					},
+					"sources": [
+						{
+							"fileName": "model.ts",
+							"line": 352,
+							"character": 7
+						}
+					],
+					"type": {
+						"type": "intrinsic",
+						"name": "string"
+					},
+					"inheritedFrom": {
+						"type": "reference",
+						"name": "Model.range",
+						"id": 61
+					},
+					"implementationOf": {
+						"type": "reference",
+						"name": "IDefaultModel.range",
+						"id": 141
+					}
+				},
+				{
+					"id": 193,
+					"name": "rangeType",
+					"kind": 1024,
+					"kindString": "Property",
+					"flags": {
+						"isExported": true
+					},
+					"comment": {
+						"shortText": "The type of the `range` key.",
+						"tags": [
+							{
+								"tag": "type",
+								"text": "{string}"
+							},
+							{
+								"tag": "memberof",
+								"text": "Model\n"
+							}
+						]
+					},
+					"sources": [
+						{
+							"fileName": "model.ts",
+							"line": 359,
+							"character": 11
+						}
+					],
+					"type": {
+						"type": "intrinsic",
+						"name": "string"
+					},
+					"defaultValue": "\"string\"",
+					"inheritedFrom": {
+						"type": "reference",
+						"name": "Model.rangeType",
+						"id": 62
+					},
+					"implementationOf": {
+						"type": "reference",
+						"name": "IDefaultModel.rangeType",
+						"id": 142
+					}
+				},
+				{
+					"id": 197,
+					"name": "struct",
+					"kind": 1024,
+					"kindString": "Property",
+					"flags": {
+						"isExported": true
+					},
+					"comment": {
+						"shortText": "Struct instance created from the `struct` data passed through the model\nconfiguration.",
+						"tags": [
+							{
+								"tag": "type",
+								"text": "{*}"
+							},
+							{
+								"tag": "memberof",
+								"text": "Model\n"
+							}
+						]
+					},
+					"sources": [
+						{
+							"fileName": "model.ts",
+							"line": 389,
+							"character": 8
+						}
+					],
+					"type": {
+						"type": "intrinsic",
+						"name": "any"
+					},
+					"inheritedFrom": {
+						"type": "reference",
+						"name": "Model.struct",
+						"id": 66
+					},
+					"implementationOf": {
+						"type": "reference",
+						"name": "IDefaultModel.struct",
+						"id": 148
+					}
+				},
+				{
+					"id": 194,
+					"name": "table",
+					"kind": 1024,
+					"kindString": "Property",
+					"flags": {
+						"isExported": true
+					},
+					"comment": {
+						"shortText": "The table name. If not provided it will try to use the `table` name\nglobally configured.",
+						"tags": [
+							{
+								"tag": "type",
+								"text": "{string}"
+							},
+							{
+								"tag": "memberof",
+								"text": "Model\n"
+							}
+						]
+					},
+					"sources": [
+						{
+							"fileName": "model.ts",
+							"line": 367,
+							"character": 7
+						}
+					],
+					"type": {
+						"type": "intrinsic",
+						"name": "string"
+					},
+					"inheritedFrom": {
+						"type": "reference",
+						"name": "Model.table",
+						"id": 63
+					},
+					"implementationOf": {
+						"type": "reference",
+						"name": "IDefaultModel.table",
+						"id": 149
+					}
+				},
+				{
+					"id": 195,
+					"name": "tenant",
+					"kind": 1024,
+					"kindString": "Property",
+					"flags": {
+						"isExported": true,
+						"isOptional": true
+					},
+					"comment": {
+						"shortText": "The `tenant` unique identifier.",
+						"tags": [
+							{
+								"tag": "type",
+								"text": "{string}"
+							},
+							{
+								"tag": "memberof",
+								"text": "Model\n"
+							}
+						]
+					},
+					"sources": [
+						{
+							"fileName": "model.ts",
+							"line": 374,
+							"character": 8
+						}
+					],
+					"type": {
+						"type": "intrinsic",
+						"name": "string"
+					},
+					"inheritedFrom": {
+						"type": "reference",
+						"name": "Model.tenant",
+						"id": 64
+					},
+					"implementationOf": {
+						"type": "reference",
+						"name": "IDefaultModel.tenant",
+						"id": 150
+					}
+				},
+				{
+					"id": 196,
+					"name": "track",
+					"kind": 1024,
+					"kindString": "Property",
+					"flags": {
+						"isExported": true
+					},
+					"comment": {
+						"shortText": "Value used to track the dates where modifications were done to the item.",
+						"tags": [
+							{
+								"tag": "type",
+								"text": "{boolean}"
+							},
+							{
+								"tag": "memberof",
+								"text": "Model\n"
+							}
+						]
+					},
+					"sources": [
+						{
+							"fileName": "model.ts",
+							"line": 381,
+							"character": 7
+						}
+					],
+					"type": {
+						"type": "intrinsic",
+						"name": "boolean"
+					},
+					"defaultValue": "false",
+					"inheritedFrom": {
+						"type": "reference",
+						"name": "Model.track",
+						"id": 65
+					},
+					"implementationOf": {
+						"type": "reference",
+						"name": "IDefaultModel.track",
+						"id": 151
+					}
+				},
+				{
+					"id": 204,
+					"name": "addTenant",
+					"kind": 2048,
+					"kindString": "Method",
+					"flags": {
+						"isExported": true
+					},
+					"signatures": [
+						{
+							"id": 205,
+							"name": "addTenant",
+							"kind": 4096,
+							"kindString": "Call signature",
+							"flags": {},
+							"type": {
+								"type": "reference",
+								"name": "IItem",
+								"id": 1
+							},
+							"inheritedFrom": {
+								"type": "reference",
+								"name": "Model.addTenant",
+								"id": 76
+							},
+							"implementationOf": {
+								"type": "reference",
+								"name": "IDefaultModel.addTenant",
+								"id": 131
+							}
+						}
+					],
+					"sources": [
+						{
+							"fileName": "model.ts",
+							"line": 463,
+							"character": 11
+						}
+					],
+					"inheritedFrom": {
+						"type": "reference",
+						"name": "Model.addTenant",
+						"id": 76
+					},
+					"implementationOf": {
+						"type": "reference",
+						"name": "IDefaultModel.addTenant",
+						"id": 130
+					}
+				},
+				{
+					"id": 164,
+					"name": "callback",
+					"kind": 2048,
+					"kindString": "Method",
+					"flags": {
+						"isExported": true
+					},
+					"signatures": [
+						{
+							"id": 165,
+							"name": "callback",
+							"kind": 4096,
+							"kindString": "Call signature",
+							"flags": {},
+							"comment": {
+								"shortText": "Does the stored DynamoDB DocumentClient call and wraps the result in a\ncallback. It handles error produced on the call, and passes the onto the\ncallback on the `err` argument."
+							},
+							"parameters": [
+								{
+									"id": 166,
+									"name": "callback",
+									"kind": 32768,
+									"kindString": "Parameter",
+									"flags": {},
+									"comment": {
+										"text": "Callback function to invoke with the data or the error\ngenerated on the DynamoDB DocumentClient call.\n"
+									},
+									"type": {
+										"type": "reflection",
+										"declaration": {
+											"id": 167,
+											"name": "__type",
+											"kind": 65536,
+											"kindString": "Type literal",
+											"flags": {},
+											"signatures": [
+												{
+													"id": 168,
+													"name": "__call",
+													"kind": 4096,
+													"kindString": "Call signature",
+													"flags": {},
+													"parameters": [
+														{
+															"id": 169,
+															"name": "error",
+															"kind": 32768,
+															"kindString": "Parameter",
+															"flags": {},
+															"type": {
+																"type": "union",
+																"types": [
+																	{
+																		"type": "reference",
+																		"name": "Error"
+																	},
+																	{
+																		"type": "intrinsic",
+																		"name": "null"
+																	}
+																]
+															}
+														},
+														{
+															"id": 170,
+															"name": "data",
+															"kind": 32768,
+															"kindString": "Parameter",
+															"flags": {
+																"isOptional": true
+															},
+															"type": {
+																"type": "union",
+																"types": [
+																	{
+																		"type": "reference",
+																		"name": "IItem",
+																		"id": 1
+																	},
+																	{
+																		"type": "intrinsic",
+																		"name": "void"
+																	}
+																]
+															}
+														}
+													],
+													"type": {
+														"type": "intrinsic",
+														"name": "void"
+													}
+												}
+											],
+											"sources": [
+												{
+													"fileName": "default_model.ts",
+													"line": 128,
+													"character": 20
+												}
+											]
+										}
+									}
+								}
+							],
+							"type": {
+								"type": "intrinsic",
+								"name": "void"
+							}
+						}
+					],
+					"sources": [
+						{
+							"fileName": "default_model.ts",
+							"line": 128,
+							"character": 10
+						}
+					],
+					"implementationOf": {
+						"type": "reference",
+						"name": "IDefaultModel.callback",
+						"id": 106
+					}
+				},
+				{
+					"id": 171,
+					"name": "create",
+					"kind": 2048,
+					"kindString": "Method",
+					"flags": {
+						"isExported": true
+					},
+					"signatures": [
+						{
+							"id": 172,
+							"name": "create",
+							"kind": 4096,
+							"kindString": "Call signature",
+							"flags": {},
+							"comment": {
+								"shortText": "Sets up a call to DynamoDB to create a new item."
+							},
+							"parameters": [
+								{
+									"id": 173,
+									"name": "body",
+									"kind": 32768,
+									"kindString": "Parameter",
+									"flags": {},
+									"comment": {
+										"text": "Body of the item to be created.\n"
+									},
+									"type": {
+										"type": "reference",
+										"name": "IItem",
+										"id": 1
+									}
+								}
+							],
+							"type": {
+								"type": "reference",
+								"name": "IDefaultModel",
+								"id": 105
+							},
+							"implementationOf": {
+								"type": "reference",
+								"name": "IDefaultModel.create",
+								"id": 122
+							}
+						}
+					],
+					"sources": [
+						{
+							"fileName": "default_model.ts",
+							"line": 137,
+							"character": 8
+						}
+					],
+					"implementationOf": {
+						"type": "reference",
+						"name": "IDefaultModel.create",
+						"id": 121
+					}
+				},
+				{
+					"id": 180,
+					"name": "delete",
+					"kind": 2048,
+					"kindString": "Method",
+					"flags": {
+						"isExported": true
+					},
+					"signatures": [
+						{
+							"id": 181,
+							"name": "delete",
+							"kind": 4096,
+							"kindString": "Call signature",
+							"flags": {},
+							"comment": {
+								"shortText": "Sets a call to DynamoDB to delete an item."
+							},
+							"parameters": [
+								{
+									"id": 182,
+									"name": "key",
+									"kind": 32768,
+									"kindString": "Parameter",
+									"flags": {},
+									"comment": {
+										"text": "Item key.\n"
+									},
+									"type": {
+										"type": "reference",
+										"name": "IDynamoDBKey",
+										"id": 4
+									}
+								}
+							],
+							"type": {
+								"type": "reference",
+								"name": "IDefaultModel",
+								"id": 105
+							},
+							"implementationOf": {
+								"type": "reference",
+								"name": "IDefaultModel.delete",
+								"id": 119
+							}
+						}
+					],
+					"sources": [
+						{
+							"fileName": "default_model.ts",
+							"line": 222,
+							"character": 8
+						}
+					],
+					"implementationOf": {
+						"type": "reference",
+						"name": "IDefaultModel.delete",
+						"id": 118
+					}
+				},
+				{
+					"id": 177,
+					"name": "get",
+					"kind": 2048,
+					"kindString": "Method",
+					"flags": {
+						"isExported": true
+					},
+					"signatures": [
+						{
+							"id": 178,
+							"name": "get",
+							"kind": 4096,
+							"kindString": "Call signature",
+							"flags": {},
+							"comment": {
+								"shortText": "Sets a call to get an item from DynamoDB."
+							},
+							"parameters": [
+								{
+									"id": 179,
+									"name": "key",
+									"kind": 32768,
+									"kindString": "Parameter",
+									"flags": {},
+									"comment": {
+										"text": "Item key.\n"
+									},
+									"type": {
+										"type": "reference",
+										"name": "IDynamoDBKey",
+										"id": 4
+									}
+								}
+							],
+							"type": {
+								"type": "reference",
+								"name": "IDefaultModel",
+								"id": 105
+							},
+							"implementationOf": {
+								"type": "reference",
+								"name": "IDefaultModel.get",
+								"id": 116
+							}
+						}
+					],
+					"sources": [
+						{
+							"fileName": "default_model.ts",
+							"line": 206,
+							"character": 5
+						}
+					],
+					"implementationOf": {
+						"type": "reference",
+						"name": "IDefaultModel.get",
+						"id": 115
+					}
+				},
+				{
+					"id": 201,
+					"name": "getKey",
+					"kind": 2048,
+					"kindString": "Method",
+					"flags": {
+						"isExported": true
+					},
+					"signatures": [
+						{
+							"id": 202,
+							"name": "getKey",
+							"kind": 4096,
+							"kindString": "Call signature",
+							"flags": {},
+							"parameters": [
+								{
+									"id": 203,
+									"name": "key",
+									"kind": 32768,
+									"kindString": "Parameter",
+									"flags": {},
+									"type": {
+										"type": "reference",
+										"name": "IDynamoDBKey",
+										"id": 4
+									}
+								}
+							],
+							"type": {
+								"type": "reference",
+								"name": "IDynamoDBKey",
+								"id": 4
+							},
+							"inheritedFrom": {
+								"type": "reference",
+								"name": "Model.getKey",
+								"id": 73
+							},
+							"implementationOf": {
+								"type": "reference",
+								"name": "IDefaultModel.getKey",
+								"id": 134
+							}
+						}
+					],
+					"sources": [
+						{
+							"fileName": "model.ts",
+							"line": 437,
+							"character": 8
+						}
+					],
+					"inheritedFrom": {
+						"type": "reference",
+						"name": "Model.getKey",
+						"id": 73
+					},
+					"implementationOf": {
+						"type": "reference",
+						"name": "IDefaultModel.getKey",
+						"id": 133
+					}
+				},
+				{
+					"id": 183,
+					"name": "index",
+					"kind": 2048,
+					"kindString": "Method",
+					"flags": {
+						"isExported": true
+					},
+					"signatures": [
+						{
+							"id": 184,
+							"name": "index",
+							"kind": 4096,
+							"kindString": "Call signature",
+							"flags": {},
+							"comment": {
+								"shortText": "Sets a call to DynamoDB to get a list of items."
+							},
+							"parameters": [
+								{
+									"id": 185,
+									"name": "options",
+									"kind": 32768,
+									"kindString": "Parameter",
+									"flags": {
+										"isOptional": true
+									},
+									"comment": {
+										"text": "Index options used to set what items to return.\n"
+									},
+									"type": {
+										"type": "reference",
+										"name": "IDynamoDBModelIndexOptions",
+										"id": 90
+									}
+								}
+							],
+							"type": {
+								"type": "reference",
+								"name": "IDefaultModel",
+								"id": 105
+							},
+							"implementationOf": {
+								"type": "reference",
+								"name": "IDefaultModel.index",
+								"id": 128
+							}
+						}
+					],
+					"sources": [
+						{
+							"fileName": "default_model.ts",
+							"line": 332,
+							"character": 7
+						}
+					],
+					"implementationOf": {
+						"type": "reference",
+						"name": "IDefaultModel.index",
+						"id": 127
+					}
+				},
+				{
+					"id": 162,
+					"name": "promise",
+					"kind": 2048,
+					"kindString": "Method",
+					"flags": {
+						"isExported": true
+					},
+					"signatures": [
+						{
+							"id": 163,
+							"name": "promise",
+							"kind": 4096,
+							"kindString": "Call signature",
+							"flags": {},
+							"comment": {
+								"shortText": "Does the stored DynamoDB DocumentClient call and wraps the result in\npromise. It handles error produced on the call."
+							},
+							"type": {
+								"type": "reference",
+								"name": "Promise",
+								"typeArguments": [
+									{
+										"type": "union",
+										"types": [
+											{
+												"type": "reference",
+												"name": "IItem",
+												"id": 1
+											},
+											{
+												"type": "intrinsic",
+												"name": "void"
+											}
+										]
+									}
+								]
+							},
+							"implementationOf": {
+								"type": "reference",
+								"name": "IDefaultModel.promise",
+								"id": 114
+							}
+						}
+					],
+					"sources": [
+						{
+							"fileName": "default_model.ts",
+							"line": 114,
+							"character": 15
+						}
+					],
+					"implementationOf": {
+						"type": "reference",
+						"name": "IDefaultModel.promise",
+						"id": 113
+					}
+				},
+				{
+					"id": 206,
+					"name": "removeTenant",
+					"kind": 2048,
+					"kindString": "Method",
+					"flags": {
+						"isExported": true
+					},
+					"signatures": [
+						{
+							"id": 207,
+							"name": "removeTenant",
+							"kind": 4096,
+							"kindString": "Call signature",
+							"flags": {},
+							"parameters": [
+								{
+									"id": 208,
+									"name": "items",
+									"kind": 32768,
+									"kindString": "Parameter",
+									"flags": {},
+									"type": {
+										"type": "reference",
+										"name": "IItem",
+										"id": 1
+									}
+								}
+							],
+							"type": {
+								"type": "reference",
+								"name": "IItem",
+								"id": 1
+							},
+							"inheritedFrom": {
+								"type": "reference",
+								"name": "Model.removeTenant",
+								"id": 78
+							},
+							"implementationOf": {
+								"type": "reference",
+								"name": "IDefaultModel.removeTenant",
+								"id": 144
+							}
+						},
+						{
+							"id": 209,
+							"name": "removeTenant",
+							"kind": 4096,
+							"kindString": "Call signature",
+							"flags": {},
+							"parameters": [
+								{
+									"id": 210,
+									"name": "items",
+									"kind": 32768,
+									"kindString": "Parameter",
+									"flags": {},
+									"type": {
+										"type": "array",
+										"elementType": {
+											"type": "reference",
+											"name": "IItem",
+											"id": 1
+										}
+									}
+								}
+							],
+							"type": {
+								"type": "array",
+								"elementType": {
+									"type": "reference",
+									"name": "IItem",
+									"id": 1
+								}
+							},
+							"inheritedFrom": {
+								"type": "reference",
+								"name": "Model.removeTenant",
+								"id": 78
+							},
+							"implementationOf": {
+								"type": "reference",
+								"name": "IDefaultModel.removeTenant",
+								"id": 146
+							}
+						}
+					],
+					"sources": [
+						{
+							"fileName": "model.ts",
+							"line": 479,
+							"character": 14
+						},
+						{
+							"fileName": "model.ts",
+							"line": 480,
+							"character": 14
+						},
+						{
+							"fileName": "model.ts",
+							"line": 481,
+							"character": 14
+						}
+					],
+					"inheritedFrom": {
+						"type": "reference",
+						"name": "Model.removeTenant",
+						"id": 78
+					},
+					"implementationOf": {
+						"type": "reference",
+						"name": "IDefaultModel.removeTenant",
+						"id": 143
+					}
+				},
+				{
+					"id": 198,
+					"name": "trackChanges",
+					"kind": 2048,
+					"kindString": "Method",
+					"flags": {
+						"isExported": true
+					},
+					"signatures": [
+						{
+							"id": 199,
+							"name": "trackChanges",
+							"kind": 4096,
+							"kindString": "Call signature",
+							"flags": {},
+							"parameters": [
+								{
+									"id": 200,
+									"name": "body",
+									"kind": 32768,
+									"kindString": "Parameter",
+									"flags": {},
+									"type": {
+										"type": "reference",
+										"name": "IItem",
+										"id": 1
+									}
+								}
+							],
+							"type": {
+								"type": "reference",
+								"name": "IDynamoDBModelTrack",
+								"id": 7
+							},
+							"inheritedFrom": {
+								"type": "reference",
+								"name": "Model.trackChanges",
+								"id": 70
+							},
+							"implementationOf": {
+								"type": "reference",
+								"name": "IDefaultModel.trackChanges",
+								"id": 153
+							}
+						}
+					],
+					"sources": [
+						{
+							"fileName": "model.ts",
+							"line": 427,
+							"character": 14
+						}
+					],
+					"inheritedFrom": {
+						"type": "reference",
+						"name": "Model.trackChanges",
+						"id": 70
+					},
+					"implementationOf": {
+						"type": "reference",
+						"name": "IDefaultModel.trackChanges",
+						"id": 152
+					}
+				},
+				{
+					"id": 174,
+					"name": "update",
+					"kind": 2048,
+					"kindString": "Method",
+					"flags": {
+						"isExported": true
+					},
+					"signatures": [
+						{
+							"id": 175,
+							"name": "update",
+							"kind": 4096,
+							"kindString": "Call signature",
+							"flags": {},
+							"comment": {
+								"shortText": "Sets a call to DynamoDB to update an item."
+							},
+							"parameters": [
+								{
+									"id": 176,
+									"name": "body",
+									"kind": 32768,
+									"kindString": "Parameter",
+									"flags": {},
+									"comment": {
+										"text": "Body of the item to be updated.\n"
+									},
+									"type": {
+										"type": "reference",
+										"name": "IItem",
+										"id": 1
+									}
+								}
+							],
+							"type": {
+								"type": "reference",
+								"name": "IDefaultModel",
+								"id": 105
+							},
+							"implementationOf": {
+								"type": "reference",
+								"name": "IDefaultModel.update",
+								"id": 125
+							}
+						}
+					],
+					"sources": [
+						{
+							"fileName": "default_model.ts",
+							"line": 169,
+							"character": 8
+						}
+					],
+					"implementationOf": {
+						"type": "reference",
+						"name": "IDefaultModel.update",
+						"id": 124
+					}
+				},
+				{
+					"id": 211,
+					"name": "validate",
+					"kind": 2048,
+					"kindString": "Method",
+					"flags": {
+						"isExported": true
+					},
+					"signatures": [
+						{
+							"id": 212,
+							"name": "validate",
+							"kind": 4096,
+							"kindString": "Call signature",
+							"flags": {},
+							"parameters": [
+								{
+									"id": 213,
+									"name": "body",
+									"kind": 32768,
+									"kindString": "Parameter",
+									"flags": {},
+									"type": {
+										"type": "reference",
+										"name": "IItem",
+										"id": 1
+									}
+								}
+							],
+							"type": {
+								"type": "intrinsic",
+								"name": "boolean"
+							},
+							"inheritedFrom": {
+								"type": "reference",
+								"name": "Model.validate",
+								"id": 83
+							},
+							"implementationOf": {
+								"type": "reference",
+								"name": "IDefaultModel.validate",
+								"id": 156
+							}
+						}
+					],
+					"sources": [
+						{
+							"fileName": "model.ts",
+							"line": 500,
+							"character": 10
+						}
+					],
+					"inheritedFrom": {
+						"type": "reference",
+						"name": "Model.validate",
+						"id": 83
+					},
+					"implementationOf": {
+						"type": "reference",
+						"name": "IDefaultModel.validate",
+						"id": 155
+					}
+				}
+			],
+			"groups": [
+				{
+					"title": "Constructors",
+					"kind": 512,
+					"children": [
+						159
+					]
+				},
+				{
+					"title": "Properties",
+					"kind": 1024,
+					"children": [
+						186,
+						189,
+						187,
+						188,
+						190,
+						191,
+						192,
+						193,
+						197,
+						194,
+						195,
+						196
+					]
+				},
+				{
+					"title": "Methods",
+					"kind": 2048,
+					"children": [
+						204,
+						164,
+						171,
+						180,
+						177,
+						201,
+						183,
+						162,
+						206,
+						198,
+						174,
+						211
+					]
+				}
+			],
+			"sources": [
+				{
+					"fileName": "default_model.ts",
+					"line": 59,
+					"character": 25
+				}
+			],
+			"extendedTypes": [
+				{
+					"type": "reference",
+					"name": "Model",
+					"id": 54
+				}
+			],
+			"implementedTypes": [
+				{
+					"type": "reference",
+					"name": "IModel",
+					"id": 25
+				},
+				{
+					"type": "reference",
+					"name": "IDefaultModel",
+					"id": 105
+				}
+			]
+		},
+		{
+			"id": 54,
+			"name": "Model",
+			"kind": 128,
+			"kindString": "Class",
+			"flags": {
+				"isExported": true,
+				"isAbstract": true
+			},
+			"comment": {
+				"shortText": "Abstract class used to bootstrap a new Model.",
+				"tags": [
+					{
+						"tag": "export",
+						"text": ""
+					},
+					{
+						"tag": "abstract",
+						"text": ""
+					},
+					{
+						"tag": "class",
+						"text": "Model"
+					},
+					{
+						"tag": "implements",
+						"text": "{IModel}\n"
+					}
+				]
+			},
+			"children": [
+				{
+					"id": 67,
+					"name": "constructor",
+					"kind": 512,
+					"kindString": "Constructor",
+					"flags": {
+						"isExported": true
+					},
+					"signatures": [
+						{
+							"id": 68,
+							"name": "new Model",
+							"kind": 16384,
+							"kindString": "Constructor signature",
+							"flags": {},
+							"parameters": [
+								{
+									"id": 69,
+									"name": "config",
+									"kind": 32768,
+									"kindString": "Parameter",
+									"flags": {},
+									"type": {
+										"type": "reference",
+										"name": "IDynamoDBModelConfig",
+										"id": 10
+									}
+								}
+							],
+							"type": {
+								"type": "reference",
+								"name": "Model",
+								"id": 54
+							}
+						}
+					],
+					"sources": [
+						{
+							"fileName": "model.ts",
+							"line": 389,
+							"character": 14
+						}
+					]
+				},
+				{
+					"id": 55,
+					"name": "documentClient",
+					"kind": 1024,
+					"kindString": "Property",
+					"flags": {
+						"isExported": true
+					},
+					"comment": {
+						"shortText": "DynamoDBDocument client instance. Must be declared before configuring the\nmodel.",
+						"tags": [
+							{
+								"tag": "type",
+								"text": "{DocumentClient}"
+							},
+							{
+								"tag": "memberof",
+								"text": "Model\n"
+							}
+						]
+					},
+					"sources": [
+						{
+							"fileName": "model.ts",
+							"line": 301,
+							"character": 16
+						}
+					],
+					"type": {
+						"type": "reference",
+						"name": "DocumentClient"
+					},
+					"implementationOf": {
+						"type": "reference",
+						"name": "IModel.documentClient",
+						"id": 28
+					}
+				},
+				{
+					"id": 58,
+					"name": "hasTenantRegExp",
+					"kind": 1024,
+					"kindString": "Property",
+					"flags": {
+						"isExported": true,
+						"isOptional": true
+					},
+					"comment": {
+						"shortText": "Regular expression to use when checking if the `hash` key has the `tenant`\nprefixed.",
+						"tags": [
+							{
+								"tag": "type",
+								"text": "{RegExp}"
+							},
+							{
+								"tag": "memberof",
+								"text": "Model\n"
+							}
+						]
+					},
+					"sources": [
+						{
+							"fileName": "model.ts",
+							"line": 323,
+							"character": 17
+						}
+					],
+					"type": {
+						"type": "reference",
+						"name": "RegExp"
+					},
+					"implementationOf": {
+						"type": "reference",
+						"name": "IModel.hasTenantRegExp",
+						"id": 34
+					}
+				},
+				{
+					"id": 56,
+					"name": "hash",
+					"kind": 1024,
+					"kindString": "Property",
+					"flags": {
+						"isExported": true
+					},
+					"comment": {
+						"shortText": "The name of the `hash` key.",
+						"tags": [
+							{
+								"tag": "type",
+								"text": "{string}"
+							},
+							{
+								"tag": "memberof",
+								"text": "Model\n"
+							}
+						]
+					},
+					"sources": [
+						{
+							"fileName": "model.ts",
+							"line": 308,
+							"character": 6
+						}
+					],
+					"type": {
+						"type": "intrinsic",
+						"name": "string"
+					},
+					"implementationOf": {
+						"type": "reference",
+						"name": "IModel.hash",
+						"id": 32
+					}
+				},
+				{
+					"id": 57,
+					"name": "hashType",
+					"kind": 1024,
+					"kindString": "Property",
+					"flags": {
+						"isExported": true
+					},
+					"comment": {
+						"shortText": "The type of the `hash` key.",
+						"tags": [
+							{
+								"tag": "type",
+								"text": "{string}"
+							},
+							{
+								"tag": "memberof",
+								"text": "Model\n"
+							}
+						]
+					},
+					"sources": [
+						{
+							"fileName": "model.ts",
+							"line": 315,
+							"character": 10
+						}
+					],
+					"type": {
+						"type": "intrinsic",
+						"name": "string"
+					},
+					"defaultValue": "\"string\"",
+					"implementationOf": {
+						"type": "reference",
+						"name": "IModel.hashType",
+						"id": 33
+					}
+				},
+				{
+					"id": 59,
+					"name": "indexName",
+					"kind": 1024,
+					"kindString": "Property",
+					"flags": {
+						"isExported": true
+					},
+					"comment": {
+						"shortText": "The name of the index to use when running an `index` operation. By default\nif will be called `byGSIK`. If the index is not created before hand, and\nthe model is configured with a `tenant`, then the method will fail.",
+						"tags": [
+							{
+								"tag": "type",
+								"text": "{string}"
+							},
+							{
+								"tag": "memberof",
+								"text": "Model\n"
+							}
+						]
+					},
+					"sources": [
+						{
+							"fileName": "model.ts",
+							"line": 332,
+							"character": 11
+						}
+					],
+					"type": {
+						"type": "intrinsic",
+						"name": "string"
+					},
+					"defaultValue": "\"byGSIK\"",
+					"implementationOf": {
+						"type": "reference",
+						"name": "IModel.indexName",
+						"id": 35
+					}
+				},
+				{
+					"id": 60,
+					"name": "maxGSIK",
+					"kind": 1024,
+					"kindString": "Property",
+					"flags": {
+						"isExported": true
+					},
+					"comment": {
+						"shortText": "The maximum GSIK values to use to index the models. This is necessary when\nconfiguring a `tenant`, since you can't configure an IAM policy to restrict\naccess to an item with a prefix on its hash ID. So, a GSIK will be\nconfigured on every item by the library, using the `tenant` value plus a\nnumber between `0` and `maxGSIK`. Then you can create an IAM policy that\nrestrict access on the index (called by defaylt `byGSIK`) with access only\non the items with the appropiate GSIK value.",
+						"tags": [
+							{
+								"tag": "type",
+								"text": "{number}"
+							},
+							{
+								"tag": "memberof",
+								"text": "Model\n"
+							}
+						]
+					},
+					"sources": [
+						{
+							"fileName": "model.ts",
+							"line": 345,
+							"character": 9
+						}
+					],
+					"type": {
+						"type": "intrinsic",
+						"name": "number"
+					},
+					"defaultValue": "10",
+					"implementationOf": {
+						"type": "reference",
+						"name": "IModel.maxGSIK",
+						"id": 36
+					}
+				},
+				{
+					"id": 61,
+					"name": "range",
+					"kind": 1024,
+					"kindString": "Property",
+					"flags": {
+						"isExported": true,
+						"isOptional": true
+					},
+					"comment": {
+						"shortText": "The name of the `range` key.",
+						"tags": [
+							{
+								"tag": "type",
+								"text": "{string}"
+							},
+							{
+								"tag": "memberof",
+								"text": "Model\n"
+							}
+						]
+					},
+					"sources": [
+						{
+							"fileName": "model.ts",
+							"line": 352,
+							"character": 7
+						}
+					],
+					"type": {
+						"type": "intrinsic",
+						"name": "string"
+					},
+					"implementationOf": {
+						"type": "reference",
+						"name": "IModel.range",
+						"id": 37
+					}
+				},
+				{
+					"id": 62,
+					"name": "rangeType",
+					"kind": 1024,
+					"kindString": "Property",
+					"flags": {
+						"isExported": true
+					},
+					"comment": {
+						"shortText": "The type of the `range` key.",
+						"tags": [
+							{
+								"tag": "type",
+								"text": "{string}"
+							},
+							{
+								"tag": "memberof",
+								"text": "Model\n"
+							}
+						]
+					},
+					"sources": [
+						{
+							"fileName": "model.ts",
+							"line": 359,
+							"character": 11
+						}
+					],
+					"type": {
+						"type": "intrinsic",
+						"name": "string"
+					},
+					"defaultValue": "\"string\"",
+					"implementationOf": {
+						"type": "reference",
+						"name": "IModel.rangeType",
+						"id": 38
+					}
+				},
+				{
+					"id": 66,
+					"name": "struct",
+					"kind": 1024,
+					"kindString": "Property",
+					"flags": {
+						"isExported": true
+					},
+					"comment": {
+						"shortText": "Struct instance created from the `struct` data passed through the model\nconfiguration.",
+						"tags": [
+							{
+								"tag": "type",
+								"text": "{*}"
+							},
+							{
+								"tag": "memberof",
+								"text": "Model\n"
+							}
+						]
+					},
+					"sources": [
+						{
+							"fileName": "model.ts",
+							"line": 389,
+							"character": 8
+						}
+					],
+					"type": {
+						"type": "intrinsic",
+						"name": "any"
+					},
+					"implementationOf": {
+						"type": "reference",
+						"name": "IModel.struct",
+						"id": 44
+					}
+				},
+				{
+					"id": 63,
+					"name": "table",
+					"kind": 1024,
+					"kindString": "Property",
+					"flags": {
+						"isExported": true
+					},
+					"comment": {
+						"shortText": "The table name. If not provided it will try to use the `table` name\nglobally configured.",
+						"tags": [
+							{
+								"tag": "type",
+								"text": "{string}"
+							},
+							{
+								"tag": "memberof",
+								"text": "Model\n"
+							}
+						]
+					},
+					"sources": [
+						{
+							"fileName": "model.ts",
+							"line": 367,
+							"character": 7
+						}
+					],
+					"type": {
+						"type": "intrinsic",
+						"name": "string"
+					},
+					"implementationOf": {
+						"type": "reference",
+						"name": "IModel.table",
+						"id": 45
+					}
+				},
+				{
+					"id": 64,
+					"name": "tenant",
+					"kind": 1024,
+					"kindString": "Property",
+					"flags": {
+						"isExported": true,
+						"isOptional": true
+					},
+					"comment": {
+						"shortText": "The `tenant` unique identifier.",
+						"tags": [
+							{
+								"tag": "type",
+								"text": "{string}"
+							},
+							{
+								"tag": "memberof",
+								"text": "Model\n"
+							}
+						]
+					},
+					"sources": [
+						{
+							"fileName": "model.ts",
+							"line": 374,
+							"character": 8
+						}
+					],
+					"type": {
+						"type": "intrinsic",
+						"name": "string"
+					},
+					"implementationOf": {
+						"type": "reference",
+						"name": "IModel.tenant",
+						"id": 46
+					}
+				},
+				{
+					"id": 65,
+					"name": "track",
+					"kind": 1024,
+					"kindString": "Property",
+					"flags": {
+						"isExported": true
+					},
+					"comment": {
+						"shortText": "Value used to track the dates where modifications were done to the item.",
+						"tags": [
+							{
+								"tag": "type",
+								"text": "{boolean}"
+							},
+							{
+								"tag": "memberof",
+								"text": "Model\n"
+							}
+						]
+					},
+					"sources": [
+						{
+							"fileName": "model.ts",
+							"line": 381,
+							"character": 7
+						}
+					],
+					"type": {
+						"type": "intrinsic",
+						"name": "boolean"
+					},
+					"defaultValue": "false",
+					"implementationOf": {
+						"type": "reference",
+						"name": "IModel.track",
+						"id": 47
+					}
+				},
+				{
+					"id": 76,
+					"name": "addTenant",
+					"kind": 2048,
+					"kindString": "Method",
+					"flags": {
+						"isExported": true
+					},
+					"signatures": [
+						{
+							"id": 77,
+							"name": "addTenant",
+							"kind": 4096,
+							"kindString": "Call signature",
+							"flags": {},
+							"type": {
+								"type": "reference",
+								"name": "IItem",
+								"id": 1
+							},
+							"implementationOf": {
+								"type": "reference",
+								"name": "IModel.addTenant",
+								"id": 27
+							}
+						}
+					],
+					"sources": [
+						{
+							"fileName": "model.ts",
+							"line": 463,
+							"character": 11
+						}
+					],
+					"implementationOf": {
+						"type": "reference",
+						"name": "IModel.addTenant",
+						"id": 26
+					}
+				},
+				{
+					"id": 73,
+					"name": "getKey",
+					"kind": 2048,
+					"kindString": "Method",
+					"flags": {
+						"isExported": true
+					},
+					"signatures": [
+						{
+							"id": 74,
+							"name": "getKey",
+							"kind": 4096,
+							"kindString": "Call signature",
+							"flags": {},
+							"parameters": [
+								{
+									"id": 75,
+									"name": "key",
+									"kind": 32768,
+									"kindString": "Parameter",
+									"flags": {},
+									"type": {
+										"type": "reference",
+										"name": "IDynamoDBKey",
+										"id": 4
+									}
+								}
+							],
+							"type": {
+								"type": "reference",
+								"name": "IDynamoDBKey",
+								"id": 4
+							},
+							"implementationOf": {
+								"type": "reference",
+								"name": "IModel.getKey",
+								"id": 30
+							}
+						}
+					],
+					"sources": [
+						{
+							"fileName": "model.ts",
+							"line": 437,
+							"character": 8
+						}
+					],
+					"implementationOf": {
+						"type": "reference",
+						"name": "IModel.getKey",
+						"id": 29
+					}
+				},
+				{
+					"id": 78,
+					"name": "removeTenant",
+					"kind": 2048,
+					"kindString": "Method",
+					"flags": {
+						"isExported": true
+					},
+					"signatures": [
+						{
+							"id": 79,
+							"name": "removeTenant",
+							"kind": 4096,
+							"kindString": "Call signature",
+							"flags": {},
+							"parameters": [
+								{
+									"id": 80,
+									"name": "items",
+									"kind": 32768,
+									"kindString": "Parameter",
+									"flags": {},
+									"type": {
+										"type": "reference",
+										"name": "IItem",
+										"id": 1
+									}
+								}
+							],
+							"type": {
+								"type": "reference",
+								"name": "IItem",
+								"id": 1
+							},
+							"implementationOf": {
+								"type": "reference",
+								"name": "IModel.removeTenant",
+								"id": 40
+							}
+						},
+						{
+							"id": 81,
+							"name": "removeTenant",
+							"kind": 4096,
+							"kindString": "Call signature",
+							"flags": {},
+							"parameters": [
+								{
+									"id": 82,
+									"name": "items",
+									"kind": 32768,
+									"kindString": "Parameter",
+									"flags": {},
+									"type": {
+										"type": "array",
+										"elementType": {
+											"type": "reference",
+											"name": "IItem",
+											"id": 1
+										}
+									}
+								}
+							],
+							"type": {
+								"type": "array",
+								"elementType": {
+									"type": "reference",
+									"name": "IItem",
+									"id": 1
+								}
+							},
+							"implementationOf": {
+								"type": "reference",
+								"name": "IModel.removeTenant",
+								"id": 42
+							}
+						}
+					],
+					"sources": [
+						{
+							"fileName": "model.ts",
+							"line": 479,
+							"character": 14
+						},
+						{
+							"fileName": "model.ts",
+							"line": 480,
+							"character": 14
+						},
+						{
+							"fileName": "model.ts",
+							"line": 481,
+							"character": 14
+						}
+					],
+					"implementationOf": {
+						"type": "reference",
+						"name": "IModel.removeTenant",
+						"id": 39
+					}
+				},
+				{
+					"id": 70,
+					"name": "trackChanges",
+					"kind": 2048,
+					"kindString": "Method",
+					"flags": {
+						"isExported": true
+					},
+					"signatures": [
+						{
+							"id": 71,
+							"name": "trackChanges",
+							"kind": 4096,
+							"kindString": "Call signature",
+							"flags": {},
+							"parameters": [
+								{
+									"id": 72,
+									"name": "body",
+									"kind": 32768,
+									"kindString": "Parameter",
+									"flags": {},
+									"type": {
+										"type": "reference",
+										"name": "IItem",
+										"id": 1
+									}
+								}
+							],
+							"type": {
+								"type": "reference",
+								"name": "IDynamoDBModelTrack",
+								"id": 7
+							},
+							"implementationOf": {
+								"type": "reference",
+								"name": "IModel.trackChanges",
+								"id": 49
+							}
+						}
+					],
+					"sources": [
+						{
+							"fileName": "model.ts",
+							"line": 427,
+							"character": 14
+						}
+					],
+					"implementationOf": {
+						"type": "reference",
+						"name": "IModel.trackChanges",
+						"id": 48
+					}
+				},
+				{
+					"id": 83,
+					"name": "validate",
+					"kind": 2048,
+					"kindString": "Method",
+					"flags": {
+						"isExported": true
+					},
+					"signatures": [
+						{
+							"id": 84,
+							"name": "validate",
+							"kind": 4096,
+							"kindString": "Call signature",
+							"flags": {},
+							"parameters": [
+								{
+									"id": 85,
+									"name": "body",
+									"kind": 32768,
+									"kindString": "Parameter",
+									"flags": {},
+									"type": {
+										"type": "reference",
+										"name": "IItem",
+										"id": 1
+									}
+								}
+							],
+							"type": {
+								"type": "intrinsic",
+								"name": "boolean"
+							},
+							"implementationOf": {
+								"type": "reference",
+								"name": "IModel.validate",
+								"id": 52
+							}
+						}
+					],
+					"sources": [
+						{
+							"fileName": "model.ts",
+							"line": 500,
+							"character": 10
+						}
+					],
+					"implementationOf": {
+						"type": "reference",
+						"name": "IModel.validate",
+						"id": 51
+					}
+				}
+			],
+			"groups": [
+				{
+					"title": "Constructors",
+					"kind": 512,
+					"children": [
+						67
+					]
+				},
+				{
+					"title": "Properties",
+					"kind": 1024,
+					"children": [
+						55,
+						58,
+						56,
+						57,
+						59,
+						60,
+						61,
+						62,
+						66,
+						63,
+						64,
+						65
+					]
+				},
+				{
+					"title": "Methods",
+					"kind": 2048,
+					"children": [
+						76,
+						73,
+						78,
+						70,
+						83
+					]
+				}
+			],
+			"sources": [
+				{
+					"fileName": "model.ts",
+					"line": 293,
+					"character": 27
+				}
+			],
+			"extendedBy": [
+				{
+					"type": "reference",
+					"name": "DefaultModel",
+					"id": 158
+				}
+			],
+			"implementedTypes": [
+				{
+					"type": "reference",
+					"name": "IModel",
+					"id": 25
+				}
+			]
+		},
+		{
+			"id": 105,
+			"name": "IDefaultModel",
+			"kind": 256,
+			"kindString": "Interface",
+			"flags": {
+				"isExported": true
+			},
+			"children": [
+				{
+					"id": 132,
+					"name": "documentClient",
+					"kind": 1024,
+					"kindString": "Property",
+					"flags": {
+						"isExported": true
+					},
+					"sources": [
+						{
+							"fileName": "model.ts",
+							"line": 158,
+							"character": 16
+						}
+					],
+					"type": {
+						"type": "reference",
+						"name": "DocumentClient"
+					},
+					"inheritedFrom": {
+						"type": "reference",
+						"name": "IModel.documentClient",
+						"id": 28
+					}
+				},
+				{
+					"id": 138,
+					"name": "hasTenantRegExp",
+					"kind": 1024,
+					"kindString": "Property",
+					"flags": {
+						"isExported": true,
+						"isOptional": true
+					},
+					"comment": {
+						"shortText": "Regular expression to use when checking if the `hash` key has the `tenant`\nprefixed.",
+						"tags": [
+							{
+								"tag": "type",
+								"text": "{RegExp}"
+							},
+							{
+								"tag": "memberof",
+								"text": "IModel\n"
+							}
+						]
+					},
+					"sources": [
+						{
+							"fileName": "model.ts",
+							"line": 189,
+							"character": 17
+						}
+					],
+					"type": {
+						"type": "reference",
+						"name": "RegExp"
+					},
+					"inheritedFrom": {
+						"type": "reference",
+						"name": "IModel.hasTenantRegExp",
+						"id": 34
+					}
+				},
+				{
+					"id": 136,
+					"name": "hash",
+					"kind": 1024,
+					"kindString": "Property",
+					"flags": {
+						"isExported": true
+					},
+					"comment": {
+						"shortText": "The name of the `hash` key.",
+						"tags": [
+							{
+								"tag": "type",
+								"text": "{string}"
+							},
+							{
+								"tag": "memberof",
+								"text": "IDynamoDBModelConfig\n"
+							}
+						]
+					},
+					"sources": [
+						{
+							"fileName": "model.ts",
+							"line": 174,
+							"character": 6
+						}
+					],
+					"type": {
+						"type": "intrinsic",
+						"name": "string"
+					},
+					"inheritedFrom": {
+						"type": "reference",
+						"name": "IModel.hash",
+						"id": 32
+					}
+				},
+				{
+					"id": 137,
+					"name": "hashType",
+					"kind": 1024,
+					"kindString": "Property",
+					"flags": {
+						"isExported": true
+					},
+					"comment": {
+						"shortText": "The type of the `hash` key.",
+						"tags": [
+							{
+								"tag": "type",
+								"text": "{string}"
+							},
+							{
+								"tag": "memberof",
+								"text": "IDynamoDBModelConfig\n"
+							}
+						]
+					},
+					"sources": [
+						{
+							"fileName": "model.ts",
+							"line": 181,
+							"character": 10
+						}
+					],
+					"type": {
+						"type": "intrinsic",
+						"name": "string"
+					},
+					"inheritedFrom": {
+						"type": "reference",
+						"name": "IModel.hashType",
+						"id": 33
+					}
+				},
+				{
+					"id": 139,
+					"name": "indexName",
+					"kind": 1024,
+					"kindString": "Property",
+					"flags": {
+						"isExported": true
+					},
+					"comment": {
+						"shortText": "The name of the index to use when running an `index` operation. By default\nif will be called `byGSIK`. If the index is not created before hand, and\nthe model is configured with a `tenant`, then the method will fail.",
+						"tags": [
+							{
+								"tag": "type",
+								"text": "{string}"
+							},
+							{
+								"tag": "memberof",
+								"text": "IModel\n"
+							}
+						]
+					},
+					"sources": [
+						{
+							"fileName": "model.ts",
+							"line": 198,
+							"character": 11
+						}
+					],
+					"type": {
+						"type": "intrinsic",
+						"name": "string"
+					},
+					"inheritedFrom": {
+						"type": "reference",
+						"name": "IModel.indexName",
+						"id": 35
+					}
+				},
+				{
+					"id": 140,
+					"name": "maxGSIK",
+					"kind": 1024,
+					"kindString": "Property",
+					"flags": {
+						"isExported": true
+					},
+					"comment": {
+						"shortText": "The maximum GSIK values to use to index the models. This is necessary when\nconfiguring a `tenant`, since you can't configure an IAM policy to restrict\naccess to an item with a prefix on its hash ID. So, a GSIK will be\nconfigured on every item by the library, using the `tenant` value plus a\nnumber between `0` and `maxGSIK`. Then you can create an IAM policy that\nrestrict access on the index (called by defaylt `byGSIK`) with access only\non the items with the appropiate GSIK value.",
+						"tags": [
+							{
+								"tag": "type",
+								"text": "{number}"
+							},
+							{
+								"tag": "memberof",
+								"text": "IModel\n"
+							}
+						]
+					},
+					"sources": [
+						{
+							"fileName": "model.ts",
+							"line": 211,
+							"character": 9
+						}
+					],
+					"type": {
+						"type": "intrinsic",
+						"name": "number"
+					},
+					"inheritedFrom": {
+						"type": "reference",
+						"name": "IModel.maxGSIK",
+						"id": 36
+					}
+				},
+				{
+					"id": 141,
+					"name": "range",
+					"kind": 1024,
+					"kindString": "Property",
+					"flags": {
+						"isExported": true,
+						"isOptional": true
+					},
+					"comment": {
+						"shortText": "The name of the `range` key.",
+						"tags": [
+							{
+								"tag": "type",
+								"text": "{string}"
+							},
+							{
+								"tag": "memberof",
+								"text": "IModel\n"
+							}
+						]
+					},
+					"sources": [
+						{
+							"fileName": "model.ts",
+							"line": 218,
+							"character": 7
+						}
+					],
+					"type": {
+						"type": "intrinsic",
+						"name": "string"
+					},
+					"inheritedFrom": {
+						"type": "reference",
+						"name": "IModel.range",
+						"id": 37
+					}
+				},
+				{
+					"id": 142,
+					"name": "rangeType",
+					"kind": 1024,
+					"kindString": "Property",
+					"flags": {
+						"isExported": true
+					},
+					"comment": {
+						"shortText": "The type of the `range` key.",
+						"tags": [
+							{
+								"tag": "type",
+								"text": "{string}"
+							},
+							{
+								"tag": "memberof",
+								"text": "IModel\n"
+							}
+						]
+					},
+					"sources": [
+						{
+							"fileName": "model.ts",
+							"line": 225,
+							"character": 11
+						}
+					],
+					"type": {
+						"type": "intrinsic",
+						"name": "string"
+					},
+					"inheritedFrom": {
+						"type": "reference",
+						"name": "IModel.rangeType",
+						"id": 38
+					}
+				},
+				{
+					"id": 148,
+					"name": "struct",
+					"kind": 1024,
+					"kindString": "Property",
+					"flags": {
+						"isExported": true
+					},
+					"comment": {
+						"shortText": "The struct representing the model. Should be configured followin the\n[superstruct](https://github.com/ianstormtaylor/superstruct) configuration guide."
+					},
+					"sources": [
+						{
+							"fileName": "model.ts",
+							"line": 246,
+							"character": 8
+						}
+					],
+					"type": {
+						"type": "reference",
+						"name": "IDynamoDBModelStruct",
+						"id": 22
+					},
+					"inheritedFrom": {
+						"type": "reference",
+						"name": "IModel.struct",
+						"id": 44
+					}
+				},
+				{
+					"id": 149,
+					"name": "table",
+					"kind": 1024,
+					"kindString": "Property",
+					"flags": {
+						"isExported": true
+					},
+					"comment": {
+						"shortText": "DynamoDB table name to store the model.",
+						"tags": [
+							{
+								"tag": "type",
+								"text": "{string}"
+							},
+							{
+								"tag": "memberof",
+								"text": "IModel\n"
+							}
+						]
+					},
+					"sources": [
+						{
+							"fileName": "model.ts",
+							"line": 253,
+							"character": 7
+						}
+					],
+					"type": {
+						"type": "intrinsic",
+						"name": "string"
+					},
+					"inheritedFrom": {
+						"type": "reference",
+						"name": "IModel.table",
+						"id": 45
+					}
+				},
+				{
+					"id": 150,
+					"name": "tenant",
+					"kind": 1024,
+					"kindString": "Property",
+					"flags": {
+						"isExported": true,
+						"isOptional": true
+					},
+					"comment": {
+						"shortText": "The `tenant` unique identifier.",
+						"tags": [
+							{
+								"tag": "type",
+								"text": "{string}"
+							},
+							{
+								"tag": "memberof",
+								"text": "IModel\n"
+							}
+						]
+					},
+					"sources": [
+						{
+							"fileName": "model.ts",
+							"line": 260,
+							"character": 8
+						}
+					],
+					"type": {
+						"type": "intrinsic",
+						"name": "string"
+					},
+					"inheritedFrom": {
+						"type": "reference",
+						"name": "IModel.tenant",
+						"id": 46
+					}
+				},
+				{
+					"id": 151,
+					"name": "track",
+					"kind": 1024,
+					"kindString": "Property",
+					"flags": {
+						"isExported": true
+					},
+					"comment": {
+						"shortText": "Value used to track the dates where modifications were done to the item.",
+						"tags": [
+							{
+								"tag": "type",
+								"text": "{boolean}"
+							},
+							{
+								"tag": "memberof",
+								"text": "IModel\n"
+							}
+						]
+					},
+					"sources": [
+						{
+							"fileName": "model.ts",
+							"line": 267,
+							"character": 7
+						}
+					],
+					"type": {
+						"type": "intrinsic",
+						"name": "boolean"
+					},
+					"inheritedFrom": {
+						"type": "reference",
+						"name": "IModel.track",
+						"id": 47
+					}
+				},
+				{
+					"id": 130,
+					"name": "addTenant",
+					"kind": 2048,
+					"kindString": "Method",
+					"flags": {
+						"isExported": true
+					},
+					"signatures": [
+						{
+							"id": 131,
+							"name": "addTenant",
+							"kind": 4096,
+							"kindString": "Call signature",
+							"flags": {},
+							"comment": {
+								"shortText": "Adds the `gsik` value to the item, created by joining the `tenant` value\nwith a random value between `0` and `maxGSIK`.",
+								"tags": [
+									{
+										"tag": "memberof",
+										"text": "Model\n"
+									}
+								]
+							},
+							"type": {
+								"type": "reference",
+								"name": "IItem",
+								"id": 1
+							},
+							"inheritedFrom": {
+								"type": "reference",
+								"name": "IModel.addTenant",
+								"id": 26
+							}
+						}
+					],
+					"sources": [
+						{
+							"fileName": "model.ts",
+							"line": 157,
+							"character": 11
+						}
+					],
+					"inheritedFrom": {
+						"type": "reference",
+						"name": "IModel.addTenant",
+						"id": 26
+					}
+				},
+				{
+					"id": 106,
+					"name": "callback",
+					"kind": 2048,
+					"kindString": "Method",
+					"flags": {
+						"isExported": true
+					},
+					"signatures": [
+						{
+							"id": 107,
+							"name": "callback",
+							"kind": 4096,
+							"kindString": "Call signature",
+							"flags": {},
+							"parameters": [
+								{
+									"id": 108,
+									"name": "callback",
+									"kind": 32768,
+									"kindString": "Parameter",
+									"flags": {},
+									"type": {
+										"type": "reflection",
+										"declaration": {
+											"id": 109,
+											"name": "__type",
+											"kind": 65536,
+											"kindString": "Type literal",
+											"flags": {},
+											"signatures": [
+												{
+													"id": 110,
+													"name": "__call",
+													"kind": 4096,
+													"kindString": "Call signature",
+													"flags": {},
+													"parameters": [
+														{
+															"id": 111,
+															"name": "error",
+															"kind": 32768,
+															"kindString": "Parameter",
+															"flags": {},
+															"type": {
+																"type": "union",
+																"types": [
+																	{
+																		"type": "reference",
+																		"name": "Error"
+																	},
+																	{
+																		"type": "intrinsic",
+																		"name": "null"
+																	}
+																]
+															}
+														},
+														{
+															"id": 112,
+															"name": "data",
+															"kind": 32768,
+															"kindString": "Parameter",
+															"flags": {
+																"isOptional": true
+															},
+															"type": {
+																"type": "union",
+																"types": [
+																	{
+																		"type": "reference",
+																		"name": "IItem",
+																		"id": 1
+																	},
+																	{
+																		"type": "intrinsic",
+																		"name": "void"
+																	}
+																]
+															}
+														}
+													],
+													"type": {
+														"type": "intrinsic",
+														"name": "void"
+													}
+												}
+											],
+											"sources": [
+												{
+													"fileName": "default_model.ts",
+													"line": 39,
+													"character": 20
+												}
+											]
+										}
+									}
+								}
+							],
+							"type": {
+								"type": "intrinsic",
+								"name": "void"
+							}
+						}
+					],
+					"sources": [
+						{
+							"fileName": "default_model.ts",
+							"line": 39,
+							"character": 10
+						}
+					]
+				},
+				{
+					"id": 121,
+					"name": "create",
+					"kind": 2048,
+					"kindString": "Method",
+					"flags": {
+						"isExported": true
+					},
+					"signatures": [
+						{
+							"id": 122,
+							"name": "create",
+							"kind": 4096,
+							"kindString": "Call signature",
+							"flags": {},
+							"parameters": [
+								{
+									"id": 123,
+									"name": "body",
+									"kind": 32768,
+									"kindString": "Parameter",
+									"flags": {},
+									"type": {
+										"type": "reference",
+										"name": "IItem",
+										"id": 1
+									}
+								}
+							],
+							"type": {
+								"type": "reference",
+								"name": "IDefaultModel",
+								"id": 105
+							}
+						}
+					],
+					"sources": [
+						{
+							"fileName": "default_model.ts",
+							"line": 43,
+							"character": 8
+						}
+					]
+				},
+				{
+					"id": 118,
+					"name": "delete",
+					"kind": 2048,
+					"kindString": "Method",
+					"flags": {
+						"isExported": true
+					},
+					"signatures": [
+						{
+							"id": 119,
+							"name": "delete",
+							"kind": 4096,
+							"kindString": "Call signature",
+							"flags": {},
+							"parameters": [
+								{
+									"id": 120,
+									"name": "key",
+									"kind": 32768,
+									"kindString": "Parameter",
+									"flags": {},
+									"type": {
+										"type": "reference",
+										"name": "IDynamoDBKey",
+										"id": 4
+									}
+								}
+							],
+							"type": {
+								"type": "reference",
+								"name": "IDefaultModel",
+								"id": 105
+							}
+						}
+					],
+					"sources": [
+						{
+							"fileName": "default_model.ts",
+							"line": 42,
+							"character": 8
+						}
+					]
+				},
+				{
+					"id": 115,
+					"name": "get",
+					"kind": 2048,
+					"kindString": "Method",
+					"flags": {
+						"isExported": true
+					},
+					"signatures": [
+						{
+							"id": 116,
+							"name": "get",
+							"kind": 4096,
+							"kindString": "Call signature",
+							"flags": {},
+							"parameters": [
+								{
+									"id": 117,
+									"name": "key",
+									"kind": 32768,
+									"kindString": "Parameter",
+									"flags": {},
+									"type": {
+										"type": "reference",
+										"name": "IDynamoDBKey",
+										"id": 4
+									}
+								}
+							],
+							"type": {
+								"type": "reference",
+								"name": "IDefaultModel",
+								"id": 105
+							}
+						}
+					],
+					"sources": [
+						{
+							"fileName": "default_model.ts",
+							"line": 41,
+							"character": 5
+						}
+					]
+				},
+				{
+					"id": 133,
+					"name": "getKey",
+					"kind": 2048,
+					"kindString": "Method",
+					"flags": {
+						"isExported": true
+					},
+					"signatures": [
+						{
+							"id": 134,
+							"name": "getKey",
+							"kind": 4096,
+							"kindString": "Call signature",
+							"flags": {},
+							"comment": {
+								"shortText": "Gets the `hash` and `range` key from the model.\nIf `tenant` is defined, it also adds it to the `hash` key.",
+								"tags": [
+									{
+										"tag": "memberof",
+										"text": "Model\n"
+									}
+								]
+							},
+							"parameters": [
+								{
+									"id": 135,
+									"name": "key",
+									"kind": 32768,
+									"kindString": "Parameter",
+									"flags": {},
+									"comment": {},
+									"type": {
+										"type": "reference",
+										"name": "IDynamoDBKey",
+										"id": 4
+									}
+								}
+							],
+							"type": {
+								"type": "reference",
+								"name": "IDynamoDBKey",
+								"id": 4
+							},
+							"inheritedFrom": {
+								"type": "reference",
+								"name": "IModel.getKey",
+								"id": 29
+							}
+						}
+					],
+					"sources": [
+						{
+							"fileName": "model.ts",
+							"line": 167,
+							"character": 8
+						}
+					],
+					"inheritedFrom": {
+						"type": "reference",
+						"name": "IModel.getKey",
+						"id": 29
+					}
+				},
+				{
+					"id": 127,
+					"name": "index",
+					"kind": 2048,
+					"kindString": "Method",
+					"flags": {
+						"isExported": true
+					},
+					"signatures": [
+						{
+							"id": 128,
+							"name": "index",
+							"kind": 4096,
+							"kindString": "Call signature",
+							"flags": {},
+							"parameters": [
+								{
+									"id": 129,
+									"name": "options",
+									"kind": 32768,
+									"kindString": "Parameter",
+									"flags": {
+										"isOptional": true
+									},
+									"type": {
+										"type": "reference",
+										"name": "IDynamoDBModelIndexOptions",
+										"id": 90
+									}
+								}
+							],
+							"type": {
+								"type": "reference",
+								"name": "IDefaultModel",
+								"id": 105
+							}
+						}
+					],
+					"sources": [
+						{
+							"fileName": "default_model.ts",
+							"line": 45,
+							"character": 7
+						}
+					]
+				},
+				{
+					"id": 113,
+					"name": "promise",
+					"kind": 2048,
+					"kindString": "Method",
+					"flags": {
+						"isExported": true
+					},
+					"signatures": [
+						{
+							"id": 114,
+							"name": "promise",
+							"kind": 4096,
+							"kindString": "Call signature",
+							"flags": {},
+							"type": {
+								"type": "reference",
+								"name": "Promise",
+								"typeArguments": [
+									{
+										"type": "union",
+										"types": [
+											{
+												"type": "reference",
+												"name": "IItem",
+												"id": 1
+											},
+											{
+												"type": "intrinsic",
+												"name": "void"
+											}
+										]
+									}
+								]
+							}
+						}
+					],
+					"sources": [
+						{
+							"fileName": "default_model.ts",
+							"line": 40,
+							"character": 9
+						}
+					]
+				},
+				{
+					"id": 143,
+					"name": "removeTenant",
+					"kind": 2048,
+					"kindString": "Method",
+					"flags": {
+						"isExported": true
+					},
+					"signatures": [
+						{
+							"id": 144,
+							"name": "removeTenant",
+							"kind": 4096,
+							"kindString": "Call signature",
+							"flags": {},
+							"comment": {
+								"shortText": "Removes all tenant data from an item.",
+								"tags": [
+									{
+										"tag": "memberof",
+										"text": "IModel\n"
+									}
+								]
+							},
+							"parameters": [
+								{
+									"id": 145,
+									"name": "items",
+									"kind": 32768,
+									"kindString": "Parameter",
+									"flags": {},
+									"comment": {},
+									"type": {
+										"type": "reference",
+										"name": "IItem",
+										"id": 1
+									}
+								}
+							],
+							"type": {
+								"type": "reference",
+								"name": "IItem",
+								"id": 1
+							},
+							"inheritedFrom": {
+								"type": "reference",
+								"name": "IModel.removeTenant",
+								"id": 39
+							}
+						},
+						{
+							"id": 146,
+							"name": "removeTenant",
+							"kind": 4096,
+							"kindString": "Call signature",
+							"flags": {},
+							"comment": {
+								"shortText": "Removes all tenant data from a list of items.",
+								"tags": [
+									{
+										"tag": "memberof",
+										"text": "IModel\n"
+									}
+								]
+							},
+							"parameters": [
+								{
+									"id": 147,
+									"name": "items",
+									"kind": 32768,
+									"kindString": "Parameter",
+									"flags": {},
+									"comment": {},
+									"type": {
+										"type": "array",
+										"elementType": {
+											"type": "reference",
+											"name": "IItem",
+											"id": 1
+										}
+									}
+								}
+							],
+							"type": {
+								"type": "array",
+								"elementType": {
+									"type": "reference",
+									"name": "IItem",
+									"id": 1
+								}
+							},
+							"inheritedFrom": {
+								"type": "reference",
+								"name": "IModel.removeTenant",
+								"id": 39
+							}
+						}
+					],
+					"sources": [
+						{
+							"fileName": "model.ts",
+							"line": 233,
+							"character": 14
+						},
+						{
+							"fileName": "model.ts",
+							"line": 241,
+							"character": 14
+						}
+					],
+					"inheritedFrom": {
+						"type": "reference",
+						"name": "IModel.removeTenant",
+						"id": 39
+					}
+				},
+				{
+					"id": 152,
+					"name": "trackChanges",
+					"kind": 2048,
+					"kindString": "Method",
+					"flags": {
+						"isExported": true
+					},
+					"signatures": [
+						{
+							"id": 153,
+							"name": "trackChanges",
+							"kind": 4096,
+							"kindString": "Call signature",
+							"flags": {},
+							"comment": {
+								"shortText": "Adds the appropiate track values if the `track` option is on.",
+								"tags": [
+									{
+										"tag": "memberof",
+										"text": "Model\n"
+									}
+								]
+							},
+							"parameters": [
+								{
+									"id": 154,
+									"name": "body",
+									"kind": 32768,
+									"kindString": "Parameter",
+									"flags": {},
+									"comment": {},
+									"type": {
+										"type": "reference",
+										"name": "IItem",
+										"id": 1
+									}
+								}
+							],
+							"type": {
+								"type": "reference",
+								"name": "IDynamoDBModelTrack",
+								"id": 7
+							},
+							"inheritedFrom": {
+								"type": "reference",
+								"name": "IModel.trackChanges",
+								"id": 48
+							}
+						}
+					],
+					"sources": [
+						{
+							"fileName": "model.ts",
+							"line": 275,
+							"character": 14
+						}
+					],
+					"inheritedFrom": {
+						"type": "reference",
+						"name": "IModel.trackChanges",
+						"id": 48
+					}
+				},
+				{
+					"id": 124,
+					"name": "update",
+					"kind": 2048,
+					"kindString": "Method",
+					"flags": {
+						"isExported": true
+					},
+					"signatures": [
+						{
+							"id": 125,
+							"name": "update",
+							"kind": 4096,
+							"kindString": "Call signature",
+							"flags": {},
+							"parameters": [
+								{
+									"id": 126,
+									"name": "body",
+									"kind": 32768,
+									"kindString": "Parameter",
+									"flags": {},
+									"type": {
+										"type": "reference",
+										"name": "IItem",
+										"id": 1
+									}
+								}
+							],
+							"type": {
+								"type": "reference",
+								"name": "IDefaultModel",
+								"id": 105
+							}
+						}
+					],
+					"sources": [
+						{
+							"fileName": "default_model.ts",
+							"line": 44,
+							"character": 8
+						}
+					]
+				},
+				{
+					"id": 155,
+					"name": "validate",
+					"kind": 2048,
+					"kindString": "Method",
+					"flags": {
+						"isExported": true
+					},
+					"signatures": [
+						{
+							"id": 156,
+							"name": "validate",
+							"kind": 4096,
+							"kindString": "Call signature",
+							"flags": {},
+							"comment": {
+								"shortText": "Validates the body of the request using [`superstruct`](https://github.com/ianstormtaylor/superstruct).",
+								"tags": [
+									{
+										"tag": "memberof",
+										"text": "Model\n"
+									}
+								]
+							},
+							"parameters": [
+								{
+									"id": 157,
+									"name": "body",
+									"kind": 32768,
+									"kindString": "Parameter",
+									"flags": {},
+									"comment": {},
+									"type": {
+										"type": "reference",
+										"name": "IItem",
+										"id": 1
+									}
+								}
+							],
+							"type": {
+								"type": "intrinsic",
+								"name": "boolean"
+							},
+							"inheritedFrom": {
+								"type": "reference",
+								"name": "IModel.validate",
+								"id": 51
+							}
+						}
+					],
+					"sources": [
+						{
+							"fileName": "model.ts",
+							"line": 283,
+							"character": 10
+						}
+					],
+					"inheritedFrom": {
+						"type": "reference",
+						"name": "IModel.validate",
+						"id": 51
+					}
+				}
+			],
+			"groups": [
+				{
+					"title": "Properties",
+					"kind": 1024,
+					"children": [
+						132,
+						138,
+						136,
+						137,
+						139,
+						140,
+						141,
+						142,
+						148,
+						149,
+						150,
+						151
+					]
+				},
+				{
+					"title": "Methods",
+					"kind": 2048,
+					"children": [
+						130,
+						106,
+						121,
+						118,
+						115,
+						133,
+						127,
+						113,
+						143,
+						152,
+						124,
+						155
+					]
+				}
+			],
+			"sources": [
+				{
+					"fileName": "default_model.ts",
+					"line": 38,
+					"character": 30
+				}
+			],
+			"extendedTypes": [
+				{
+					"type": "reference",
+					"name": "IModel",
+					"id": 25
+				}
+			],
+			"implementedBy": [
+				{
+					"type": "reference",
+					"name": "DefaultModel",
+					"id": 158
+				}
+			]
+		},
+		{
+			"id": 4,
+			"name": "IDynamoDBKey",
+			"kind": 256,
+			"kindString": "Interface",
+			"flags": {
+				"isExported": true
+			},
+			"comment": {
+				"shortText": "DynamoDB Item Key.\nA combination of `hash` and `range` key used to describe the table.",
+				"tags": [
+					{
+						"tag": "export",
+						"text": ""
+					},
+					{
+						"tag": "interface",
+						"text": "IDynamoDBKey\n"
+					}
+				]
+			},
+			"indexSignature": {
+				"id": 5,
+				"name": "__index",
+				"kind": 8192,
+				"kindString": "Index signature",
+				"flags": {},
+				"comment": {
+					"shortText": "DynamoDB Item Key.\nA combination of `hash` and `range` key used to describe the table."
+				},
+				"parameters": [
+					{
+						"id": 6,
+						"name": "key",
+						"kind": 32768,
+						"kindString": "Parameter",
+						"flags": {},
+						"type": {
+							"type": "intrinsic",
+							"name": "string"
+						}
+					}
+				],
+				"type": {
+					"type": "intrinsic",
+					"name": "string"
+				}
+			},
+			"sources": [
+				{
+					"fileName": "model.ts",
+					"line": 21,
+					"character": 29
+				}
+			]
+		},
+		{
+			"id": 10,
+			"name": "IDynamoDBModelConfig",
+			"kind": 256,
+			"kindString": "Interface",
+			"flags": {
+				"isExported": true
+			},
+			"comment": {
+				"shortText": "DynamoDBModel configuration options.",
+				"tags": [
+					{
+						"tag": "export",
+						"text": ""
+					},
+					{
+						"tag": "interface",
+						"text": "IDynamoDBModelConfig\n"
+					}
+				]
+			},
+			"children": [
+				{
+					"id": 11,
+					"name": "documentClient",
+					"kind": 1024,
+					"kindString": "Property",
+					"flags": {
+						"isExported": true
+					},
+					"comment": {
+						"shortText": "DynamoDBDocument client instance. Must be declared before configuring the\nmodel.",
+						"tags": [
+							{
+								"tag": "type",
+								"text": "{DocumentClient}"
+							},
+							{
+								"tag": "memberof",
+								"text": "IDynamoDBModelConfig\n"
+							}
+						]
+					},
+					"sources": [
+						{
+							"fileName": "model.ts",
+							"line": 50,
+							"character": 16
+						}
+					],
+					"type": {
+						"type": "reference",
+						"name": "DocumentClient"
+					}
+				},
+				{
+					"id": 12,
+					"name": "hash",
+					"kind": 1024,
+					"kindString": "Property",
+					"flags": {
+						"isExported": true
+					},
+					"comment": {
+						"shortText": "The name of the `hash` key.",
+						"tags": [
+							{
+								"tag": "type",
+								"text": "{string}"
+							},
+							{
+								"tag": "memberof",
+								"text": "IDynamoDBModelConfig\n"
+							}
+						]
+					},
+					"sources": [
+						{
+							"fileName": "model.ts",
+							"line": 57,
+							"character": 6
+						}
+					],
+					"type": {
+						"type": "intrinsic",
+						"name": "string"
+					}
+				},
+				{
+					"id": 13,
+					"name": "hashType",
+					"kind": 1024,
+					"kindString": "Property",
+					"flags": {
+						"isExported": true,
+						"isOptional": true
+					},
+					"comment": {
+						"shortText": "The type of the `hash` key.",
+						"tags": [
+							{
+								"tag": "type",
+								"text": "{('string' | 'number')}"
+							},
+							{
+								"tag": "memberof",
+								"text": "IDynamoDBModelConfig\n"
+							}
+						]
+					},
+					"sources": [
+						{
+							"fileName": "model.ts",
+							"line": 64,
+							"character": 10
+						}
+					],
+					"type": {
+						"type": "union",
+						"types": [
+							{
+								"type": "stringLiteral",
+								"value": "string"
+							},
+							{
+								"type": "stringLiteral",
+								"value": "number"
+							}
+						]
+					}
+				},
+				{
+					"id": 14,
+					"name": "indexName",
+					"kind": 1024,
+					"kindString": "Property",
+					"flags": {
+						"isExported": true,
+						"isOptional": true
+					},
+					"comment": {
+						"shortText": "The name of the index to use when running an `index` operation. By default\nif will be called `byGSIK`. If the index is not created before hand, and\nthe model is configured with a `tenant`, then the method will fail.",
+						"tags": [
+							{
+								"tag": "type",
+								"text": "{string}"
+							},
+							{
+								"tag": "memberof",
+								"text": "IDynamoDBModelConfig\n"
+							}
+						]
+					},
+					"sources": [
+						{
+							"fileName": "model.ts",
+							"line": 73,
+							"character": 11
+						}
+					],
+					"type": {
+						"type": "intrinsic",
+						"name": "string"
+					}
+				},
+				{
+					"id": 15,
+					"name": "maxGSIK",
+					"kind": 1024,
+					"kindString": "Property",
+					"flags": {
+						"isExported": true,
+						"isOptional": true
+					},
+					"comment": {
+						"shortText": "The maximum GSIK values to use to index the models. This is necessary when\nconfiguring a `tenant`, since you can't configure an IAM policy to restrict\naccess to an item with a prefix on its hash ID. So, a GSIK will be\nconfigured on every item by the library, using the `tenant` value plus a\nnumber between `0` and `maxGSIK`. Then you can create an IAM policy that\nrestrict access on the index (called by defaylt `byGSIK`) with access only\non the items with the appropiate GSIK value.",
+						"tags": [
+							{
+								"tag": "type",
+								"text": "{number}"
+							},
+							{
+								"tag": "memberof",
+								"text": "IDynamoDBModelConfig\n"
+							}
+						]
+					},
+					"sources": [
+						{
+							"fileName": "model.ts",
+							"line": 86,
+							"character": 9
+						}
+					],
+					"type": {
+						"type": "intrinsic",
+						"name": "number"
+					}
+				},
+				{
+					"id": 16,
+					"name": "range",
+					"kind": 1024,
+					"kindString": "Property",
+					"flags": {
+						"isExported": true,
+						"isOptional": true
+					},
+					"comment": {
+						"shortText": "The name of the `range` key.",
+						"tags": [
+							{
+								"tag": "type",
+								"text": "{string}"
+							},
+							{
+								"tag": "memberof",
+								"text": "IDynamoDBModelConfig\n"
+							}
+						]
+					},
+					"sources": [
+						{
+							"fileName": "model.ts",
+							"line": 93,
+							"character": 7
+						}
+					],
+					"type": {
+						"type": "intrinsic",
+						"name": "string"
+					}
+				},
+				{
+					"id": 17,
+					"name": "rangeType",
+					"kind": 1024,
+					"kindString": "Property",
+					"flags": {
+						"isExported": true,
+						"isOptional": true
+					},
+					"comment": {
+						"shortText": "The type of the `range` key.",
+						"tags": [
+							{
+								"tag": "type",
+								"text": "{('string' | 'number')}"
+							},
+							{
+								"tag": "memberof",
+								"text": "IDynamoDBModelConfig\n"
+							}
+						]
+					},
+					"sources": [
+						{
+							"fileName": "model.ts",
+							"line": 100,
+							"character": 11
+						}
+					],
+					"type": {
+						"type": "union",
+						"types": [
+							{
+								"type": "stringLiteral",
+								"value": "string"
+							},
+							{
+								"type": "stringLiteral",
+								"value": "number"
+							}
+						]
+					}
+				},
+				{
+					"id": 18,
+					"name": "struct",
+					"kind": 1024,
+					"kindString": "Property",
+					"flags": {
+						"isExported": true
+					},
+					"comment": {
+						"shortText": "The struct representing the model. Should be configured followin the\n[superstruct](https://github.com/ianstormtaylor/superstruct) configuration guide.",
+						"tags": [
+							{
+								"tag": "type",
+								"text": "{IDynamoDBModelStruct}"
+							},
+							{
+								"tag": "memberof",
+								"text": "IDynamoDBModelConfig\n"
+							}
+						]
+					},
+					"sources": [
+						{
+							"fileName": "model.ts",
+							"line": 108,
+							"character": 8
+						}
+					],
+					"type": {
+						"type": "reference",
+						"name": "IDynamoDBModelStruct",
+						"id": 22
+					}
+				},
+				{
+					"id": 19,
+					"name": "table",
+					"kind": 1024,
+					"kindString": "Property",
+					"flags": {
+						"isExported": true
+					},
+					"comment": {
+						"shortText": "The table name. If not provided it will try to use the `table` name\nglobally configured.",
+						"tags": [
+							{
+								"tag": "type",
+								"text": "{string}"
+							},
+							{
+								"tag": "memberof",
+								"text": "IDynamoDBModelConfig\n"
+							}
+						]
+					},
+					"sources": [
+						{
+							"fileName": "model.ts",
+							"line": 116,
+							"character": 7
+						}
+					],
+					"type": {
+						"type": "intrinsic",
+						"name": "string"
+					}
+				},
+				{
+					"id": 20,
+					"name": "tenant",
+					"kind": 1024,
+					"kindString": "Property",
+					"flags": {
+						"isExported": true,
+						"isOptional": true
+					},
+					"comment": {
+						"shortText": "The `tenant` unique identifier.",
+						"tags": [
+							{
+								"tag": "type",
+								"text": "{string}"
+							},
+							{
+								"tag": "memberof",
+								"text": "IDynamoDBModelConfig\n"
+							}
+						]
+					},
+					"sources": [
+						{
+							"fileName": "model.ts",
+							"line": 123,
+							"character": 8
+						}
+					],
+					"type": {
+						"type": "intrinsic",
+						"name": "string"
+					}
+				},
+				{
+					"id": 21,
+					"name": "track",
+					"kind": 1024,
+					"kindString": "Property",
+					"flags": {
+						"isExported": true,
+						"isOptional": true
+					},
+					"comment": {
+						"shortText": "Value used to track the dates where modifications were done to the item.",
+						"tags": [
+							{
+								"tag": "type",
+								"text": "{boolean}"
+							},
+							{
+								"tag": "memberof",
+								"text": "IDynamoDBModelConfig\n"
+							}
+						]
+					},
+					"sources": [
+						{
+							"fileName": "model.ts",
+							"line": 130,
+							"character": 7
+						}
+					],
+					"type": {
+						"type": "intrinsic",
+						"name": "boolean"
+					}
+				}
+			],
+			"groups": [
+				{
+					"title": "Properties",
+					"kind": 1024,
+					"children": [
+						11,
+						12,
+						13,
+						14,
+						15,
+						16,
+						17,
+						18,
+						19,
+						20,
+						21
+					]
+				}
+			],
+			"sources": [
+				{
+					"fileName": "model.ts",
+					"line": 42,
+					"character": 37
+				}
+			]
+		},
+		{
+			"id": 214,
+			"name": "IDynamoDBModelGlobalConfig",
+			"kind": 256,
+			"kindString": "Interface",
+			"flags": {
+				"isExported": true
+			},
+			"children": [
+				{
+					"id": 217,
+					"name": "documentClient",
+					"kind": 1024,
+					"kindString": "Property",
+					"flags": {
+						"isExported": true,
+						"isOptional": true
+					},
+					"sources": [
+						{
+							"fileName": "index.ts",
+							"line": 10,
+							"character": 16
+						}
+					],
+					"type": {
+						"type": "reference",
+						"name": "DocumentClient"
+					}
+				},
+				{
+					"id": 216,
+					"name": "table",
+					"kind": 1024,
+					"kindString": "Property",
+					"flags": {
+						"isExported": true,
+						"isOptional": true
+					},
+					"sources": [
+						{
+							"fileName": "index.ts",
+							"line": 9,
+							"character": 7
+						}
+					],
+					"type": {
+						"type": "intrinsic",
+						"name": "string"
+					}
+				},
+				{
+					"id": 215,
+					"name": "tenant",
+					"kind": 1024,
+					"kindString": "Property",
+					"flags": {
+						"isExported": true,
+						"isOptional": true
+					},
+					"sources": [
+						{
+							"fileName": "index.ts",
+							"line": 8,
+							"character": 8
+						}
+					],
+					"type": {
+						"type": "intrinsic",
+						"name": "string"
+					}
+				}
+			],
+			"groups": [
+				{
+					"title": "Properties",
+					"kind": 1024,
+					"children": [
+						217,
+						216,
+						215
+					]
+				}
+			],
+			"sources": [
+				{
+					"fileName": "index.ts",
+					"line": 7,
+					"character": 43
+				}
+			]
+		},
+		{
+			"id": 90,
+			"name": "IDynamoDBModelIndexOptions",
+			"kind": 256,
+			"kindString": "Interface",
+			"flags": {
+				"isExported": true
+			},
+			"children": [
+				{
+					"id": 94,
+					"name": "attributes",
+					"kind": 1024,
+					"kindString": "Property",
+					"flags": {
+						"isExported": true,
+						"isOptional": true
+					},
+					"sources": [
+						{
+							"fileName": "default_model.ts",
+							"line": 21,
+							"character": 12
+						}
+					],
+					"type": {
+						"type": "intrinsic",
+						"name": "string"
+					}
+				},
+				{
+					"id": 93,
+					"name": "filter",
+					"kind": 1024,
+					"kindString": "Property",
+					"flags": {
+						"isExported": true,
+						"isOptional": true
+					},
+					"sources": [
+						{
+							"fileName": "default_model.ts",
+							"line": 20,
+							"character": 8
+						}
+					],
+					"type": {
+						"type": "intrinsic",
+						"name": "string"
+					}
+				},
+				{
+					"id": 91,
+					"name": "limit",
+					"kind": 1024,
+					"kindString": "Property",
+					"flags": {
+						"isExported": true,
+						"isOptional": true
+					},
+					"sources": [
+						{
+							"fileName": "default_model.ts",
+							"line": 18,
+							"character": 7
+						}
+					],
+					"type": {
+						"type": "intrinsic",
+						"name": "number"
+					}
+				},
+				{
+					"id": 92,
+					"name": "offset",
+					"kind": 1024,
+					"kindString": "Property",
+					"flags": {
+						"isExported": true,
+						"isOptional": true
+					},
+					"sources": [
+						{
+							"fileName": "default_model.ts",
+							"line": 19,
+							"character": 8
+						}
+					],
+					"type": {
+						"type": "intrinsic",
+						"name": "string"
+					}
+				}
+			],
+			"groups": [
+				{
+					"title": "Properties",
+					"kind": 1024,
+					"children": [
+						94,
+						93,
+						91,
+						92
+					]
+				}
+			],
+			"sources": [
+				{
+					"fileName": "default_model.ts",
+					"line": 17,
+					"character": 43
+				}
+			]
+		},
+		{
+			"id": 86,
+			"name": "IDynamoDBModelScanData",
+			"kind": 256,
+			"kindString": "Interface",
+			"flags": {},
+			"children": [
+				{
+					"id": 88,
+					"name": "count",
+					"kind": 1024,
+					"kindString": "Property",
+					"flags": {},
+					"sources": [
+						{
+							"fileName": "default_model.ts",
+							"line": 13,
+							"character": 7
+						}
+					],
+					"type": {
+						"type": "intrinsic",
+						"name": "number"
+					}
+				},
+				{
+					"id": 87,
+					"name": "items",
+					"kind": 1024,
+					"kindString": "Property",
+					"flags": {},
+					"sources": [
+						{
+							"fileName": "default_model.ts",
+							"line": 12,
+							"character": 7
+						}
+					],
+					"type": {
+						"type": "array",
+						"elementType": {
+							"type": "reference",
+							"name": "IItem",
+							"id": 1
+						}
+					}
+				},
+				{
+					"id": 89,
+					"name": "offset",
+					"kind": 1024,
+					"kindString": "Property",
+					"flags": {
+						"isOptional": true
+					},
+					"sources": [
+						{
+							"fileName": "default_model.ts",
+							"line": 14,
+							"character": 8
+						}
+					],
+					"type": {
+						"type": "intrinsic",
+						"name": "string"
+					}
+				}
+			],
+			"groups": [
+				{
+					"title": "Properties",
+					"kind": 1024,
+					"children": [
+						88,
+						87,
+						89
+					]
+				}
+			],
+			"sources": [
+				{
+					"fileName": "default_model.ts",
+					"line": 11,
+					"character": 32
+				}
+			]
+		},
+		{
+			"id": 22,
+			"name": "IDynamoDBModelStruct",
+			"kind": 256,
+			"kindString": "Interface",
+			"flags": {
+				"isExported": true
+			},
+			"comment": {
+				"shortText": "The struct representing the model. Should be configured followin the\n[superstruct](https://github.com/ianstormtaylor/superstruct) configuration guide.",
+				"tags": [
+					{
+						"tag": "export",
+						"text": ""
+					},
+					{
+						"tag": "interface",
+						"text": "IDynamoDBModelStruct\n"
+					}
+				]
+			},
+			"indexSignature": {
+				"id": 23,
+				"name": "__index",
+				"kind": 8192,
+				"kindString": "Index signature",
+				"flags": {},
+				"comment": {
+					"shortText": "The struct representing the model. Should be configured followin the\n[superstruct](https://github.com/ianstormtaylor/superstruct) configuration guide."
+				},
+				"parameters": [
+					{
+						"id": 24,
+						"name": "key",
+						"kind": 32768,
+						"kindString": "Parameter",
+						"flags": {},
+						"type": {
+							"type": "intrinsic",
+							"name": "string"
+						}
+					}
+				],
+				"type": {
+					"type": "intrinsic",
+					"name": "string"
+				}
+			},
+			"sources": [
+				{
+					"fileName": "model.ts",
+					"line": 140,
+					"character": 37
+				}
+			]
+		},
+		{
+			"id": 7,
+			"name": "IDynamoDBModelTrack",
+			"kind": 256,
+			"kindString": "Interface",
+			"flags": {
+				"isExported": true
+			},
+			"comment": {
+				"shortText": "Attributes used to track modification done to an item. The `createdAt`\nattribute is only added when creating a new item, while the `updatedAt`\nattribute is also updated on every update.",
+				"tags": [
+					{
+						"tag": "export",
+						"text": ""
+					},
+					{
+						"tag": "interface",
+						"text": "IDynamoDBModelTrack\n"
+					}
+				]
+			},
+			"children": [
+				{
+					"id": 9,
+					"name": "createdAt",
+					"kind": 1024,
+					"kindString": "Property",
+					"flags": {
+						"isExported": true,
+						"isOptional": true
+					},
+					"sources": [
+						{
+							"fileName": "model.ts",
+							"line": 34,
+							"character": 11
+						}
+					],
+					"type": {
+						"type": "intrinsic",
+						"name": "string"
+					}
+				},
+				{
+					"id": 8,
+					"name": "updatedAt",
+					"kind": 1024,
+					"kindString": "Property",
+					"flags": {
+						"isExported": true,
+						"isOptional": true
+					},
+					"sources": [
+						{
+							"fileName": "model.ts",
+							"line": 33,
+							"character": 11
+						}
+					],
+					"type": {
+						"type": "intrinsic",
+						"name": "string"
+					}
+				}
+			],
+			"groups": [
+				{
+					"title": "Properties",
+					"kind": 1024,
+					"children": [
+						9,
+						8
+					]
+				}
+			],
+			"sources": [
+				{
+					"fileName": "model.ts",
+					"line": 32,
+					"character": 36
+				}
+			]
+		},
+		{
+			"id": 98,
+			"name": "IExpressionAttributeNames",
+			"kind": 256,
+			"kindString": "Interface",
+			"flags": {},
+			"indexSignature": {
+				"id": 99,
+				"name": "__index",
+				"kind": 8192,
+				"kindString": "Index signature",
+				"flags": {},
+				"parameters": [
+					{
+						"id": 100,
+						"name": "key",
+						"kind": 32768,
+						"kindString": "Parameter",
+						"flags": {},
+						"type": {
+							"type": "intrinsic",
+							"name": "string"
+						}
+					}
+				],
+				"type": {
+					"type": "intrinsic",
+					"name": "string"
+				}
+			},
+			"sources": [
+				{
+					"fileName": "default_model.ts",
+					"line": 28,
+					"character": 35
+				}
+			]
+		},
+		{
+			"id": 95,
+			"name": "IExpressionAttributeValues",
+			"kind": 256,
+			"kindString": "Interface",
+			"flags": {},
+			"indexSignature": {
+				"id": 96,
+				"name": "__index",
+				"kind": 8192,
+				"kindString": "Index signature",
+				"flags": {},
+				"parameters": [
+					{
+						"id": 97,
+						"name": "key",
+						"kind": 32768,
+						"kindString": "Parameter",
+						"flags": {},
+						"type": {
+							"type": "intrinsic",
+							"name": "string"
+						}
+					}
+				],
+				"type": {
+					"type": "intrinsic",
+					"name": "any"
+				}
+			},
+			"sources": [
+				{
+					"fileName": "default_model.ts",
+					"line": 24,
+					"character": 36
+				}
+			]
+		},
+		{
+			"id": 1,
+			"name": "IItem",
+			"kind": 256,
+			"kindString": "Interface",
+			"flags": {
+				"isExported": true
+			},
+			"comment": {
+				"shortText": "DynamoDB table item.",
+				"tags": [
+					{
+						"tag": "export",
+						"text": ""
+					},
+					{
+						"tag": "interface",
+						"text": "IItem\n"
+					}
+				]
+			},
+			"indexSignature": {
+				"id": 2,
+				"name": "__index",
+				"kind": 8192,
+				"kindString": "Index signature",
+				"flags": {},
+				"comment": {
+					"shortText": "DynamoDB table item."
+				},
+				"parameters": [
+					{
+						"id": 3,
+						"name": "key",
+						"kind": 32768,
+						"kindString": "Parameter",
+						"flags": {},
+						"type": {
+							"type": "intrinsic",
+							"name": "string"
+						}
+					}
+				],
+				"type": {
+					"type": "intrinsic",
+					"name": "any"
+				}
+			},
+			"sources": [
+				{
+					"fileName": "model.ts",
+					"line": 11,
+					"character": 22
+				}
+			]
+		},
+		{
+			"id": 25,
+			"name": "IModel",
+			"kind": 256,
+			"kindString": "Interface",
+			"flags": {
+				"isExported": true
+			},
+			"comment": {
+				"shortText": "Default Model interface.",
+				"tags": [
+					{
+						"tag": "export",
+						"text": ""
+					},
+					{
+						"tag": "interface",
+						"text": "IModel\n"
+					}
+				]
+			},
+			"children": [
+				{
+					"id": 28,
+					"name": "documentClient",
+					"kind": 1024,
+					"kindString": "Property",
+					"flags": {
+						"isExported": true
+					},
+					"sources": [
+						{
+							"fileName": "model.ts",
+							"line": 158,
+							"character": 16
+						}
+					],
+					"type": {
+						"type": "reference",
+						"name": "DocumentClient"
+					}
+				},
+				{
+					"id": 34,
+					"name": "hasTenantRegExp",
+					"kind": 1024,
+					"kindString": "Property",
+					"flags": {
+						"isExported": true,
+						"isOptional": true
+					},
+					"comment": {
+						"shortText": "Regular expression to use when checking if the `hash` key has the `tenant`\nprefixed.",
+						"tags": [
+							{
+								"tag": "type",
+								"text": "{RegExp}"
+							},
+							{
+								"tag": "memberof",
+								"text": "IModel\n"
+							}
+						]
+					},
+					"sources": [
+						{
+							"fileName": "model.ts",
+							"line": 189,
+							"character": 17
+						}
+					],
+					"type": {
+						"type": "reference",
+						"name": "RegExp"
+					}
+				},
+				{
+					"id": 32,
+					"name": "hash",
+					"kind": 1024,
+					"kindString": "Property",
+					"flags": {
+						"isExported": true
+					},
+					"comment": {
+						"shortText": "The name of the `hash` key.",
+						"tags": [
+							{
+								"tag": "type",
+								"text": "{string}"
+							},
+							{
+								"tag": "memberof",
+								"text": "IDynamoDBModelConfig\n"
+							}
+						]
+					},
+					"sources": [
+						{
+							"fileName": "model.ts",
+							"line": 174,
+							"character": 6
+						}
+					],
+					"type": {
+						"type": "intrinsic",
+						"name": "string"
+					}
+				},
+				{
+					"id": 33,
+					"name": "hashType",
+					"kind": 1024,
+					"kindString": "Property",
+					"flags": {
+						"isExported": true
+					},
+					"comment": {
+						"shortText": "The type of the `hash` key.",
+						"tags": [
+							{
+								"tag": "type",
+								"text": "{string}"
+							},
+							{
+								"tag": "memberof",
+								"text": "IDynamoDBModelConfig\n"
+							}
+						]
+					},
+					"sources": [
+						{
+							"fileName": "model.ts",
+							"line": 181,
+							"character": 10
+						}
+					],
+					"type": {
+						"type": "intrinsic",
+						"name": "string"
+					}
+				},
+				{
+					"id": 35,
+					"name": "indexName",
+					"kind": 1024,
+					"kindString": "Property",
+					"flags": {
+						"isExported": true
+					},
+					"comment": {
+						"shortText": "The name of the index to use when running an `index` operation. By default\nif will be called `byGSIK`. If the index is not created before hand, and\nthe model is configured with a `tenant`, then the method will fail.",
+						"tags": [
+							{
+								"tag": "type",
+								"text": "{string}"
+							},
+							{
+								"tag": "memberof",
+								"text": "IModel\n"
+							}
+						]
+					},
+					"sources": [
+						{
+							"fileName": "model.ts",
+							"line": 198,
+							"character": 11
+						}
+					],
+					"type": {
+						"type": "intrinsic",
+						"name": "string"
+					}
+				},
+				{
+					"id": 36,
+					"name": "maxGSIK",
+					"kind": 1024,
+					"kindString": "Property",
+					"flags": {
+						"isExported": true
+					},
+					"comment": {
+						"shortText": "The maximum GSIK values to use to index the models. This is necessary when\nconfiguring a `tenant`, since you can't configure an IAM policy to restrict\naccess to an item with a prefix on its hash ID. So, a GSIK will be\nconfigured on every item by the library, using the `tenant` value plus a\nnumber between `0` and `maxGSIK`. Then you can create an IAM policy that\nrestrict access on the index (called by defaylt `byGSIK`) with access only\non the items with the appropiate GSIK value.",
+						"tags": [
+							{
+								"tag": "type",
+								"text": "{number}"
+							},
+							{
+								"tag": "memberof",
+								"text": "IModel\n"
+							}
+						]
+					},
+					"sources": [
+						{
+							"fileName": "model.ts",
+							"line": 211,
+							"character": 9
+						}
+					],
+					"type": {
+						"type": "intrinsic",
+						"name": "number"
+					}
+				},
+				{
+					"id": 37,
+					"name": "range",
+					"kind": 1024,
+					"kindString": "Property",
+					"flags": {
+						"isExported": true,
+						"isOptional": true
+					},
+					"comment": {
+						"shortText": "The name of the `range` key.",
+						"tags": [
+							{
+								"tag": "type",
+								"text": "{string}"
+							},
+							{
+								"tag": "memberof",
+								"text": "IModel\n"
+							}
+						]
+					},
+					"sources": [
+						{
+							"fileName": "model.ts",
+							"line": 218,
+							"character": 7
+						}
+					],
+					"type": {
+						"type": "intrinsic",
+						"name": "string"
+					}
+				},
+				{
+					"id": 38,
+					"name": "rangeType",
+					"kind": 1024,
+					"kindString": "Property",
+					"flags": {
+						"isExported": true
+					},
+					"comment": {
+						"shortText": "The type of the `range` key.",
+						"tags": [
+							{
+								"tag": "type",
+								"text": "{string}"
+							},
+							{
+								"tag": "memberof",
+								"text": "IModel\n"
+							}
+						]
+					},
+					"sources": [
+						{
+							"fileName": "model.ts",
+							"line": 225,
+							"character": 11
+						}
+					],
+					"type": {
+						"type": "intrinsic",
+						"name": "string"
+					}
+				},
+				{
+					"id": 44,
+					"name": "struct",
+					"kind": 1024,
+					"kindString": "Property",
+					"flags": {
+						"isExported": true
+					},
+					"comment": {
+						"shortText": "The struct representing the model. Should be configured followin the\n[superstruct](https://github.com/ianstormtaylor/superstruct) configuration guide."
+					},
+					"sources": [
+						{
+							"fileName": "model.ts",
+							"line": 246,
+							"character": 8
+						}
+					],
+					"type": {
+						"type": "reference",
+						"name": "IDynamoDBModelStruct",
+						"id": 22
+					}
+				},
+				{
+					"id": 45,
+					"name": "table",
+					"kind": 1024,
+					"kindString": "Property",
+					"flags": {
+						"isExported": true
+					},
+					"comment": {
+						"shortText": "DynamoDB table name to store the model.",
+						"tags": [
+							{
+								"tag": "type",
+								"text": "{string}"
+							},
+							{
+								"tag": "memberof",
+								"text": "IModel\n"
+							}
+						]
+					},
+					"sources": [
+						{
+							"fileName": "model.ts",
+							"line": 253,
+							"character": 7
+						}
+					],
+					"type": {
+						"type": "intrinsic",
+						"name": "string"
+					}
+				},
+				{
+					"id": 46,
+					"name": "tenant",
+					"kind": 1024,
+					"kindString": "Property",
+					"flags": {
+						"isExported": true,
+						"isOptional": true
+					},
+					"comment": {
+						"shortText": "The `tenant` unique identifier.",
+						"tags": [
+							{
+								"tag": "type",
+								"text": "{string}"
+							},
+							{
+								"tag": "memberof",
+								"text": "IModel\n"
+							}
+						]
+					},
+					"sources": [
+						{
+							"fileName": "model.ts",
+							"line": 260,
+							"character": 8
+						}
+					],
+					"type": {
+						"type": "intrinsic",
+						"name": "string"
+					}
+				},
+				{
+					"id": 47,
+					"name": "track",
+					"kind": 1024,
+					"kindString": "Property",
+					"flags": {
+						"isExported": true
+					},
+					"comment": {
+						"shortText": "Value used to track the dates where modifications were done to the item.",
+						"tags": [
+							{
+								"tag": "type",
+								"text": "{boolean}"
+							},
+							{
+								"tag": "memberof",
+								"text": "IModel\n"
+							}
+						]
+					},
+					"sources": [
+						{
+							"fileName": "model.ts",
+							"line": 267,
+							"character": 7
+						}
+					],
+					"type": {
+						"type": "intrinsic",
+						"name": "boolean"
+					}
+				},
+				{
+					"id": 26,
+					"name": "addTenant",
+					"kind": 2048,
+					"kindString": "Method",
+					"flags": {
+						"isExported": true
+					},
+					"signatures": [
+						{
+							"id": 27,
+							"name": "addTenant",
+							"kind": 4096,
+							"kindString": "Call signature",
+							"flags": {},
+							"comment": {
+								"shortText": "Adds the `gsik` value to the item, created by joining the `tenant` value\nwith a random value between `0` and `maxGSIK`.",
+								"tags": [
+									{
+										"tag": "memberof",
+										"text": "Model\n"
+									}
+								]
+							},
+							"type": {
+								"type": "reference",
+								"name": "IItem",
+								"id": 1
+							}
+						}
+					],
+					"sources": [
+						{
+							"fileName": "model.ts",
+							"line": 157,
+							"character": 11
+						}
+					]
+				},
+				{
+					"id": 29,
+					"name": "getKey",
+					"kind": 2048,
+					"kindString": "Method",
+					"flags": {
+						"isExported": true
+					},
+					"signatures": [
+						{
+							"id": 30,
+							"name": "getKey",
+							"kind": 4096,
+							"kindString": "Call signature",
+							"flags": {},
+							"comment": {
+								"shortText": "Gets the `hash` and `range` key from the model.\nIf `tenant` is defined, it also adds it to the `hash` key.",
+								"tags": [
+									{
+										"tag": "memberof",
+										"text": "Model\n"
+									}
+								]
+							},
+							"parameters": [
+								{
+									"id": 31,
+									"name": "key",
+									"kind": 32768,
+									"kindString": "Parameter",
+									"flags": {},
+									"comment": {},
+									"type": {
+										"type": "reference",
+										"name": "IDynamoDBKey",
+										"id": 4
+									}
+								}
+							],
+							"type": {
+								"type": "reference",
+								"name": "IDynamoDBKey",
+								"id": 4
+							}
+						}
+					],
+					"sources": [
+						{
+							"fileName": "model.ts",
+							"line": 167,
+							"character": 8
+						}
+					]
+				},
+				{
+					"id": 39,
+					"name": "removeTenant",
+					"kind": 2048,
+					"kindString": "Method",
+					"flags": {
+						"isExported": true
+					},
+					"signatures": [
+						{
+							"id": 40,
+							"name": "removeTenant",
+							"kind": 4096,
+							"kindString": "Call signature",
+							"flags": {},
+							"comment": {
+								"shortText": "Removes all tenant data from an item.",
+								"tags": [
+									{
+										"tag": "memberof",
+										"text": "IModel\n"
+									}
+								]
+							},
+							"parameters": [
+								{
+									"id": 41,
+									"name": "items",
+									"kind": 32768,
+									"kindString": "Parameter",
+									"flags": {},
+									"comment": {},
+									"type": {
+										"type": "reference",
+										"name": "IItem",
+										"id": 1
+									}
+								}
+							],
+							"type": {
+								"type": "reference",
+								"name": "IItem",
+								"id": 1
+							}
+						},
+						{
+							"id": 42,
+							"name": "removeTenant",
+							"kind": 4096,
+							"kindString": "Call signature",
+							"flags": {},
+							"comment": {
+								"shortText": "Removes all tenant data from a list of items.",
+								"tags": [
+									{
+										"tag": "memberof",
+										"text": "IModel\n"
+									}
+								]
+							},
+							"parameters": [
+								{
+									"id": 43,
+									"name": "items",
+									"kind": 32768,
+									"kindString": "Parameter",
+									"flags": {},
+									"comment": {},
+									"type": {
+										"type": "array",
+										"elementType": {
+											"type": "reference",
+											"name": "IItem",
+											"id": 1
+										}
+									}
+								}
+							],
+							"type": {
+								"type": "array",
+								"elementType": {
+									"type": "reference",
+									"name": "IItem",
+									"id": 1
+								}
+							}
+						}
+					],
+					"sources": [
+						{
+							"fileName": "model.ts",
+							"line": 233,
+							"character": 14
+						},
+						{
+							"fileName": "model.ts",
+							"line": 241,
+							"character": 14
+						}
+					]
+				},
+				{
+					"id": 48,
+					"name": "trackChanges",
+					"kind": 2048,
+					"kindString": "Method",
+					"flags": {
+						"isExported": true
+					},
+					"signatures": [
+						{
+							"id": 49,
+							"name": "trackChanges",
+							"kind": 4096,
+							"kindString": "Call signature",
+							"flags": {},
+							"comment": {
+								"shortText": "Adds the appropiate track values if the `track` option is on.",
+								"tags": [
+									{
+										"tag": "memberof",
+										"text": "Model\n"
+									}
+								]
+							},
+							"parameters": [
+								{
+									"id": 50,
+									"name": "body",
+									"kind": 32768,
+									"kindString": "Parameter",
+									"flags": {},
+									"comment": {},
+									"type": {
+										"type": "reference",
+										"name": "IItem",
+										"id": 1
+									}
+								}
+							],
+							"type": {
+								"type": "reference",
+								"name": "IDynamoDBModelTrack",
+								"id": 7
+							}
+						}
+					],
+					"sources": [
+						{
+							"fileName": "model.ts",
+							"line": 275,
+							"character": 14
+						}
+					]
+				},
+				{
+					"id": 51,
+					"name": "validate",
+					"kind": 2048,
+					"kindString": "Method",
+					"flags": {
+						"isExported": true
+					},
+					"signatures": [
+						{
+							"id": 52,
+							"name": "validate",
+							"kind": 4096,
+							"kindString": "Call signature",
+							"flags": {},
+							"comment": {
+								"shortText": "Validates the body of the request using [`superstruct`](https://github.com/ianstormtaylor/superstruct).",
+								"tags": [
+									{
+										"tag": "memberof",
+										"text": "Model\n"
+									}
+								]
+							},
+							"parameters": [
+								{
+									"id": 53,
+									"name": "body",
+									"kind": 32768,
+									"kindString": "Parameter",
+									"flags": {},
+									"comment": {},
+									"type": {
+										"type": "reference",
+										"name": "IItem",
+										"id": 1
+									}
+								}
+							],
+							"type": {
+								"type": "intrinsic",
+								"name": "boolean"
+							}
+						}
+					],
+					"sources": [
+						{
+							"fileName": "model.ts",
+							"line": 283,
+							"character": 10
+						}
+					]
+				}
+			],
+			"groups": [
+				{
+					"title": "Properties",
+					"kind": 1024,
+					"children": [
+						28,
+						34,
+						32,
+						33,
+						35,
+						36,
+						37,
+						38,
+						44,
+						45,
+						46,
+						47
+					]
+				},
+				{
+					"title": "Methods",
+					"kind": 2048,
+					"children": [
+						26,
+						29,
+						39,
+						48,
+						51
+					]
+				}
+			],
+			"sources": [
+				{
+					"fileName": "model.ts",
+					"line": 149,
+					"character": 23
+				}
+			],
+			"extendedBy": [
+				{
+					"type": "reference",
+					"name": "IDefaultModel",
+					"id": 105
+				}
+			],
+			"implementedBy": [
+				{
+					"type": "reference",
+					"name": "DefaultModel",
+					"id": 158
+				},
+				{
+					"type": "reference",
+					"name": "Model",
+					"id": 54
+				}
+			]
+		},
+		{
+			"id": 101,
+			"name": "IUpdateExpressionAttributes",
+			"kind": 256,
+			"kindString": "Interface",
+			"flags": {},
+			"children": [
+				{
+					"id": 103,
+					"name": "ExpressionAttributeNames",
+					"kind": 1024,
+					"kindString": "Property",
+					"flags": {},
+					"sources": [
+						{
+							"fileName": "default_model.ts",
+							"line": 34,
+							"character": 26
+						}
+					],
+					"type": {
+						"type": "reference",
+						"name": "IExpressionAttributeNames",
+						"id": 98
+					}
+				},
+				{
+					"id": 104,
+					"name": "ExpressionAttributeValues",
+					"kind": 1024,
+					"kindString": "Property",
+					"flags": {},
+					"sources": [
+						{
+							"fileName": "default_model.ts",
+							"line": 35,
+							"character": 27
+						}
+					],
+					"type": {
+						"type": "reference",
+						"name": "IExpressionAttributeValues",
+						"id": 95
+					}
+				},
+				{
+					"id": 102,
+					"name": "UpdateExpression",
+					"kind": 1024,
+					"kindString": "Property",
+					"flags": {},
+					"sources": [
+						{
+							"fileName": "default_model.ts",
+							"line": 33,
+							"character": 18
+						}
+					],
+					"type": {
+						"type": "intrinsic",
+						"name": "string"
+					}
+				}
+			],
+			"groups": [
+				{
+					"title": "Properties",
+					"kind": 1024,
+					"children": [
+						103,
+						104,
+						102
+					]
+				}
+			],
+			"sources": [
+				{
+					"fileName": "default_model.ts",
+					"line": 32,
+					"character": 37
+				}
+			]
+		},
+		{
+			"id": 218,
+			"name": "global",
+			"kind": 32,
+			"kindString": "Variable",
+			"flags": {},
+			"sources": [
+				{
+					"fileName": "index.ts",
+					"line": 13,
+					"character": 10
+				}
+			],
+			"type": {
+				"type": "reference",
+				"name": "IDynamoDBModelGlobalConfig",
+				"id": 214
+			}
+		},
+		{
+			"id": 249,
+			"name": "atob",
+			"kind": 64,
+			"kindString": "Function",
+			"flags": {
+				"isExported": true
+			},
+			"signatures": [
+				{
+					"id": 250,
+					"name": "atob",
+					"kind": 4096,
+					"kindString": "Call signature",
+					"flags": {},
+					"comment": {
+						"shortText": "Decodes a base64 string to ascii"
+					},
+					"parameters": [
+						{
+							"id": 251,
+							"name": "string",
+							"kind": 32768,
+							"kindString": "Parameter",
+							"flags": {},
+							"comment": {
+								"text": "String to decode from base64 to ascii.\n"
+							},
+							"type": {
+								"type": "intrinsic",
+								"name": "string"
+							}
+						}
+					],
+					"type": {
+						"type": "intrinsic",
+						"name": "string"
+					}
+				}
+			],
+			"sources": [
+				{
+					"fileName": "utils.ts",
+					"line": 13,
+					"character": 20
+				}
+			]
+		},
+		{
+			"id": 246,
+			"name": "btoa",
+			"kind": 64,
+			"kindString": "Function",
+			"flags": {
+				"isExported": true
+			},
+			"signatures": [
+				{
+					"id": 247,
+					"name": "btoa",
+					"kind": 4096,
+					"kindString": "Call signature",
+					"flags": {},
+					"comment": {
+						"shortText": "Encodes a string using base64."
+					},
+					"parameters": [
+						{
+							"id": 248,
+							"name": "string",
+							"kind": 32768,
+							"kindString": "Parameter",
+							"flags": {},
+							"comment": {
+								"text": "String to encode to base64\n"
+							},
+							"type": {
+								"type": "intrinsic",
+								"name": "string"
+							}
+						}
+					],
+					"type": {
+						"type": "intrinsic",
+						"name": "string"
+					}
+				}
+			],
+			"sources": [
+				{
+					"fileName": "utils.ts",
+					"line": 5,
+					"character": 20
+				}
+			]
+		}
+	],
+	"groups": [
+		{
+			"title": "Modules",
+			"kind": 2,
+			"children": [
+				245,
+				219
+			]
+		},
+		{
+			"title": "Classes",
+			"kind": 128,
+			"children": [
+				158,
+				54
+			]
+		},
+		{
+			"title": "Interfaces",
+			"kind": 256,
+			"children": [
+				105,
+				4,
+				10,
+				214,
+				90,
+				86,
+				22,
+				7,
+				98,
+				95,
+				1,
+				25,
+				101
+			]
+		},
+		{
+			"title": "Variables",
+			"kind": 32,
+			"children": [
+				218
+			]
+		},
+		{
+			"title": "Functions",
+			"kind": 64,
+			"children": [
+				249,
+				246
+			]
+		}
+	]
+}

@@ -1,9 +1,12 @@
 {
-  "name": "dynamodb-model",
+  "name": "dynamodb-simple-model",
   "version": "1.0.2",
-  "description": "DynamoDB models to use on internal projects.",
+  "description":
+    "Dynamodb model wrapper for developers without DynamoDB knowledge",
   "main": "dist/index.js",
-  "repository": "https://github.com/guzmonne/dynamodb-model",
+  "repository": {
+    "github": "git@github.com:guzmonne/dynamodb-model.git"
+  },
   "author": "Guzman Monne <guzmonne@hotmail.com>",
   "license": "MIT",
   "private": false,
@@ -12,6 +15,7 @@
     "@types/lodash": "^4.14.102",
     "@types/node": "^9.4.5",
     "@types/sinon": "^4.1.3",
+    "gh-pages": "^1.1.0",
     "gulp": "^3.9.1",
     "gulp-typedoc": "^2.2.0",
     "jest": "^22.2.2",
@@ -22,7 +26,8 @@
   },
   "scripts": {
     "test": "jest --watch",
-    "docs": "./node_modules/.bin/gulp typedoc"
+    "docs": "./node_modules/.bin/gulp typedoc",
+    "deploy": "gh-pages -d docs"
   },
   "jest": {
     "transform": {

@@ -582,8 +582,16 @@ describe('DefaultModel', () => {
     });
 
     test('should convert the offset from base64 to a DynamoDBKey when tenant is not undefined', done => {
+      var TestModel = DynamoDBModel.create({
+        ...config,
+        maxGSIK: 2
+      });
+
       TestModel()
-        .index({ limit: 200, offset: btoa(JSON.stringify({ id })) })
+        .index({
+          limit: 200,
+          offset: btoa(JSON.stringify({ 0: { id }, 1: { id } }))
+        })
         .callback(() => {
           expect(queryStub.args[0][0]).toEqual({
             TableName: table,
@@ -595,7 +603,22 @@ describe('DefaultModel', () => {
             ExpressionAttributeValues: {
               ':gsik': tenant + '|0'
             },
-            Limit: 200,
+            Limit: 100,
+            ExclusiveStartKey: {
+              id: tenant + '|' + id
+            }
+          });
+          expect(queryStub.args[1][0]).toEqual({
+            TableName: table,
+            IndexName: 'byGSIK',
+            KeyConditionExpression: `#gsik = :gsik`,
+            ExpressionAttributeNames: {
+              '#gsik': 'gsik'
+            },
+            ExpressionAttributeValues: {
+              ':gsik': tenant + '|1'
+            },
+            Limit: 100,
             ExclusiveStartKey: {
               id: tenant + '|' + id
             }
@@ -612,7 +635,7 @@ describe('DefaultModel', () => {
       });
 
       TestModel()
-        .index({ limit: 200, offset: btoa(JSON.stringify({ id })) })
+        .index({ limit: 200, offset: btoa(JSON.stringify({ 0: { id } })) })
         .callback(() => {
           expect(queryStub.args[0][0]).toEqual({
             TableName: table,
