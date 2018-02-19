@@ -27,7 +27,8 @@
   "scripts": {
     "test": "jest --watch",
     "docs": "./node_modules/.bin/gulp typedoc",
-    "deploy": "gh-pages -d docs"
+    "deploy": "gh-pages -d docs",
+    "docs:deploy": "yarn docs && git commit -am \"updated docs\" && yarn deploy"
   },
   "jest": {
     "transform": {

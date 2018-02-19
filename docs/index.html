@@ -214,6 +214,15 @@ CustomModel().echo(<span class="hljs-string">'Something'</span>);
 model.echo(<span class="hljs-string">'something'</span>);
 <span class="hljs-comment">// &gt;&gt;&gt; something</span>
 </code></pre>
+				<h2 id="examples">Examples</h2>
+				<p>On the examples folder you can see how you can interact with the default model and how to extend it to include methods of your own. I recommend you run the examples using <a href="https://github.com/mhart/dynalite">Dynalite</a> which is a great tool to run DynamoDB locally.</p>
+				<p>Running the <code>setup.js</code> script will create the example table on the DynamoDB instance you provide. By default, it will try to get a Dynalite instance working on port 8989.</p>
+				<pre><code><span class="hljs-keyword">node</span> <span class="hljs-title">examples</span>/setup.js
+</code></pre><p>You can then see the library in action by running:</p>
+				<pre><code><span class="hljs-keyword">node</span> <span class="hljs-title">examples</span>/default_model.js
+
+<span class="hljs-keyword">node</span> <span class="hljs-title">examples</span>/custom_model.js
+</code></pre><p>If you would like to see or offer more examples let me know.</p>
 				<h2 id="licence">LICENCE</h2>
 				<p>MIT</p>
 			</div>
