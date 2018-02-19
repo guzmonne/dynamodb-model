@@ -192,6 +192,12 @@ node examples/custom_model.js
 
 If you would like to see or offer more examples let me know.
 
+## Tests
+
+To run the tests you must have [`jest`](https://facebook.github.io/jest/) installed globally or run `yarn install` to install it locally.
+
+Then run `yarn test` or `npm test` to see the results.
+
 ## LICENCE
 
 MIT
