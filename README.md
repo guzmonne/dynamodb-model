@@ -172,6 +172,26 @@ model.echo('something');
 // >>> something
 ```
 
+## Examples
+
+On the examples folder you can see how you can interact with the default model and how to extend it to include methods of your own. I recommend you run the examples using [Dynalite](https://github.com/mhart/dynalite) which is a great tool to run DynamoDB locally.
+
+Running the `setup.js` script will create the example table on the DynamoDB instance you provide. By default, it will try to get a Dynalite instance working on port 8989.
+
+```
+node examples/setup.js
+```
+
+You can then see the library in action by running:
+
+```
+node examples/default_model.js
+
+node examples/custom_model.js
+```
+
+If you would like to see or offer more examples let me know.
+
 ## LICENCE
 
 MIT
