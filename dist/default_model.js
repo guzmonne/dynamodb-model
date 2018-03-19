@@ -12,15 +12,41 @@ const cuid = require("cuid");
 const utils_1 = require("./utils");
 const lodash_1 = require("lodash");
 const model_1 = require("./model");
+/**
+ * Default Model
+ * ===
+ *
+ * This basic model has some basic methods to interact with DynamoDB. It has
+ * implemented all the typical `CRUD` operations, and translates them into
+ * DynamoDB DocumentClient calls. By using a model, you can avoid having to
+ * learn how to work with DynamoDB.
+ *
+ * If you want to add more methods to your model, you can create your own class
+ * extended from this one.
+ */
 class DefaultModel extends model_1.Model {
     constructor(config) {
         super(config);
+        /**
+         * DynamoDB Document Client call. You can call it by using the `callback` or
+         * `promise` method.
+         */
         this.call = () => Promise.resolve();
     }
+    /**
+     * Helper function to handle errors lazily. This way the user can handle
+     * them through the `callback` or `promise` api.
+     * @param error Error thrown during a method call.
+     */
     handleError(error) {
         this.call = () => Promise.reject(error);
         return this;
     }
+    /**
+     * Creates the `UpdateExpression`, `ExpressionAttributeNames` and
+     * `ExpressionAttributeValues` for the `documentClient.update` method params.
+     * @param body Body if the item to be stored.
+     */
     createUpdateExpressionParams(body) {
         body = lodash_1.omit(body, this.range !== undefined ? [this.hash, this.range] : this.hash);
         var expressions = [], attributeNames = {}, attributeValues = {};
@@ -38,6 +64,10 @@ class DefaultModel extends model_1.Model {
             ExpressionAttributeValues: attributeValues
         };
     }
+    /**
+     * Does the stored DynamoDB DocumentClient call and wraps the result in
+     * promise. It handles error produced on the call.
+     */
     promise() {
         return __awaiter(this, void 0, void 0, function* () {
             try {
@@ -48,11 +78,22 @@ class DefaultModel extends model_1.Model {
             }
         });
     }
+    /**
+     * Does the stored DynamoDB DocumentClient call and wraps the result in a
+     * callback. It handles error produced on the call, and passes the onto the
+     * callback on the `err` argument.
+     * @param callback Callback function to invoke with the data or the error
+     * generated on the DynamoDB DocumentClient call.
+     */
     callback(callback) {
         this.promise()
             .then(data => callback(null, data))
             .catch(err => callback(err));
     }
+    /**
+     * Sets up a call to DynamoDB to create a new item.
+     * @param body Body of the item to be created.
+     */
     create(body) {
         body = lodash_1.pick(body, Object.keys(this.struct.schema));
         if (this.track === true)
@@ -74,6 +115,10 @@ class DefaultModel extends model_1.Model {
             .then(() => body);
         return this;
     }
+    /**
+     * Sets a call to DynamoDB to update an item.
+     * @param body Body of the item to be updated.
+     */
     update(body) {
         if (body[this.hash] === undefined)
             return this.handleError(new Error(`The value of '${this.hash}' can't be undefined`));
@@ -95,6 +140,10 @@ class DefaultModel extends model_1.Model {
             .then(() => body);
         return this;
     }
+    /**
+     * Sets a call to get an item from DynamoDB.
+     * @param key Item key.
+     */
     get(key) {
         this.call = () => this.documentClient
             .get({
@@ -105,6 +154,10 @@ class DefaultModel extends model_1.Model {
             .then(data => data.Item);
         return this;
     }
+    /**
+     * Sets a call to DynamoDB to delete an item.
+     * @param key Item key.
+     */
     delete(key) {
         this.call = () => this.documentClient
             .delete({
@@ -114,6 +167,10 @@ class DefaultModel extends model_1.Model {
             .promise();
         return this;
     }
+    /**
+     * Sets a call to scan the DynamoDB table according to the provided options.
+     * @param options Index options used to define what items to return.
+     */
     scan(options) {
         this.call = () => this.documentClient
             .scan(Object.assign({ TableName: this.table }, (options.limit !== undefined ? { Limit: options.limit } : {}), (options.offset !== undefined
@@ -127,6 +184,10 @@ class DefaultModel extends model_1.Model {
         });
         return this;
     }
+    /**
+     * Sets a call to query the DynamoDB table according to the provided options.
+     * @param options Index options used to define what items to return.
+     */
     query(options) {
         this.call = () => Promise.all(lodash_1.range(0, this.maxGSIK).map(i => {
             var params = Object.assign({ TableName: this.table, IndexName: this.indexName, KeyConditionExpression: `#gsik = :gsik`, ExpressionAttributeNames: {
@@ -137,7 +198,7 @@ class DefaultModel extends model_1.Model {
                 ? { Limit: Math.floor(options.limit / this.maxGSIK) }
                 : {}), (options.offset !== undefined
                 ? {
-                    ExclusiveStartKey: this.getKey(JSON.parse(atob(options.offset)))
+                    ExclusiveStartKey: this.getKey(JSON.parse(atob(options.offset))[i])
                 }
                 : {}));
             return this.documentClient
@@ -150,19 +211,28 @@ class DefaultModel extends model_1.Model {
                     }
                     : {}));
             });
-        })).then((results) => results.reduce((acc, result) => (Object.assign({}, acc, { items: acc.items.concat(this.removeTenant(result.items) || []), count: acc.count + result.count }, (result.offset !== undefined
-            ? {
-                offset: acc.offset !== undefined
-                    ? acc.offset + '|' + result.offset
-                    : result.offset
-            }
-            : {}))), {
-            items: [],
-            count: 0,
-            offset: undefined
-        }));
+        })).then((results) => {
+            var response = results.reduce((acc, result) => (Object.assign({}, acc, { items: acc.items.concat(this.removeTenant(result.items) || []), count: acc.count + result.count }, (result.offset !== undefined
+                ? {
+                    offset: acc.offset !== undefined
+                        ? acc.offset + '|' + result.offset
+                        : result.offset
+                }
+                : {}))), {
+                items: [],
+                count: 0,
+                offset: undefined
+            });
+            if (response.offset)
+                response.offset = utils_1.btoa(response.offset);
+            return response;
+        });
         return this;
     }
+    /**
+     * Sets a call to DynamoDB to get a list of items.
+     * @param options Index options used to set what items to return.
+     */
     index(options) {
         options = Object.assign({ limit: 100 }, options);
         if (this.tenant === undefined)

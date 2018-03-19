@@ -2,13 +2,58 @@
 Object.defineProperty(exports, "__esModule", { value: true });
 const superstruct_1 = require("superstruct");
 const lodash_1 = require("lodash");
+/**
+ * Abstract class used to bootstrap a new Model.
+ *
+ * @export
+ * @abstract
+ * @class Model
+ * @implements {IModel}
+ */
 class Model {
     constructor(config) {
-        this.data = [];
+        /**
+         * The type of the `hash` key.
+         *
+         * @type {string}
+         * @memberof Model
+         */
         this.hashType = 'string';
+        /**
+         * The name of the index to use when running an `index` operation. By default
+         * if will be called `byGSIK`. If the index is not created before hand, and
+         * the model is configured with a `tenant`, then the method will fail.
+         *
+         * @type {string}
+         * @memberof Model
+         */
         this.indexName = 'byGSIK';
+        /**
+         * The maximum GSIK values to use to index the models. This is necessary when
+         * configuring a `tenant`, since you can't configure an IAM policy to restrict
+         * access to an item with a prefix on its hash ID. So, a GSIK will be
+         * configured on every item by the library, using the `tenant` value plus a
+         * number between `0` and `maxGSIK`. Then you can create an IAM policy that
+         * restrict access on the index (called by defaylt `byGSIK`) with access only
+         * on the items with the appropiate GSIK value.
+         *
+         * @type {number}
+         * @memberof Model
+         */
         this.maxGSIK = 10;
+        /**
+         * The type of the `range` key.
+         *
+         * @type {string}
+         * @memberof Model
+         */
         this.rangeType = 'string';
+        /**
+         * Value used to track the dates where modifications were done to the item.
+         *
+         * @type {boolean}
+         * @memberof Model
+         */
         this.track = false;
         this.table = config.table;
         this.documentClient = config.documentClient;
@@ -58,6 +103,16 @@ class Model {
                 : key[this.hash];
         return key;
     }
+    /**
+     * Helper function that returns a function capable of removing characters
+     * based on a predicate function.
+     *
+     * @private
+     * @param {number} length
+     * @param {(value: string) => boolean} predicate
+     * @returns {(value: string) => string}
+     * @memberof Model
+     */
     substringBy(length, predicate) {
         return (value) => predicate(value) === true ? value.substring(length) : value;
     }
