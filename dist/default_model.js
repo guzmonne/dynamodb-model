@@ -207,16 +207,18 @@ class DefaultModel extends model_1.Model {
                 .then((data) => {
                 return Object.assign({ items: data.Items || [], count: data.Count || 0 }, (data.LastEvaluatedKey !== undefined
                     ? {
-                        offset: JSON.stringify(this.removeTenant(data.LastEvaluatedKey))
+                        offset: this.removeTenant(data.LastEvaluatedKey)
                     }
                     : {}));
             });
         })).then((results) => {
-            var response = results.reduce((acc, result) => (Object.assign({}, acc, { items: acc.items.concat(this.removeTenant(result.items) || []), count: acc.count + result.count }, (result.offset !== undefined
+            var response = results.reduce((acc, result, i) => (Object.assign({}, acc, { items: acc.items.concat(this.removeTenant(result.items) || []), count: acc.count + result.count }, (result.offset !== undefined
                 ? {
                     offset: acc.offset !== undefined
-                        ? acc.offset + '|' + result.offset
-                        : result.offset
+                        ? Object.assign({}, acc.offset, {
+                            [i.toString()]: result.offset
+                        })
+                        : { [i.toString()]: result.offset }
                 }
                 : {}))), {
                 items: [],
@@ -224,7 +226,7 @@ class DefaultModel extends model_1.Model {
                 offset: undefined
             });
             if (response.offset)
-                response.offset = utils_1.btoa(response.offset);
+                response.offset = utils_1.btoa(JSON.stringify(response.offset));
             return response;
         });
         return this;
