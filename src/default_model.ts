@@ -308,8 +308,8 @@ export class DefaultModel extends Model implements IDefaultModel {
               };
             });
         })
-      ).then((results: IDynamoDBModelScanData[]): IDynamoDBModelScanData =>
-        results.reduce(
+      ).then((results: IDynamoDBModelScanData[]): IDynamoDBModelScanData => {
+        var response = results.reduce(
           (
             acc: IDynamoDBModelScanData,
             result: IDynamoDBModelScanData
@@ -331,8 +331,12 @@ export class DefaultModel extends Model implements IDefaultModel {
             count: 0,
             offset: undefined
           }
-        )
-      );
+        );
+
+        if (response.offset) response.offset = btoa(response.offset);
+
+        return response;
+      });
 
     return this;
   }

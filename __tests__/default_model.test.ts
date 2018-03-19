@@ -4,7 +4,7 @@ import { btoa } from '../src/utils';
 import { DynamoDB, config as AWSConfig } from 'aws-sdk';
 import { DefaultModel } from '../src/default_model';
 import { DynamoDBModel } from '../src/';
-import { IDynamoDBModelConfig } from '../src/model';
+import { IDynamoDBModelConfig, IItem } from '../src/model';
 
 AWSConfig.update({
   region: 'us-east-1'
@@ -485,7 +485,7 @@ describe('DefaultModel', () => {
                 name: name + '|0'
               }
             ],
-            offset: JSON.stringify({ id, name: name + '|0' })
+            offset: btoa(JSON.stringify({ id, name: name + '|0' }))
           });
           done();
         });
@@ -653,6 +653,28 @@ describe('DefaultModel', () => {
             }
           });
           done();
+        });
+    });
+    function isBase64(str) {
+      try {
+        return btoa(atob(str)) == str;
+      } catch (err) {
+        return false;
+      }
+    }
+
+    test('should return a base64 encoded offset value', () => {
+      var indexName = 'SomeIndexName';
+      var TestModel = DynamoDBModel.create({
+        ...config,
+        indexName
+      });
+
+      return TestModel()
+        .index({ limit: 200, offset: btoa(JSON.stringify({ 0: { id } })) })
+        .promise()
+        .then((data: IItem) => {
+          expect(isBase64(data.offset)).toBe(true);
         });
     });
   });
