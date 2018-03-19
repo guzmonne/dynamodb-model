@@ -1,6 +1,6 @@
 {
   "name": "dynamodb-simple-model",
-  "version": "1.0.3",
+  "version": "1.0.4",
   "description":
     "Dynamodb model wrapper for developers without DynamoDB knowledge",
   "main": "dist/index.js",
