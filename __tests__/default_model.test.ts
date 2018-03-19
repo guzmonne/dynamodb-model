@@ -485,7 +485,7 @@ describe('DefaultModel', () => {
                 name: name + '|0'
               }
             ],
-            offset: btoa(JSON.stringify({ id, name: name + '|0' }))
+            offset: btoa(JSON.stringify({ 0: { id, name: name + '|0' } }))
           });
           done();
         });

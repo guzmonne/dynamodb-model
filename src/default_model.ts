@@ -294,15 +294,13 @@ export class DefaultModel extends Model implements IDefaultModel {
           return this.documentClient
             .query(params)
             .promise()
-            .then((data): IDynamoDBModelScanData => {
+            .then((data): any => {
               return {
                 items: data.Items || [],
                 count: data.Count || 0,
                 ...(data.LastEvaluatedKey !== undefined
                   ? {
-                      offset: JSON.stringify(
-                        this.removeTenant(data.LastEvaluatedKey)
-                      )
+                      offset: this.removeTenant(data.LastEvaluatedKey)
                     }
                   : {})
               };
@@ -312,8 +310,9 @@ export class DefaultModel extends Model implements IDefaultModel {
         var response = results.reduce(
           (
             acc: IDynamoDBModelScanData,
-            result: IDynamoDBModelScanData
-          ): IDynamoDBModelScanData => ({
+            result: IDynamoDBModelScanData,
+            i: Number
+          ): any => ({
             ...acc,
             items: acc.items.concat(this.removeTenant(result.items) || []),
             count: acc.count + result.count,
@@ -321,8 +320,10 @@ export class DefaultModel extends Model implements IDefaultModel {
               ? {
                   offset:
                     acc.offset !== undefined
-                      ? acc.offset + '|' + result.offset
-                      : result.offset
+                      ? Object.assign({}, acc.offset, {
+                          [i.toString()]: result.offset
+                        })
+                      : { [i.toString()]: result.offset }
                 }
               : {})
           }),
@@ -333,7 +334,8 @@ export class DefaultModel extends Model implements IDefaultModel {
           }
         );
 
-        if (response.offset) response.offset = btoa(response.offset);
+        if (response.offset)
+          response.offset = btoa(JSON.stringify(response.offset));
 
         return response;
       });
