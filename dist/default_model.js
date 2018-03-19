@@ -174,7 +174,7 @@ class DefaultModel extends model_1.Model {
     scan(options) {
         this.call = () => this.documentClient
             .scan(Object.assign({ TableName: this.table }, (options.limit !== undefined ? { Limit: options.limit } : {}), (options.offset !== undefined
-            ? { ExclusiveStartKey: JSON.parse(atob(options.offset)) }
+            ? { ExclusiveStartKey: JSON.parse(utils_1.atob(options.offset)) }
             : {})))
             .promise()
             .then(data => {
@@ -198,7 +198,7 @@ class DefaultModel extends model_1.Model {
                 ? { Limit: Math.floor(options.limit / this.maxGSIK) }
                 : {}), (options.offset !== undefined
                 ? {
-                    ExclusiveStartKey: this.getKey(JSON.parse(atob(options.offset))[i])
+                    ExclusiveStartKey: this.getKey(JSON.parse(utils_1.atob(options.offset))[i])
                 }
                 : {}));
             return this.documentClient

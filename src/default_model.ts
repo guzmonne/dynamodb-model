@@ -1,5 +1,5 @@
 import * as cuid from 'cuid';
-import { btoa } from './utils';
+import { atob, btoa } from './utils';
 import { pick, omit, range } from 'lodash';
 import {
   Model,
