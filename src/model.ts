@@ -424,6 +424,13 @@ export abstract class Model implements IModel {
       this.indexName = config.indexName;
     }
   }
+  /**
+   * Tracks the updatedAt and createdAt values.
+   *
+   * @param {IItem} body Update object body
+   * @returns {IDynamoDBModelTrack} Track body object,
+   * @memberof Model
+   */
   trackChanges(body: IItem): IDynamoDBModelTrack {
     if (this.track === false) return {} as IDynamoDBModelTrack;
     var isoDate = new Date().toISOString();
@@ -434,8 +441,27 @@ export abstract class Model implements IModel {
     if (isNew === true) result.createdAt = isoDate;
     return result;
   }
+  /**
+   * Returns a valid key from an IDynamoDBKey like object.
+   *
+   * @param {IDynamoDBKey} key IDynamoDBKey like object.
+   * @returns {IDynamoDBKey} Valid IDynamoDBKey
+   * @memberof Model
+   */
   getKey(key: IDynamoDBKey): IDynamoDBKey {
     key = pick(key, this.hash, this.range || '');
+    this.addTenantToHashKey(key);
+    return key;
+  }
+  /**
+   * Adds the tenant information to the key.
+   *
+   * @param {IDynamoDBKey} key Object containing the DynamoDB key.
+   * @returns {IDynamoDBKey} Object containing the DynamoDB key with plus the
+   * tenant.
+   * @memberof Model
+   */
+  addTenantToHashKey(key: IDynamoDBKey): IDynamoDBKey {
     key[this.hash] =
       this.tenant !== undefined
         ? this.tenant + '|' + key[this.hash]

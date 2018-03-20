@@ -83,6 +83,13 @@ class Model {
             this.indexName = config.indexName;
         }
     }
+    /**
+     * Tracks the updatedAt and createdAt values.
+     *
+     * @param {IItem} body Update object body
+     * @returns {IDynamoDBModelTrack} Track body object,
+     * @memberof Model
+     */
     trackChanges(body) {
         if (this.track === false)
             return {};
@@ -95,8 +102,27 @@ class Model {
             result.createdAt = isoDate;
         return result;
     }
+    /**
+     * Returns a valid key from an IDynamoDBKey like object.
+     *
+     * @param {IDynamoDBKey} key IDynamoDBKey like object.
+     * @returns {IDynamoDBKey} Valid IDynamoDBKey
+     * @memberof Model
+     */
     getKey(key) {
         key = lodash_1.pick(key, this.hash, this.range || '');
+        this.addTenantToHashKey(key);
+        return key;
+    }
+    /**
+     * Adds the tenant information to the key.
+     *
+     * @param {IDynamoDBKey} key Object containing the DynamoDB key.
+     * @returns {IDynamoDBKey} Object containing the DynamoDB key with plus the
+     * tenant.
+     * @memberof Model
+     */
+    addTenantToHashKey(key) {
         key[this.hash] =
             this.tenant !== undefined
                 ? this.tenant + '|' + key[this.hash]

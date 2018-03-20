@@ -385,8 +385,31 @@ export declare abstract class Model implements IModel {
      */
     struct: any;
     constructor(config: IDynamoDBModelConfig);
+    /**
+     * Tracks the updatedAt and createdAt values.
+     *
+     * @param {IItem} body Update object body
+     * @returns {IDynamoDBModelTrack} Track body object,
+     * @memberof Model
+     */
     trackChanges(body: IItem): IDynamoDBModelTrack;
+    /**
+     * Returns a valid key from an IDynamoDBKey like object.
+     *
+     * @param {IDynamoDBKey} key IDynamoDBKey like object.
+     * @returns {IDynamoDBKey} Valid IDynamoDBKey
+     * @memberof Model
+     */
     getKey(key: IDynamoDBKey): IDynamoDBKey;
+    /**
+     * Adds the tenant information to the key.
+     *
+     * @param {IDynamoDBKey} key Object containing the DynamoDB key.
+     * @returns {IDynamoDBKey} Object containing the DynamoDB key with plus the
+     * tenant.
+     * @memberof Model
+     */
+    addTenantToHashKey(key: IDynamoDBKey): IDynamoDBKey;
     /**
      * Helper function that returns a function capable of removing characters
      * based on a predicate function.

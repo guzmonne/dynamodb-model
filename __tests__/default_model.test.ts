@@ -438,13 +438,12 @@ describe('DefaultModel', () => {
                 {
                   id: tenant + '|' + id,
                   name: name + '|' + i,
-                  gsik: tenant + '|0'
+                  gsik: tenant + '|' + i
                 }
               ],
               LastEvaluatedKey: {
                 id: tenant + '|' + id,
-                name: name + '|' + i,
-                gsik: tenant + '|0'
+                gsik: tenant + '|' + i
               },
               Count: 1
             })
@@ -485,7 +484,7 @@ describe('DefaultModel', () => {
                 name: name + '|0'
               }
             ],
-            offset: btoa(JSON.stringify({ 0: { id, name: name + '|0' } }))
+            offset: btoa(JSON.stringify({ 0: { id } }))
           });
           done();
         });
@@ -627,15 +626,90 @@ describe('DefaultModel', () => {
         });
     });
 
+    test('should return a valid offset value', () => {
+      var indexName = 'someIndex';
+      var TestModel = DynamoDBModel.create({
+        ...config,
+        indexName,
+        maxGSIK: 3
+      });
+
+      return TestModel()
+        .index({
+          limit: 200,
+          offset: btoa(
+            JSON.stringify({
+              0: { id },
+              1: { id },
+              2: { id }
+            })
+          )
+        })
+        .promise()
+        .then(data => {
+          expect(data && data.offset).toEqual(
+            btoa(
+              JSON.stringify({
+                0: { id },
+                1: { id },
+                2: { id }
+              })
+            )
+          );
+        });
+    });
+
+    test('should handle a real offset value', () => {
+      var indexName = 'SomeIndex';
+      var TestModel = DynamoDBModel.create({
+        ...config,
+        indexName,
+        tenant: 'development',
+
+        maxGSIK: 10
+      });
+
+      return TestModel()
+        .index({
+          offset:
+            'eyIwIjp7ImlkIjoiY2pleWptOHRmMDAwbGpodGNiMzIxejVrZiIsImRldmljZU1BQyI6IjIzOjc3OkVDOjg4OjIwOjdEIn0sIjEiOnsiaWQiOiJjamV5azBsb3UwMGo0amh0Y3diM2U4cTE4IiwiZGV2aWNlTUFDIjoiMUU6MzA6MzE6OEU6NjI6RDIifSwiMiI6eyJpZCI6ImNqZXlqd3NqZDAwZTdqaHRjang2M2VzNTEiLCJkZXZpY2VNQUMiOiIxNjoyNjpDRDpDNDoxOTozQSJ9LCIzIjp7ImlkIjoiY2pleWp0MHdtMDA5Y2podGNybWZpYm4zeCIsImRldmljZU1BQyI6IjIzOjUzOjVEOjVBOkVBOjA1In0sIjQiOnsiaWQiOiJjamV5azYwN2swMHEzamh0Y21hbjNyM20xIiwiZGV2aWNlTUFDIjoiMjk6NUE6OTM6Mzg6Mjk6MzQifSwiNSI6eyJpZCI6ImNqZXlqb3c0MTAwNDBqaHRjZ2Z6dTR1cmgiLCJkZXZpY2VNQUMiOiIxOTpERTo5QTo1ODo1RDo5NyJ9LCI2Ijp7ImlkIjoiY2pleWpwbjh3MDA0empodGN2YjU2MDlrbiIsImRldmljZU1BQyI6IjIxOjJBOkVBOjNCOkFDOkI0In0sIjciOnsiaWQiOiJjamV5anBvc28wMDUxamh0YzRxdHo2M3o0IiwiZGV2aWNlTUFDIjoiMjE6NjI6QTg6MTU6NjE6QzAifSwiOCI6eyJpZCI6ImNqZXlrNjR1ejAwcTlqaHRjM3NibW94amwiLCJkZXZpY2VNQUMiOiIyQTpDMzo0RTo1NzoyMDo5OSJ9LCI5Ijp7ImlkIjoiY2pleWp1NTdnMDBhc2podGN0YXU0OGkzMSIsImRldmljZU1BQyI6IjFDOjE5OkM1OjI2OjEwOjk4In19'
+        })
+        .promise()
+        .then(() => {
+          expect(queryStub.args[0][0]).toEqual({
+            ExclusiveStartKey: {
+              deviceMAC: '23:77:EC:88:20:7D',
+              id: 'development|cjeyjm8tf000ljhtcb321z5kf'
+            },
+            ExpressionAttributeNames: { '#gsik': 'gsik' },
+            ExpressionAttributeValues: { ':gsik': 'development|0' },
+            IndexName: 'SomeIndex',
+            KeyConditionExpression: '#gsik = :gsik',
+            Limit: 10,
+            TableName: 'TableTest'
+          });
+        });
+    });
+
     test('should use the configured index name when tenant is not undefined', done => {
       var indexName = 'SomeIndexName';
       var TestModel = DynamoDBModel.create({
         ...config,
-        indexName
+        indexName,
+        maxGSIK: 3
       });
 
       TestModel()
-        .index({ limit: 200, offset: btoa(JSON.stringify({ 0: { id } })) })
+        .index({
+          limit: 200,
+          offset: btoa(
+            JSON.stringify({
+              0: { id },
+              1: { id },
+              2: { id }
+            })
+          )
+        })
         .callback(() => {
           expect(queryStub.args[0][0]).toEqual({
             TableName: table,
@@ -647,7 +721,37 @@ describe('DefaultModel', () => {
             ExpressionAttributeValues: {
               ':gsik': tenant + '|0'
             },
-            Limit: 200,
+            Limit: 66,
+            ExclusiveStartKey: {
+              id: tenant + '|' + id
+            }
+          });
+          expect(queryStub.args[1][0]).toEqual({
+            TableName: table,
+            IndexName: indexName,
+            KeyConditionExpression: `#gsik = :gsik`,
+            ExpressionAttributeNames: {
+              '#gsik': 'gsik'
+            },
+            ExpressionAttributeValues: {
+              ':gsik': tenant + '|1'
+            },
+            Limit: 66,
+            ExclusiveStartKey: {
+              id: tenant + '|' + id
+            }
+          });
+          expect(queryStub.args[2][0]).toEqual({
+            TableName: table,
+            IndexName: indexName,
+            KeyConditionExpression: `#gsik = :gsik`,
+            ExpressionAttributeNames: {
+              '#gsik': 'gsik'
+            },
+            ExpressionAttributeValues: {
+              ':gsik': tenant + '|2'
+            },
+            Limit: 66,
             ExclusiveStartKey: {
               id: tenant + '|' + id
             }

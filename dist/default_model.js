@@ -189,6 +189,9 @@ class DefaultModel extends model_1.Model {
      * @param options Index options used to define what items to return.
      */
     query(options) {
+        var offset = options.offset !== undefined
+            ? JSON.parse(utils_1.atob(options.offset))
+            : undefined;
         this.call = () => Promise.all(lodash_1.range(0, this.maxGSIK).map(i => {
             var params = Object.assign({ TableName: this.table, IndexName: this.indexName, KeyConditionExpression: `#gsik = :gsik`, ExpressionAttributeNames: {
                     '#gsik': 'gsik'
@@ -196,9 +199,9 @@ class DefaultModel extends model_1.Model {
                     ':gsik': `${this.tenant}|${i}`
                 } }, (options.limit !== undefined
                 ? { Limit: Math.floor(options.limit / this.maxGSIK) }
-                : {}), (options.offset !== undefined
+                : {}), (offset !== undefined
                 ? {
-                    ExclusiveStartKey: this.getKey(JSON.parse(utils_1.atob(options.offset))[i])
+                    ExclusiveStartKey: this.addTenantToHashKey(offset[i])
                 }
                 : {}));
             return this.documentClient
