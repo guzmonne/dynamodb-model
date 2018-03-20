@@ -201,7 +201,7 @@ class DefaultModel extends model_1.Model {
                 ? { Limit: Math.floor(options.limit / this.maxGSIK) }
                 : {}), (offset !== undefined
                 ? {
-                    ExclusiveStartKey: this.addTenantToHashKey(offset[i])
+                    ExclusiveStartKey: Object.assign({}, this.addTenantToHashKey(offset[i]), { gsik: `${this.tenant}|${i}` })
                 }
                 : {}));
             return this.documentClient
