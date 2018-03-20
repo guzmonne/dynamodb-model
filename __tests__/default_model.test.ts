@@ -604,7 +604,8 @@ describe('DefaultModel', () => {
             },
             Limit: 100,
             ExclusiveStartKey: {
-              id: tenant + '|' + id
+              id: tenant + '|' + id,
+              gsik: tenant + '|0'
             }
           });
           expect(queryStub.args[1][0]).toEqual({
@@ -619,7 +620,8 @@ describe('DefaultModel', () => {
             },
             Limit: 100,
             ExclusiveStartKey: {
-              id: tenant + '|' + id
+              id: tenant + '|' + id,
+              gsik: tenant + '|1'
             }
           });
           done();
@@ -679,7 +681,8 @@ describe('DefaultModel', () => {
           expect(queryStub.args[0][0]).toEqual({
             ExclusiveStartKey: {
               deviceMAC: '23:77:EC:88:20:7D',
-              id: 'development|cjeyjm8tf000ljhtcb321z5kf'
+              id: 'development|cjeyjm8tf000ljhtcb321z5kf',
+              gsik: 'development|0'
             },
             ExpressionAttributeNames: { '#gsik': 'gsik' },
             ExpressionAttributeValues: { ':gsik': 'development|0' },
@@ -723,7 +726,8 @@ describe('DefaultModel', () => {
             },
             Limit: 66,
             ExclusiveStartKey: {
-              id: tenant + '|' + id
+              id: tenant + '|' + id,
+              gsik: tenant + '|' + 0
             }
           });
           expect(queryStub.args[1][0]).toEqual({
@@ -738,7 +742,8 @@ describe('DefaultModel', () => {
             },
             Limit: 66,
             ExclusiveStartKey: {
-              id: tenant + '|' + id
+              id: tenant + '|' + id,
+              gsik: tenant + '|' + 1
             }
           });
           expect(queryStub.args[2][0]).toEqual({
@@ -753,7 +758,8 @@ describe('DefaultModel', () => {
             },
             Limit: 66,
             ExclusiveStartKey: {
-              id: tenant + '|' + id
+              id: tenant + '|' + id,
+              gsik: tenant + '|' + 2
             }
           });
           done();

@@ -266,9 +266,10 @@ export class DefaultModel extends Model implements IDefaultModel {
    * @param options Index options used to define what items to return.
    */
   private query(options: IDynamoDBModelIndexOptions): IDefaultModel {
-    var offset: IItem = options.offset !== undefined 
-      ? JSON.parse(atob(options.offset)) 
-      : undefined;
+    var offset: IItem =
+      options.offset !== undefined
+        ? JSON.parse(atob(options.offset))
+        : undefined;
 
     this.call = () =>
       Promise.all(
@@ -288,7 +289,11 @@ export class DefaultModel extends Model implements IDefaultModel {
               : {}),
             ...(offset !== undefined
               ? {
-                  ExclusiveStartKey: this.addTenantToHashKey(offset[i])
+                  ExclusiveStartKey: {
+                    ...this.addTenantToHashKey(offset[i]),
+                    gsik: `${this.tenant}|${i}`
+                  }
+                }
               : {})
           };
 
