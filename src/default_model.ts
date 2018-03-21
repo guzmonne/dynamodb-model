@@ -287,7 +287,7 @@ export class DefaultModel extends Model implements IDefaultModel {
             ...(options.limit !== undefined
               ? { Limit: Math.floor(options.limit / this.maxGSIK) }
               : {}),
-            ...(offset !== undefined
+            ...(offset !== undefined && offset[i] !== undefined
               ? {
                   ExclusiveStartKey: {
                     ...this.addTenantToHashKey(offset[i]),
