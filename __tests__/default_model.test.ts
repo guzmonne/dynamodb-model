@@ -674,14 +674,14 @@ describe('DefaultModel', () => {
       return TestModel()
         .index({
           offset:
-            'eyIwIjp7ImlkIjoiY2pleWptOHRmMDAwbGpodGNiMzIxejVrZiIsImRldmljZU1BQyI6IjIzOjc3OkVDOjg4OjIwOjdEIn0sIjEiOnsiaWQiOiJjamV5azBsb3UwMGo0amh0Y3diM2U4cTE4IiwiZGV2aWNlTUFDIjoiMUU6MzA6MzE6OEU6NjI6RDIifSwiMiI6eyJpZCI6ImNqZXlqd3NqZDAwZTdqaHRjang2M2VzNTEiLCJkZXZpY2VNQUMiOiIxNjoyNjpDRDpDNDoxOTozQSJ9LCIzIjp7ImlkIjoiY2pleWp0MHdtMDA5Y2podGNybWZpYm4zeCIsImRldmljZU1BQyI6IjIzOjUzOjVEOjVBOkVBOjA1In0sIjQiOnsiaWQiOiJjamV5azYwN2swMHEzamh0Y21hbjNyM20xIiwiZGV2aWNlTUFDIjoiMjk6NUE6OTM6Mzg6Mjk6MzQifSwiNSI6eyJpZCI6ImNqZXlqb3c0MTAwNDBqaHRjZ2Z6dTR1cmgiLCJkZXZpY2VNQUMiOiIxOTpERTo5QTo1ODo1RDo5NyJ9LCI2Ijp7ImlkIjoiY2pleWpwbjh3MDA0empodGN2YjU2MDlrbiIsImRldmljZU1BQyI6IjIxOjJBOkVBOjNCOkFDOkI0In0sIjciOnsiaWQiOiJjamV5anBvc28wMDUxamh0YzRxdHo2M3o0IiwiZGV2aWNlTUFDIjoiMjE6NjI6QTg6MTU6NjE6QzAifSwiOCI6eyJpZCI6ImNqZXlrNjR1ejAwcTlqaHRjM3NibW94amwiLCJkZXZpY2VNQUMiOiIyQTpDMzo0RTo1NzoyMDo5OSJ9LCI5Ijp7ImlkIjoiY2pleWp1NTdnMDBhc2podGN0YXU0OGkzMSIsImRldmljZU1BQyI6IjFDOjE5OkM1OjI2OjEwOjk4In19'
+            'eyIwIjp7ImlkIjoiY2pleWpyNzB1MDA2empodGNoazdoeTJ1ZyIsImRldmljZU1BQyI6IkY2OjJGOkREOjFEOjFEOjM0In0sIjEiOnsiaWQiOiJjamV5ank5ODgwMGczamh0Y2Q5M3lkZDB5IiwiZGV2aWNlTUFDIjoiRUQ6RDA6REQ6QUM6MTc6RDEifSwiMiI6eyJpZCI6ImNqZXlrNGg3OTAwbzRqaHRjdDJ3bzlybWMiLCJkZXZpY2VNQUMiOiJFOTo2NDozQzo3QjoyRTpFNiJ9LCI2Ijp7ImlkIjoiY2pleWpsdm10MDAwNGpodGNicG1zZm1raCIsImRldmljZU1BQyI6IkVCOkQ1OjQ0OjA5OjE3OkQyIn0sIjciOnsiaWQiOiJjamV5azVqNXkwMHBoamh0Y3N5Y3hpeGk1IiwiZGV2aWNlTUFDIjoiREI6MTY6NDg6REE6NTU6OEUifSwiOSI6eyJpZCI6ImNqZXlqeG9hdjAwZmNqaHRjYTNuaWhsanUiLCJkZXZpY2VNQUMiOiJGQzo3OTpBMTo4MTo5MzowNSJ9fQ=='
         })
         .promise()
         .then(() => {
           expect(queryStub.args[0][0]).toEqual({
             ExclusiveStartKey: {
-              deviceMAC: '23:77:EC:88:20:7D',
-              id: 'development|cjeyjm8tf000ljhtcb321z5kf',
+              deviceMAC: 'F6:2F:DD:1D:1D:34',
+              id: 'development|cjeyjr70u006zjhtchk7hy2ug',
               gsik: 'development|0'
             },
             ExpressionAttributeNames: { '#gsik': 'gsik' },
