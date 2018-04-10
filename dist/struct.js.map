@@ -1,1 +1,1 @@
-{"version":3,"file":"struct.js","sourceRoot":"","sources":["../src/struct.ts"],"names":[],"mappings":";;AAAA,6CAA0C;AAE/B,QAAA,MAAM,GAAG,yBAAW,CAAC;IAC9B,SAAS,EAAE,CAAC,CAAM,EAAW,EAAE,CAAC,OAAO,CAAC,KAAK,QAAQ,IAAI,CAAC,KAAK,EAAE;CAClE,CAAC,CAAC"}
+{"version":3,"file":"struct.js","sourceRoot":"","sources":["../src/struct.ts"],"names":[],"mappings":";;AAAA,6CAA0C;AAE/B,QAAA,MAAM,GAAG,yBAAW,CAAC;IAC9B,KAAK,EAAE;QACL,SAAS,EAAE,CAAC,CAAM,EAAW,EAAE,CAAC,OAAO,CAAC,KAAK,QAAQ,IAAI,CAAC,KAAK,EAAE;KAClE;CACF,CAAC,CAAC"}
