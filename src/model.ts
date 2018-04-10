@@ -434,11 +434,12 @@ export abstract class Model implements IModel {
   trackChanges(body: IItem): IDynamoDBModelTrack {
     if (this.track === false) return {} as IDynamoDBModelTrack;
     var isoDate = new Date().toISOString();
-    var isNew = body[this.hash] === undefined;
+    var hasId = body[this.hash] === undefined;
+    var hasCreatedAt = body.createdAt === undefined;
     var result: IDynamoDBModelTrack = {
       updatedAt: isoDate
     };
-    if (isNew === true) result.createdAt = isoDate;
+    if (hasId === true || hasCreatedAt === false) result.createdAt = isoDate;
     return result;
   }
   /**
