@@ -1,4 +1,4 @@
-import { struct } from 'superstruct';
+import { struct } from './struct';
 import { pick } from 'lodash';
 import { DocumentClient } from 'aws-sdk/lib/dynamodb/document_client';
 
