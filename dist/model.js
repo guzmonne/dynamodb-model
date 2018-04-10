@@ -94,11 +94,12 @@ class Model {
         if (this.track === false)
             return {};
         var isoDate = new Date().toISOString();
-        var isNew = body[this.hash] === undefined;
+        var hasId = body[this.hash] === undefined;
+        var hasCreatedAt = body.createdAt === undefined;
         var result = {
             updatedAt: isoDate
         };
-        if (isNew === true)
+        if (hasId === true || hasCreatedAt === false)
             result.createdAt = isoDate;
         return result;
     }
