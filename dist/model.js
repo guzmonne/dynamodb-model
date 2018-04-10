@@ -1,6 +1,6 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-const superstruct_1 = require("superstruct");
+const struct_1 = require("./struct");
 const lodash_1 = require("lodash");
 /**
  * Abstract class used to bootstrap a new Model.
@@ -72,7 +72,7 @@ class Model {
             configStruct.createdAt = 'string';
             configStruct.updatedAt = 'string';
         }
-        this.struct = superstruct_1.struct(configStruct);
+        this.struct = struct_1.struct(configStruct);
         if (config.tenant !== undefined) {
             this.tenant = config.tenant;
             this.hasTenantRegExp = new RegExp(`^${this.tenant}|`);
