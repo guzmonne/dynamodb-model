@@ -24,10 +24,9 @@ var DynamoDBModel;
     }
     DynamoDBModel.create = create;
     function createModel(config) {
-        config = Object.assign({}, global, config);
         class Model extends default_model_1.DefaultModel {
             constructor() {
-                super(config);
+                super(Object.assign({}, global, config));
             }
         }
         return Model;
