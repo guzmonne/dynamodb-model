@@ -30,11 +30,9 @@ export namespace DynamoDBModel {
   }
 
   export function createModel(config: IDynamoDBModelConfig): any {
-    config = { ...global, ...config };
-
     class Model extends DefaultModel {
       constructor() {
-        super(config);
+        super({ ...global, ...config });
       }
     }
 
