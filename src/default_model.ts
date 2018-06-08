@@ -285,7 +285,7 @@ export class DefaultModel extends Model implements IDefaultModel {
               ':gsik': `${this.tenant}|${i}`
             },
             ...(options.limit !== undefined
-              ? { Limit: Math.floor(options.limit / this.maxGSIK) }
+              ? { Limit: Math.ceil(options.limit / this.maxGSIK) }
               : {}),
             ...(offset !== undefined && offset[i] !== undefined
               ? {
