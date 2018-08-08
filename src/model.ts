@@ -1,6 +1,6 @@
 import { struct } from './struct';
 import { pick } from 'lodash';
-import { DocumentClient } from 'aws-sdk/lib/dynamodb/document_client';
+import { DynamoDB } from 'aws-sdk';
 
 /**
  * DynamoDB table item.
@@ -44,10 +44,10 @@ export interface IDynamoDBModelConfig {
    * DynamoDBDocument client instance. Must be declared before configuring the
    * model.
    *
-   * @type {DocumentClient}
+   * @type {DynamoDB.DocumentClient}
    * @memberof IDynamoDBModelConfig
    */
-  documentClient: DocumentClient;
+  documentClient: DynamoDB.DocumentClient;
   /**
    * The name of the `hash` key.
    *
@@ -155,7 +155,7 @@ export interface IModel {
    * @memberof Model
    */
   addTenant(): IItem;
-  documentClient: DocumentClient;
+  documentClient: DynamoDB.DocumentClient;
   /**
    * Gets the `hash` and `range` key from the model.
    * If `tenant` is defined, it also adds it to the `hash` key.
@@ -295,10 +295,10 @@ export abstract class Model implements IModel {
    * DynamoDBDocument client instance. Must be declared before configuring the
    * model.
    *
-   * @type {DocumentClient}
+   * @type {DynamoDB.DocumentClient}
    * @memberof Model
    */
-  documentClient: DocumentClient;
+  documentClient: DynamoDB.DocumentClient;
   /**
    * The name of the `hash` key.
    *

@@ -151,7 +151,7 @@ class DefaultModel extends model_1.Model {
             Key: this.getKey(key)
         })
             .promise()
-            .then(data => data.Item);
+            .then((data) => data.Item);
         return this;
     }
     /**
@@ -177,7 +177,7 @@ class DefaultModel extends model_1.Model {
             ? { ExclusiveStartKey: JSON.parse(utils_1.atob(options.offset)) }
             : {})))
             .promise()
-            .then(data => {
+            .then((data) => {
             return Object.assign({ items: data.Items, count: data.Count }, (data.LastEvaluatedKey !== undefined
                 ? { offset: utils_1.btoa(JSON.stringify(data.LastEvaluatedKey)) }
                 : {}));
@@ -193,26 +193,34 @@ class DefaultModel extends model_1.Model {
             ? JSON.parse(utils_1.atob(options.offset))
             : undefined;
         this.call = () => Promise.all(lodash_1.range(0, this.maxGSIK).map(i => {
-            var params = Object.assign({ TableName: this.table, IndexName: this.indexName, KeyConditionExpression: `#gsik = :gsik`, ExpressionAttributeNames: {
+            var params = {
+                TableName: this.table,
+                IndexName: this.indexName,
+                KeyConditionExpression: `#gsik = :gsik`,
+                ExpressionAttributeNames: {
                     '#gsik': 'gsik'
-                }, ExpressionAttributeValues: {
+                },
+                ExpressionAttributeValues: {
                     ':gsik': `${this.tenant}|${i}`
-                } }, (options.limit !== undefined
-                ? { Limit: Math.ceil(options.limit / this.maxGSIK) }
-                : {}), (offset !== undefined && offset[i] !== undefined
-                ? {
-                    ExclusiveStartKey: Object.assign({}, this.addTenantToHashKey(offset[i]), { gsik: `${this.tenant}|${i}` })
                 }
-                : {}));
+            };
+            if (offset !== undefined && offset[i] !== undefined)
+                params.ExclusiveStartKey = Object.assign({}, this.addTenantToHashKey(offset[i]), { gsik: `${this.tenant}|${i}` });
+            if (options.limit !== undefined)
+                params.Limit = Math.ceil(options.limit / this.maxGSIK);
+            if (options.scanIndexForward !== undefined)
+                params.ScanIndexForward = options.scanIndexForward;
             return this.documentClient
                 .query(params)
                 .promise()
                 .then((data) => {
-                return Object.assign({ items: data.Items || [], count: data.Count || 0 }, (data.LastEvaluatedKey !== undefined
-                    ? {
-                        offset: this.removeTenant(data.LastEvaluatedKey)
-                    }
-                    : {}));
+                var result = {
+                    items: data.Items || [],
+                    count: data.Count || 0
+                };
+                if (data.LastEvaluatedKey !== undefined)
+                    result.offset = this.removeTenant(data.LastEvaluatedKey);
+                return result;
             });
         })).then((results) => {
             var response = results.reduce((acc, result, i) => (Object.assign({}, acc, { items: acc.items.concat(this.removeTenant(result.items) || []), count: acc.count + result.count }, (result.offset !== undefined

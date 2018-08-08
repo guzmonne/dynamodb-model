@@ -1,3 +1,4 @@
+import { DynamoDB } from 'aws-sdk';
 import * as cuid from 'cuid';
 import { atob, btoa } from './utils';
 import { pick, omit, range } from 'lodash';
@@ -12,7 +13,7 @@ import {
 interface IDynamoDBModelScanData {
   items: IItem[];
   count: number;
-  offset?: string;
+  offset?: string | IItem;
 }
 
 export interface IDynamoDBModelIndexOptions {
@@ -20,6 +21,7 @@ export interface IDynamoDBModelIndexOptions {
   offset?: string;
   filter?: string;
   attributes?: string;
+  scanIndexForward?: boolean;
 }
 
 interface IExpressionAttributeValues {
@@ -216,7 +218,7 @@ export class DefaultModel extends Model implements IDefaultModel {
           Key: this.getKey(key)
         })
         .promise()
-        .then(data => data.Item);
+        .then((data: any) => data.Item);
 
     return this;
   }
@@ -249,7 +251,7 @@ export class DefaultModel extends Model implements IDefaultModel {
             : {})
         })
         .promise()
-        .then(data => {
+        .then((data: any) => {
           return {
             items: data.Items as IItem[],
             count: data.Count,
@@ -274,7 +276,7 @@ export class DefaultModel extends Model implements IDefaultModel {
     this.call = () =>
       Promise.all(
         range(0, this.maxGSIK).map(i => {
-          var params = {
+          var params: DynamoDB.DocumentClient.QueryInput = {
             TableName: this.table,
             IndexName: this.indexName,
             KeyConditionExpression: `#gsik = :gsik`,
@@ -283,68 +285,73 @@ export class DefaultModel extends Model implements IDefaultModel {
             },
             ExpressionAttributeValues: {
               ':gsik': `${this.tenant}|${i}`
-            },
-            ...(options.limit !== undefined
-              ? { Limit: Math.ceil(options.limit / this.maxGSIK) }
-              : {}),
-            ...(offset !== undefined && offset[i] !== undefined
-              ? {
-                  ExclusiveStartKey: {
-                    ...this.addTenantToHashKey(offset[i]),
-                    gsik: `${this.tenant}|${i}`
-                  }
-                }
-              : {})
+            }
           };
+
+          if (offset !== undefined && offset[i] !== undefined)
+            params.ExclusiveStartKey = {
+              ...this.addTenantToHashKey(offset[i]),
+              gsik: `${this.tenant}|${i}`
+            };
+
+          if (options.limit !== undefined)
+            params.Limit = Math.ceil(options.limit / this.maxGSIK);
+
+          if (options.scanIndexForward !== undefined)
+            params.ScanIndexForward = options.scanIndexForward;
 
           return this.documentClient
             .query(params)
             .promise()
-            .then((data): any => {
-              return {
-                items: data.Items || [],
-                count: data.Count || 0,
-                ...(data.LastEvaluatedKey !== undefined
-                  ? {
-                      offset: this.removeTenant(data.LastEvaluatedKey)
-                    }
-                  : {})
-              };
-            });
+            .then(
+              (data: any): IDynamoDBModelScanData => {
+                var result: IDynamoDBModelScanData = {
+                  items: data.Items || [],
+                  count: data.Count || 0
+                };
+
+                if (data.LastEvaluatedKey !== undefined)
+                  result.offset = this.removeTenant(data.LastEvaluatedKey);
+
+                return result;
+              }
+            );
         })
-      ).then((results: IDynamoDBModelScanData[]): IDynamoDBModelScanData => {
-        var response = results.reduce(
-          (
-            acc: IDynamoDBModelScanData,
-            result: IDynamoDBModelScanData,
-            i: Number
-          ): any => ({
-            ...acc,
-            items: acc.items.concat(this.removeTenant(result.items) || []),
-            count: acc.count + result.count,
-            ...(result.offset !== undefined
-              ? {
-                  offset:
-                    acc.offset !== undefined
-                      ? Object.assign({}, acc.offset, {
-                          [i.toString()]: result.offset
-                        })
-                      : { [i.toString()]: result.offset }
-                }
-              : {})
-          }),
-          {
-            items: [],
-            count: 0,
-            offset: undefined
-          }
-        );
+      ).then(
+        (results: IDynamoDBModelScanData[]): IDynamoDBModelScanData => {
+          var response = results.reduce(
+            (
+              acc: IDynamoDBModelScanData,
+              result: IDynamoDBModelScanData,
+              i: Number
+            ): any => ({
+              ...acc,
+              items: acc.items.concat(this.removeTenant(result.items) || []),
+              count: acc.count + result.count,
+              ...(result.offset !== undefined
+                ? {
+                    offset:
+                      acc.offset !== undefined
+                        ? Object.assign({}, acc.offset, {
+                            [i.toString()]: result.offset
+                          })
+                        : { [i.toString()]: result.offset }
+                  }
+                : {})
+            }),
+            {
+              items: [],
+              count: 0,
+              offset: undefined
+            }
+          );
 
-        if (response.offset)
-          response.offset = btoa(JSON.stringify(response.offset));
+          if (response.offset)
+            response.offset = btoa(JSON.stringify(response.offset));
 
-        return response;
-      });
+          return response;
+        }
+      );
 
     return this;
   }

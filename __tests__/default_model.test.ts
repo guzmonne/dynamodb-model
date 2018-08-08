@@ -92,7 +92,7 @@ describe('DefaultModel', () => {
         });
     });
 
-    test('should call the `documentClient.put` function with appropiate params', () => {
+    test('should call the `documentClient.put` function with appropriate params', () => {
       return TestModel()
         .create({ id, name })
         .promise()
@@ -198,7 +198,7 @@ describe('DefaultModel', () => {
       expect(typeof TestModel().delete).toBe('function');
     });
 
-    test('should call the `documentClient.delete` method with appropiate params', () => {
+    test('should call the `documentClient.delete` method with appropriate params', () => {
       return TestModel()
         .delete({ id })
         .promise()
@@ -506,7 +506,7 @@ describe('DefaultModel', () => {
         });
     });
 
-    test('should call the `documentClient.scan` method with appropiate params', done => {
+    test('should call the `documentClient.scan` method with appropriate params', done => {
       NoTenantModel()
         .index()
         .callback(() => {
@@ -550,7 +550,7 @@ describe('DefaultModel', () => {
             ExpressionAttributeValues: {
               ':gsik': tenant + '|0'
             },
-            Limit: Math.floor(limit / maxGSIK)
+            Limit: Math.ceil(limit / maxGSIK)
           });
           done();
         });
@@ -724,7 +724,7 @@ describe('DefaultModel', () => {
             ExpressionAttributeValues: {
               ':gsik': tenant + '|0'
             },
-            Limit: 66,
+            Limit: 67,
             ExclusiveStartKey: {
               id: tenant + '|' + id,
               gsik: tenant + '|' + 0
@@ -740,7 +740,7 @@ describe('DefaultModel', () => {
             ExpressionAttributeValues: {
               ':gsik': tenant + '|1'
             },
-            Limit: 66,
+            Limit: 67,
             ExclusiveStartKey: {
               id: tenant + '|' + id,
               gsik: tenant + '|' + 1
@@ -756,7 +756,7 @@ describe('DefaultModel', () => {
             ExpressionAttributeValues: {
               ':gsik': tenant + '|2'
             },
-            Limit: 66,
+            Limit: 67,
             ExclusiveStartKey: {
               id: tenant + '|' + id,
               gsik: tenant + '|' + 2
@@ -816,7 +816,7 @@ describe('DefaultModel', () => {
         });
     });
 
-    test('should call the `documentClient.get` function with appropiate params', () => {
+    test('should call the `documentClient.get` function with appropriate params', () => {
       return TestModel()
         .get({ id })
         .promise()

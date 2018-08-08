@@ -1,4 +1,4 @@
-import { DocumentClient } from 'aws-sdk/lib/dynamodb/document_client';
+import { DynamoDB } from 'aws-sdk';
 import { IDefaultModel, DefaultModel } from './default_model';
 import { IDynamoDBModelConfig } from './model';
 
@@ -7,7 +7,7 @@ export * from './default_model';
 export interface IDynamoDBModelGlobalConfig {
   tenant?: string;
   table?: string;
-  documentClient?: DocumentClient;
+  documentClient?: DynamoDB.DocumentClient;
 }
 
 var global: IDynamoDBModelGlobalConfig = {};
