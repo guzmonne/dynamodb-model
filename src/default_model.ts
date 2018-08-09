@@ -22,6 +22,7 @@ export interface IDynamoDBModelIndexOptions {
   filter?: string;
   attributes?: string;
   scanIndexForward?: boolean;
+  indexName?: string;
 }
 
 interface IExpressionAttributeValues {
@@ -278,7 +279,7 @@ export class DefaultModel extends Model implements IDefaultModel {
         range(0, this.maxGSIK).map(i => {
           var params: DynamoDB.DocumentClient.QueryInput = {
             TableName: this.table,
-            IndexName: this.indexName,
+            IndexName: options.indexName || this.indexName,
             KeyConditionExpression: `#gsik = :gsik`,
             ExpressionAttributeNames: {
               '#gsik': 'gsik'
