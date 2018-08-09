@@ -5,6 +5,7 @@ export interface IDynamoDBModelIndexOptions {
     filter?: string;
     attributes?: string;
     scanIndexForward?: boolean;
+    indexName?: string;
 }
 export interface IDefaultModel extends IModel {
     callback(callback: (error: Error | null, data?: IItem | void) => void): void;

@@ -195,7 +195,7 @@ class DefaultModel extends model_1.Model {
         this.call = () => Promise.all(lodash_1.range(0, this.maxGSIK).map(i => {
             var params = {
                 TableName: this.table,
-                IndexName: this.indexName,
+                IndexName: options.indexName || this.indexName,
                 KeyConditionExpression: `#gsik = :gsik`,
                 ExpressionAttributeNames: {
                     '#gsik': 'gsik'
